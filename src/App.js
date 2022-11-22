@@ -4,6 +4,7 @@ import Environments from "./assets/Environment/Environment";
 import { Suspense } from "react";
 import { Environment, PresentationControls, View, Stars, OrbitControls } from "@react-three/drei";
 import { Physics, usePlane } from "@react-three/cannon";
+import Api from "./pages/api/testApi.js";
 import Login from "./pages/login/Login.js";
 import 'bulma/css/bulma.min.css';
 
@@ -55,4 +56,4 @@ function App() {
   );
 }
 
-export default Login;
+export default Api;

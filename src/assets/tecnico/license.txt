@@ -1,0 +1,11 @@
+Model Information:
+* title:	Avatar Tecnico
+* source:	https://sketchfab.com/3d-models/avatar-tecnico-935b02f056a94298b9fa9cc20d411bef
+* author:	pontedosbrozos (https://sketchfab.com/pontedosbrozos)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Avatar Tecnico" (https://sketchfab.com/3d-models/avatar-tecnico-935b02f056a94298b9fa9cc20d411bef) by pontedosbrozos (https://sketchfab.com/pontedosbrozos) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

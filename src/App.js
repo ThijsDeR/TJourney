@@ -14,10 +14,21 @@ import Journey from "./screens/JourneyScreen";
 
 function App() {
     return (
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/journey" element={<Journey />} />
-        </Routes>
+        <>
+            <Routes>
+            // Routes for the application
+                <Route path="/" element={<Home />} />
+                <Route path="/journey" element={<Journey />} />
+            </Routes>
+
+            // Navigation
+            <nav>
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/journey">Journey</Link></li>
+                </ul>
+            </nav>
+        </>
     );
 }
 

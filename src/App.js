@@ -4,7 +4,8 @@ import Environments from "./assets/Environment/Environment";
 import { Suspense } from "react";
 import { Environment, PresentationControls, View, Stars, OrbitControls } from "@react-three/drei";
 import { Physics, usePlane } from "@react-three/cannon";
-
+import Login from "./pages/login/Login.js";
+import 'bulma/css/bulma.min.css';
 
 
 function Plane() {
@@ -42,16 +43,16 @@ function App() {
           {/* </PresentationControls> */}
         </Canvas>
       </div>
-      <div class="progress">
-        <div class="progress-value"><h3 className="level">Level 50</h3></div>
+      <div className="progress">
+        <div className="progress-value"><h3 className="level">Level 50</h3></div>
       </div>
-      <div class="parent">
-        <button class="ButtonHome">&#9816;</button>
-        <button class="ButtonHome">&#9728;</button>
-        <button class="ButtonHome">&#9731;</button>
+      <div className="parent">
+        <button className="ButtonHome">&#9816;</button>
+        <button className="ButtonHome">&#9728;</button>
+        <button className="ButtonHome">&#9731;</button>
       </div>
     </div>
   );
 }
 
-export default App;
+export default Login;

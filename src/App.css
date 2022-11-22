@@ -94,3 +94,7 @@
   top: -18px;
   left: 10px;
 }
+
+.hidden {
+    display: none;
+}

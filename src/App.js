@@ -4,8 +4,10 @@ import Environments from "./assets/Environment/Environment";
 import { Suspense } from "react";
 import { Environment, PresentationControls, View, Stars, OrbitControls } from "@react-three/drei";
 import { Physics, usePlane } from "@react-three/cannon";
-import Login from "./pages/login/Login.js";
 import 'bulma/css/bulma.min.css';
+// import { useState, useEffect } from "react";
+// import { getCurrentUser, logout } from "./services/auth-service.js";
+// import Login from "./pages/login/Login";
 
 
 function Plane() {
@@ -55,4 +57,31 @@ function App() {
   );
 }
 
-export default Login;
+// function App2() {
+//     const [currentUser, setCurrentUser] = useState(undefined);
+
+//   useEffect(() => {
+//     getCurrentUser().then((data) => {
+//         setCurrentUser(data)
+//     });
+//   }, []);
+
+//   const logoutHandler = async () => {
+//     await logout()
+//     setCurrentUser(undefined)
+//     window.location.reload()
+//   }
+
+//     return (
+//         <>
+//             {currentUser ? (
+//                 <div>
+//                     <h2>{currentUser.username}</h2>
+//                     <button onClick={() => logoutHandler()}>Logout</button>
+//                 </div>
+//             ) : <Login />}
+//         </>
+//     )
+// }
+
+export default App;

@@ -17,23 +17,21 @@ import { Physics, usePlane } from "@react-three/cannon";
 import 'bulma/css/bulma.min.css';
 import { useState, useEffect } from "react";
 import { getCurrentUser, logout } from "./services/auth-service.js";
-import Login from "./pages/login/Login";
+import Login from "./pages/login/LoginScreen";
 
 
 // Screens
-import Home from "./screens/HomeScreen";
-import Journey from "./screens/JourneyScreen";
+import Home from "./pages/home/HomeScreen.js";
+import Journey from "./pages/journey/JourneyScreen.js";
 
 function App3() {
     return (
         <>
             <Routes>
-            // Routes for the application
                 <Route path="/" element={<Home />} />
                 <Route path="/journey" element={<Journey />} />
             </Routes>
 
-            // Navigation
             <nav>
                 <ul>
                     <li><Link to="/">Home</Link></li>
@@ -58,7 +56,6 @@ function App({logoutHandler}) {
                 <mesh position={[1.5, -1, 0]} scale={1}>
                   <Environments />
                 </mesh>
-                <Plane />
               </Physics>
             </Suspense>
             <Environment preset="sunset" />

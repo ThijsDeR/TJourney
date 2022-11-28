@@ -1,15 +1,16 @@
 import axios from "../api/axios.js";
 
-export const signup = (email, password) => {
+export const register = (email, password, username) => {
     return axios.post("/v1/users", {
         email,
         password,
+        username
     }).then((response) => {
-        if (response.data.accessToken) {
-            localStorage.setItem("user", JSON.stringify(response.data));
+        if (response.data.data.accessToken) {
+            localStorage.setItem("user", JSON.stringify(response.data.data));
         }
 
-        return response.data;
+        return response.data.data;
     });
 };
 
@@ -18,7 +19,6 @@ export const login = (email, password) => {
         email: email,
         password: password,
     }).then((response) => {
-        console.log(response.data.data.accessToken)
         if (response.data.data.accessToken) {
             localStorage.setItem("user", JSON.stringify(response.data.data));
         }

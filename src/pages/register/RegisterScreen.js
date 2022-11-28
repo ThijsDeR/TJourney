@@ -1,24 +1,22 @@
 import Footer from "../../components/footer/Footer";
-import Navigation from "../../components/navigation/Navigation";
-import "./login.css";
+import Navigation from "../../components/navigation/Navigation.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useState } from "react";
-import { getCurrentUser, login } from "../../services/auth-service.js";
-import { Link, Navigate } from "react-router-dom";
+import { faEnvelope, faKey, faUser } from '@fortawesome/free-solid-svg-icons'
+import { useState } from "react";
+import { register } from "../../services/auth-service.js";
+import { Navigate } from "react-router-dom";
 
-function Login({user, setCurrentUser}) {
+function Register({user, setCurrentUser}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
 
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            console.log("start")
-            await login(email, password).then(
+            await register(email, password, username).then(
                 (data) => {
-                    console.log("finish")
                     setCurrentUser(data)
                 },
                 (error) => {
@@ -41,9 +39,21 @@ function Login({user, setCurrentUser}) {
             <div style={{ position: "fixed", top: "100px", bottom: "100px", left: "0px", right: "0px" }}>
                 <form onSubmit={handleLogin}>
                     <div style={{ display: "flex", justifyContent: "center" }}>
-                        <h1 className="is-size-1">Login</h1>
+                        <h1 className="is-size-1">Register</h1>
                     </div>
                     <div style={{ padding: "20px" }}>
+                        <div className="field">
+                            <label className="label">User Name</label>
+                            <div className="control has-icons-left has-icons-right">
+                                <input className="input" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
+                                <span className="icon is-small is-left">
+                                    <FontAwesomeIcon icon={faUser} />
+                                </span>
+                                <span className="icon is-small is-right">
+                                    <i className="fas fa-exclamation-triangle"></i>
+                                </span>
+                            </div>
+                        </div>
                         <div className="field">
                             <label className="label">Email</label>
                             <div className="control has-icons-left has-icons-right">
@@ -68,7 +78,6 @@ function Login({user, setCurrentUser}) {
                                     <i className="fas fa-exclamation-triangle"></i>
                                 </span>
                             </div>
-                            <a href class="help is-link"><Link to="/register">Don't have an account?</Link></a>
                         </div>
 
                         <div className="field is-grouped">
@@ -87,4 +96,4 @@ function Login({user, setCurrentUser}) {
     );
 }
 
-export default Login;
+export default Register;

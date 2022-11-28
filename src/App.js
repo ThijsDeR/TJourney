@@ -58,7 +58,7 @@ function App({logoutHandler}) {
                 <mesh position={[1.5, -1, 0]} scale={1}>
                   <Environments />
                 </mesh>
-                <Plane />
+                
               </Physics>
             </Suspense>
             <Environment preset="sunset" />
@@ -102,4 +102,4 @@ function App2() {
     )
 }
 
-export default App2;
+export default App;

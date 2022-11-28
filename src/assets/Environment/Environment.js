@@ -12,6 +12,8 @@ import Chopper from '../Chopper/Chopper'
 import Shiba from '../Shiba/Shiba'
 import RandomGuy from '../Random/Random'
 import Dragon from '../Dragon/Dragon'
+import {Steps} from '../../components/scripts/Steps'
+
 
 export default function Environments(props) {
   const { nodes, materials } = useGLTF('/environment.gltf')
@@ -44,9 +46,8 @@ export default function Environments(props) {
           <mesh geometry={nodes.Other_Other_texture_0.geometry} material={materials.Other_texture} />
           <group>
             <mesh geometry={nodes.Boat_Boat_texture_0.geometry} material={materials.Boat_texture} />
-            <mesh position={[-17, 6.8, 8]} rotation={[0, 0, 0]} scale={0.05}>
-              <Chopper />
-            </mesh>
+           {/* <Steps /> */}
+           {Steps()}
             <mesh position={[-17, 8.3, -12]} rotation={[0, -0.5, 0]} scale={1.5}>
               <Shiba />
             </mesh>

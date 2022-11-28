@@ -1,3 +1,13 @@
+import React from "react";
+
+// for routing
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link
+} from "react-router-dom";
+
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import Environments from "./assets/Environment/Environment";
@@ -10,19 +20,29 @@ import { getCurrentUser, logout } from "./services/auth-service.js";
 import Login from "./pages/login/Login";
 
 
-function Plane() {
-  const [ref, api] = usePlane(() => ({
-    rotation: [-Math.PI / 2, 0, 0],
-    position: [0, -1, 0]
-  }));
-  return (
-    <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]}>
-      <planeBufferGeometry attach="geometry" args={[100, 100]} />
-      <meshLambertMaterial attach="material" color="lightgreen" />
-    </mesh>
-  );
-}
+// Screens
+import Home from "./screens/HomeScreen";
+import Journey from "./screens/JourneyScreen";
 
+function App3() {
+    return (
+        <>
+            <Routes>
+            // Routes for the application
+                <Route path="/" element={<Home />} />
+                <Route path="/journey" element={<Journey />} />
+            </Routes>
+
+            // Navigation
+            <nav>
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/journey">Journey</Link></li>
+                </ul>
+            </nav>
+        </>
+    );
+}
 function App({logoutHandler}) {
   return (
     <div className="canvasContainer">

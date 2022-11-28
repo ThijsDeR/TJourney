@@ -23,6 +23,7 @@ import Login from "./pages/login/Login";
 // Screens
 import Home from "./screens/HomeScreen";
 import Journey from "./screens/JourneyScreen";
+import Goals from "./screens/GoalScreen"
 
 function App3() {
     return (
@@ -31,6 +32,7 @@ function App3() {
             // Routes for the application
                 <Route path="/" element={<Home />} />
                 <Route path="/journey" element={<Journey />} />
+                <Route path="/goals" element={<Goals />} />
             </Routes>
 
             // Navigation
@@ -102,4 +104,4 @@ function App2() {
     )
 }
 
-export default App;
+export default App3;

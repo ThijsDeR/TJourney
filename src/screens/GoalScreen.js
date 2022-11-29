@@ -9,31 +9,31 @@ import { goals } from "../services/goal-service"
 
 function Goals() {
 
-    const [goals] = useState("");
+    const [goal, setGoal] = useState("");
 
 
 
-    // const handleGoal = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         await goals(goal).then(
-    //             (data) => {
-    //                 // navigate
-    //                 window.location.reload();
-    //             },
-    //             (error) => {
-    //                 console.log(error);
-    //             }
-    //         );
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // };
+    const handleGoal = async (e) => {
+        e.preventDefault();
+        try {
+            await goals(goal).then(
+                (data) => {
+                    // navigate
+                    window.location.reload();
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+    };
     return (
         <>
             <Navigation />
             <div style={{ position: "fixed", top: "100px", bottom: "100px", left: "150px", right: "150px" }}>
-                <form>
+                <form onSubmit={handleGoal}>
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <h1 className="is-size-1">Make Goal</h1>
                     </div>
@@ -41,7 +41,7 @@ function Goals() {
                         <div className="field">
                             <label className="label">Your Goal</label>
                             <div className="control has-icons-left has-icons-right">
-                                <input className="input" type="text" placeholder="Drink water" onChange={(e) => goals(e.target.value)} />
+                                <input className="input" type="text" placeholder="Drink water" onChange={(e) => setGoal(e.target.value)} />
                                 <span className="icon is-small is-left">
                                     <FontAwesomeIcon icon={faRectangleList} />
                                 </span>

@@ -32,7 +32,7 @@ function Goals() {
     return (
         <>
             <Navigation />
-            <div style={{ position: "fixed", top: "100px", bottom: "100px", left: "150px", right: "150px" }}>
+            <div style={{ position: "fixed", top: "100px", bottom: "100px", left: "0px", right: "0px" }}>
                 <form onSubmit={handleGoal}>
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <h1 className="is-size-1">Make Goal</h1>
@@ -63,6 +63,9 @@ function Goals() {
                         </div>
                     </div>
                 </form>
+
+
+                
             </div>
             <Footer />
         </>

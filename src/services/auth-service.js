@@ -32,13 +32,17 @@ export const logout = () => {
 };
 
 export const getCurrentUser = async () => {
-    const accessToken = JSON.parse(localStorage.getItem("user")).accessToken
+    const localUser = JSON.parse(localStorage.getItem("user"))
 
-    const data = await axios.get("/v1/users/ownData", {
-        headers: { Authorization: `Bearer ${accessToken}` }
-    })
+    if (localUser && localUser.accessToken) {
+        console.log(localUser.accessToken)
+        const data = await axios.get("/v1/users/ownData", {
+            headers: { Authorization: `Bearer ${localUser.accessToken}` }
+        })
+    
+        return data.data.data;
+    }
 
-    return data.data.data;
-
+    return null
 };
 

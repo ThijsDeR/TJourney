@@ -1,7 +1,4 @@
 import React from "react";
-
-
-
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import Environments from "./assets/Environment/Environment";
@@ -11,6 +8,7 @@ import { Physics } from "@react-three/cannon";
 import 'bulma/css/bulma.min.css';
 import { useState, useEffect } from "react";
 import { getCurrentUser, logout } from "./services/auth-service.js";
+
 // for routing
 import {
     Routes,
@@ -22,6 +20,9 @@ import Login from "./pages/login/LoginScreen.js";
 import Register from "./pages/register/RegisterScreen.js";
 import Logout from "./pages/logout/Logout";
 import Navigation from "./components/navigation/Navigation.js";
+
+import AvatarSelect from "./pages/home/AvatarSelect.js";
+
 
 function Game({ user }) {
     if (!user) {
@@ -86,4 +87,4 @@ function App() {
     )
 }
 
-export default App;
+export default AvatarSelect;

@@ -2,16 +2,19 @@ import React from 'react';
 import Navigation from "../../components/navigation/Navigation";
 import Footer from "../../components/footer/Footer";
 import { Canvas } from "@react-three/fiber";
-import Environments from "../../assets/Environment/Environment";
-import { Suspense } from "react";
 import { Environment, Stars, OrbitControls } from "@react-three/drei";
-import { Physics } from "@react-three/cannon";
-import Chopper from '../../assets/Chopper/Chopper'
-import { Circle, useGLTF } from '@react-three/drei'
+
+import Chopper from '../../assets/Chopper/Chopper';
+import Shiba from '../../assets/Shiba/Shiba';
+import RandomGuy from '../../assets/Random/Random'
+import Dragon from '../../assets/Dragon/Dragon'
 
 
 function AvatarSelect() {
-    const { nodes, materials } = useGLTF('/environment.gltf')
+
+    function selectAvatar(avatar) {
+        console.log("selected " + avatar)
+    }
 
     return (
         <>
@@ -20,113 +23,114 @@ function AvatarSelect() {
                 <div className="title text-center has-text-centered">
                     Avatar Select
                 </div>
-                <div className="columns is-mobile">
-                    <div className="box my-2  column is-half">
-                        <Canvas camera={{ position: [-5, 5.0, 0] }}>
+
+                {/* Contains two columns */}
+                <div className="columns is-mobile is-centered">
+                    {/* Default column */}
+                    <div className="box my-3 mr-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar("chopper")}>
+                        {/* Position of camera, x y z, currents puts it top right a bit away from chopper */}
+                        <Canvas camera={{ position: [3, 2, 3] }}>
+                            {/* Where the camera orbits around, recommend putting the y a bit up */}
                             <OrbitControls target={[0, 2.5, 0]} />
-                            {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
-                            {/* <Stars /> */}
-                            {/* <ambientLight intensity={0.5} /> */}
-                            {/* <spotLight position={[10, 15, 10]} angle={0.3} /> */}
-                                <mesh geometry={nodes.Boat_Boat_texture_0.geometry} material={materials.Boat_texture} />
-                                <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.05}>
-                                    <Chopper />
-                                </ mesh>
+                            {/* Leave the position at 0, scale depends on the avatar */}
+                            <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.05}>
+                                <Chopper />
+                            </ mesh>
                             <Environment preset="sunset" />
-                            {/* </PresentationControls> */}
                         </Canvas>
                     </div>
-                    <div className="box my-2  column is-half">
-                        <Canvas camera={{ position: [0, -0.2, 1.2] }}>
-                            <OrbitControls target={[0, -0.4, 0]} />
-                            {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
-                            {/* <Stars /> */}
-                            {/* <ambientLight intensity={0.5} /> */}
-                            {/* <spotLight position={[10, 15, 10]} angle={0.3} /> */}
-                            <Suspense fallback={null}>
-                                <Physics>
-                                    <mesh position={[1.5, -1, 0]} scale={1}>
-                                        <Environments />
-                                    </mesh>
-                                </Physics>
-                            </Suspense>
+                    {/* End of first column */}
+                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar("shiba")}>
+                        <Canvas camera={{ position: [3, 0, 3] }}>
+                            <OrbitControls target={[0, -0.0, 0]} />
+                            <mesh position={[0, 0, 0,]} rotation={[0, 0, 0]} scale={2.5}>
+                                <Shiba />
+                            </mesh>
                             <Environment preset="sunset" />
-                            {/* </PresentationControls> */}
                         </Canvas>
                     </div>
                 </div>
-                <div className="columns is-mobile">
-                    <div className="box my-2  column is-half">
-                        <Canvas camera={{ position: [0, -0.2, 1.2] }}>
-                            <OrbitControls target={[0, -0.4, 0]} />
-                            {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
-                            <Stars />
-                            <ambientLight intensity={0.5} />
-                            {/* <spotLight position={[10, 15, 10]} angle={0.3} /> */}
-                            <Suspense fallback={null}>
-                                <Physics>
-                                    <mesh position={[1.5, -1, 0]} scale={1}>
-                                        <Environments />
-                                    </mesh>
-                                </Physics>
-                            </Suspense>
+                {/* End of first set of columns */}
+
+                <div className="columns is-mobile is-centered">
+                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar("randomGuy")}>
+                        <Canvas camera={{ position: [2, 2, 2] }}>
+                            <OrbitControls target={[0, 2, 0]} />
+                            <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.2}>
+                                <RandomGuy />
+                            </mesh>
                             <Environment preset="sunset" />
-                            {/* </PresentationControls> */}
                         </Canvas>
                     </div>
-                    <div className="box my-2  column is-half">
-                        <Canvas camera={{ position: [0, -0.2, 1.2] }}>
-                            <OrbitControls target={[0, -0.4, 0]} />
-                            {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
-                            <Stars />
-                            <ambientLight intensity={0.5} />
-                            {/* <spotLight position={[10, 15, 10]} angle={0.3} /> */}
-                            <Suspense fallback={null}>
-                                <Physics>
-                                    <mesh position={[1.5, -1, 0]} scale={1}>
-                                        <Environments />
-                                    </mesh>
-                                </Physics>
-                            </Suspense>
+                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar("placeholder")}>
+                        <Canvas camera={{ position: [2, 2, 2] }}>
+                            <OrbitControls target={[0, 2, 0]} />
+                            <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.2}>
+                                <RandomGuy />
+                                {/* Dragon is broken it seems atm */}
+                                {/* <Dragon /> */}
+                            </mesh>
                             <Environment preset="sunset" />
-                            {/* </PresentationControls> */}
                         </Canvas>
                     </div>
-                </div><div className="columns is-mobile">
-                    <div className="box my-2  column is-half">
-                        <Canvas camera={{ position: [0, -0.2, 1.2] }}>
-                            <OrbitControls target={[0, -0.4, 0]} />
-                            {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
-                            <Stars />
-                            <ambientLight intensity={0.5} />
-                            {/* <spotLight position={[10, 15, 10]} angle={0.3} /> */}
-                            <Suspense fallback={null}>
-                                <Physics>
-                                    <mesh position={[1.5, -1, 0]} scale={1}>
-                                        <Environments />
-                                    </mesh>
-                                </Physics>
-                            </Suspense>
+                </div>
+                <div className="columns is-mobile is-centered">
+                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar("placeholder")}>
+                        <Canvas camera={{ position: [2, 2, 2] }}>
+                            <OrbitControls target={[0, 2, 0]} />
+                            <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.2}>
+                                <RandomGuy />
+                            </mesh>
                             <Environment preset="sunset" />
-                            {/* </PresentationControls> */}
                         </Canvas>
                     </div>
-                    <div className="box my-2  column is-half">
-                        <Canvas camera={{ position: [0, -0.2, 1.2] }}>
-                            <OrbitControls target={[0, -0.4, 0]} />
-                            {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
-                            <Stars />
-                            <ambientLight intensity={0.5} />
-                            {/* <spotLight position={[10, 15, 10]} angle={0.3} /> */}
-                            <Suspense fallback={null}>
-                                <Physics>
-                                    <mesh position={[1.5, -1, 0]} scale={1}>
-                                        <Environments />
-                                    </mesh>
-                                </Physics>
-                            </Suspense>
+                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar("placeholder")}>
+                        <Canvas camera={{ position: [2, 2, 2] }}>
+                            <OrbitControls target={[0, 2, 0]} />
+                            <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.2}>
+                                <RandomGuy />
+                            </mesh>
                             <Environment preset="sunset" />
-                            {/* </PresentationControls> */}
+                        </Canvas>
+                    </div>
+                </div>
+                <div className="columns is-mobile is-centered">
+                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar("placeholder")}>
+                        <Canvas camera={{ position: [2, 2, 2] }}>
+                            <OrbitControls target={[0, 2, 0]} />
+                            <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.2}>
+                                <RandomGuy />
+                            </mesh>
+                            <Environment preset="sunset" />
+                        </Canvas>
+                    </div>
+                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar("placeholder")}>
+                        <Canvas camera={{ position: [2, 2, 2] }}>
+                            <OrbitControls target={[0, 2, 0]} />
+                            <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.2}>
+                                <RandomGuy />
+                            </mesh>
+                            <Environment preset="sunset" />
+                        </Canvas>
+                    </div>
+                </div>
+                <div className="columns is-mobile is-centered">
+                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar("placeholder")}>
+                        <Canvas camera={{ position: [2, 2, 2] }}>
+                            <OrbitControls target={[0, 2, 0]} />
+                            <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.2}>
+                                <RandomGuy />
+                            </mesh>
+                            <Environment preset="sunset" />
+                        </Canvas>
+                    </div>
+                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar("placeholder")}>
+                        <Canvas camera={{ position: [2, 2, 2] }}>
+                            <OrbitControls target={[0, 2, 0]} />
+                            <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.2}>
+                                <RandomGuy />
+                            </mesh>
+                            <Environment preset="sunset" />
                         </Canvas>
                     </div>
                 </div>

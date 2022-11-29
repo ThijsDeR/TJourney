@@ -6,14 +6,35 @@ import { Environment, PresentationControls, View, Stars, OrbitControls } from "@
 import { Physics, usePlane } from "@react-three/cannon";
 import Login from "./pages/login/Login.js";
 import 'bulma/css/bulma.min.css';
-import { RandomCount, throwDiceAnimation } from './assets/Dice/Dice'
+import { moveLuckyblockToCenter, RandomCount, textAnimation, throwDiceAnimation } from './assets/Dice/Dice'
 
 export let steps;
 export let luckyMove = true;
+export let luckyVisible = false;
+let delay = 0;
+let countAsked = false;
 
 function App() {
-
-  throwDiceAnimation()
+  
+  if (luckyVisible === true) {
+    delay++;
+    if (luckyMove === true) {
+      throwDiceAnimation()
+    }
+    if (delay >= 500) {
+      luckyMove = false;
+      moveLuckyblockToCenter(1, 0)
+      if (countAsked === false && delay >= 600) {
+        steps = RandomCount(30);
+        textAnimation(180);
+        countAsked = true;
+      }
+    } else if (delay > 20000) {
+      luckyVisible = false;
+      luckyMove = true;
+      delay = 0;
+    }
+  }
 
   return (
     <div className="canvasContainer">
@@ -38,11 +59,12 @@ function App() {
       <div className="parent">
         <button className="ButtonHome">&#9816;</button>
         <button id="diceButton" className="ButtonHome" onClick={() => {
-          if (luckyMove === true) {
-            luckyMove = false;
-            steps = RandomCount(30);
+          if (luckyVisible === false) {
+            luckyVisible = true;
           } else {
-            luckyMove = true;
+
+            // TODO: Right now the block just turns invisable, we need this button to do something else but idk what
+            luckyVisible = false;
           }
         }}></button>
         <button className="ButtonHome">&#9731;</button>

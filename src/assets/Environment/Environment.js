@@ -13,7 +13,7 @@ import Shiba from '../Shiba/Shiba'
 import RandomGuy from '../Random/Random'
 import Dice, { dicedice } from '../Dice/Dice'
 import { dicePosition, textPosition, diceRotation } from '../Dice/Dice'
-import { steps } from '../../App'
+import { luckyMove, luckyVisible, steps } from '../../App'
 
 let rotationOfDice;
 export default function Environments(props) {
@@ -52,12 +52,14 @@ export default function Environments(props) {
             <mesh geometry={nodes.Boat_Boat_texture_0.geometry} material={materials.Boat_texture} />
             <mesh position={[-17, 6.8, 8]} rotation={[0, 0, 0]} scale={0.05}>
               <Chopper />
-              <mesh position={dicePosition} rotation={rotationOfDice} scale={50}>
-                <Dice />
-              </mesh>
-              <mesh position={textPosition} scale={5}>
-                <Text fontSize={6} color="hotpink">{steps}</Text>
-              </mesh>
+              {luckyVisible ? <group >
+                <mesh position={dicePosition} rotation={rotationOfDice} scale={50}>
+                  <Dice />
+                </mesh>
+                <mesh position={textPosition} scale={5}>
+                  <Text fontSize={6} color="hotpink">{steps}</Text>
+                </mesh>
+              </group> : null}
             </mesh>
             <mesh position={[-17, 8.3, -12]} rotation={[0, -0.5, 0]} scale={1.5}>
               <Shiba />

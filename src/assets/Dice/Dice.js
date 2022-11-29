@@ -33,6 +33,13 @@ export default function Dice(props) {
   )
 }
 
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// TODO: Make a function which can be called to lower the amount on the dice which is equal to the amount of steps the player still needs to take
+//
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 /**
  * Generate a random amount of steps
  * @param {*} amount maximum amount of steps a player can throw
@@ -53,26 +60,10 @@ export function throwDiceAnimation() {
     [cx, cy] = moveLuckyblock();
     textPosition = dicePosition + 20;
   } else {
-    if (cx > player || cy > player) {
-      if (cx > player) {
-        cx -= speed;
-      }
-      if (cy > player) {
-        cy -= speed;
-      }
-      dicePosition = [cx, cz, cy]
-    }
-    if (cx < player || cy < player) {
-      if (cx < player) {
-        cx += speed;
-      }
-      if (cy < player) {
-        cy += speed;
-      }
-    }
+    moveLuckyblockToCenter(speed, player)
     dicePosition = [player, cz, player];
     setTimeout(() => {
-      textAnimation();
+      textAnimation(0);
       if (levitate <= cz + 80) {
         levitate = levitate + 0.4;
       }
@@ -81,10 +72,39 @@ export function throwDiceAnimation() {
 }
 
 /**
+ * Function to move the luckyblock above the player
+ * @param {*} speed speed the lucky block goes to the middle
+ * @param {*} player position of the player
+ */
+export function moveLuckyblockToCenter(speed, player) {
+  if (cx > player || cy > player) {
+    if (cx > player) {
+      cx -= speed;
+    }
+    if (cy > player) {
+      cy -= speed;
+    }
+    dicePosition = [cx, cz, cy]
+  }
+  if (cx < player || cy < player) {
+    if (cx < player) {
+      cx += speed;
+    }
+    if (cy < player) {
+      cy += speed;
+    }
+  }
+}
+
+/**
  * Levitate the amount of steps from inside the dice
  */
-export function textAnimation() {
-  textPosition = [cx, levitate, cy];
+export function textAnimation(optionalLevitation) {
+  if (optionalLevitation === 0) {
+    textPosition = [cx, levitate, cy];
+  } else {
+    textPosition = [cx, optionalLevitation, cy];
+  }
 }
 
 /**
@@ -106,6 +126,7 @@ export function moveLuckyblock() {
  */
 export function diceRotation() {
   diceRotationX = diceRotationX + 0.1;
+  // return [Math.pow(diceRotationX,0.5), Math.pow(diceRotationX,0.8), Math.pow(diceRotationX,0.5)];
   return [0, diceRotationX, 0];
 }
 

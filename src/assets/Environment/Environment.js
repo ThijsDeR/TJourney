@@ -7,14 +7,16 @@ title: Low poly environment
 */
 
 import React, { useRef } from 'react'
-import { Circle, useGLTF } from '@react-three/drei'
+import { Circle, Text, Text3D, useGLTF } from '@react-three/drei'
 import Chopper from '../Chopper/Chopper'
 import Shiba from '../Shiba/Shiba'
 import RandomGuy from '../Random/Random'
-import Dragon from '../Dragon/Dragon'
+import Dice, { dicedice } from '../Dice/Dice'
+import { dicePosition, textPosition, steps } from '../..'
 
 export default function Environments(props) {
-  const { nodes, materials } = useGLTF('/environment.gltf')
+  const { nodes, materials } = useGLTF('/environment.gltf');
+
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={8.76}>
@@ -46,15 +48,18 @@ export default function Environments(props) {
             <mesh geometry={nodes.Boat_Boat_texture_0.geometry} material={materials.Boat_texture} />
             <mesh position={[-17, 6.8, 8]} rotation={[0, 0, 0]} scale={0.05}>
               <Chopper />
+              <mesh position={dicePosition} rotation={[0, 0, 0]} scale={50}>
+                <Dice />
+              </mesh>
+              <mesh position={textPosition} scale={5}>
+                <Text fontSize={6} color="hotpink">{steps}</Text>
+              </mesh>
             </mesh>
             <mesh position={[-17, 8.3, -12]} rotation={[0, -0.5, 0]} scale={1.5}>
               <Shiba />
             </mesh>
             <mesh position={[-16.5, 13, -29]} rotation={[0, 0, 0]} scale={0.3}>
               <RandomGuy />
-            </mesh>
-            <mesh position={[-17, 20, -3]} rotation={[0, 0, 0]} scale={5}>
-              {/* <Dragon /> */}
             </mesh>
             <group>
               <mesh position={[-17, 6.8, -1]} rotation={[-1.55, 0, 0]} scale={2}>
@@ -66,10 +71,10 @@ export default function Environments(props) {
               <mesh position={[-17, 6.8, -12]} rotation={[-1.55, 0, 0]} scale={2}>
                 <Circle />
               </mesh>
-              <mesh position={[-17, 6.8, 8  ]} rotation={[-1.55, 0, 0]} scale={2}>
+              <mesh position={[-17, 6.8, 8]} rotation={[-1.55, 0, 0]} scale={2}>
                 <Circle />
               </mesh>
-              <mesh position={[-15, 10, -21 ]} rotation={[-1, 0, 0]} scale={2}>
+              <mesh position={[-15, 10, -21]} rotation={[-1, 0, 0]} scale={2}>
                 <Circle />
               </mesh>
               <mesh position={[-16.5, 13, -29]} rotation={[-1.55, 0, 0]} scale={2}>

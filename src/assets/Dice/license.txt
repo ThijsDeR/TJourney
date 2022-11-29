@@ -1,0 +1,11 @@
+Model Information:
+* title:	Lucky Block
+* source:	https://sketchfab.com/3d-models/lucky-block-c1d5cfdbd2c24c3aa0a3b82286a19f76
+* author:	LIONDESERT (https://sketchfab.com/sherzod122007)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Lucky Block" (https://sketchfab.com/3d-models/lucky-block-c1d5cfdbd2c24c3aa0a3b82286a19f76) by LIONDESERT (https://sketchfab.com/sherzod122007) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

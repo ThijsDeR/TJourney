@@ -12,10 +12,14 @@ import Chopper from '../Chopper/Chopper'
 import Shiba from '../Shiba/Shiba'
 import RandomGuy from '../Random/Random'
 import Dice, { dicedice } from '../Dice/Dice'
-import { dicePosition, textPosition, steps } from '../..'
+import { dicePosition, textPosition, diceRotation } from '../Dice/Dice'
+import { steps } from '../../App'
 
+let rotationOfDice;
 export default function Environments(props) {
   const { nodes, materials } = useGLTF('/environment.gltf');
+
+  rotationOfDice = diceRotation();
 
   return (
     <group {...props} dispose={null}>
@@ -48,7 +52,7 @@ export default function Environments(props) {
             <mesh geometry={nodes.Boat_Boat_texture_0.geometry} material={materials.Boat_texture} />
             <mesh position={[-17, 6.8, 8]} rotation={[0, 0, 0]} scale={0.05}>
               <Chopper />
-              <mesh position={dicePosition} rotation={[0, 0, 0]} scale={50}>
+              <mesh position={dicePosition} rotation={rotationOfDice} scale={50}>
                 <Dice />
               </mesh>
               <mesh position={textPosition} scale={5}>

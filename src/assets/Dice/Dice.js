@@ -8,6 +8,18 @@ title: Lucky Block
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import { luckyMove } from '../../App'
+
+export let dicePosition;
+export let textPosition;
+let diceRotationX = 0;
+let angle = 0;
+let dd = 1;
+let radius = 40;
+let cx;           // X position of the dice
+let cy;           // Y position of the dice
+let cz = 100;     // Z position of the dice
+let levitate = cz + 50;
 
 export default function Dice(props) {
   const { nodes, materials } = useGLTF('/dice.gltf')
@@ -21,9 +33,80 @@ export default function Dice(props) {
   )
 }
 
+/**
+ * Generate a random amount of steps
+ * @param {*} amount maximum amount of steps a player can throw
+ * @returns a random amount of steps beneath the maximum amount which also > 0 
+ */
 export function RandomCount(amount) {
   const stepAmount = Math.floor(Math.random() * (amount - 1) + 1);
   return stepAmount;
+}
+
+/**
+ * function which is called to move the dice or to stop it
+ */
+export function throwDiceAnimation() {
+  let speed = 1;
+  let player = 0
+  if (luckyMove === true) {
+    [cx, cy] = moveLuckyblock();
+    textPosition = dicePosition + 20;
+  } else {
+    if (cx > player || cy > player) {
+      if (cx > player) {
+        cx -= speed;
+      }
+      if (cy > player) {
+        cy -= speed;
+      }
+      dicePosition = [cx, cz, cy]
+    }
+    if (cx < player || cy < player) {
+      if (cx < player) {
+        cx += speed;
+      }
+      if (cy < player) {
+        cy += speed;
+      }
+    }
+    dicePosition = [player, cz, player];
+    setTimeout(() => {
+      textAnimation();
+      if (levitate <= cz + 80) {
+        levitate = levitate + 0.4;
+      }
+    }, 500)
+  }
+}
+
+/**
+ * Levitate the amount of steps from inside the dice
+ */
+export function textAnimation() {
+  textPosition = [cx, levitate, cy];
+}
+
+/**
+ * Move the Dice in a circle motion
+ * @returns the new position of the dice
+ */
+export function moveLuckyblock() {
+  // increase the angle of rotation
+  angle += Math.acos(1 - Math.pow(dd / radius, 2) / 2);
+
+  dicePosition = [radius * Math.cos(angle), 100, radius * Math.sin(angle)]
+
+  return [radius * Math.cos(angle), radius * Math.sin(angle)]
+}
+
+/**
+ * 
+ * @returns 
+ */
+export function diceRotation() {
+  diceRotationX = diceRotationX + 0.1;
+  return [0, diceRotationX, 0];
 }
 
 useGLTF.preload('/dice.gltf')

@@ -8,10 +8,11 @@ title: Volcano Island Lowpoly
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import Birds from '../Birds/Birds'
+import Birds, { BirdMoveAround } from '../Birds/Birds'
 
 export default function VulcanoIsland(props) {
   const { nodes, materials } = useGLTF('/vulcano.gltf')
+  let [cx,cy] = BirdMoveAround();
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
@@ -65,7 +66,7 @@ export default function VulcanoIsland(props) {
             <group rotation={[Math.PI / 2, 0, 0]} />
           </group>
           <group>
-            <mesh position={[0, 5000, 0]} scale={1000}>
+            <mesh position={[cx, 5000, cy]} scale={1000}>
               <Birds />
             </mesh>
           </group>

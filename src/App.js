@@ -40,6 +40,7 @@ function App3() {
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/journey">Journey</Link></li>
+                    <li><Link to="/goals">Goal</Link></li>
                 </ul>
             </nav>
         </>

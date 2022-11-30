@@ -9,6 +9,11 @@ title: Birds
 import React, { useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 
+export let birdPosition = [0, 5000, 0];
+let angle = 0;
+let dd = 5;
+let radius = 400;
+
 export default function Birds(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/birds.gltf')
@@ -72,6 +77,19 @@ export default function Birds(props) {
       </group>
     </group>
   )
+}
+
+/**
+ * Move the Dice in a circle motion
+ * @returns the new position of the dice
+ */
+ export function BirdMoveAround() {
+  // increase the angle of rotation
+  angle += Math.acos(1 - Math.pow(dd / radius, 2) / 2);
+
+  birdPosition = [radius * Math.cos(angle), 100, radius * Math.sin(angle)]
+
+  return [radius * Math.cos(angle), radius * Math.sin(angle)]
 }
 
 useGLTF.preload('/birds.gltf')

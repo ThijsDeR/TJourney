@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from "../components/footer/Footer";
 import Navigation from "../components/navigation/Navigation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRectangleList,  } from '@fortawesome/free-solid-svg-icons'
+import { faRectangleList, } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react";
 import { goals } from "../services/goal-service"
 
@@ -29,10 +29,12 @@ function Goals() {
             console.log(err);
         }
     };
+    console.log(goal);
     return (
         <>
             <Navigation />
             <div style={{ position: "fixed", top: "100px", bottom: "100px", left: "0px", right: "0px" }}>
+
                 <form onSubmit={handleGoal}>
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <h1 className="is-size-1">Make Goal</h1>
@@ -65,7 +67,8 @@ function Goals() {
                 </form>
 
 
-                
+
+
             </div>
             <Footer />
         </>

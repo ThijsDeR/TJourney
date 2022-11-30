@@ -12,10 +12,12 @@ import Chopper from '../Chopper/Chopper'
 import Shiba from '../Shiba/Shiba'
 import RandomGuy from '../Random/Random'
 import Dragon from '../Dragon/Dragon'
-import {Steps} from '../../components/scripts/Steps'
+import { steps,stepsReset,stepsUp } from '../../components/scripts/steps.js'
+import { drawCircle } from '../../components/scripts/circle.js'
 
 
 export default function Environments(props) {
+  const placeCircle = [[-17, 6.8, 8],[-17, 6.8, -1],[-17, 6.8, -12],[-15, 10, -21 ],[-16.5, 13, -29],[-15, 16.2, -45]]
   const { nodes, materials } = useGLTF('/environment.gltf')
   return (
     <group {...props} dispose={null}>
@@ -46,8 +48,13 @@ export default function Environments(props) {
           <mesh geometry={nodes.Other_Other_texture_0.geometry} material={materials.Other_texture} />
           <group>
             <mesh geometry={nodes.Boat_Boat_texture_0.geometry} material={materials.Boat_texture} />
-           {/* <Steps /> */}
-           {Steps()}
+            {/* <Steps /> */}
+           
+            {steps(placeCircle)}
+            {/* {/* {stepsUp(1,placeCircle)} */}
+            {/* {stepsUp(2,placeCircle)}  */}
+            
+            {/* {stepsReset(4,placeCircle)} */}
             <mesh position={[-17, 8.3, -12]} rotation={[0, -0.5, 0]} scale={1.5}>
               <Shiba />
             </mesh>
@@ -57,25 +64,14 @@ export default function Environments(props) {
             <mesh position={[-17, 20, -3]} rotation={[0, 0, 0]} scale={5}>
               {/* <Dragon /> */}
             </mesh>
+
             <group>
-              <mesh position={[-17, 6.8, -1]} rotation={[-1.55, 0, 0]} scale={2}>
-                <Circle />
-              </mesh>
-              <mesh position={[-15, 16.2, -45]} rotation={[-1.55, 0, 0]} scale={2}>
-                <Circle />
-              </mesh>
-              <mesh position={[-17, 6.8, -12]} rotation={[-1.55, 0, 0]} scale={2}>
-                <Circle />
-              </mesh>
-              <mesh position={[-17, 6.8, 8  ]} rotation={[-1.55, 0, 0]} scale={2}>
-                <Circle />
-              </mesh>
-              <mesh position={[-15, 10, -21 ]} rotation={[-1, 0, 0]} scale={2}>
-                <Circle />
-              </mesh>
-              <mesh position={[-16.5, 13, -29]} rotation={[-1.55, 0, 0]} scale={2}>
-                <Circle />
-              </mesh>
+               {
+                placeCircle.map((placeCircle) => {
+                  return drawCircle(placeCircle)
+                })
+               }
+           
             </group>
           </group>
           <mesh geometry={nodes.Rickshaw_Rickshaw_texture_0.geometry} material={materials.Rickshaw_texture} />

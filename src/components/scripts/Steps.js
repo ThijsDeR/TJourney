@@ -10,24 +10,43 @@ import { getCurrentUser, logout } from "../../services/auth-service.js";
 import Login from "../../pages/login/Login";
 import Chopper from '../../assets/Chopper/Chopper'
 
-const counting = 0;
-let placeChopper;
+ let  placeOnTheBoard = 13;
+let placeChopper = [-17, 6.8, 8];
 
- export  function Steps() {
-  if(counting===1){
-    placeChopper = [-17, 6.8, -1];
-  
-  } else if (counting===0){
-    placeChopper =[-17, 6.8, 8];
-  
+export function steps(listOfPlacesForChopper) {
+  stepsReset(listOfPlacesForChopper)
+  for (let i = 0; i <= listOfPlacesForChopper.length; i++) {
+    
+    if (placeOnTheBoard === i) {
+      
+        console.log(placeChopper = listOfPlacesForChopper[i])
+        placeChopper = listOfPlacesForChopper[i]
+      
+   
+    }
+
   }
-  return(
+
+  return (
     <mesh position={placeChopper} rotation={[0, 0, 0]} scale={0.05}>
       <Chopper />
     </mesh>
   );
 }
 
-export function StepsUp(){
+export function stepsUp(number,listOfPlacesForChopper) {
 
+ placeOnTheBoard = placeOnTheBoard+number;
+ steps(listOfPlacesForChopper)
+  
+}
+
+export function stepsReset(listOfPlacesForChopper) {
+//6<12+1
+  if (listOfPlacesForChopper.length < placeOnTheBoard) {
+    let newPlaceOntheBoard;
+    newPlaceOntheBoard = placeOnTheBoard%listOfPlacesForChopper.length;
+    placeOnTheBoard = newPlaceOntheBoard;
+
+  }
 }

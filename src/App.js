@@ -24,7 +24,7 @@ import Logout from "./pages/logout/Logout";
 import Navigation from "./components/navigation/Navigation.js";
 import VulcanoIsland from "./assets/VulcanoIsland/Vulcano";
 
-function Game({ user }) {
+export function Game({ user }) {
     if (!user) {
         return <Navigate to="/login" replace />;
     }
@@ -34,10 +34,10 @@ function Game({ user }) {
             <Navigation />
             <div className="canvasContainer">
                 <div className="App">
-                    <Canvas camera={{ position: [0, -0.2, 1.2] }}>
+                    <Canvas camera={{ position: [0, -0.2, 1.2] }}  style={{backgroundColor: "#17E7E7"}}>
                         <OrbitControls />
                         {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
-                        <Stars />
+                        {/* <Stars /> */}
                         <ambientLight intensity={0.5} />
                         {/* <spotLight position={[10, 15, 10]} angle={0.3} /> */}
                         <Suspense fallback={null}>

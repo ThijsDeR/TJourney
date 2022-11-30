@@ -12,7 +12,7 @@ import Chopper from '../Chopper/Chopper'
 import Shiba from '../Shiba/Shiba'
 import RandomGuy from '../Random/Random'
 import Dragon from '../Dragon/Dragon'
-import { steps,stepsReset,stepsUp } from '../../components/scripts/steps.js'
+import { steps,stepsReset,stepsUp } from '../../components/scripts/Steps.js'
 import { drawCircle } from '../../components/scripts/circle.js'
 
 
@@ -50,8 +50,8 @@ export default function Environments(props) {
             <mesh geometry={nodes.Boat_Boat_texture_0.geometry} material={materials.Boat_texture} />
             {/* <Steps /> */}
            
-            {steps(placeCircle)}
-            {/* {/* {stepsUp(1,placeCircle)} */}
+            {stepsUp(0,placeCircle)}
+            {steps(placeCircle)} 
             {/* {stepsUp(2,placeCircle)}  */}
             
             {/* {stepsReset(4,placeCircle)} */}

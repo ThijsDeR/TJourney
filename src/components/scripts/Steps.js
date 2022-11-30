@@ -10,21 +10,17 @@ import { getCurrentUser, logout } from "../../services/auth-service.js";
 import Login from "../../pages/login/Login";
 import Chopper from '../../assets/Chopper/Chopper'
 
- let  placeOnTheBoard = 13;
+let placeOnTheBoard = 0;
 let placeChopper = [-17, 6.8, 8];
 
 export function steps(listOfPlacesForChopper) {
   stepsReset(listOfPlacesForChopper)
-  for (let i = 0; i <= listOfPlacesForChopper.length; i++) {
-    
-    if (placeOnTheBoard === i) {
-      
-        console.log(placeChopper = listOfPlacesForChopper[i])
-        placeChopper = listOfPlacesForChopper[i]
-      
-   
-    }
 
+  for (let i = 0; i <= listOfPlacesForChopper.length; i++) {
+    if (placeOnTheBoard === i) {
+      console.log(placeChopper = listOfPlacesForChopper[i]);
+      placeChopper = listOfPlacesForChopper[i];
+    }
   }
 
   return (
@@ -34,19 +30,20 @@ export function steps(listOfPlacesForChopper) {
   );
 }
 
-export function stepsUp(number,listOfPlacesForChopper) {
+export function stepsUp(number, listOfPlacesForChopper) {
+  console.log("at first: " + placeOnTheBoard)
+  placeOnTheBoard = placeOnTheBoard + number;
+  console.log("after: " + placeOnTheBoard)
 
- placeOnTheBoard = placeOnTheBoard+number;
- steps(listOfPlacesForChopper)
-  
+
+  steps(listOfPlacesForChopper);
 }
 
 export function stepsReset(listOfPlacesForChopper) {
-//6<12+1
-  if (listOfPlacesForChopper.length < placeOnTheBoard) {
+  //6<12+1
+  if (listOfPlacesForChopper.length - 1 < placeOnTheBoard) {
     let newPlaceOntheBoard;
-    newPlaceOntheBoard = placeOnTheBoard%listOfPlacesForChopper.length;
+    newPlaceOntheBoard = placeOnTheBoard % listOfPlacesForChopper.length;
     placeOnTheBoard = newPlaceOntheBoard;
-
   }
 }

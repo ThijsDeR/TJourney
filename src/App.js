@@ -89,4 +89,4 @@ function App() {
     )
 }
 
-export default VariationSelect;
+export default AvatarSelect;

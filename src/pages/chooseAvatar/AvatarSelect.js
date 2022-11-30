@@ -57,6 +57,7 @@ function AvatarSelect() {
         const avatars = [ChopperCanvas, ShibaCanvas, PlaceholderCanvas];
         setChosenAvatar(avatars[avatarId]);
         setPickedTheMainAvatar(true);
+        console.log("picked avatar: " + avatarId);
     }
 
     return (

@@ -51,7 +51,6 @@ function mapAvatarVariation() {
                         {avatarVariation[i]}
                     </div>
                 }
-
             </div>
         </>);
     }

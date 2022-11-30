@@ -22,6 +22,7 @@ import Login from "./pages/login/LoginScreen.js";
 import Register from "./pages/register/RegisterScreen.js";
 import Logout from "./pages/logout/Logout";
 import Navigation from "./components/navigation/Navigation.js";
+import VulcanoIsland from "./assets/VulcanoIsland/Vulcano";
 
 function Game({ user }) {
     if (!user) {
@@ -34,15 +35,15 @@ function Game({ user }) {
             <div className="canvasContainer">
                 <div className="App">
                     <Canvas camera={{ position: [0, -0.2, 1.2] }}>
-                        <OrbitControls target={[0, -0.4, 0]} />
+                        <OrbitControls />
                         {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
                         <Stars />
                         <ambientLight intensity={0.5} />
                         {/* <spotLight position={[10, 15, 10]} angle={0.3} /> */}
                         <Suspense fallback={null}>
                             <Physics>
-                                <mesh position={[1.5, -1, 0]} scale={1}>
-                                    <Environments />
+                                <mesh position={[1.5, -1, 0]} scale={0.0001}>
+                                    <VulcanoIsland />
                                 </mesh>
                             </Physics>
                         </Suspense>
@@ -50,9 +51,9 @@ function Game({ user }) {
                         {/* </PresentationControls> */}
                     </Canvas>
                 </div>
-                <div className="progress">
+                {/* <div className="progress">
                     <div className="progress-value"><h3 className="level">Level 50</h3></div>
-                </div>
+                </div> */}
                 <div className="parent">
                     <button className="ButtonHome">&#9816;</button>
                     <Link to="/logout"><button className="ButtonHome">&#9728;</button></Link>

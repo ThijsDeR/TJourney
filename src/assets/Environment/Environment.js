@@ -16,6 +16,7 @@ import { dicePosition, textPosition, diceRotation } from '../Dice/Dice'
 import { luckyMove, luckyVisible, steps } from '../../App'
 
 let rotationOfDice;
+export let playerPosition = [-17, 6.8, 8];
 export default function Environments(props) {
   const { nodes, materials } = useGLTF('/environment.gltf');
 
@@ -50,7 +51,7 @@ export default function Environments(props) {
           <mesh geometry={nodes.Other_Other_texture_0.geometry} material={materials.Other_texture} />
           <group>
             <mesh geometry={nodes.Boat_Boat_texture_0.geometry} material={materials.Boat_texture} />
-            <mesh position={[-17, 6.8, 8]} rotation={[0, 0, 0]} scale={0.05}>
+            <mesh position={playerPosition} rotation={[0, 0, 0]} scale={0.05}>
               <Chopper />
               {luckyVisible ? <group >
                 <mesh position={dicePosition} rotation={rotationOfDice} scale={50}>

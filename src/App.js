@@ -39,9 +39,9 @@ function App() {
   return (
     <div className="canvasContainer">
       <div className="App">
-      <Canvas id='canvas' camera={{ position: [0, 0, 1.3] }}>
-            <OrbitControls target={[0, -0.4, 0]} />
-            {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
+      <Canvas id='canvas' camera={{ position: [0, 0, 1.6] }}>
+            <OrbitControls />
+            {/* <PresentationControls minDistance={1.9} maxDistance={1.901} polar={[0, Math.PI / 4]} rotation={[0.2, 0, 0]}> */}
             <Stars />
             <ambientLight intensity={0.5} />
             {/* <spotLight position={[10, 15, 10]} angle={0.3} /> */}
@@ -65,6 +65,7 @@ function App() {
 
             // TODO: Right now the block just turns invisable, we need this button to do something else but idk what
             luckyVisible = false;
+            window.location.reload();
           }
         }}></button>
         <button className="ButtonHome">&#9731;</button>

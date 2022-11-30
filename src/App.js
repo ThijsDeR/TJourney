@@ -21,7 +21,9 @@ import Register from "./pages/register/RegisterScreen.js";
 import Logout from "./pages/logout/Logout";
 import Navigation from "./components/navigation/Navigation.js";
 
-import AvatarSelect from "./pages/home/AvatarSelect.js";
+import AvatarSelect from "./pages/chooseAvatar/AvatarSelect.js";
+import VariationSelect from "./pages/chooseAvatar/VariationSelect.js";
+
 
 
 function Game({ user }) {
@@ -87,4 +89,4 @@ function App() {
     )
 }
 
-export default AvatarSelect;
+export default VariationSelect;

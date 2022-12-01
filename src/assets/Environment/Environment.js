@@ -11,12 +11,13 @@ import { Circle, Text, Text3D, useGLTF } from '@react-three/drei'
 import Chopper from '../Chopper/Chopper'
 import Shiba from '../Shiba/Shiba'
 import RandomGuy from '../Random/Random'
-import Dice, { dicedice } from '../Dice/Dice'
+import Dice, { dicedice, getDicePosition, getTextPosition } from '../Dice/Dice'
 import { dicePosition, textPosition, diceRotation } from '../Dice/Dice'
-import { luckyMove, luckyVisible, steps } from '../../App'
+import { getLuckyVisible, getSteps, luckyMove, luckyVisible, steps } from '../../App'
 
 let rotationOfDice;
-export let playerPosition = [-17, 6.8, 8];
+let playerPosition = [-17, 6.8, 8];
+
 export default function Environments(props) {
   const { nodes, materials } = useGLTF('/environment.gltf');
 
@@ -53,12 +54,12 @@ export default function Environments(props) {
             <mesh geometry={nodes.Boat_Boat_texture_0.geometry} material={materials.Boat_texture} />
             <mesh position={playerPosition} rotation={[0, 0, 0]} scale={0.05}>
               <Chopper />
-              {luckyVisible ? <group >
-                <mesh position={dicePosition} rotation={rotationOfDice} scale={50}>
+              {getLuckyVisible() ? <group >
+                <mesh position={getDicePosition()} rotation={rotationOfDice} scale={50}>
                   <Dice />
                 </mesh>
-                <mesh position={textPosition} scale={5}>
-                  <Text fontSize={6} color="hotpink">{steps}</Text>
+                <mesh position={getTextPosition()} scale={5}>
+                  <Text fontSize={6} color="hotpink">{getSteps()}</Text>
                 </mesh>
               </group> : null}
             </mesh>
@@ -113,6 +114,14 @@ export default function Environments(props) {
       </group>
     </group>
   )
+}
+
+export function getPlayerPosition() {
+  return playerPosition;
+}
+
+export function setPlayerPosition(_playerPosition) {
+  playerPosition = _playerPosition;
 }
 
 useGLTF.preload('/environment.gltf')

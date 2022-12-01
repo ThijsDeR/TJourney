@@ -9,20 +9,20 @@ title: Volcano Island Lowpoly
 import React, { useRef } from 'react'
 import { useGLTF, Text } from '@react-three/drei'
 import Chopper from '../Chopper/Chopper'
-import Birds, { angle, BirdMoveAround } from '../Birds/Fly'
-import Dice, { dicedice } from '../Dice/Dice'
+import Birds, { angle, BirdMoveAround, getAngle } from '../Birds/Fly'
+import Dice, { dicedice, getDicePosition, getTextPosition } from '../Dice/Dice'
 import { dicePosition, textPosition, diceRotation } from '../Dice/Dice'
-import { luckyMove, luckyVisible, steps } from '../../App'
+import { getLuckyVisible, getSteps, luckyMove, luckyVisible, steps } from '../../App'
 
 let cz = 0;
 let czMultiplier = 10;
 let rotationOfDice;
-export let playerPosition = [-6000, 2205, -3000];
+let playerPosition = [-6000, 2205, -3000];
 
 export default function VulcanoIsland(props) {
   const { nodes, materials } = useGLTF('/vulcano.gltf')
   let [cx,cy] = BirdMoveAround();
-  let rotation = angle;
+  let rotation = getAngle();
   cz += czMultiplier;
   
   if (cz >= 700 || cz <= -700) {
@@ -95,12 +95,12 @@ export default function VulcanoIsland(props) {
           <group>
           <mesh position={playerPosition} rotation={[0, 0, 0]} scale={5}>
               <Chopper />
-              {luckyVisible ? <group >
-                <mesh position={dicePosition} rotation={rotationOfDice} scale={50}>
+              {getLuckyVisible() ? <group >
+                <mesh position={getDicePosition()} rotation={rotationOfDice} scale={50}>
                   <Dice />
                 </mesh>
-                <mesh position={textPosition} scale={5}>
-                  <Text fontSize={6} color="hotpink">{steps}</Text>
+                <mesh position={getTextPosition()} scale={5}>
+                  <Text fontSize={6} color="hotpink">{getSteps()}</Text>
                 </mesh>
               </group> : null}
             </mesh>
@@ -109,6 +109,14 @@ export default function VulcanoIsland(props) {
       </group>
     </group>
   )
+}
+
+export function getPlayerPosition() {
+  return playerPosition;
+}
+
+export function setPlayerPosition(_playerPosition) {
+  playerPosition = _playerPosition;
 }
 
 useGLTF.preload('/vulcano.gltf')

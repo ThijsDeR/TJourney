@@ -8,10 +8,10 @@ title: Lucky Block
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { luckyMove } from '../../App'
+import { getLuckyMove } from '../../App'
 
-export let dicePosition;
-export let textPosition;
+let dicePosition;
+let textPosition;
 let diceRotationX = 0;
 let angle = 0;
 let dd = 1;
@@ -55,7 +55,7 @@ export function RandomCount(amount) {
 export function throwDiceAnimation() {
   let speed = 1;
   let player = 0
-  if (luckyMove === true) {
+  if (getLuckyMove() === true) {
     [cx, cy] = moveLuckyblock();
     textPosition = dicePosition + 20;
   } else {
@@ -127,6 +127,22 @@ export function diceRotation() {
   diceRotationX = diceRotationX + 0.1;
   // return [Math.pow(diceRotationX,0.5), Math.pow(diceRotationX,0.8), Math.pow(diceRotationX,0.5)];
   return [0, diceRotationX, 0];
+}
+
+export function getDicePosition() {
+  return dicePosition;
+}
+
+export function setDicePosition(_dicePosition) {
+  dicePosition = _dicePosition;
+}
+
+export function getTextPosition() {
+  return textPosition;
+}
+
+export function setTextPosition(_textPosition) {
+  textPosition = _textPosition;
 }
 
 useGLTF.preload('/dice.gltf')

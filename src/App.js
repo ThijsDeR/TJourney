@@ -22,9 +22,9 @@ import Navigation from "./components/navigation/Navigation.js";
 import VulcanoIsland from "./assets/vulcanoIsland/Vulcano.js";
 
 
-export let steps;
-export let luckyMove = true;
-export let luckyVisible = false;
+let steps;
+let luckyMove = true;
+let luckyVisible = false;
 let delay = 0;
 let countAsked = false;
 
@@ -117,4 +117,27 @@ function App() {
     )
 }
 
+export function getSteps() {
+    return steps;
+}
+
+export function setSteps(_steps) {
+    steps = _steps;
+}
+
+export function getLuckyMove() {
+    return luckyMove;
+}
+
+export function setLuckyMove(_luckyMove) {
+    luckyMove = _luckyMove;
+}
+
+export function getLuckyVisible() {
+    return luckyVisible;
+}
+
+export function setLuckyVisible(_luckyVisible) {
+    luckyVisible = _luckyVisible;
+}
 export default App;   

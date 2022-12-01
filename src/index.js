@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import "./App.css";
 import './index.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Game } from './App';
+import App, { Game } from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -13,7 +13,7 @@ function Animate() {
   root.render(
     <React.StrictMode>
       <Router>
-        <Game user={"currentUser"} />
+        <App />
       </Router>
     </React.StrictMode>
   );

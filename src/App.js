@@ -22,7 +22,7 @@ import Login from "./pages/login/LoginScreen.js";
 import Register from "./pages/register/RegisterScreen.js";
 import Logout from "./pages/logout/Logout";
 import Navigation from "./components/navigation/Navigation.js";
-import VulcanoIsland from "./assets/VulcanoIsland/Vulcano";
+import VulcanoIsland from "./assets/vulcanoIsland/Vulcano.js";
 
 export function Game({ user }) {
     if (!user) {

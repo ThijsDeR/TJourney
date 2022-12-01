@@ -12,13 +12,14 @@ import Chopper from '../Chopper/Chopper'
 import Shiba from '../Shiba/Shiba'
 import RandomGuy from '../Random/Random'
 import Dragon from '../Dragon/Dragon'
-import { steps,stepsReset,stepsUp } from '../../components/scripts/Steps.js'
-import { drawCircle } from '../../components/scripts/circle.js'
+import { diceNumber, SetPosition,walkTimer } from '../../components/scripts/PositionPlayer.js'
+import { drawCircle } from '../../components/scripts/Circle.js'
 
+export const ListofPositionPlaces = [[-17, 6.8, 8], [-17, 6.8, -1], [-17, 6.8, -12], [-15, 10, -21], [-16.5, 13, -29], [-15, 16.2, -45]]
 
 export default function Environments(props) {
-  const placeCircle = [[-17, 6.8, 8],[-17, 6.8, -1],[-17, 6.8, -12],[-15, 10, -21 ],[-16.5, 13, -29],[-15, 16.2, -45]]
   const { nodes, materials } = useGLTF('/environment.gltf')
+  walkTimer()
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={8.76}>
@@ -49,12 +50,15 @@ export default function Environments(props) {
           <group>
             <mesh geometry={nodes.Boat_Boat_texture_0.geometry} material={materials.Boat_texture} />
             {/* <Steps /> */}
+
+            {/* {stepsUp(0,placeCircle)} */}
+         
+            <mesh position={SetPosition()} rotation={[0, 0, 0]} scale={0.05}>
+            <Chopper />
+            </mesh>
            
-            {stepsUp(0,placeCircle)}
-            {steps(placeCircle)} 
-            {/* {stepsUp(2,placeCircle)}  */}
-            
-            {/* {stepsReset(4,placeCircle)} */}
+
+            {/* {stepsUp(4)} */}
             <mesh position={[-17, 8.3, -12]} rotation={[0, -0.5, 0]} scale={1.5}>
               <Shiba />
             </mesh>
@@ -66,12 +70,12 @@ export default function Environments(props) {
             </mesh>
 
             <group>
-               {
-                placeCircle.map((placeCircle) => {
+              {
+                ListofPositionPlaces.map((placeCircle) => {
                   return drawCircle(placeCircle)
                 })
-               }
-           
+              }
+
             </group>
           </group>
           <mesh geometry={nodes.Rickshaw_Rickshaw_texture_0.geometry} material={materials.Rickshaw_texture} />

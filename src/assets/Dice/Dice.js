@@ -23,7 +23,6 @@ let levitate = cz + 50;
 
 export default function Dice(props) {
   const { nodes, materials } = useGLTF('/dice.gltf')
-
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>

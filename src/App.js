@@ -35,7 +35,7 @@ export function Game({ user }) {
             <div className="canvasContainer">
                 <div className="App">
                     <Canvas camera={{ position: [0, -0.2, 1.2] }}  style={{backgroundColor: "#17E7E7"}}>
-                        <OrbitControls />
+                        <OrbitControls target={[0, 0, 0]}/>
                         {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
                         {/* <Stars /> */}
                         <ambientLight intensity={0.5} />

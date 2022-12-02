@@ -22,7 +22,7 @@ import Login from "./pages/login/LoginScreen.js";
 import Register from "./pages/register/RegisterScreen.js";
 import Logout from "./pages/logout/Logout";
 import Navigation from "./components/navigation/Navigation.js";
-import challengeScreen from "./pages/challenges/ChallengesScreen";
+import ChallengeScreen from "./pages/challenges/ChallengesScreen";
 
 function Game({ user }) {
     if (!user) {
@@ -82,7 +82,7 @@ function App() {
                 <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} />} />
                 <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} />} />
                 <Route path="/game" element={<Game user={currentUser} />} />
-                <Route path="/challenge" element={<challengeScreen user={currentUser} />} />
+                <Route path="/challenge" element={<ChallengeScreen />} />
             </Routes>
         </>
     )

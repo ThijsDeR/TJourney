@@ -3,10 +3,11 @@ import Navigation from "../../components/navigation/Navigation";
 import "./login.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons'
-import { useState } from "react";
-import { login } from "../../services/auth-service.js";
+import { useEffect, useState } from "react";
+import { getCurrentUser, login } from "../../services/auth-service.js";
+import { Link, Navigate } from "react-router-dom";
 
-function Login() {
+function Login({user, setCurrentUser}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -14,10 +15,11 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
+            console.log("start")
             await login(email, password).then(
                 (data) => {
-                    // navigate
-                    window.location.reload();
+                    console.log("finish")
+                    setCurrentUser(data)
                 },
                 (error) => {
                     console.log(error);
@@ -27,6 +29,11 @@ function Login() {
             console.log(err);
         }
     };
+
+    if (user) {
+        return <Navigate to="/game" replace />;
+    }
+
     return (
         <>
             <Navigation />
@@ -60,7 +67,7 @@ function Login() {
                                     <i className="fas fa-exclamation-triangle"></i>
                                 </span>
                             </div>
-                            <a href class="help is-link">Don't have an account?</a>
+                            <a href class="help is-link"><Link to="/register">Don't have an account?</Link></a>
                         </div>
 
                         <div className="field is-grouped">

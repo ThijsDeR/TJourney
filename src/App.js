@@ -24,23 +24,29 @@ import Login from "./pages/login/Login";
 import Home from "./screens/HomeScreen";
 import Journey from "./screens/JourneyScreen";
 import Goals from "./screens/GoalScreen"
+import ShowGoals from "./screens/ShowGoalScreen";
 
 function App3() {
     return (
         <>
             <Routes>
-            // Routes for the application
+            {/* // Routes for the application */}
                 <Route path="/" element={<Home />} />
                 <Route path="/journey" element={<Journey />} />
                 <Route path="/goals" element={<Goals />} />
+
+
+                
+                <Route path="/showGoals" element={<ShowGoals /> } />
             </Routes>
 
-            // Navigation
+            {/* // Navigation */}
             <nav>
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/journey">Journey</Link></li>
                     <li><Link to="/goals">Goal</Link></li>
+                    <li><Link to="/showGoals">Goal show</Link></li>
                 </ul>
             </nav>
         </>

@@ -31,7 +31,6 @@ function Login({user, setCurrentUser}) {
     };
 
     if (user) {
-        console.log(user)
         return <Navigate to="/game" replace />;
     }
 

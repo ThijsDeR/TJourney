@@ -35,6 +35,11 @@ function Game({ user, isLoading }) {
             {
                 isLoading ? <Loading /> :
                     <>
+                        <div style={{ position: "absolute", top: "0", bottom: "0", left: "0", right: "0", backgroundColor: "rgba(0, 0, 0, 0.9)", zIndex: "100" }}>
+                            <div className="is-flex is-justify-content-center">
+                                <h2 className="has-text-white is-size-3">hoi</h2>
+                            </div>
+                        </div>
                         <div className="canvasContainer">
                             <div className="App">
                                 <Canvas camera={{ position: [0, -0.2, 1.2] }}>
@@ -59,6 +64,7 @@ function Game({ user, isLoading }) {
                             </div>
                         </div>
                         <Navigation user={user} />
+
                     </>
             }
         </>
@@ -67,25 +73,26 @@ function Game({ user, isLoading }) {
 
 function App() {
     const [currentUser, setCurrentUser] = useState(undefined);
+    const [user, setUser] = useState(undefined)
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         getCurrentUser().then((data) => {
-            setCurrentUser(data)
+            setUser(data)
             setIsLoading(false)
         });
-    }, []);
+    }, [currentUser]);
 
 
     return (
         <>
             <Routes>
-                <Route path="/" element={<Login user={currentUser} isLoading={isLoading} />} />
-                <Route path="/login" element={<Login user={currentUser} isLoading={isLoading} setCurrentUser={setCurrentUser} />} />
+                <Route path="/" element={<Login user={user} isLoading={isLoading} />} />
+                <Route path="/login" element={<Login user={user} isLoading={isLoading} setCurrentUser={setCurrentUser} />} />
                 <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
-                <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
-                <Route path="/home" element={<Home user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
-                <Route path="/game" element={<Game user={currentUser} isLoading={isLoading} />} />
+                <Route path="/register" element={<Register user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
+                <Route path="/home" element={<Home user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
+                <Route path="/game" element={<Game user={user} isLoading={isLoading} />} />
             </Routes>
         </>
     )

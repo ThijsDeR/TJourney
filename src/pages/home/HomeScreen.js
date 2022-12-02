@@ -28,7 +28,6 @@ function Home({ user, setCurrentUser, isLoading }) {
 
     return (
         <>
-
             {
                 isLoading ? <Loading /> :
                     <>

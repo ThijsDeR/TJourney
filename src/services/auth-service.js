@@ -35,10 +35,11 @@ export const getCurrentUser = async () => {
     const localUser = JSON.parse(localStorage.getItem("user"))
 
     if (localUser && localUser.accessToken) {
-        console.log(localUser.accessToken)
         const data = await axios.get("/v1/users/ownData", {
             headers: { Authorization: `Bearer ${localUser.accessToken}` }
         })
+
+        console.log("getCurrentUser", data)
     
         return data.data.data;
     }

@@ -16,10 +16,8 @@ function Login({ user, setCurrentUser, isLoading }) {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            console.log("start")
             await login(email, password).then(
                 (data) => {
-                    console.log("finish")
                     setCurrentUser(data)
                 },
                 (error) => {
@@ -32,7 +30,6 @@ function Login({ user, setCurrentUser, isLoading }) {
     };
 
     if (user && !isLoading) {
-        console.log(user)
         return <Navigate to="/home" replace />;
     }
 

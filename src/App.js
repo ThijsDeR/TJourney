@@ -25,6 +25,7 @@ import Home from "./screens/HomeScreen";
 import Journey from "./screens/JourneyScreen";
 import Goals from "./screens/GoalScreen"
 import ShowGoals from "./screens/ShowGoalScreen";
+import ChallengeScreen from "./screens/ChallengeScreen";
 
 function App3() {
     return (
@@ -38,6 +39,7 @@ function App3() {
 
                 
                 <Route path="/showGoals" element={<ShowGoals /> } />
+                <Route path="/challenge" element={<ChallengeScreen />} />
             </Routes>
 
             {/* // Navigation */}

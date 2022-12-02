@@ -1,0 +1,21 @@
+div{
+    margin: "10px";
+    display:"inline-block",;
+    width: "200px";
+    height: "100px";
+    padding: "5px"; 
+    border: "2px";
+    background-color:"silver",;
+    border-radius: "5px";
+}
+
+.Text-block{
+    margin: "10px";
+    display:"inline-block",;
+    width: "200px";
+    height: "100px";
+    padding: "5px"; 
+    border: "2px";
+    background-color:"silver",;
+    border-radius: "5px";
+}

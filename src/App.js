@@ -1,8 +1,6 @@
 
 import { Suspense, useState, useEffect } from "react";
-import { moveLuckyblockToCenter, RandomCount, textAnimation, throwDiceAnimation } from './assets/Dice/Dice'
 import { Canvas } from "@react-three/fiber";
-import Environments from "./assets/Environment/Environment";
 import { Environment, Stars, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
 import { getCurrentUser, logout } from "./services/auth-service.js";
@@ -21,37 +19,15 @@ import Logout from "./pages/logout/Logout";
 import Navigation from "./components/navigation/Navigation.js";
 import VulcanoIsland from "./assets/vulcanoIsland/Vulcano.js";
 
-
-let steps;
-let luckyMove = true;
 let luckyVisible = false;
-let delay = 0;
-let countAsked = false;
 
-export function Game({ user }) {
+
+
+export function Game({ user, timeElapsed }) {
     if (!user) {
         return <Navigate to="/login" replace />;
     }
 
-    if (luckyVisible === true) {
-        delay++;
-        if (luckyMove === true) {
-            throwDiceAnimation()
-        }
-        if (delay >= 500) {
-            luckyMove = false;
-            moveLuckyblockToCenter(1, 0)
-            if (countAsked === false && delay >= 600) {
-                steps = RandomCount(30);
-                textAnimation(180);
-                countAsked = true;
-            }
-        } else if (delay > 20000) {
-            luckyVisible = false;
-            luckyMove = true;
-            delay = 0;
-        }
-    }
 
     return (
         <>
@@ -67,7 +43,7 @@ export function Game({ user }) {
                         <Suspense fallback={null}>
                             <Physics>
                                 <mesh position={[1.5, -1, 0]} scale={0.0001}>
-                                    <VulcanoIsland />
+                                    <VulcanoIsland timeElapsed={timeElapsed} luckyVisible={luckyVisible}/>
                                 </mesh>
                             </Physics>
                         </Suspense>
@@ -94,7 +70,7 @@ export function Game({ user }) {
     );
 }
 
-function App() {
+function App({timeElapsed}) {
     const [currentUser, setCurrentUser] = useState(undefined);
 
     useEffect(() => {
@@ -111,33 +87,33 @@ function App() {
                 <Route path="/login" element={<Login user={currentUser} setCurrentUser={setCurrentUser} />} />
                 <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} />} />
                 <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} />} />
-                <Route path="/game" element={<Game user={currentUser} />} />
+                <Route path="/game" element={<Game user={currentUser} timeElapsed={timeElapsed} />} />
             </Routes>
         </>
     )
 }
 
-export function getSteps() {
-    return steps;
-}
+// export function getSteps() {
+//     return steps;
+// }
 
-export function setSteps(_steps) {
-    steps = _steps;
-}
+// export function setSteps(_steps) {
+//     steps = _steps;
+// }
 
-export function getLuckyMove() {
-    return luckyMove;
-}
+// export function getLuckyMove() {
+//     return luckyMove;
+// }
 
-export function setLuckyMove(_luckyMove) {
-    luckyMove = _luckyMove;
-}
+// export function setLuckyMove(_luckyMove) {
+//     luckyMove = _luckyMove;
+// }
 
-export function getLuckyVisible() {
-    return luckyVisible;
-}
+// export function getLuckyVisible() {
+//     return luckyVisible;
+// }
 
-export function setLuckyVisible(_luckyVisible) {
-    luckyVisible = _luckyVisible;
-}
+// export function setLuckyVisible(_luckyVisible) {
+//     luckyVisible = _luckyVisible;
+// }
 export default App;   

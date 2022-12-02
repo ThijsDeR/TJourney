@@ -9,32 +9,24 @@ title: Volcano Island Lowpoly
 import React, { useRef } from 'react'
 import { useGLTF, Text } from '@react-three/drei'
 import Chopper from '../Chopper/Chopper'
-import Birds, { angle, BirdMoveAround, getAngle } from '../Birds/Fly'
-import Dice, { dicedice, getDicePosition, getTextPosition } from '../Dice/Dice'
-import { dicePosition, textPosition, diceRotation } from '../Dice/Dice'
-import { getLuckyVisible, getSteps, luckyMove, luckyVisible, steps } from '../../App'
+import Birds from '../Birds/Fly'
+import Dice from '../Dice/Dice'
+import { DiceClass } from '../Dice/DiceClass.js'
+import { FlyClass } from '../Birds/FlyClass.js'
 
-let cz = 0;
-let czMultiplier = 10;
-let rotationOfDice;
+
+
 let playerPosition = [-6000, 2205, -3000];
+let steps;
+const diceClass = new DiceClass();
+const flyClass = new FlyClass();
 
 export default function VulcanoIsland(props) {
   const { nodes, materials } = useGLTF('/vulcano.gltf')
-  let [cx,cy] = BirdMoveAround();
-  let rotation = getAngle();
-  cz += czMultiplier;
   
-  if (cz >= 700 || cz <= -700) {
-    czMultiplier *= -1;
-    console.log(cz);
-  }
+  flyClass.BirdFlyAnimation()
+  steps = diceClass.spawnDiceAnimation(steps, props.luckyVisible);
 
-  for (let i = 0; i < 50; i++) {
-    [cx,cy] = BirdMoveAround()
-  }
-
-  rotationOfDice = diceRotation();
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
@@ -88,19 +80,19 @@ export default function VulcanoIsland(props) {
             <group rotation={[Math.PI / 2, 0, 0]} />
           </group>
           <group>
-            <mesh position={[cx, 5000 + cz, cy]} rotation={[0,3 - rotation, 0]} scale={1000}>
+            <mesh position={[flyClass.cx, 5000 + flyClass.cz, flyClass.cy]} rotation={[0,3 - flyClass.rotation, 0]} scale={1000}>
               <Birds />
             </mesh>
           </group>
           <group>
           <mesh position={playerPosition} rotation={[0, 0, 0]} scale={5}>
               <Chopper />
-              {getLuckyVisible() ? <group >
-                <mesh position={getDicePosition()} rotation={rotationOfDice} scale={50}>
+              {props.luckyVisible ? <group >
+                <mesh position={diceClass.dicePosition} rotation={diceClass.rotationOfDice} scale={50}>
                   <Dice />
                 </mesh>
-                <mesh position={getTextPosition()} scale={5}>
-                  <Text fontSize={6} color="hotpink">{getSteps()}</Text>
+                <mesh position={diceClass.textPosition} scale={5}>
+                  <Text fontSize={6} color="hotpink">{steps}</Text>
                 </mesh>
               </group> : null}
             </mesh>
@@ -111,12 +103,12 @@ export default function VulcanoIsland(props) {
   )
 }
 
-export function getPlayerPosition() {
-  return playerPosition;
-}
+// export function getPlayerPosition() {
+//   return playerPosition;
+// }
 
-export function setPlayerPosition(_playerPosition) {
-  playerPosition = _playerPosition;
-}
+// export function setPlayerPosition(_playerPosition) {
+//   playerPosition = _playerPosition;
+// }
 
 useGLTF.preload('/vulcano.gltf')

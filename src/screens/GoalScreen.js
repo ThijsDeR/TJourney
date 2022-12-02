@@ -16,6 +16,7 @@ function Goals() {
     const challenges = [challenge1, challenge2, challenge3];
 
     const makeGoal = async (e) => {
+        console.log(e)
         e.preventDefault();
         try {
             await makeGoals(goal, challenges).then(

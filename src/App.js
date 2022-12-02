@@ -35,9 +35,6 @@ function App3() {
                 <Route path="/" element={<Home />} />
                 <Route path="/journey" element={<Journey />} />
                 <Route path="/goals" element={<Goals />} />
-
-
-                
                 <Route path="/showGoals" element={<ShowGoals /> } />
                 <Route path="/challenge" element={<ChallengeScreen />} />
             </Routes>

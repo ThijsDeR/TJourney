@@ -23,6 +23,8 @@ export const getGoals = async () => {
 }
 
 export const editGoal = (updateData, goalData) => {
+    const accessToken = JSON.parse(localStorage.getItem("user")).accessToken
+
     return axios.put(`/v1/goals/6389c5d6733623e7ef8352f5`, {
         headers: { Authorization: "k4jewkDikhdZhpHQmyESX8L3uAz7uZXwyCDYPpwbehcTtg6jcytw7T9ZZUGfEcMK"},
         updateData,

@@ -12,7 +12,8 @@ function Goals() {
     const [challenge3, setChallenge3] = useState("");
     const challenges = [challenge1, challenge2, challenge3];
 
-    const editGoal = async (e) => {
+    const editGoalHandler = async (e) => {
+        console.log(e);
         e.preventDefault();
         try {
             await editGoal(challenges).then(
@@ -34,7 +35,7 @@ function Goals() {
             <Navigation />
             <div style={{ position: "fixed", top: "100px", bottom: "100px", left: "0px", right: "0px" }}>
 
-                <form onSubmit={editGoal}>
+                <form onSubmit={editGoalHandler}>
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <h1 className="is-size-1">Edit Goal</h1>
                     </div>
@@ -79,7 +80,7 @@ function Goals() {
 
                         <div className="field is-grouped">
                             <div className="control">
-                                <button className="button is-link">Make</button>
+                                <button type="submit" className="button is-link">Make</button>
                             </div>
                             <div className="control">
                                 <button className="button is-link is-light">Cancel</button>

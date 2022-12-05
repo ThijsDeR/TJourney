@@ -2,9 +2,9 @@ import React from 'react';
 import Footer from "../components/footer/Footer";
 import Navigation from "../components/navigation/Navigation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRectangleList, } from '@fortawesome/free-solid-svg-icons'
+import { faRectangleList, } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
-import { getGoals, editGoal } from "../services/goal-service"
+import { getGoals, editGoal } from "../services/goal-service";
 
 function Goals() {
     const [challenge1, setChallenge1] = useState("");
@@ -39,7 +39,7 @@ function Goals() {
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <h1 className="is-size-1">Edit Goal</h1>
                     </div>
-                        <h2 className="has-text-centered">Backend stuff, this will not be frontend</h2>
+                    <h2 className="has-text-centered">Backend stuff, this will not be frontend</h2>
                     <div style={{ padding: "20px" }}>
                         <div className="field">
                             <label className="label">Your Challenges</label>

@@ -11,21 +11,22 @@ import Loading from "../../components/loading/Loading";
 function Login({ user, setCurrentUser, isLoading }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(undefined)
 
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            await login(email, password).then(
+            login(email, password).then(
                 (data) => {
                     setCurrentUser(data)
                 },
                 (error) => {
-                    console.log(error);
+                    setError(error.response.data.error)
                 }
             );
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            setError(error)
         }
     };
 
@@ -34,57 +35,68 @@ function Login({ user, setCurrentUser, isLoading }) {
 
     }
 
+    const deleteNotificationHandler = (e) => {
+        setError(null)
+    }
+
     return (
         <>
             {
                 isLoading ? <Loading /> :
-                <>
-                    <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black" }}>
-                        <form onSubmit={handleLogin}>
-                            <div style={{ display: "flex", justifyContent: "center" }}>
-                                <h1 className="is-size-1 has-text-white">Login</h1>
-                            </div>
-                            <div style={{ padding: "20px" }}>
-                                <div className="field">
-                                    <label className="label has-text-white">Email</label>
-                                    <div className="control has-icons-left has-icons-right">
-                                        <input className="input has-text-white has-background-black" type="email" placeholder="example@gmail.com" onChange={(e) => setEmail(e.target.value)} />
-                                        <span className="icon is-small is-left">
-                                            <FontAwesomeIcon icon={faEnvelope} />
-                                        </span>
-                                        <span className="icon is-small is-right">
-                                            <i className="fas fa-exclamation-triangle"></i>
-                                        </span>
-                                    </div>
+                    <>
+                        <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black" }}>
+                            <form onSubmit={handleLogin}>
+                                <div style={{ display: "flex", justifyContent: "center" }}>
+                                    <h1 className="is-size-1 has-text-white">Login</h1>
                                 </div>
+                                {
+                                    error ?
+                                        <div class="notification is-danger is-light">
+                                            <button class="delete" onClick={deleteNotificationHandler}></button>
+                                            {error}
+                                        </div> : ''
+                                }
+                                <div style={{ padding: "20px" }}>
+                                    <div className="field">
+                                        <label className="label has-text-white">Email</label>
+                                        <div className="control has-icons-left has-icons-right">
+                                            <input className="input has-text-white has-background-black" type="email" placeholder="example@gmail.com" onChange={(e) => setEmail(e.target.value)} />
+                                            <span className="icon is-small is-left">
+                                                <FontAwesomeIcon icon={faEnvelope} />
+                                            </span>
+                                            <span className="icon is-small is-right">
+                                                <i className="fas fa-exclamation-triangle"></i>
+                                            </span>
+                                        </div>
+                                    </div>
 
-                                <div className="field">
-                                    <label className="label has-text-white">Password</label>
-                                    <div className="control has-icons-left has-icons-right">
-                                        <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-                                        <span className="icon is-small is-left">
-                                            <FontAwesomeIcon icon={faKey} />
-                                        </span>
-                                        <span className="icon is-small is-right">
-                                            <i className="fas fa-exclamation-triangle"></i>
-                                        </span>
+                                    <div className="field">
+                                        <label className="label has-text-white">Password</label>
+                                        <div className="control has-icons-left has-icons-right">
+                                            <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                            <span className="icon is-small is-left">
+                                                <FontAwesomeIcon icon={faKey} />
+                                            </span>
+                                            <span className="icon is-small is-right">
+                                                <i className="fas fa-exclamation-triangle"></i>
+                                            </span>
+                                        </div>
+                                        <a href class="help is-link"><Link to="/register">Don't have an account?</Link></a>
                                     </div>
-                                    <a href class="help is-link"><Link to="/register">Don't have an account?</Link></a>
-                                </div>
 
-                                <div className="field is-grouped">
-                                    <div className="control">
-                                        <button className="button is-link">Submit</button>
-                                    </div>
-                                    <div className="control">
-                                        <button className="button is-link is-light">Cancel</button>
+                                    <div className="field is-grouped">
+                                        <div className="control">
+                                            <button className="button is-link">Submit</button>
+                                        </div>
+                                        <div className="control">
+                                            <button className="button is-link is-light">Cancel</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                    <Navigation user={user} />
-                </>
+                            </form>
+                        </div>
+                        <Navigation user={user} />
+                    </>
             }
         </>
     );

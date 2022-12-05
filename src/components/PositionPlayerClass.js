@@ -1,9 +1,8 @@
 export class PositionPlayerClass{
-   placeOnTheBoard = 0 ;
+   placeOnTheBoard = 2 ;
     PlaceCharacter = [-6000, 2205, -3000];
      timerCount = 0;
-     diceNumber = 5;
-    
+     diceNumber = 5;  
     /**
      * Set the position of the character
      * 

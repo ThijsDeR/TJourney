@@ -1,9 +1,10 @@
 import axios from "../api/axios.js";
 
-export const makeGoals = (goals, challenges) => {
+export const makeGoals = (goals, challenges, category) => {
     return axios.post("/v1/goals", {
         goals,
-        challenges
+        challenges,
+        category,
     }).then((response) => {
         if (response.data.accessToken) {
             localStorage.setItem("goals", JSON.stringify(response.data));

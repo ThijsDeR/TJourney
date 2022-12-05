@@ -20,7 +20,7 @@ const divStyle = {
 
 };
 
-function ChallengeScreen() {
+function CategoryScreen() {
     const [categoryNutrition, ] = useState("Nutrition");
     const [categorySleep, ] = useState("Sleep");
     const [categoryScreentime, ] = useState("Screentime");
@@ -88,4 +88,4 @@ function ChallengeScreen() {
     );
 }
 
-export default ChallengeScreen
+export default CategoryScreen

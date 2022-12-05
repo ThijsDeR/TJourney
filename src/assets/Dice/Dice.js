@@ -8,6 +8,7 @@ title: Lucky Block
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import { getLuckyMove } from '../../App'
 
 export default function Dice(props) {
   const { nodes, materials } = useGLTF('/dice.gltf')
@@ -19,5 +20,11 @@ export default function Dice(props) {
     </group>
   )
 }
+
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// TODO: Make a function which can be called to lower the amount on the dice which is equal to the amount of steps the player still needs to take
+//
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 useGLTF.preload('/dice.gltf')

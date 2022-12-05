@@ -31,6 +31,7 @@ function Login({ user, setCurrentUser, isLoading }) {
 
     if (user && !isLoading) {
         return <Navigate to="/home" replace />;
+
     }
 
     return (

@@ -1,9 +1,10 @@
 import React from 'react';
 import Footer from "../components/footer/Footer";
 import Navigation from "../components/navigation/Navigation";
+import { faSquare, faSquareCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRectangleList, } from '@fortawesome/free-solid-svg-icons';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getGoals, editGoal } from "../services/goal-service";
 
 function Goals() {
@@ -11,10 +12,19 @@ function Goals() {
     const [challenge2, setChallenge2] = useState("");
     const [challenge3, setChallenge3] = useState("");
     const challenges = [challenge1, challenge2, challenge3];
+    const [goals, setGoals] = useState([]);
 
-    const editGoalHandler = async (e) => {
-        console.log(e);
+    // if (goals !== []) {
+    //     getGoals().then((data) => {
+    //         setGoals(data);
+    //         console.log(data);
+    //     })
+    // }
+
+
+    const editGoalHandler = async (e, id) => {
         e.preventDefault();
+        console.log(id);
         try {
             await editGoal(challenges).then(
                 (data) => {
@@ -30,10 +40,38 @@ function Goals() {
         }
     };
 
+    useEffect(() => {
+        getGoals().then((data) => {
+            setGoals(data);
+        })
+    }, [])
+
     return (
         <>
             <Navigation />
             <div style={{ position: "fixed", top: "100px", bottom: "100px", left: "0px", right: "0px" }}>
+
+                <ul>
+                    {goals.map(object => (
+                        <>
+                            <li className="title">Goal: {object.goal.name}</li>
+                            {object.challenges.challenge !== null ?
+                                <>
+                                    <li>Challenge: {object.challenges.challenge[0]}</li>
+                                    <FontAwesomeIcon icon={object.challenges.finished[0] ? faSquareCheck : faSquare} onClick={(e) => editGoalHandler(e, object._id)} />
+
+                                    <li>Challenge: {object.challenges.challenge[1]}</li>
+                                    <FontAwesomeIcon icon={object.challenges.finished[1] ? faSquareCheck : faSquare} />
+
+                                    <li>Challenge: {object.challenges.challenge[2]}</li>
+                                    <FontAwesomeIcon icon={object.challenges.finished[2] ? faSquareCheck : faSquare} />
+                                </>
+                                :
+                                ""
+                            }
+                        </>
+                    ))}
+                </ul>
 
                 <form onSubmit={editGoalHandler}>
                     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -89,7 +127,7 @@ function Goals() {
                     </div>
                 </form>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 }

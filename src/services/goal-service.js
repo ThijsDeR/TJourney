@@ -3,7 +3,7 @@ import axios from "../api/axios.js";
 export const makeGoals = (goals, challenges) => {
     return axios.post("/v1/goals", {
         goals,
-        challenges
+        challenges,
     }).then((response) => {
         if (response.data.accessToken) {
             localStorage.setItem("goals", JSON.stringify(response.data));
@@ -13,19 +13,19 @@ export const makeGoals = (goals, challenges) => {
 };
 
 export const getGoals = async () => {
-    const accessToken = JSON.parse(localStorage.getItem("user")).accessToken
+    const accessToken = JSON.parse(localStorage.getItem("user")).accessToken;
 
     const data = await axios.get("/v1/goals", {
         headers: { Authorization: `Bearer ${accessToken}` }
-    })
+    });
 
     return data.data.data;
 }
 
-export const editGoal = (updateData, goalData) => {
+export const editGoal = (updateData, goalData, objectId) => {
     const accessToken = JSON.parse(localStorage.getItem("user")).accessToken
 
-    return axios.put(`/v1/goals/6389c5d6733623e7ef8352f5`, {
+    return axios.put(`/v1/goals/${objectId}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
         updateData,
         goalData

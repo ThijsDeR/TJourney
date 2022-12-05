@@ -25,7 +25,8 @@ import Home from "./screens/HomeScreen";
 import Journey from "./screens/JourneyScreen";
 import Goals from "./screens/GoalScreen"
 import ShowGoals from "./screens/ShowGoalScreen";
-import ChallengeScreen from "./screens/ChallengeScreen";
+import CategoryScreen from "./screens/CategoryScreen";
+import PremadePlan from "./screens/PreMadePlanScreen";
 
 function App3() {
     return (
@@ -36,8 +37,10 @@ function App3() {
                 <Route path="/journey" element={<Journey />} />
                 <Route path="/goals" element={<Goals />} />
                 <Route path="/showGoals" element={<ShowGoals /> } />
-                <Route path="/challenge" element={<ChallengeScreen />} />
+                {/* <Route path="/challenge" element={<ChallengeScreen />} /> */}
                 <Route path="/login" element={<Login />} />
+                <Route path="/challenge" element={<CategoryScreen />} />
+                <Route path="/plans" element={<PremadePlan/>} />
             </Routes>
 
             // Navigation

@@ -10,9 +10,7 @@ const divStyle = {
     padding: "5px", border: "1px ",
     borderRadius: "5px",backgroundColor:"plum",
     textAlign: "center",
-    color: "white",
-    
-    
+    color: "white",  
 };
 
 function ChallengeScreen() {
@@ -22,9 +20,10 @@ function ChallengeScreen() {
         <Navigation/>
         
         <div style={{ position: "fixed", top: "100px", bottom: "100px", left: "0px", right: "0px",}}>
-        <div style={{textAlign:"center",fontSize:"20px"}}>
-            <b>Choose Category</b>
+            <div style={{position:"center"}}>
+            <h1>Premade Plan</h1>
             </div>
+            <h1>Premade Plan</h1>
             <div style={divStyle}>
                 <h2>Nutrition</h2>
             </div>

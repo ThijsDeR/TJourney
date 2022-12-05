@@ -1,9 +1,10 @@
 import axios from "../api/axios.js";
 
-export const makeGoals = (goals, challenges) => {
+export const makeGoals = (goals, challenges, category) => {
     return axios.post("/v1/goals", {
         goals,
         challenges,
+        category,
     }).then((response) => {
         if (response.data.accessToken) {
             localStorage.setItem("goals", JSON.stringify(response.data));
@@ -22,10 +23,10 @@ export const getGoals = async () => {
     return data.data.data;
 }
 
-export const editGoal = (updateData, goalData, objectId) => {
-    const accessToken = JSON.parse(localStorage.getItem("user")).accessToken
+export const editGoal = async (updateData, goalData, object) => {
+    const accessToken = JSON.parse(localStorage.getItem("user")).accessToken;
 
-    return axios.put(`/v1/goals/${objectId}`, {
+    return axios.put(`/v1/goals/${object._id}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
         updateData,
         goalData

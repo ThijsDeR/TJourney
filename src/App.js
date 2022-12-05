@@ -40,7 +40,7 @@ function App3() {
                 <Route path="/login" element={<Login />} />
             </Routes>
 
-            {/* // Navigation */}
+            // Navigation
             <nav>
                 <ul>
                     <li><Link to="/">Home</Link></li>

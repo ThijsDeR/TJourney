@@ -13,31 +13,31 @@ function Goals() {
     const [challenge3, setChallenge3] = useState("");
     const challenges = [challenge1, challenge2, challenge3];
     const [goals, setGoals] = useState([]);
+    // Temp workaround
+    const [update, setUpdate] = useState(0);
 
-    // if (goals !== []) {
-    //     getGoals().then((data) => {
-    //         setGoals(data);
-    //         console.log(data);
-    //     })
-    // }
+    const editGoalHandler = async (e, object, objectIndex, i) => {
+        // e.preventDefault();
 
+        goals[objectIndex].challenges.finished[i] = !object.challenges.finished[i];
+        console.log("click");
 
-    const editGoalHandler = async (e, id) => {
-        e.preventDefault();
-        console.log(id);
-        try {
-            await editGoal(challenges).then(
-                (data) => {
-                    // navigate
-                    window.location.reload();
-                },
-                (error) => {
-                    console.log(error);
-                }
-            );
-        } catch (err) {
-            console.log(err);
-        }
+        // Temp workaround
+        setUpdate(update + 1);
+
+        // try {
+        //     await editGoal(challenges, "test", object).then(
+        //         (data) => {
+        //             // navigate
+        //             window.location.reload();
+        //         },
+        //         (error) => {
+        //             console.log(error);
+        //         }
+        //     );
+        // } catch (err) {
+        //     console.log(err);
+        // }
     };
 
     useEffect(() => {
@@ -51,29 +51,37 @@ function Goals() {
             <Navigation />
             <div style={{ position: "fixed", top: "100px", bottom: "100px", left: "0px", right: "0px" }}>
 
-                <ul>
-                    {goals.map(object => (
+                <div className="mx-5 mt-3">
+                    {goals.map((object, i) => (
                         <>
-                            <li className="title">Goal: {object.goal.name}</li>
-                            {object.challenges.challenge !== null ?
-                                <>
-                                    <li>Challenge: {object.challenges.challenge[0]}</li>
-                                    <FontAwesomeIcon icon={object.challenges.finished[0] ? faSquareCheck : faSquare} onClick={(e) => editGoalHandler(e, object._id)} />
+                            <div className="box">{object.goal.name}
+                                {object.challenges.challenge !== null ?
+                                    <div>
+                                        <div>
+                                            Challenge: {object.challenges.challenge[0]}
+                                            <FontAwesomeIcon className="is-pulled-right" icon={object.challenges.finished[0] ? faSquareCheck : faSquare} onClick={(e) => editGoalHandler(e, object, i, 0)} />
+                                        </div>
 
-                                    <li>Challenge: {object.challenges.challenge[1]}</li>
-                                    <FontAwesomeIcon icon={object.challenges.finished[1] ? faSquareCheck : faSquare} />
+                                        <div>
+                                            Challenge: {object.challenges.challenge[1]}
+                                            <FontAwesomeIcon className="is-pulled-right" icon={object.challenges.finished[1] ? faSquareCheck : faSquare} onClick={(e) => editGoalHandler(e, object, i, 1)} />
+                                        </div>
 
-                                    <li>Challenge: {object.challenges.challenge[2]}</li>
-                                    <FontAwesomeIcon icon={object.challenges.finished[2] ? faSquareCheck : faSquare} />
-                                </>
-                                :
-                                ""
-                            }
+                                        <div>
+                                            Challenge: {object.challenges.challenge[2]}
+                                            <FontAwesomeIcon className="is-pulled-right" icon={object.challenges.finished[2] ? faSquareCheck : faSquare} onClick={(e) => editGoalHandler(e, object, i, 2)} />
+                                        </div>
+                                    </div>
+                                    :
+                                    ""
+                                }
+                            </div>
                         </>
                     ))}
-                </ul>
+                </div>
 
-                <form onSubmit={editGoalHandler}>
+                {/* Probably no longer necessary */}
+                {/* <form onSubmit={editGoalHandler}>
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <h1 className="is-size-1">Edit Goal</h1>
                     </div>
@@ -125,7 +133,7 @@ function Goals() {
                             </div>
                         </div>
                     </div>
-                </form>
+                </form> */}
             </div>
             {/* <Footer /> */}
         </>

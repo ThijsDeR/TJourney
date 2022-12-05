@@ -1,4 +1,4 @@
-export class PositionClass{
+export class PositionPlayerClass{
    placeOnTheBoard = 0 ;
     PlaceCharacter = [-6000, 2205, -3000];
      timerCount = 0;

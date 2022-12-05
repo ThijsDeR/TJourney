@@ -26,6 +26,7 @@ import Journey from "./screens/JourneyScreen";
 import Goals from "./screens/GoalScreen"
 import ShowGoals from "./screens/ShowGoalScreen";
 import CategoryScreen from "./screens/CategoryScreen";
+import PremadePlan from "./screens/PreMadePlanScreen";
 
 function App3() {
     return (
@@ -37,6 +38,7 @@ function App3() {
                 <Route path="/goals" element={<Goals />} />
                 <Route path="/showGoals" element={<ShowGoals /> } />
                 <Route path="/challenge" element={<CategoryScreen />} />
+                <Route path="/plans" element={<PremadePlan/>} />
             </Routes>
 
             // Navigation

@@ -18,6 +18,7 @@ import Register from "./pages/register/RegisterScreen.js";
 import Logout from "./pages/logout/Logout";
 import Navigation from "./components/navigation/Navigation.js";
 import VulcanoIsland from "./assets/vulcanoIsland/Vulcano.js";
+import FantasyBook from "./assets/FantasyBook/FantasyBook.js";
 
 let luckyVisible = false;
 
@@ -41,8 +42,8 @@ export function Game({ user, timeElapsed }) {
                         {/* <spotLight position={[10, 15, 10]} angle={0.3} /> */}
                         <Suspense fallback={null}>
                             <Physics>
-                                <mesh position={[1.5, -1, 0]} scale={0.0001}>
-                                    <VulcanoIsland timeElapsed={timeElapsed} luckyVisible={luckyVisible}/>
+                                <mesh position={[1.5, -1, 0]} scale={1}>
+                                    <FantasyBook timeElapsed={timeElapsed} luckyVisible={luckyVisible} />
                                 </mesh>
                             </Physics>
                         </Suspense>

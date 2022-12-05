@@ -13,13 +13,16 @@ import Birds from '../Birds/Fly'
 import Dice from '../Dice/Dice'
 import { DiceClass } from '../Dice/DiceClass.js'
 import { FlyClass } from '../Birds/FlyClass.js'
+import { PositionClass } from '../../components/PositionClass.js'
 
+const ListofPositionPlaces = [[-6000, 2205, -3000], [-17, 6.8, -1], [-17, 6.8, -12], [-15, 10, -21], [-16.5, 13, -29], [-15, 16.2, -45]]
 
 
 let playerPosition = [-6000, 2205, -3000];
 let steps;
 const diceClass = new DiceClass();
 const flyClass = new FlyClass();
+const positionClass = new PositionClass();
 
 export default function VulcanoIsland(props) {
   const { nodes, materials } = useGLTF('/vulcano.gltf')
@@ -85,7 +88,7 @@ export default function VulcanoIsland(props) {
             </mesh>
           </group>
           <group>
-          <mesh position={playerPosition} rotation={[0, 0, 0]} scale={5}>
+          <mesh position={positionClass.SetPosition(ListofPositionPlaces)} rotation={[0, 0, 0]} scale={5}>
               <Chopper />
               {props.luckyVisible ? <group >
                 <mesh position={diceClass.dicePosition} rotation={diceClass.rotationOfDice} scale={50}>

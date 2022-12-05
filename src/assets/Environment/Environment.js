@@ -13,7 +13,7 @@ import Shiba from '../Shiba/Shiba'
 import RandomGuy from '../Random/Random'
 import Dragon from '../Dragon/Dragon'
 import { diceNumber, SetPosition,walkTimer } from '../../components/scripts/PositionPlayer.js'
-import { drawCircle } from '../../components/scripts/Circle.js'
+import { drawCircle } from '../../components/scripts/circle.js'
 
 export const ListofPositionPlaces = [[-17, 6.8, 8], [-17, 6.8, -1], [-17, 6.8, -12], [-15, 10, -21], [-16.5, 13, -29], [-15, 16.2, -45]]
 
@@ -52,7 +52,7 @@ export default function Environments(props) {
             {/* <Steps /> */}
 
             {/* {stepsUp(0,placeCircle)} */}
-         
+  
             <mesh position={SetPosition()} rotation={[0, 0, 0]} scale={0.05}>
             <Chopper />
             </mesh>

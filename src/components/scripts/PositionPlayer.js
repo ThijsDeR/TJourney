@@ -2,8 +2,8 @@ import "../../App.css";
 
 import { ListofPositionPlaces } from "../../assets/Environment/Environment";
 
-let placeOnTheBoard = 0;
-let PlaceCharacter = [-17, 6.8, 8];
+let placeOnTheBoard = 2 ;
+let PlaceCharacter = [-6000, 2205, -3000];
 let timerCount = 0;
 let diceNumber = 5;
 
@@ -15,6 +15,7 @@ let diceNumber = 5;
 export function SetPosition() {
   resetThePosition(ListofPositionPlaces)
   PlaceCharacter = ListofPositionPlaces[placeOnTheBoard];
+  console.log(PlaceCharacter)
   return (
     PlaceCharacter
   );

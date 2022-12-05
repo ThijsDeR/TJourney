@@ -21,15 +21,15 @@ const divStyle = {
 };
 
 function CategoryScreen() {
-    const [categoryNutrition, ] = useState("Nutrition");
-    const [categorySleep, ] = useState("Sleep");
-    const [categoryScreentime, ] = useState("Screentime");
-    const [categoryActivity, ] = useState("Activity");
+    const [categoryNutrition,] = useState("Nutrition");
+    const [categorySleep,] = useState("Sleep");
+    const [categoryScreentime,] = useState("Screentime");
+    const [categoryActivity,] = useState("Activity");
     const [goals] = useState("");
     // There probably is a better way to do this buuuut eh
-    const [challenge1 ] = useState("");
-    const [challenge2 ] = useState("");
-    const [challenge3 ] = useState("");
+    const [challenge1] = useState("");
+    const [challenge2] = useState("");
+    const [challenge3] = useState("");
     const challenges = [challenge1, challenge2, challenge3];
     const category = [categoryNutrition, categorySleep, categoryScreentime, categoryActivity];
     const makeCategory = async (e, category) => {
@@ -50,16 +50,16 @@ function CategoryScreen() {
         }
     };
 
-    
+
 
     return (
         <>
             <Navigation />
-            <div style={{ textAlign: "center", display:"flex",justifyContent: "center", fontSize: "20px" }}>
-                    <b>Choose Category</b>
-                </div>
-            <div style={{ margin:"100px", position:"absolute",justifyContent: "center", top: "100px", bottom: "100px",  }}>
-            <div style={{ textAlign: "center", display:"flex",justifyContent: "center", fontSize: "20px" }}>
+            <div style={{ textAlign: "center", display: "flex", justifyContent: "center", fontSize: "20px" }}>
+                <b>Choose Category</b>
+            </div>
+            <div style={{ margin: "100px", position: "absolute", justifyContent: "center", top: "100px", bottom: "100px", }}>
+                <div style={{ textAlign: "center", display: "flex", justifyContent: "center", fontSize: "20px" }}>
                     <b>Choose Category</b>
                 </div>
                 <div style={divStyle}>

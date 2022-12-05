@@ -87,15 +87,7 @@ function AvatarSelect() {
                         {RandomGuyCanvas}
                     </div>
                     <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar(2)}>
-                        <Canvas camera={{ position: [2, 2, 2] }}>
-                            <OrbitControls target={[0, 2, 0]} enableZoom={false} enablePan={true} autoRotate={true} autoRotateSpeed={5} />
-                            <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.2}>
-                                <RandomGuy />
-                                {/* Dragon is broken it seems atm */}
-                                {/* <Dragon /> */}
-                            </mesh>
-                            <Environment preset="sunset" />
-                        </Canvas>
+                        {PlaceholderCanvas}
                     </div>
                 </div>
                 <div className="columns is-mobile is-centered">

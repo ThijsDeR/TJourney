@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCircle, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown, faCircle, faAngleRight, faSquare } from '@fortawesome/free-solid-svg-icons'
 
 import Footer from "../../components/footer/Footer";
 import Navigation from "../../components/navigation/Navigation";
@@ -21,6 +21,7 @@ function Challenges() {
     const secondaryColor = "#323232";
     const tertiaryColor = "#505050";
     const paddingPage = "10px 20px"
+    const marginFinishedChallenges = "3px 0px 3px 30px"
 
     const pageStyle = {
         position: "fixed",
@@ -87,10 +88,24 @@ function Challenges() {
                     </div>
 
 
-                    <h2 style={{ fontWeight: 'bold' }} >Finished</h2>
-                    <div style={{ ...tileStyle, ...containerLeftRight, ...{ backgroundColor: secondaryColor } }}>
-                        <div>Walk 4000 steps</div>
-                        <div><FontAwesomeIcon icon={faAngleRight} size='lg' /><div />
+                    <div style={{ ...tileStyle, ...{ backgroundColor: secondaryColor, height: "unset" } }}>
+                        <h2 style={{ fontWeight: 'bold' }} >Finished</h2>
+                        <hr style={{ borderTop: `2px solid ${tertiaryColor}`, margin: 'unset' }}></hr>
+
+                        {/* TODO: for loop met alle finished challenges uit db */}
+                        <div style={containerLeftRight}>
+                            <div style={{ margin: marginFinishedChallenges }}> Walk 200 steps </div>
+                            {/* TODO: click on dice and get a dice throw */}
+                            <div style={{ paddingTop: '5px' }}><FontAwesomeIcon icon={faSquare} size='lg' /></div>
+                        </div>
+
+                        <hr style={{ borderTop: `1px solid ${tertiaryColor}`, margin: marginFinishedChallenges }}></hr>
+
+                        {/* TODO: haal weg ! */}
+                        <div style={containerLeftRight}>
+                            <div style={{ margin: marginFinishedChallenges }}> Walk 200 steps </div>
+                            {/* TODO: click on dice and get a dice throw */}
+                            <div style={{ paddingTop: '5px' }}><FontAwesomeIcon icon={faSquare} size='lg' /></div>
                         </div>
                     </div>
                 </div>
@@ -107,6 +122,18 @@ function Challenges() {
                 {/* List of goals TODO: for loop db all goals */}
                 <div style={{ ...tileStyle, ...containerLeftRight, ...{ backgroundColor: tertiaryColor } }}>
                     <div>Drink more water</div>
+                    <div><FontAwesomeIcon icon={faAngleRight} size='lg' /><div />
+                    </div>
+                </div>
+
+                {/* TODO: haal weg ! */}
+                <div style={{ ...tileStyle, ...containerLeftRight, ...{ backgroundColor: tertiaryColor } }}>
+                    <div>Walk more often</div>
+                    <div><FontAwesomeIcon icon={faAngleRight} size='lg' /><div />
+                    </div>
+                </div>
+                <div style={{ ...tileStyle, ...containerLeftRight, ...{ backgroundColor: tertiaryColor } }}>
+                    <div>Max 5 hours screentime</div>
                     <div><FontAwesomeIcon icon={faAngleRight} size='lg' /><div />
                     </div>
                 </div>

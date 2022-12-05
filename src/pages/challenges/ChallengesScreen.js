@@ -90,7 +90,7 @@ function Challenges() {
 
                     <div style={{ ...tileStyle, ...{ backgroundColor: secondaryColor, height: "unset" } }}>
                         <h2 style={{ fontWeight: 'bold' }} >Finished</h2>
-                        <hr style={{ borderTop: `2px solid ${tertiaryColor}`, margin: 'unset' }}></hr>
+                        <hr style={{ borderTop: `2px solid ${tertiaryColor}`, margin: 'unset', backgroundColor: tertiaryColor }}></hr>
 
                         {/* TODO: for loop met alle finished challenges uit db */}
                         <div style={containerLeftRight}>
@@ -99,7 +99,7 @@ function Challenges() {
                             <div style={{ paddingTop: '5px' }}><FontAwesomeIcon icon={faSquare} size='lg' /></div>
                         </div>
 
-                        <hr style={{ borderTop: `1px solid ${tertiaryColor}`, margin: marginFinishedChallenges }}></hr>
+                        <hr style={{ borderTop: `1px solid ${tertiaryColor}`, margin: marginFinishedChallenges, backgroundColor: tertiaryColor }}></hr>
 
                         {/* TODO: haal weg ! */}
                         <div style={containerLeftRight}>

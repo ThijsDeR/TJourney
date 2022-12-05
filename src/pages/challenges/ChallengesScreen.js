@@ -68,6 +68,11 @@ function Challenges() {
         padding: paddingPage
     }
 
+    const goalItem = {
+        display: 'inline-block',
+        margin: '10px 0px 10px 10px',
+    }
+
     return (
         <div style={pageStyle}>
             <div style={{ padding: paddingPage }}>
@@ -112,6 +117,7 @@ function Challenges() {
             </div>
 
             {/* Goals */}
+
             <div div style={goals} >
                 <div style={containerLeftRight}>
                     <div><h2 style={{ fontWeight: 'bold' }} >Goals</h2></div>
@@ -120,27 +126,33 @@ function Challenges() {
                 </div>
 
                 {/* List of goals TODO: for loop db all goals */}
-                <div style={{ ...tileStyle, ...containerLeftRight, ...{ backgroundColor: tertiaryColor } }}>
-                    <div>Drink more water</div>
-                    <div><FontAwesomeIcon icon={faAngleRight} size='lg' /><div />
+                <div style={{ ...tileStyle, ...{ backgroundColor: tertiaryColor, height: 'unset' } }}>
+                    <div style={goalItem}>
+                        <FontAwesomeIcon icon={faCircle} size='5x' />
+                    </div>
+                    <div style={goalItem}>
+                        <div style={{ fontWeight: 'bold' }}>Drink more water</div>
+                        <div>7 days left</div>
+                        <div style={{ fontWeight: 'lighter', fontSize: '13px' }}>Started on 12 November 2022</div>
                     </div>
                 </div>
 
                 {/* TODO: haal weg ! */}
-                <div style={{ ...tileStyle, ...containerLeftRight, ...{ backgroundColor: tertiaryColor } }}>
-                    <div>Walk more often</div>
-                    <div><FontAwesomeIcon icon={faAngleRight} size='lg' /><div />
+                <div style={{ ...tileStyle, ...{ backgroundColor: tertiaryColor, height: 'unset' } }}>
+                    <div style={goalItem}>
+                        <FontAwesomeIcon icon={faCircle} size='5x' />
                     </div>
-                </div>
-                <div style={{ ...tileStyle, ...containerLeftRight, ...{ backgroundColor: tertiaryColor } }}>
-                    <div>Max 5 hours screentime</div>
-                    <div><FontAwesomeIcon icon={faAngleRight} size='lg' /><div />
+                    <div style={goalItem}>
+                        <div style={{ fontWeight: 'bold' }}>Drink more water</div>
+                        <div>7 days left</div>
+                        <div style={{ fontWeight: 'lighter', fontSize: '13px' }}>Started on 12 November 2022</div>
                     </div>
                 </div>
 
+
                 {/* TODO: link to create new goal page */}
                 <Link><div style={{ ...tileStyle, ...buttonStyle, ...{ backgroundColor: tertiaryColor } }}>
-                    Add goal
+                    Add new goal
                 </div></Link>
             </div>
         </div >

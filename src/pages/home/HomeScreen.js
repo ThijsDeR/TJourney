@@ -6,13 +6,20 @@ import Loading from '../../components/loading/Loading.js';
 import { updateLevel } from '../../services/level-service.js';
 
 function Home({ user, setCurrentUser, isLoading }) {
-    const [level, setLevel] = useState(0)
+    const [userLevel, setUserLevel] = useState(undefined)
+    const [level, setLevel] = useState(undefined)
 
     useEffect(() => {
-        if (user && level === 0) {
-            setLevel(user.level)
+        if (user && !userLevel) {
+            setUserLevel(user.level.amount)
+            setLevel(calculateLevel(user.level.amount))
         }
     }, [user])
+
+
+    useEffect(() => {
+        if (userLevel) setLevel(calculateLevel(userLevel))    
+    }, [userLevel])
 
     if (!user && !isLoading) {
         return <Navigate to="/login" replace />;
@@ -20,10 +27,24 @@ function Home({ user, setCurrentUser, isLoading }) {
 
 
     const saveLevel = async (amount) => {
-        setLevel(amount)
+        setUserLevel(amount)
         updateLevel(amount).then((data) => {
             setCurrentUser(data.userData)
         })
+    }
+
+    const calculateLevel = (xp) => {
+        const getNeededXP = (level) => {
+            return level * 100
+        }
+        let calculateXP = xp
+        let level = 0
+        while (calculateXP >= getNeededXP(level + 1)) {
+            calculateXP -= getNeededXP(level + 1)
+            level++
+        }
+
+        return {level: level, xp: calculateXP, neededXP: getNeededXP(level + 1)}
     }
 
     return (
@@ -34,12 +55,12 @@ function Home({ user, setCurrentUser, isLoading }) {
                         <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px" }}>
                             <section class="bg-image" style={{height: "100%"}}>
                                 <div className="is-flex is-justify-content-center">
-                                    <h2 className="is-size-3 has-text-weight-bold">{user.username} ({level})</h2>
+                                    <h2 className="is-size-3 has-text-weight-bold">{user.username} ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )</h2>
                                 </div>
 
                                 <div className="is-flex is-justify-content-center">
-                                    <button onClick={() => saveLevel(level + 1)}>Increase</button>
-                                    <button onClick={() => saveLevel(level - 1)}>Decrease</button>
+                                    <button onClick={() => saveLevel(userLevel + 100)}>Increase</button>
+                                    <button onClick={() => saveLevel(userLevel - 100)}>Decrease</button>
                                 </div>
                             </section>
                         </div >

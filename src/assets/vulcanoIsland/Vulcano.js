@@ -15,6 +15,7 @@ import { DiceClass } from '../Dice/DiceClass.js'
 import { FlyClass } from '../Birds/FlyClass.js'
 import Michelle from '../Michelle/Idle'
 import { viewRotation } from '../../services/math-service'
+import MichelleIdle from '../Michelle/Idle'
 
 
 
@@ -88,7 +89,7 @@ export default function VulcanoIsland(props) {
           </group>
           <group>
           <mesh position={playerPosition} rotation={viewRotation(playerPosition, [3000, 0, 3000])} scale={400}>
-              <Michelle />
+              <MichelleIdle />
               {props.luckyVisible ? <group >
                 <mesh position={diceClass.dicePosition} rotation={diceClass.rotationOfDice} scale={50}>
                   <Dice />

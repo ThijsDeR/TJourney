@@ -1,4 +1,4 @@
-import "../../App.css";
+// import "../../app.js";
 import { Circle } from '@react-three/drei'
 
 export class CircleClass {
@@ -10,9 +10,10 @@ export class CircleClass {
  */
     drawCircle(ListofPositionPlaces) {
         return (
-            <mesh position={ListofPositionPlaces} rotation={[-1.55, 0, 0]} scale={2}>
-                <Circle />
-            </mesh>
+            <mesh position={ListofPositionPlaces}>
+            <cylinderBufferGeometry attach="geometry" args={[1, 0.5, 2, 32]} />
+            {/* <meshNormalMaterial attach="material" /> */}
+          </mesh>
         );
     }
 }

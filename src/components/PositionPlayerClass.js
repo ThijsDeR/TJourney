@@ -12,9 +12,9 @@ export class PositionPlayerClass{
      SetPosition(ListofPositionPlaces) {
         this.resetThePosition(ListofPositionPlaces)
       this.PlaceCharacter = ListofPositionPlaces[ this.placeOnTheBoard];
-      console.log( this.PlaceCharacter)
+      let [cx,cy,cz]= this.PlaceCharacter;
       return (
-        this.PlaceCharacter
+        [cx,cy+1,cz]
       );
     }
     /**

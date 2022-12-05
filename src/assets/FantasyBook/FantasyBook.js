@@ -13,8 +13,16 @@ import Birds from '../Birds/Fly'
 import Dice from '../Dice/Dice'
 import { DiceClass } from '../Dice/DiceClass.js'
 import { FlyClass } from '../Birds/FlyClass.js'
+import { PositionPlayerClass } from '../../components/PositionPlayerClass'
+import { CircleClass } from '../../components/CircleClass.js'
 
 export default function FantasyBook(props) {
+  const ListofPositionPlaces = [ [-18, -1.1, -15.9], [-9, -1.1, -15.9], [-3.2, -1.1, -15.9], [3, -1.1, -15.9], [8, -0.8, -14.9],[9.8, -0.9, -10.9],[10, -1, -5.5],[10.5, -1, 0],[10.75, -1, 5],[10.75, -1, 10],[10.75,-1.3, 15],[10.75, -1, 20],[10.75, -1, 25],[7, -0.8, 28],
+  [1, -1.8, 27.5],[-8, -2.1, 27.5],[-10.5, -1.5, 24],[-10.5, -1.5, 19],[-10.5, -1.5, 14],[-10.5, -1.5, 9],[-10.5, -1.5, 4],[-13, -1.2, 0],
+  [-19, -1.5, -0.5], [-25, -2.4, -0.4],[-30, -3.4, -0.8],[-35, -4.4, -4],[-35.5, -4.6, -9.4],[-35.5, -4.6, -14.4],[-35.5, -4.6, -19.4],
+  [-35.5, -4.6, -24.4],[-35.5, -4.6, -29.4],[-32, -3.8, -31.4],[-27, -2.7, -31.6],[-22, -1.9, -31.6],[-17, -1.3, -31.6]];
+  const positionPlayerClass = new PositionPlayerClass();
+  const circleClass = new CircleClass();
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/fantasyBook.gltf')
   const { actions } = useAnimations(animations, group)
@@ -77,7 +85,15 @@ export default function FantasyBook(props) {
                   </mesh>
                 </group>
                 <group>
-                  <mesh position={playerPosition} rotation={[0, 0, 0]} scale={0.03}>
+              {
+                ListofPositionPlaces.map((ListofPositionPlaces) => {
+                  return circleClass.drawCircle(ListofPositionPlaces)
+                })
+              }
+
+            </group>
+                <group>
+                  <mesh position={positionPlayerClass.SetPosition(ListofPositionPlaces)} rotation={[0, 0, 0]} scale={0.03}>
                     <Chopper />
                     {props.luckyVisible ? <group >
                       <mesh position={diceClass.dicePosition} rotation={diceClass.rotationOfDice} scale={50}>

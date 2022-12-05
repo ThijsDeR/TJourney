@@ -13,10 +13,12 @@ import Birds from '../Birds/Fly'
 import Dice from '../Dice/Dice'
 import { DiceClass } from '../Dice/DiceClass.js'
 import { FlyClass } from '../Birds/FlyClass.js'
+import Michelle from '../Michelle/Idle'
+import { viewRotation } from '../../services/math-service'
 
 
 
-let playerPosition = [-6000, 2205, -3000];
+let playerPosition = [-6100, 2205, -3050];
 let steps;
 const diceClass = new DiceClass();
 const flyClass = new FlyClass();
@@ -85,8 +87,8 @@ export default function VulcanoIsland(props) {
             </mesh>
           </group>
           <group>
-          <mesh position={playerPosition} rotation={[0, 0, 0]} scale={5}>
-              <Chopper />
+          <mesh position={playerPosition} rotation={viewRotation(playerPosition, [3000, 0, 3000])} scale={400}>
+              <Michelle />
               {props.luckyVisible ? <group >
                 <mesh position={diceClass.dicePosition} rotation={diceClass.rotationOfDice} scale={50}>
                   <Dice />

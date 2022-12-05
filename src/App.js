@@ -28,7 +28,6 @@ export function Game({ user, timeElapsed }) {
         return <Navigate to="/login" replace />;
     }
 
-
     return (
         <>
             <Navigation />

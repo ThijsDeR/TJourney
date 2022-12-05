@@ -18,6 +18,7 @@ import Register from "./pages/register/RegisterScreen.js";
 import Logout from "./pages/logout/Logout";
 import Navigation from "./components/navigation/Navigation.js";
 import VulcanoIsland from "./assets/vulcanoIsland/Vulcano.js";
+import Challenges from "./pages/challenges/ChallengesScreen.js";
 
 let luckyVisible = false;
 
@@ -43,7 +44,7 @@ export function Game({ user, timeElapsed }) {
                         <Suspense fallback={null}>
                             <Physics>
                                 <mesh position={[1.5, -1, 0]} scale={0.0001}>
-                                    <VulcanoIsland timeElapsed={timeElapsed} luckyVisible={luckyVisible}/>
+                                    <VulcanoIsland timeElapsed={timeElapsed} luckyVisible={luckyVisible} />
                                 </mesh>
                             </Physics>
                         </Suspense>
@@ -70,7 +71,7 @@ export function Game({ user, timeElapsed }) {
     );
 }
 
-function App({timeElapsed}) {
+function App({ timeElapsed }) {
     const [currentUser, setCurrentUser] = useState(undefined);
 
     useEffect(() => {
@@ -88,6 +89,7 @@ function App({timeElapsed}) {
                 <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} />} />
                 <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} />} />
                 <Route path="/game" element={<Game user={currentUser} timeElapsed={timeElapsed} />} />
+                <Route path="/challenges" element={<Challenges user={currentUser} />} />
             </Routes>
         </>
     )
@@ -116,4 +118,4 @@ function App({timeElapsed}) {
 // export function setLuckyVisible(_luckyVisible) {
 //     luckyVisible = _luckyVisible;
 // }
-export default App;   
+export default App;

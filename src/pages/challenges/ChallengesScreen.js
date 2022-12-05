@@ -1,16 +1,26 @@
-import React, { Text } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown, faCircle, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 import Footer from "../../components/footer/Footer";
 import Navigation from "../../components/navigation/Navigation";
 import 'bulma/css/bulma.min.css';
 
 function Challenges() {
+    // color options
+    const purple = "#BB86FC";
+    const blue = "#57ADDD";
+    const yellow = "#FFBC6F";
+    const green = "#61C688";
+    const red = "#FF686B";
+
     // when you change this color, you will change the primary color of the whole page
-    const primaryColor = "#BB86FC";
+    const primaryColor = green;
+    const secondaryColor = "#323232";
+    const tertiaryColor = "#505050";
+    const paddingPage = "10px 20px"
 
     const pageStyle = {
         position: "fixed",
@@ -22,94 +32,91 @@ function Challenges() {
         color: "#F7F7F7",
     }
 
-    const challengeStyle = {
-        margin: "8px 25px",
-        height: "75px",
-        padding: "5px",
-        borderRadius: "5px",
-        backgroundColor: primaryColor,
-
-        display: 'flex',
-        alignItems: 'center',
-    };
-
     const title = {
         fontSize: "18px",
         fontWeight: "bold",
         padding: "15px 0px 0px 25px",
     }
 
-    const finishedChallenge = {
-        backgroundColor: "#323232",
-        alignItems: 'vertical',
-    }
-
-    const yourGoalsStyle = {
-        margin: "15px 0px 0px 0px",
-        // TODO: fix deze height
-        height: "75%",
-        backgroundColor: "#323232",
-    }
-
-    const goalItemsStyle = {
-        backgroundColor: "#505050",
-    }
-
     const buttonStyle = {
         color: primaryColor,
-        height: "40px",
+        height: "35px",
     }
 
-    const wrapper = {
+    const tileStyle = {
+        backgroundColor: primaryColor,
+        borderRadius: "5px",
+        padding: "3px 10px",
+        margin: "10px 0px",
+        height: "70px",
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
+
+    const containerLeftRight = {
         display: 'flex',
-        flexWrap: 'wrap',
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
         justifyContent: 'space-between',
-        padding: '20px',
+    }
+
+    const goals = {
+        backgroundColor: secondaryColor,
+        margin: "15px 0px 0px 0px",
+        // TODO: fix height
+        padding: paddingPage
     }
 
     return (
         <div style={pageStyle}>
-            {/* TODO: current date */}
-            <h1 style={{ ...title, ...{ textAlign: 'center' } }}>Today 06 December</h1>
-            <div style={{ textAlign: 'center' }}> <FontAwesomeIcon icon={faCaretDown} size='2x' /> </div>
+            <div style={{ padding: paddingPage }}>
+                {/* TODO: current date */}
+                <h1 h1 style={{ ...title, ...{ textAlign: 'center' } }}> Today 06 December</h1 >
+                <div style={{ textAlign: 'center' }}> <FontAwesomeIcon icon={faCaretDown} size='2x' /> </div>
+                <div style={{ textAlign: 'center', marginBottom: '30px' }}> <FontAwesomeIcon icon={faCircle} size='2x' /> </div>
 
-            <h1 style={title}>Challenges</h1>
-            {/* TODO: for loop met alle challenges from db */}
-            <div style={challengeStyle}>
-                <div style={{ display: 'inline-block', float: 'left' }}>Drink 200 mL water</div>
-                {/* TODO: when clicked, in finished list + add extra gooi */}
-                <div style={{ display: 'inline-block', float: 'right' }}>+</div>
-            </div>
+                {/* Challenges */}
+                <div>
+                    <h2 style={{ fontWeight: 'bold' }} >Challenges</h2>
+
+                    {/* TODO: for loop met alle unfinished challenges uit db */}
+                    <div style={{ ...tileStyle, ...containerLeftRight }}>
+                        <div>Drink 1760 mL water</div>
+                        <div><FontAwesomeIcon icon={faAngleRight} size='lg' /><div />
+                        </div>
+                    </div>
 
 
-            <div style={challengeStyle}> Drink 200 mL water</div>
-            <div style={challengeStyle}> Drink 200 mL water</div>
-
-
-            <div style={{ ...challengeStyle, ...finishedChallenge }}>
-                <div style={{ fontWeight: 'bold' }}> Finished</div>
-                <div style={{ fontWeight: 'bold' }}> Finished</div>
-                <h2 >Finished</h2>
-                {/* TODO: for loop all finished challenges for the day */}
-                <p>Drink 200 mL water</p>
-            </div>
-
-            <div style={yourGoalsStyle}>
-                <h1 style={title}>Your goals</h1>
-                {/* TODO: add link to edit page */}
-                <Link><span style={{ color: primaryColor }}>Edit</span></Link>
-                <div style={{ ...challengeStyle, ...goalItemsStyle }}>
-                    <h2 style={{ fontWeight: 'bold' }}>Drink more water</h2>
-                </div>
-
-                <div style={{ ...challengeStyle, ...goalItemsStyle, ...buttonStyle }}>
-                    <span>Add goal</span>
+                    <h2 style={{ fontWeight: 'bold' }} >Finished</h2>
+                    <div style={{ ...tileStyle, ...containerLeftRight, ...{ backgroundColor: secondaryColor } }}>
+                        <div>Walk 4000 steps</div>
+                        <div><FontAwesomeIcon icon={faAngleRight} size='lg' /><div />
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            {/* Goals */}
+            <div div style={goals} >
+                <div style={containerLeftRight}>
+                    <div><h2 style={{ fontWeight: 'bold' }} >Goals</h2></div>
+                    {/* TODO: link to edit goals page */}
+                    <Link><div style={{ color: primaryColor }} >Edit</div></Link>
+                </div>
 
+                {/* List of goals TODO: for loop db all goals */}
+                <div style={{ ...tileStyle, ...containerLeftRight, ...{ backgroundColor: tertiaryColor } }}>
+                    <div>Drink more water</div>
+                    <div><FontAwesomeIcon icon={faAngleRight} size='lg' /><div />
+                    </div>
+                </div>
 
-        </div>
+                {/* TODO: link to create new goal page */}
+                <Link><div style={{ ...tileStyle, ...buttonStyle, ...{ backgroundColor: tertiaryColor } }}>
+                    Add goal
+                </div></Link>
+            </div>
+        </div >
     );
 }
 

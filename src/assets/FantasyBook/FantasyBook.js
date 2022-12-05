@@ -13,6 +13,13 @@ import Birds from '../Birds/Fly'
 import Dice from '../Dice/Dice'
 import { DiceClass } from '../Dice/DiceClass.js'
 import { FlyClass } from '../Birds/FlyClass.js'
+import MichelleIdle from '../Michelle/Idle'
+import Shark from '../Shark/Shark'
+
+let playerPosition = [10.5, -0.1, 0];
+let steps;
+const diceClass = new DiceClass();
+const flyClass = new FlyClass();
 
 export default function FantasyBook(props) {
   const group = useRef()
@@ -22,10 +29,8 @@ export default function FantasyBook(props) {
     actions.The_Life.play();
   })
 
-  let playerPosition = [10.5, -0.1, 0];
-  let steps;
-  const diceClass = new DiceClass();
-  const flyClass = new FlyClass();
+  flyClass.BirdFlyAnimation()
+  steps = diceClass.spawnDiceAnimation(steps, props.luckyVisible);
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
@@ -72,13 +77,24 @@ export default function FantasyBook(props) {
                   </group>
                 </group>
                 <group>
-                  <mesh position={[flyClass.cx, 5000 + flyClass.cz, flyClass.cy]} rotation={[0, 3 - flyClass.rotation, 0]} scale={1000}>
+                  <mesh position={[flyClass.cx, 25 + flyClass.cz, flyClass.cy]} rotation={[0, 3 - flyClass.rotation, 0]} scale={5}>
                     <Birds />
                   </mesh>
                 </group>
                 <group>
-                  <mesh position={playerPosition} rotation={[0, 0, 0]} scale={0.03}>
-                    <Chopper />
+                  <mesh position={[-4, -2.6, -25]} rotation={[0, -0.5, 0]} scale={1}>
+                  <Shark />
+                  </mesh>
+                  <mesh position={[-2, -2.6, -20]} rotation={[0, 0.4, 0]} scale={1}>
+                  <Shark />
+                  </mesh>
+                  <mesh position={[-1, -3, -30]} scale={1}>
+                  <Shark />
+                  </mesh>
+                </group>
+                <group>
+                  <mesh position={playerPosition} rotation={[0, 0, 0]} scale={1}>
+                    <MichelleIdle />
                     {props.luckyVisible ? <group >
                       <mesh position={diceClass.dicePosition} rotation={diceClass.rotationOfDice} scale={50}>
                         <Dice />

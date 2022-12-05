@@ -16,6 +16,7 @@ import { FlyClass } from '../Birds/FlyClass.js'
 import Michelle from '../Michelle/Idle'
 import { viewRotation } from '../../services/math-service'
 import MichelleIdle from '../Michelle/Idle'
+import Shark from '../Shark/Shark'
 
 
 

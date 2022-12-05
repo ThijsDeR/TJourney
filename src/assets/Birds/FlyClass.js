@@ -1,13 +1,14 @@
 export class FlyClass {
     angle = 0;
     clips;
-    dd = 1;
-    radius = 5000;
+    dd = 2;
+    radius = 80;
     cz = 0;
-    czMultiplier = 10;
+    czMultiplier = 0.01;
     cx;
     cy;
     rotation;
+    round = 0;
 
     /**
      * Move the Dice in a circle motion
@@ -17,21 +18,24 @@ export class FlyClass {
         // increase the angle of rotation
         this.angle += Math.acos(1 - Math.pow(this.dd / this.radius, 2) / 2);
 
-        return [this.radius * Math.cos(this.angle), this.radius * Math.sin(this.angle)]
+        return [this.radius * Math.cos(this.angle) / 4, this.radius * Math.sin(this.angle) / 4]
     }
 
     BirdFlyAnimation() {
-        [this.cx, this.cy] = this.BirdMoveAround();
+
         this.rotation = this.angle;
-        this.cz += this.czMultiplier;
+        if (this.round === 2) {
+            this.cz += this.czMultiplier;
 
-        if (this.cz >= 700 || this.cz <= -700) {
-            this.czMultiplier *= -1;
+            if (this.cz >= 2 || this.cz <= -2) {
+                this.czMultiplier *= -1;
+            }
         }
-
-        for (let i = 0; i < 50; i++) {
+        if (this.round === 2) {
             [this.cx, this.cy] = this.BirdMoveAround()
+            this.round = 0
         }
+        this.round++;
     }
 
     getAngle() {

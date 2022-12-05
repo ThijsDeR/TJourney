@@ -39,7 +39,7 @@ function App3() {
                 <Route path="/challenge" element={<ChallengeScreen />} />
             </Routes>
 
-            {/* // Navigation */}
+            // Navigation
             <nav>
                 <ul>
                     <li><Link to="/">Home</Link></li>

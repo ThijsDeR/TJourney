@@ -22,7 +22,7 @@ export function GoalsIndex({ user, isLoading }) {
             {
                 isLoading ? <Loading /> :
                     <>
-                        <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto"}}>
+                        <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto" }}>
                             {
                                 goals
                                     ? <>
@@ -34,7 +34,7 @@ export function GoalsIndex({ user, isLoading }) {
                                                 <div className="container m-3">
                                                     <div className="box">
                                                         <article class="media">
-                                                            <div class="media-content" style={{overflow: "hidden"}}>
+                                                            <div class="media-content" style={{ overflow: "hidden" }}>
                                                                 <div class="content">
                                                                     <ul>
                                                                         <li>Name: {goal.name}</li>

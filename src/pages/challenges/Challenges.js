@@ -8,10 +8,15 @@ import { getGameSession } from "../../services/game-service";
 export function Challenges({ user, isLoading }) {
     const [challenges, setChallenges] = useState(undefined)
     const [dice, setDice] = useState(undefined)
+    const [goals, setGoals] = useState(undefined)
 
     useEffect(() => {
         getAllChallenges(Date.now()).then((data) => {
             setChallenges(data)
+        })
+
+        getAllGoals().then((data) => {
+            setGoals(data)
         })
     }, [])
 
@@ -34,30 +39,30 @@ export function Challenges({ user, isLoading }) {
                     console.log(`
                         entry: ${entry.date} - ${Date.parse(entry.date)}
                         challenge: ${challenge.date} - ${Math.floor(
-                            Date.parse(challenge.date) / msInDay
-                        ) * msInDay} - ${Math.ceil(
-                            Date.parse(challenge.date) / msInDay
-                        ) * msInDay}
+                        Date.parse(challenge.date) / msInDay
+                    ) * msInDay} - ${Math.ceil(
+                        Date.parse(challenge.date) / msInDay
+                    ) * msInDay}
                     `)
 
-                    return Date.parse(entry.date) 
-                            >= (
-                                Math.floor(
-                                    Date.parse(challenge.date) / msInDay
-                                ) * msInDay
-                            ) 
-                            && 
-                            Date.parse(entry.date) 
-                            <= (
-                                Math.ceil(
-                                    Date.parse(challenge.date) / msInDay
-                                ) * msInDay
-                            )
+                    return Date.parse(entry.date)
+                        >= (
+                            Math.floor(
+                                Date.parse(challenge.date) / msInDay
+                            ) * msInDay
+                        )
+                        &&
+                        Date.parse(entry.date)
+                        <= (
+                            Math.ceil(
+                                Date.parse(challenge.date) / msInDay
+                            ) * msInDay
+                        )
                 })
                 if (!entry) {
                     finished++
                 }
-            } 
+            }
         })
 
         const diceConfigs = [
@@ -69,7 +74,7 @@ export function Challenges({ user, isLoading }) {
             [0, 6, 10, 14, 16, 18, 20],
         ]
 
-        return diceConfigs[total -1][finished]
+        return diceConfigs[total - 1][finished]
     }
 
     const checkChallengeHandler = async (goalId, challengeId, finished) => {
@@ -89,7 +94,34 @@ export function Challenges({ user, isLoading }) {
                 isLoading ? <Loading /> :
                     <>
                         <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto" }}>
+
                             {
+                                goals
+                                    ?
+                                    <>
+                                        <div style={{ display: "flex", justifyContent: "center" }}>
+                                            <h1 className="is-size-3 has-text-white">Challenges ({dice ? dice : 0})</h1>
+                                        </div>
+                                        {goals.map((goal) =>
+                                            <>
+                                                <div className="is-size-4 has-text-white has-text-centered">{goal.name}</div>
+                                                {goal.challenges.map((challenge) => (
+                                                    <>
+                                                        <div className="columns is-mobile mx-5 my-1">
+                                                            <div className="column is-3 box has-background-black has-text-white my-1">Day: {challenge.id}</div>
+                                                            <div className="column is-9 box has-background-grey-dark has-text-white my-1">{challenge.name}</div>
+                                                        </div>
+                                                    </>
+                                                ))}
+                                            </>
+                                        )}
+                                    </>
+                                    :
+                                    <div>No goals</div>
+                            }
+
+                            {/* Fucking thissa versie */}
+                            {/* {
                                 challenges
                                     ? <>
                                         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -97,6 +129,12 @@ export function Challenges({ user, isLoading }) {
                                         </div>
                                         {challenges.map((challenge) => (
                                             <>
+                                                <div className="columns is-mobile mx-5 my-1">
+                                                    <div className="column is-3 box has-background-black has-text-white my-1">Day: {challenge.id}</div>
+                                                    <div className="column is-9 box has-background-grey-dark has-text-white my-1">{challenge.name}</div>
+
+                                                </div>
+
                                                 <div className="container m-3">
                                                     <div className="box">
                                                         <article class="media">
@@ -105,18 +143,18 @@ export function Challenges({ user, isLoading }) {
                                                                     <h2 className="has-text-centered m-0">{challenge.name}</h2>
                                                                     <div class="field">
                                                                         <div class="control">
-                                                                            <input type="checkbox" style={{width: "50px", height: "50px"}} checked={challenge.finished} onClick={() => checkChallengeHandler(challenge.goal_id, challenge.id, challenge.finished)}/>
+                                                                            <input type="checkbox" style={{ width: "50px", height: "50px" }} checked={challenge.finished} onClick={() => checkChallengeHandler(challenge.goal_id, challenge.id, challenge.finished)} />
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </article>
                                                     </div>
-                                                </div>
+                                                </div> 
                                             </>
                                         ))}
                                     </> : ""
-                            }
+                            } */}
                         </div>
                         <Navigation user={user} />
                     </>

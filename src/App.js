@@ -1,6 +1,6 @@
 
 import { Suspense, useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, Image } from "@react-three/fiber";
 import { Environment, Stars, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
 import { getCurrentUser, logout } from "./services/auth-service.js";
@@ -31,7 +31,6 @@ export function Game({ user, timeElapsed, isLoading }) {
     if (!user) {
         return <Navigate to="/login" replace />;
     }
-
 
     return (
         <>

@@ -2,16 +2,21 @@ import Navigation from "../../../components/navigation/Navigation";
 import Loading from "../../../components/loading/Loading";
 import { useEffect, useState } from "react";
 import { getAllGoals } from "../../../services/goal-service";
+import { Navigate } from "react-router-dom";
 
 export function GoalsIndex({ user, isLoading }) {
     const [goals, setGoals] = useState(undefined)
 
     useEffect(() => {
         getAllGoals().then((data) => {
-            console.log(data)
             setGoals(data)
         })
     }, [])
+
+    if (!user && !isLoading) {
+        return <Navigate to="/login" replace />;
+    }
+
     return (
         <>
             {
@@ -22,7 +27,7 @@ export function GoalsIndex({ user, isLoading }) {
                                 goals
                                     ? <>
                                         <div style={{ display: "flex", justifyContent: "center" }}>
-                                            <h1 className="is-size-1 has-text-white">Category</h1>
+                                            <h1 className="is-size-1 has-text-white">Goal list</h1>
                                         </div>
                                         {goals.map((goal) => (
                                             <>

@@ -18,6 +18,7 @@ export function GoalsCreate({ user, isLoading }) {
     const [endDate, setEndDate] = useState(undefined)
     const [done, setDone] = useState(false)
     
+    
     const setStepHandler = (step) => {
         if (step >= 1 && step <= 3) setStep(step)
     }
@@ -29,8 +30,11 @@ export function GoalsCreate({ user, isLoading }) {
         }
     }, [done])
 
+    if (!user && !isLoading) {
+        return <Navigate to="/login" replace />;
+    }
+
     if (done) {
-        
         return <Navigate to="/goals/index" replace />;
     }
 

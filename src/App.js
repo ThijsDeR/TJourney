@@ -23,6 +23,7 @@ import Loading from "./components/loading/Loading";
 import FantasyBook from "./assets/FantasyBook/FantasyBook.js";
 import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
 import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
+import { Challenges } from "./pages/challenges/Challenges.js";
 
 let luckyVisible = false;
 
@@ -108,6 +109,7 @@ function App({timeElapsed}) {
                 <Route path="/register" element={<Register user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
                 <Route path="/home" element={<Home user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
                 <Route path="/game" element={<Game user={user} isLoading={isLoading} timeElapsed={timeElapsed} />} />
+                <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} />} />
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} />} />
 

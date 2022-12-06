@@ -1,6 +1,5 @@
 export function SelectGoalCategory({ category, setCategory, setStepHandler }) {
     const handleCategorySelect = (name) => {
-        console.log("category", name)
         setCategory(name)
         setStepHandler(2)
     }

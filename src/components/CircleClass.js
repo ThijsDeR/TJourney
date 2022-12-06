@@ -12,7 +12,6 @@ export class CircleClass {
         return (
             <mesh position={ListofPositionPlaces}>
             <cylinderBufferGeometry attach="geometry" args={[1, 0.5, 2, 32]} />
-            {/* <meshNormalMaterial attach="material" /> */}
           </mesh>
         );
     }

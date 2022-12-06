@@ -17,8 +17,14 @@
   z-index: 1;
 }
 
-.ButtonHome {
+.ButtonHome1 {
   border-radius: 70%;
+}
+
+.ButtonHome2 {
+  border-radius: 90%;
+  background-image: url("https://i.imgur.com/lg1emBK.png");
+  background-size: contain;
 }
 
 .parent {
@@ -115,4 +121,12 @@
 
 .overflow-y-scroll {    
     overflow-y: scroll;
+}
+.luckyDiceButton {
+  background-image: url("https://i.imgur.com/lg1emBK.png");
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 80vh;
+  left: 80vh
 }

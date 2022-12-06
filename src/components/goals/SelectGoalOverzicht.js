@@ -14,7 +14,7 @@ export function SelectGoalOverzicht(props) {
                     <h1 className="is-size-1 has-text-white">Overzicht</h1>
                 </div>
                 <div className="container mx-3 " >
-                    <div className="box ">
+                    <div className="box has-background-grey-light">
                         <article class="media">
                             <div class="media-content">
                                 <div class="content">
@@ -29,7 +29,7 @@ export function SelectGoalOverzicht(props) {
                                     </ul>
                                     <div class="field is-grouped">
                                         <div class="control">
-                                            <button class="button is-link" onClick={submitHandler}>Submit</button>
+                                            <button class="button is-link" style={{backgroundColor: "rgb(247, 105, 255)"}} onClick={submitHandler}>Submit</button>
                                         </div>
                                         <div class="control">
                                             <button class="button is-link is-light">Cancel</button>

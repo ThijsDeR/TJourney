@@ -25,7 +25,7 @@ function Animate(timestamp) {
   root.render(
     <React.StrictMode>
       <Router>
-        <Game user="DoomInfinity" timeElapsed={previousTimeStamp}/>
+        <App timeElapsed={previousTimeStamp}/>
       </Router>
     </React.StrictMode>
   );

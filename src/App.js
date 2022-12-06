@@ -104,7 +104,6 @@ function App({timeElapsed}) {
                 <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} />} />
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} />} />
-
             </Routes>
         </>
     )

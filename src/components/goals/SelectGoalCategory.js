@@ -9,7 +9,7 @@ export function SelectGoalCategory({ category, setCategory, setStepHandler }) {
                 <h1 className="is-size-1 has-text-white">Category</h1>
             </div>
             <div className="container mx-3">
-                <div className={(category === "excercise" ? "has-background-purple" : "") + " box"} onClick={() => handleCategorySelect("excercise")}>
+                <div className={"has-background-purple box"} onClick={() => handleCategorySelect("excercise")}>
                     <article class="media">
                         <div class="media-content">
                             <div class="content">
@@ -42,7 +42,7 @@ export function SelectGoalCategory({ category, setCategory, setStepHandler }) {
                     </article>
                 </div>
 
-                <div className={"box " + (category === "sleep" ? "has-background-purple" : "")} onClick={() => handleCategorySelect("sleep")}>
+                <div className={"box has-background-purple"} onClick={() => handleCategorySelect("sleep")}>
                     <article class="media">
                         <div class="media-content">
                             <div class="content">
@@ -75,7 +75,7 @@ export function SelectGoalCategory({ category, setCategory, setStepHandler }) {
                     </article>
                 </div>
 
-                <div className={"box " + (category === "food" ? "has-background-purple" : "")} onClick={() => handleCategorySelect("food")}>
+                <div className={"box has-background-purple"} onClick={() => handleCategorySelect("food")}>
                     <article class="media">
                         <div class="media-content">
                             <div class="content">

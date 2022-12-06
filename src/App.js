@@ -1,6 +1,6 @@
 
 import { Suspense, useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, Image } from "@react-three/fiber";
 import { Environment, Stars, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
 import { getCurrentUser, logout } from "./services/auth-service.js";
@@ -18,8 +18,13 @@ import Login from "./pages/login/LoginScreen.js";
 import Register from "./pages/register/RegisterScreen.js";
 import Logout from "./pages/logout/Logout";
 import Navigation from "./components/navigation/Navigation.js";
-import VulcanoIsland from "./assets/vulcanoIsland/Vulcano.js";
+import Home from "./pages/home/HomeScreen.js";
+import Loading from "./components/loading/Loading";
+import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
+import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
+import { Challenges } from "./pages/challenges/Challenges.js";
 import FantasyBook from "./assets/FantasyBook/FantasyBook.js";
+
 import { PositionPlayerClass } from "./components/PositionPlayerClass.js";
 
 let luckyVisible = false;
@@ -30,15 +35,14 @@ const ListofPositionPlaces = [[-18, -1.1, -15.9], [-9, -1.1, -15.9], [-3.2, -1.1
 [-19, -1.5, -0.5], [-25, -2.4, -0.4], [-30, -3.4, -0.8], [-35, -4.4, -4], [-35.5, -4.6, -9.4], [-35.5, -4.6, -14.4], [-35.5, -4.6, -19.4],
 [-35.5, -4.6, -24.4], [-35.5, -4.6, -29.4], [-32, -3.8, -31.4], [-27, -2.7, -31.6], [-22, -1.9, -31.6], [-17, -1.3, -31.6]];
 
-
-export function Game({ user, timeElapsed }) {
-    positionPlayerClass.walkTimer(ListofPositionPlaces, buttonStepsPressedOn)
+export function Game({ user, timeElapsed, isLoading }) {
+   
     if (!user) {
         return <Navigate to="/login" replace />;
     }
-
-
+    positionPlayerClass.walkTimer(ListofPositionPlaces, buttonStepsPressedOn)
     return (
+        isLoading ? <Loading /> :
         <>
             <Navigation />
             <div className="canvasContainer">
@@ -76,37 +80,49 @@ export function Game({ user, timeElapsed }) {
                         if (luckyVisible === false) {
                             luckyVisible = true;
                         } else {
+            
+              
+                      
+                                        // TODO: Right now the block just turns invisable, we need this button to do something else but idk what
+                                        luckyVisible = false;
+                                        window.location.reload();
+                                    }
+                                }}></button>
+                                <button className="ButtonHome">&#9731;</button>
+                            </div>
+                        </div>
+                        <Navigation user={user} />
 
-                            // TODO: Right now the block just turns invisable, we need this button to do something else but idk what
-                            luckyVisible = false;
-                            window.location.reload();
-                        }
-                    }}></button>
-                    <button className="ButtonHome">&#9731;</button>
-                </div>
-            </div>
-        </>
-    );
-}
+                    </>
+    )
+}   
 
 function App({ timeElapsed }) {
     const [currentUser, setCurrentUser] = useState(undefined);
+    const [user, setUser] = useState(undefined)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         getCurrentUser().then((data) => {
-            setCurrentUser(data)
+            setUser(data)
+            setIsLoading(false)
         });
-    }, []);
+    }, [currentUser]);
 
 
     return (
         <>
             <Routes>
-                <Route path="/" element={<Login user={currentUser} />} />
-                <Route path="/login" element={<Login user={currentUser} setCurrentUser={setCurrentUser} />} />
-                <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} />} />
-                <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} />} />
-                <Route path="/game" element={<Game user={currentUser} timeElapsed={timeElapsed} />} />
+                <Route path="/" element={<Login user={user} isLoading={isLoading} />} />
+                <Route path="/login" element={<Login user={user} isLoading={isLoading} setCurrentUser={setCurrentUser} />} />
+                <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
+                <Route path="/register" element={<Register user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
+                <Route path="/home" element={<Home user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
+                <Route path="/game" element={<Game user={user} isLoading={isLoading} timeElapsed={timeElapsed} />} />
+                <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} />} />
+                <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} />} />
+                <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} />} />
+
             </Routes>
         </>
     )

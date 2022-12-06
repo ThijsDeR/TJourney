@@ -15,11 +15,15 @@ import { DiceClass } from '../Dice/DiceClass.js'
 import { FlyClass } from '../Birds/FlyClass.js'
 import { PositionPlayerClass } from '../../components/PositionPlayerClass.js'
 import { CircleClass } from '../../components/CircleClass'
+import Michelle from '../Michelle/Idle'
+import { viewRotation } from '../../services/math-service'
+import MichelleIdle from '../Michelle/Idle'
+import Shark from '../Shark/Shark'
 
 const ListofPositionPlaces = [[-6000, 2205, -3000], [-17, 6.8, -1], [-17, 6.8, -12], [-15, 10, -21], [-16.5, 13, -29], [-15, 16.2, -45]]
 
 
-let playerPosition = [-6000, 2205, -3000];
+let playerPosition = [-6100, 2205, -3050];
 let steps;
 const diceClass = new DiceClass();
 const flyClass = new FlyClass();
@@ -91,8 +95,8 @@ export default function VulcanoIsland(props) {
           </group>
       
           <group>
-          <mesh position={positionPlayerClass.SetPosition(ListofPositionPlaces)} rotation={[0, 0, 0]} scale={5}>
-              <Chopper />
+          <mesh position={playerPosition} rotation={viewRotation(playerPosition, [3000, 0, 3000])} scale={400}>
+              <MichelleIdle />
               {props.luckyVisible ? <group >
                 <mesh position={diceClass.dicePosition} rotation={diceClass.rotationOfDice} scale={50}>
                   <Dice />

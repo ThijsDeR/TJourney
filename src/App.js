@@ -27,8 +27,6 @@ import { Challenges } from "./pages/challenges/Challenges.js";
 
 let luckyVisible = false;
 
-
-
 export function Game({ user, timeElapsed, isLoading }) {
     if (!user) {
         return <Navigate to="/login" replace />;
@@ -40,11 +38,6 @@ export function Game({ user, timeElapsed, isLoading }) {
             {
                 isLoading ? <Loading /> :
                     <>
-                        <div style={{ position: "absolute", top: "0", bottom: "0", left: "0", right: "0", backgroundColor: "rgba(0, 0, 0, 0.9)", zIndex: "100" }}>
-                            <div className="is-flex is-justify-content-center">
-                                <h2 className="has-text-white is-size-3">hoi</h2>
-                            </div>
-                        </div>
                         <div className="canvasContainer">
                             <div className="App">
                                 <Canvas camera={{ position: [0, -0.2, 1.2] }} style={{ backgroundColor: "#17E7E7" }}>

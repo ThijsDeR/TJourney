@@ -108,7 +108,7 @@ export default function FantasyBook(props) {
                   </mesh>
                 </group>
                 <group>
-                  <mesh position={props.positionPlayerClass.SetPosition(props.ListofPositionPlaces)} rotation={[0, 0, 0]} scale={0.03}>
+                  <mesh position={props.positionPlayerClass.SetPosition(props.ListofPositionPlaces)} rotation={[0, 0, 0]} scale={1.5}>
 
                     <MichelleIdle />
                     {props.luckyVisible ? <group >

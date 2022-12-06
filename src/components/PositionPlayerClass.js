@@ -26,7 +26,6 @@ export class PositionPlayerClass {
   positionUp(ListofPositionPlaces) {
     this.placeOnTheBoard = this.placeOnTheBoard + 1;
     this.SetPosition(ListofPositionPlaces)
-    console.log(this.placeCharacter)
   }
 
   /**

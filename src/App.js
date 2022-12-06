@@ -60,7 +60,7 @@ export function Game({ user, timeElapsed, isLoading }) {
                                 </mesh>
                             </Physics>
                         </Suspense>
-                        <Environment preset="sunset" />
+                        <Environment preset="dawn" />
                         {/* </PresentationControls> */}
                     </Canvas>
                 </div>

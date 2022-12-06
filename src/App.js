@@ -1,6 +1,6 @@
 
 import { Suspense, useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, Image } from "@react-three/fiber";
 import { Environment, Stars, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
 import { getCurrentUser, logout } from "./services/auth-service.js";
@@ -47,23 +47,24 @@ export function Game({ user, timeElapsed }) {
                                 </mesh>
                             </Physics>
                         </Suspense>
-                        <Environment preset="sunset" />
+                        <Environment preset="city" />
                         {/* </PresentationControls> */}
                     </Canvas>
                 </div>
                 <div className="parent">
-                    <button className="ButtonHome">&#9816;</button>
-                    <button id="diceButton" className="ButtonHome" onClick={() => {
+                    <button className="ButtonHome1">&#9816;</button>
+                    <button id="diceButton" className="ButtonHome2" onClick={() => {
                         if (luckyVisible === false) {
                             luckyVisible = true;
+                            
                         } else {
 
                             // TODO: Right now the block just turns invisable, we need this button to do something else but idk what
                             luckyVisible = false;
-                            window.location.reload();
+                            // window.location.reload();
                         }
                     }}></button>
-                    <button className="ButtonHome">&#9731;</button>
+                    <button className="ButtonHome1">&#9731;</button>
                 </div>
             </div>
         </>

@@ -96,10 +96,10 @@ export default function FantasyBook(props) {
                   <mesh position={playerPosition} rotation={[0, 0, 0]} scale={1}>
                     <MichelleIdle />
                     {props.luckyVisible ? <group >
-                      <mesh position={diceClass.dicePosition} rotation={diceClass.rotationOfDice} scale={50}>
+                      <mesh position={diceClass.dicePosition} rotation={diceClass.diceRotation()} scale={0.5}>
                         <Dice />
                       </mesh>
-                      <mesh position={diceClass.textPosition} scale={5}>
+                      <mesh position={diceClass.textPosition} scale={0.1}>
                         <Text fontSize={6} color="hotpink">{steps}</Text>
                       </mesh>
                     </group> : null}

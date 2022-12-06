@@ -20,12 +20,12 @@ import Navigation from "./components/navigation/Navigation.js";
 import Home from "./pages/home/HomeScreen.js";
 import Loading from "./components/loading/Loading";
 
-import VulcanoIsland from "./assets/vulcanoIsland/Vulcano.js";
 import FantasyBook from "./assets/FantasyBook/FantasyBook.js";
+import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
+import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
+import { Challenges } from "./pages/challenges/Challenges.js";
 
 let luckyVisible = false;
-
-
 
 export function Game({ user, timeElapsed, isLoading }) {
     if (!user) {
@@ -37,11 +37,6 @@ export function Game({ user, timeElapsed, isLoading }) {
             {
                 isLoading ? <Loading /> :
                     <>
-                        <div style={{ position: "absolute", top: "0", bottom: "0", left: "0", right: "0", backgroundColor: "rgba(0, 0, 0, 0.9)", zIndex: "100" }}>
-                            <div className="is-flex is-justify-content-center">
-                                <h2 className="has-text-white is-size-3">hoi</h2>
-                            </div>
-                        </div>
                         <div className="canvasContainer">
                             <div className="App">
                                 <Canvas camera={{ position: [0, -0.2, 1.2] }} style={{ backgroundColor: "#17E7E7" }}>
@@ -106,6 +101,9 @@ function App({timeElapsed}) {
                 <Route path="/register" element={<Register user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
                 <Route path="/home" element={<Home user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
                 <Route path="/game" element={<Game user={user} isLoading={isLoading} timeElapsed={timeElapsed} />} />
+                <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} />} />
+                <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} />} />
+                <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} />} />
 
             </Routes>
         </>

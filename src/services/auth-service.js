@@ -42,8 +42,6 @@ export const getCurrentUser = async () => {
         const data = await axios.get("/v1/users/ownData", {
             headers: { Authorization: `Bearer ${localUser.accessToken}` }
         })
-
-        console.log("getCurrentUser", data)
     
         return data.data.data;
     }

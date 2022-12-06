@@ -15,7 +15,7 @@ function Navigation({ user }) {
                         user ?
                             <>
                                 <Link to="/logout">L</Link>
-                                <Link>CH</Link>
+                                <Link to="/challenges">CH</Link>
                                 <Link to="/home">H</Link>
                                 <Link to="/game">J</Link>
                                 <Link>Co</Link>

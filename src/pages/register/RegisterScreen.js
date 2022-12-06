@@ -6,45 +6,55 @@ import { useState } from "react";
 import { register } from "../../services/auth-service.js";
 import { Navigate } from "react-router-dom";
 
-function Register({user, setCurrentUser}) {
+function Register({ user, setCurrentUser }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const [error, setError] = useState(undefined)
 
-
-    const handleLogin = async (e) => {
+    const handleRegister = (e) => {
         e.preventDefault();
         try {
-            await register(email, password, username).then(
+            register(email, password, username).then(
                 (data) => {
                     setCurrentUser(data)
                 },
                 (error) => {
-                    console.log(error);
+                    setError(error)
                 }
             );
         } catch (err) {
-            console.log(err);
+            setError(error)
         }
     };
 
     if (user) {
-        return <Navigate to="/game" replace />;
+        return <Navigate to="/home" replace />;
+    }
+
+    const deleteNotificationHandler = (e) => {
+        setError(null)
     }
 
     return (
         <>
-            <Navigation />
-            <div style={{ position: "fixed", top: "100px", bottom: "100px", left: "0px", right: "0px" }}>
-                <form onSubmit={handleLogin}>
+            <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black" }}>
+                <form onSubmit={handleRegister}>
                     <div style={{ display: "flex", justifyContent: "center" }}>
-                        <h1 className="is-size-1">Register</h1>
+                        <h1 className="is-size-1 has-text-white">Register</h1>
                     </div>
+                    {
+                        error ?
+                            <div class="notification is-danger is-light">
+                                <button class="delete" onClick={deleteNotificationHandler}></button>
+                                {error}
+                            </div> : ''
+                    }
                     <div style={{ padding: "20px" }}>
                         <div className="field">
-                            <label className="label">User Name</label>
+                            <label className="label has-text-white">User Name</label>
                             <div className="control has-icons-left has-icons-right">
-                                <input className="input" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
+                                <input className="input has-text-white has-background-black" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
                                 <span className="icon is-small is-left">
                                     <FontAwesomeIcon icon={faUser} />
                                 </span>
@@ -54,9 +64,9 @@ function Register({user, setCurrentUser}) {
                             </div>
                         </div>
                         <div className="field">
-                            <label className="label">Email</label>
+                            <label className="label has-text-white">Email</label>
                             <div className="control has-icons-left has-icons-right">
-                                <input className="input" type="email" placeholder="example@gmail.com" onChange={(e) => setEmail(e.target.value)} />
+                                <input className="input has-text-white has-background-black" type="email" placeholder="example@gmail.com" onChange={(e) => setEmail(e.target.value)} />
                                 <span className="icon is-small is-left">
                                     <FontAwesomeIcon icon={faEnvelope} />
                                 </span>
@@ -67,9 +77,9 @@ function Register({user, setCurrentUser}) {
                         </div>
 
                         <div className="field">
-                            <label className="label">Password</label>
+                            <label className="label has-text-white">Password</label>
                             <div className="control has-icons-left has-icons-right">
-                                <input className="input" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                                 <span className="icon is-small is-left">
                                     <FontAwesomeIcon icon={faKey} />
                                 </span>
@@ -90,7 +100,7 @@ function Register({user, setCurrentUser}) {
                     </div>
                 </form>
             </div>
-            <Footer />
+            <Navigation user={user} />
         </>
     );
 }

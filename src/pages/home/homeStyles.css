@@ -1,0 +1,9 @@
+.bg-image {
+    background-image: url("/public/Game_Background.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-white-06 {
+    background-color: rgba(0, 0, 0, 0.6);
+}

@@ -38,8 +38,7 @@ export class DiceClass {
                 this.luckyMove = false;
                 this.moveLuckyblockToCenter(1, 0)
                 if (this.countAsked === false && this.delay >= 600) {
-                    steps = RandomCount(5);
-                    this.setDiceNumber(steps)
+                    steps = RandomCount(30);
                     this.textAnimation(0);
                     this.countAsked = true;
                     positionPlayerClass.setDiceNumber(steps)

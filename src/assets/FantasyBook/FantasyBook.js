@@ -8,14 +8,11 @@ title: Medieval Fantasy Book
 import { Circle } from '@react-three/drei'
 import React, { useEffect, useRef } from 'react'
 import { useGLTF, useAnimations, Text } from '@react-three/drei'
-import Chopper from '../Chopper/Chopper'
 import Birds from '../Birds/Fly'
 import Dice from '../Dice/Dice'
 import { DiceClass } from '../Dice/DiceClass.js'
 import { FlyClass } from '../Birds/FlyClass.js'
 import { CircleClass } from '../../components/CircleClass.js'
-
-
 import MichelleIdle from '../Michelle/Idle'
 import Shark from '../Shark/Shark'
 let steps;
@@ -100,7 +97,6 @@ export default function FantasyBook(props) {
                     return circleClass.drawCircle(ListofPositionPlaces)
                   })
                   }
-                  {console.log(props.positionPlayerClass.getDiceNumber())}
                   <mesh position={[-17, -1.3, -31.6]} rotation={[-1.55, 0, 0]} scale={2}>
                     <Circle />
                   </mesh>

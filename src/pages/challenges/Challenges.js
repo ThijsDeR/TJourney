@@ -32,6 +32,14 @@ export function Challenges({ user, isLoading }) {
         }
     }, [challenges])
 
+    function selectDropDown(goal_id) {
+        if (isSelected === goal_id) {
+            setIsSelected(undefined);
+        } else {
+            setIsSelected(goal_id);
+        }
+    }
+
     const calculateDiceCount = async (challenges) => {
         const gameSession = await getGameSession()
         const total = challenges.length
@@ -110,7 +118,7 @@ export function Challenges({ user, isLoading }) {
                                         </div>
                                         {goals.map((goal) =>
                                             <>
-                                                <div className="is-size-4 has-text-white has-text-centered box has-background-grey mx-5 mt-5 mb-0" onClick={() => setIsSelected(goal._id)}>
+                                                <div className="is-size-4 has-text-white has-text-centered box has-background-grey mx-5 mt-5 mb-0" onClick={() => selectDropDown(goal._id)}>
                                                     {goal.name}<FontAwesomeIcon className="is-pulled-right pr-5" icon={faCaretDown} />
                                                 </div>
                                                 {goal.challenges.map((challenge) => (

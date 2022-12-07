@@ -13,8 +13,10 @@ import Birds from '../Birds/Fly'
 import Dice from '../Dice/Dice'
 import { DiceClass } from '../Dice/DiceClass.js'
 import { FlyClass } from '../Birds/FlyClass.js'
+import { CloudClass } from '../Cloud/cloudClass.js'
 import MichelleIdle from '../Michelle/Idle'
 import Shark from '../Shark/Shark'
+import Cloud from '../Cloud/Cloud'
 
 let playerPosition = [10.5, -0.1, 0];
 let steps;
@@ -83,13 +85,13 @@ export default function FantasyBook(props) {
                 </group>
                 <group>
                   <mesh position={[-4, -2.6, -25]} rotation={[0, -0.5, 0]} scale={1}>
-                  <Shark />
+                    <Shark />
                   </mesh>
                   <mesh position={[-2, -2.6, -20]} rotation={[0, 0.4, 0]} scale={1}>
-                  <Shark />
+                    <Shark />
                   </mesh>
                   <mesh position={[-1, -3, -30]} scale={1}>
-                  <Shark />
+                    <Shark />
                   </mesh>
                 </group>
                 <group>
@@ -103,6 +105,20 @@ export default function FantasyBook(props) {
                         <Text fontSize={6} color="hotpink">{steps}</Text>
                       </mesh>
                     </group> : null}
+                  </mesh>
+                </group>
+                <group>
+                  <mesh position={[40, 50, 0]} rotation={[0, 1, 0]} scale={3}>
+                    <Cloud />
+                  </mesh>
+                  <mesh position={[-60, 50, -30]} rotation={[0, 3, 0]} scale={3}>
+                    <Cloud />
+                  </mesh>
+                  <mesh position={[50, 50, 50]} rotation={[0, 1, 0]} scale={3}>
+                    <Cloud />
+                  </mesh>
+                  <mesh position={[25, 50, -50]} rotation={[0, 1, 0]} scale={3}>
+                    <Cloud />
                   </mesh>
                 </group>
               </group>

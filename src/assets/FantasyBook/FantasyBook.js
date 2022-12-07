@@ -13,20 +13,16 @@ import Birds from '../Birds/Fly'
 import Dice from '../Dice/Dice'
 import { DiceClass } from '../Dice/DiceClass.js'
 import { FlyClass } from '../Birds/FlyClass.js'
-import { PositionPlayerClass } from '../../components/PositionPlayerClass.js'
 import { CircleClass } from '../../components/CircleClass.js'
 
 
 import MichelleIdle from '../Michelle/Idle'
 import Shark from '../Shark/Shark'
-
-let playerPosition = [10.5, -0.1, 0];
 let steps;
-const diceClass = new DiceClass();
 const flyClass = new FlyClass();
+const diceClass = new DiceClass();
 
 export default function FantasyBook(props) {
-
   const circleClass = new CircleClass();
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/fantasyBook.gltf')
@@ -36,7 +32,8 @@ export default function FantasyBook(props) {
   })
 
   flyClass.BirdFlyAnimation()
-  steps = diceClass.spawnDiceAnimation(steps, props.luckyVisible);
+  steps = diceClass.spawnDiceAnimation(steps, props.buttonPressedOn, props.positionPlayerClass);
+  props.positionPlayerClass.walkTimer(props.ListofPositionPlaces, props.buttonPressedOn)
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
@@ -103,15 +100,15 @@ export default function FantasyBook(props) {
                     return circleClass.drawCircle(ListofPositionPlaces)
                   })
                   }
+                  {console.log(props.positionPlayerClass.getDiceNumber())}
                   <mesh position={[-17, -1.3, -31.6]} rotation={[-1.55, 0, 0]} scale={2}>
                     <Circle />
                   </mesh>
                 </group>
                 <group>
                   <mesh position={props.positionPlayerClass.SetPosition(props.ListofPositionPlaces)} rotation={[0, 0, 0]} scale={1.5}>
-
                     <MichelleIdle />
-                    {props.luckyVisible ? <group >
+                    {props.buttonPressedOn ? <group >
                       <mesh position={diceClass.dicePosition} rotation={diceClass.diceRotation()} scale={0.5}>
                         <Dice />
                       </mesh>

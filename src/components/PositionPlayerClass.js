@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
 
 export class PositionPlayerClass {
-  placeOnTheBoard = 35;
+  placeOnTheBoard = 2;
   placeCharacter = [-6000, 2205, -3000];
   timerCount = 0;
-  diceNumber = 40;
+  diceNumber;
 
   /**
    * Set the position of the character
@@ -50,6 +49,18 @@ export class PositionPlayerClass {
         }
         this.timerCount = this.timerCount + 1;
       }
+    
     }
+
   }
+
+/**
+ * Set the Dice number ,so the player can walk
+ * 
+ * @param {number} diceInputNumber 
+ */
+setDiceNumber(diceInputNumber) {
+    this.diceNumber = diceInputNumber;
+}
+ 
 }

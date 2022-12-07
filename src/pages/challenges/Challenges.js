@@ -4,11 +4,15 @@ import { useEffect, useState } from "react";
 import { checkChallenge, getAllChallenges, getAllGoals } from "../../services/goal-service";
 import { Navigate } from "react-router-dom";
 import { getGameSession } from "../../services/game-service";
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 export function Challenges({ user, isLoading }) {
-    const [challenges, setChallenges] = useState(undefined)
-    const [dice, setDice] = useState(undefined)
-    const [goals, setGoals] = useState(undefined)
+    const [challenges, setChallenges] = useState(undefined);
+    const [dice, setDice] = useState(undefined);
+    const [goals, setGoals] = useState(undefined);
+    const [isSelected, setIsSelected] = useState(undefined);
 
     useEffect(() => {
         getAllChallenges(Date.now()).then((data) => {
@@ -94,7 +98,6 @@ export function Challenges({ user, isLoading }) {
                 isLoading ? <Loading /> :
                     <>
                         <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto" }}>
-
                             {
                                 goals
                                     ?
@@ -104,13 +107,22 @@ export function Challenges({ user, isLoading }) {
                                         </div>
                                         {goals.map((goal) =>
                                             <>
-                                                <div className="is-size-4 has-text-white has-text-centered">{goal.name}</div>
+
+
+                                                {/* <Select options={options} autoFocus={true} width={10} isMulti /> */}
+
+                                                <div className="is-size-4 has-text-white has-text-centered box has-background-grey mx-5 mt-5 mb-0" onClick={() => setIsSelected(goal._id)}>
+                                                    {goal.name}<FontAwesomeIcon className="is-pulled-right pr-5" icon={faCaretDown} />
+                                                </div>
                                                 {goal.challenges.map((challenge) => (
                                                     <>
-                                                        <div className="columns is-mobile mx-5 my-1">
-                                                            <div className="column is-3 box has-background-black has-text-white my-1">Day: {challenge.id}</div>
-                                                            <div className="column is-9 box has-background-grey-dark has-text-white my-1">{challenge.name}</div>
-                                                        </div>
+                                                        {isSelected === goal._id ?
+                                                            <div className="columns is-mobile mx-5 my-1">
+                                                                <div className="column is-3 box has-background-black has-text-white my-1">Day: {challenge.id}</div>
+                                                                <div className="column is-9 box has-background-grey-dark has-text-white my-1">{challenge.name}</div>
+                                                            </div>
+                                                            : ""
+                                                        }
                                                     </>
                                                 ))}
                                             </>

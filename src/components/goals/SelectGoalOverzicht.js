@@ -29,7 +29,7 @@ export function SelectGoalOverzicht(props) {
                                     </ul>
                                     <div class="field is-grouped">
                                         <div class="control">
-                                            <button class="button is-link" style={{backgroundColor: "rgb(247, 105, 255)"}} onClick={submitHandler}>Submit</button>
+                                            <button class="button is-link" style={{ backgroundColor: "rgb(247, 105, 255)" }} onClick={submitHandler}>Submit</button>
                                         </div>
                                         <div class="control">
                                             <button class="button is-link is-light">Cancel</button>

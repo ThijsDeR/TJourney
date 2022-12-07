@@ -1,10 +1,10 @@
 export function SelectGoalPlan(props) {
     const stepBackHandler = () => {
-        props.setStepHandler(1)
+        props.setStepHandler(2)
     }
 
     const submitHandler = () => {
-        props.setStepHandler(3)
+        props.setStepHandler(4)
     }
     return (
         <>
@@ -21,7 +21,7 @@ export function SelectGoalPlan(props) {
                                     <div class="field">
                                         <label class="label">Name</label>
                                         <div class="control">
-                                            <input class="input" type="text" placeholder="Goal Name" onInput={(e) => props.setName(e.target.value)} value={props.name}/>
+                                            <input class="input" type="text" placeholder="Goal Name" onInput={(e) => props.setName(e.target.value)} value={props.name} />
                                         </div>
                                     </div>
 
@@ -37,37 +37,37 @@ export function SelectGoalPlan(props) {
                                     </div>
 
                                     <div class="field is-grouped">
-                                        <div style={{width: "50%", paddingRight: "5px", paddingLeft: "5px"}}>
+                                        <div style={{ width: "50%", paddingRight: "5px", paddingLeft: "5px" }}>
                                             <label class="label has-text-centered">Start Value</label>
                                             <div class="control">
-                                                <input class="input" type="text" placeholder="Start Value" style={{width: "100%"}} onInput={(e) => props.setStartValue(e.target.value)} value={props.startValue}/>
+                                                <input class="input" type="text" placeholder="Start Value" style={{ width: "100%" }} onInput={(e) => props.setStartValue(e.target.value)} value={props.startValue} />
                                             </div>
                                         </div>
-                                        <div style={{width: "50%", paddingRight: "5px", paddingLeft: "5px"}}>
+                                        <div style={{ width: "50%", paddingRight: "5px", paddingLeft: "5px" }}>
                                             <label class="label has-text-centered">End Value</label>
                                             <div class="control">
-                                                <input class="input" type="text" placeholder="End Value" onInput={(e) => props.setEndValue(e.target.value)} value={props.endValue}/>
+                                                <input class="input" type="text" placeholder="End Value" onInput={(e) => props.setEndValue(e.target.value)} value={props.endValue} />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="field is-grouped">
-                                        <div style={{width: "50%", paddingRight: "5px", paddingLeft: "5px"}}>
+                                        <div style={{ width: "50%", paddingRight: "5px", paddingLeft: "5px" }}>
                                             <label class="label has-text-centered">Start Date</label>
                                             <div class="control">
-                                                <input class="input" type="date" placeholder="Start Date" style={{width: "100%"}} onInput={(e) => props.setStartDate(e.target.value)} value={props.startDate}/>
+                                                <input class="input" type="date" placeholder="Start Date" style={{ width: "100%" }} onInput={(e) => props.setStartDate(e.target.value)} value={props.startDate} />
                                             </div>
                                         </div>
-                                        <div style={{width: "50%", paddingRight: "5px", paddingLeft: "5px"}}>
+                                        <div style={{ width: "50%", paddingRight: "5px", paddingLeft: "5px" }}>
                                             <label class="label has-text-centered">End Date</label>
                                             <div class="control">
-                                                <input class="input" type="date" placeholder="End Date" onInput={(e) => props.setEndDate(e.target.value)} value={props.endDate}/>
+                                                <input class="input" type="date" placeholder="End Date" onInput={(e) => props.setEndDate(e.target.value)} value={props.endDate} />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="field is-grouped">
                                         <div class="control">
-                                            <button class="button is-link" style={{backgroundColor: "rgb(247, 105, 255)"}} onClick={submitHandler}>Submit</button>
+                                            <button class="button is-link" style={{ backgroundColor: "rgb(247, 105, 255)" }} onClick={submitHandler}>Submit</button>
                                         </div>
                                         <div class="control">
                                             <button class="button is-link is-light">Cancel</button>

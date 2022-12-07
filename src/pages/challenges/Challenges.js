@@ -84,8 +84,11 @@ export function Challenges({ user, isLoading }) {
     const checkChallengeHandler = async (goalId, challengeId, finished) => {
         await checkChallenge(goalId, challengeId, !finished)
         getAllChallenges(Date.now()).then((data) => {
-            setChallenges(data)
-        })
+            setChallenges(data);
+        });
+        getAllGoals().then((data) => {
+            setGoals(data)
+        });
     }
 
     if (!user && !isLoading) {
@@ -107,10 +110,6 @@ export function Challenges({ user, isLoading }) {
                                         </div>
                                         {goals.map((goal) =>
                                             <>
-
-
-                                                {/* <Select options={options} autoFocus={true} width={10} isMulti /> */}
-
                                                 <div className="is-size-4 has-text-white has-text-centered box has-background-grey mx-5 mt-5 mb-0" onClick={() => setIsSelected(goal._id)}>
                                                     {goal.name}<FontAwesomeIcon className="is-pulled-right pr-5" icon={faCaretDown} />
                                                 </div>
@@ -119,7 +118,9 @@ export function Challenges({ user, isLoading }) {
                                                         {isSelected === goal._id ?
                                                             <div className="columns is-mobile mx-5 my-1">
                                                                 <div className="column is-3 box has-background-black has-text-white my-1">Day: {challenge.id}</div>
-                                                                <div className="column is-9 box has-background-grey-dark has-text-white my-1">{challenge.name}</div>
+                                                                <div className="column is-9 box has-background-grey-dark has-text-white my-1">{challenge.name}
+                                                                    <input type="checkbox" className="is-pulled-right" style={{ width: "25px", height: "25px" }} checked={challenge.finished} onClick={() => checkChallengeHandler(goal._id, challenge.id, challenge.finished)} />
+                                                                </div>
                                                             </div>
                                                             : ""
                                                         }

@@ -24,27 +24,12 @@ export const createGoal = (name, description, startValue, endValue, startDate, e
 export const getAllGoals = async () => {
     const localUser = JSON.parse(localStorage.getItem("user"))
 
-    const result = await getCurrentUser()
+    const goals = await axios.get("/v1/goals/", {
+        headers: { Authorization: `Bearer ${localUser.accessToken}` }
+    })
 
-    if (result) {
-        const promises = []
-        result.goals.forEach((goal) => {
-            promises.push(axios.get("/v1/goals/" + goal, {
-                headers: { Authorization: `Bearer ${localUser.accessToken}` }
-            }))
-        })
 
-        const results = await Promise.all(promises)
-        const goals = [];
-
-        results.forEach((result) => {
-            if (result && result.data && result.data.data) goals.push(result.data.data)
-        })
-
-        return goals
-    }
-
-    return null
+    return goals.data.data
 }
 
 export const getAllChallenges = async (date) => {

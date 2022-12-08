@@ -20,6 +20,7 @@ import Logout from "./pages/logout/Logout";
 import Navigation from "./components/navigation/Navigation.js";
 import Home from "./pages/home/HomeScreen.js";
 import Loading from "./components/loading/Loading";
+import Challenges from "./pages/challenges/ChallengesScreen.js";
 import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
 import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
 import { Challenges } from "./pages/challenges/Challenges.js";
@@ -114,16 +115,16 @@ function App({ timeElapsed }) {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Login user={user} isLoading={isLoading} />} />
-                <Route path="/login" element={<Login user={user} isLoading={isLoading} setCurrentUser={setCurrentUser} />} />
-                <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
-                <Route path="/register" element={<Register user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
+
+                <Route path="/" element={<Login user={currentUser} isLoading={isLoading}/>} />
+                <Route path="/login" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
+                <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} />} />
+                <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
                 <Route path="/home" element={<Home user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
                 <Route path="/game" element={<Game user={user} isLoading={isLoading} timeElapsed={timeElapsed} />} />
                 <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} />} />
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} />} />
-
             </Routes>
         </>
     )

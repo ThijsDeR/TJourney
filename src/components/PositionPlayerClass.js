@@ -39,19 +39,15 @@ export class PositionPlayerClass {
   /**
    * delays the action of the movement of the player ,so that the player character will move 1 position every 300 counts.
    */
-  walkTimer(ListofPositionPlaces, steps) {
-    if (steps === true) {
-      if (this.diceNumber > 0) {
+  walkTimer(ListofPositionPlaces, isWalking) {
+    if (isWalking && this.diceNumber > 0) {
         if (this.timerCount > 200) {
           this.positionUp(ListofPositionPlaces)
           this.timerCount = 0;
           this.diceNumber--;
         }
-        this.timerCount = this.timerCount + 1;
-      }
-    
+        this.timerCount += 1;
     }
-
   }
 
 /**

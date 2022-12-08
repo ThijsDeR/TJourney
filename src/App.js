@@ -120,8 +120,6 @@ function App({ timeElapsed }) {
                 <Route path="/login" element={<Login user={currentUser} setCurrentUser={setCurrentUser} />} />
                 <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} />} />
                 <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} />} />
-                <Route path="/game" element={<Game user={currentUser} timeElapsed={timeElapsed} />} />
-                <Route path="/challenges" element={<Challenges user={currentUser} />} />
                 <Route path="/home" element={<Home user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
                 <Route path="/game" element={<Game user={user} isLoading={isLoading} timeElapsed={timeElapsed} />} />
                 <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} />} />

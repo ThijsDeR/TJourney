@@ -1,4 +1,5 @@
 import { RandomCount } from '../../services/math-service'
+import { PositionPlayerClass } from "../../components/PositionPlayerClass";
 
 export class DiceClass {
 
@@ -17,7 +18,17 @@ export class DiceClass {
     countAsked = false;
 
 
-    spawnDiceAnimation(steps, luckyVisible) {
+
+    /**
+     * spawn the dice animation
+     * 
+     * @param {*} steps 
+     * @param {boolean} luckyVisible buttonpressedon or not
+     * @param {PositionPlayerClass} positionPlayerClass 
+     * @returns the steps of the dice
+     */
+    spawnDiceAnimation(steps, luckyVisible, positionPlayerClass) {
+
         if (luckyVisible === true) {
             this.delay++;
             if (this.luckyMove === true) {
@@ -30,13 +41,16 @@ export class DiceClass {
                     steps = RandomCount(30);
                     this.textAnimation(0);
                     this.countAsked = true;
+                    positionPlayerClass.setDiceNumber(steps)
                 }
             } else if (this.delay > 20000) {
-              luckyVisible = false;
-              this.luckyMove = true;
-              this.delay = 0;
+                luckyVisible = false;
+                this.luckyMove = true;
+                this.delay = 0;
             }
+
         }
+
         return steps;
     }
 
@@ -51,7 +65,6 @@ export class DiceClass {
             this.textPosition = this.dicePosition + 1;
         } else {
             this.moveLuckyblockToCenter(speed, player)
-            
             setTimeout(() => {
                 this.textAnimation(0);
                 if (this.levitate <= this.cz + 10) {
@@ -91,7 +104,7 @@ export class DiceClass {
      */
     textAnimation(optionalLevitation) {
         if (optionalLevitation === 0) {
-            this.textPosition = [this.cx - 0.3, this.levitate  + 0.6, this.cy - 0.8];
+            this.textPosition = [this.cx - 0.3, this.levitate + 0.6, this.cy - 0.8];
         } else {
             this.textPosition = [this.cx, optionalLevitation, this.cy];
         }
@@ -105,14 +118,15 @@ export class DiceClass {
         // increase the angle of rotation
         this.angle += Math.acos(1 - Math.pow(this.dd / this.radius, 2) / 2);
         this.dicePosition = [this.radius * Math.cos(this.angle) / 32, 2, this.radius * Math.sin(this.angle) / 32]
-        
+
 
         return [this.radius * Math.cos(this.angle) / 32, this.radius * Math.sin(this.angle) / 32]
     }
 
     /**
+     * makes the dice rotate 
      * 
-     * @returns 
+     * @returns the dicerotation
      */
     diceRotation() {
         this.diceRotationX = this.diceRotationX + 0.1;
@@ -120,19 +134,4 @@ export class DiceClass {
         return [0, this.diceRotationX, 0];
     }
 
-    // function getDicePosition() {
-    //     return dicePosition;
-    // }
-
-    // function setDicePosition(_dicePosition) {
-    //     dicePosition = _dicePosition;
-    // }
-
-    // function getTextPosition() {
-    //     return textPosition;
-    // }
-
-    // function setTextPosition(_textPosition) {
-    //     textPosition = _textPosition;
-    // }
 }

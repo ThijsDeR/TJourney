@@ -27,3 +27,7 @@ export function viewRotation(playerPosition, endPosition) {
 
     return [0, angleDeg, 0]
 }
+
+export function calculatePlayerDirection(start, finish) {
+    return finish - start;
+}

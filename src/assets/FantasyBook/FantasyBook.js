@@ -15,9 +15,12 @@ import { FlyClass } from '../Birds/FlyClass.js'
 import { CircleClass } from '../../components/CircleClass.js'
 import MichelleIdle from '../Michelle/Idle'
 import Shark from '../Shark/Shark'
+import Cloud from '../Cloud/Cloud'
+import MichelleWalking from '../Michelle/Walking'
 let steps;
 const flyClass = new FlyClass();
 const diceClass = new DiceClass();
+
 
 export default function FantasyBook(props) {
   const circleClass = new CircleClass();
@@ -29,8 +32,9 @@ export default function FantasyBook(props) {
   })
 
   flyClass.BirdFlyAnimation()
-  steps = diceClass.spawnDiceAnimation(steps, props.buttonPressedOn, props.positionPlayerClass);
-  props.positionPlayerClass.walkTimer(props.ListofPositionPlaces, props.buttonPressedOn)
+  steps = diceClass.spawnDiceAnimation(steps, props.luckyVisible);
+  props.positionPlayerClass.walkTimer(props.buttonStepsPressedOn);
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
@@ -93,7 +97,7 @@ export default function FantasyBook(props) {
                   </mesh>
                 </group>
                 <group>
-                  {props.ListofPositionPlaces.map((ListofPositionPlaces) => {
+                  {props.positionPlayerClass.ListofPositionPlaces.map((ListofPositionPlaces = props.positionPlayerClass.ListofPositionPlaces) => {
                     return circleClass.drawCircle(ListofPositionPlaces)
                   })
                   }
@@ -102,9 +106,11 @@ export default function FantasyBook(props) {
                   </mesh>
                 </group>
                 <group>
-                  <mesh position={props.positionPlayerClass.SetPosition(props.ListofPositionPlaces)} rotation={[0, 0, 0]} scale={1.5}>
-                    <MichelleIdle />
-                    {props.buttonPressedOn ? <group >
+                  <mesh position={props.positionPlayerClass.placeCharacter} rotation={[0, props.positionPlayerClass.rotation, 0]} scale={1.5}>
+
+                    {props.positionPlayerClass.diceNumber===0 ? <MichelleIdle /> : <MichelleWalking />}
+                    
+                    {props.luckyVisible ? <group >
                       <mesh position={diceClass.dicePosition} rotation={diceClass.diceRotation()} scale={0.5}>
                         <Dice />
                       </mesh>
@@ -112,6 +118,20 @@ export default function FantasyBook(props) {
                         <Text fontSize={6} color="hotpink">{steps}</Text>
                       </mesh>
                     </group> : null}
+                  </mesh>
+                </group>
+                <group>
+                  <mesh position={[40, 50, 0]} rotation={[0, 1, 0]} scale={3}>
+                    <Cloud />
+                  </mesh>
+                  <mesh position={[-60, 50, -30]} rotation={[0, 3, 0]} scale={3}>
+                    <Cloud />
+                  </mesh>
+                  <mesh position={[50, 50, 50]} rotation={[0, 1, 0]} scale={3}>
+                    <Cloud />
+                  </mesh>
+                  <mesh position={[25, 50, -50]} rotation={[0, 1, 0]} scale={3}>
+                    <Cloud />
                   </mesh>
                 </group>
               </group>

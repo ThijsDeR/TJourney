@@ -10,7 +10,7 @@ export class CircleClass {
  */
     drawCircle(ListofPositionPlaces) {
         return (
-            <mesh position={ListofPositionPlaces}>
+            <mesh position={[ListofPositionPlaces[0], ListofPositionPlaces[1] - 1, ListofPositionPlaces[2]]}>
             <cylinderBufferGeometry attach="geometry" args={[1, 0.5, 2, 32]} />
           </mesh>
         );

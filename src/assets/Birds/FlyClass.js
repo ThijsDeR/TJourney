@@ -31,10 +31,8 @@ export class FlyClass {
                 this.czMultiplier *= -1;
             }
         }
-        if (this.round === 2) {
-            [this.cx, this.cy] = this.BirdMoveAround()
+        [this.cx, this.cy] = this.BirdMoveAround()
             this.round = 0
-        }
         this.round++;
     }
 

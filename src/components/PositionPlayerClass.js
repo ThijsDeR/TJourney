@@ -118,11 +118,12 @@ export class PositionPlayerClass {
   }
 
   /**
- * Set the Dice number ,so the player can walk
- * 
- * @param {number} diceInputNumber 
- */
+   * Set the Dice number ,so the player can walk
+   * 
+   * @param {number} diceInputNumber 
+   */
   setDiceNumber(diceInputNumber) {
     this.diceNumber = diceInputNumber;
   }
 }
+

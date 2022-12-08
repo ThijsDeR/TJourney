@@ -23,6 +23,7 @@ import Loading from "./components/loading/Loading";
 import Challenges from "./pages/challenges/ChallengesScreen.js";
 import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
 import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
+// import { Challenges } from "./pages/challenges/Challenges.js";
 import FantasyBook from "./assets/FantasyBook/FantasyBook.js";
 import {PositionPlayerClass} from "./components/PositionPlayerClass.js"
 
@@ -107,7 +108,7 @@ function App({ timeElapsed }) {
         <>
             <Routes>
 
-                <Route path="/" element={<Login user={currentUser} isLoading={isLoading}/>} />
+                <Route path="/" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading}/>} />
                 <Route path="/login" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
                 <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} />} />
                 <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />

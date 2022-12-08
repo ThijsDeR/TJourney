@@ -12,7 +12,7 @@ export class PositionPlayerClass {
   [-19, -0.5, -0.5], [-25, -1.4, -0.4], [-30, -2.4, -0.8], [-35, -3.4, -4], [-35.5, -3.6, -9.4], [-35.5, -3.6, -14.4], [-35.5, -3.6, -19.4],
   [-35.5, -3.6, -24.4], [-35.5, -3.6, -29.4], [-32, -2.8, -31.4], [-27, -1.7, -31.6], [-22, -0.9, -31.6], [-17, -0.3, -31.6]];
   rotation = 1.6;
-
+  
   /**
    * Set the position of the character
    * 
@@ -47,21 +47,18 @@ export class PositionPlayerClass {
   /**
    * delays the action of the movement of the player ,so that the player character will move 1 position every 300 counts.
    */
-  walkTimer(steps) {
-    if (steps === true) {
-      if (this.diceNumber > 0) {
-        if (this.count <= 100) {
-          this.walkAnimation();
-          this.count++;
-        } else {
-          this.positionUp()
-          this.count = 0;
-          this.diceNumber--;
-          console.log(this.count, this.diceNumber)
-        }
-        this.timerCount = this.timerCount + 1;
+  walkTimer(isWalking) {
+    if (isWalking && this.diceNumber > 0) {
+      if (this.count <= 100) {
+        this.walkAnimation();
+        this.count++;
+      } else {
+        this.positionUp()
+        this.count = 0;
+
+        this.diceNumber--;
       }
-    }
+      this.timerCount += 1;
   }
 
   /**
@@ -118,4 +115,15 @@ export class PositionPlayerClass {
       }
     }
   }
+}
+
+/**
+ * Set the Dice number ,so the player can walk
+ * 
+ * @param {number} diceInputNumber 
+ */
+setDiceNumber(diceInputNumber) {
+    this.diceNumber = diceInputNumber;
+}
+ 
 }

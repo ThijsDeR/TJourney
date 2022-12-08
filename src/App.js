@@ -20,6 +20,7 @@ import Logout from "./pages/logout/Logout";
 import Navigation from "./components/navigation/Navigation.js";
 import Home from "./pages/home/HomeScreen.js";
 import Loading from "./components/loading/Loading";
+import Challenges from "./pages/challenges/ChallengesScreen.js";
 import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
 import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
 import { Challenges } from "./pages/challenges/Challenges.js";
@@ -27,7 +28,7 @@ import FantasyBook from "./assets/FantasyBook/FantasyBook.js";
 import {PositionPlayerClass} from "./components/PositionPlayerClass.js"
 
 let luckyVisible = false;
-let buttonStepsPressedOn = false;
+let buttonPressedOn = false;
 const positionPlayerClass = new PositionPlayerClass();
 
 export function Game({ user, timeElapsed, isLoading }) {
@@ -37,7 +38,6 @@ export function Game({ user, timeElapsed, isLoading }) {
     }
 
     let [cx,cy,cz] = positionPlayerClass.placeCharacter;
-    
     return (
         isLoading ? <Loading /> :
             <>
@@ -46,6 +46,7 @@ export function Game({ user, timeElapsed, isLoading }) {
                     <div className="App">
                         <Canvas camera={{ position: [cx  - 3,cy + 2,cz] }} style={{ backgroundColor: "#17E7E7" }}>
                             <OrbitControls position={[cx,cy + 5,cz]}target={[cx + 1.5,cy + 1,cz]} minDistance={5} maxDistance={15}/>
+
                             {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
                             <Stars />
                             <ambientLight intensity={0.5} />
@@ -58,35 +59,31 @@ export function Game({ user, timeElapsed, isLoading }) {
                                 </Physics>
                             </Suspense>
                             <Environment preset="sunset" />
+
                             {/* </PresentationControls> */}
                         </Canvas>
                     </div>
                     <div className="parent">
                     <button className="ButtonHome"
                         onClick={() => {
-
-                                if (buttonStepsPressedOn === false) {
-                                    buttonStepsPressedOn = true;
-                                } else {
-                                    buttonStepsPressedOn = false;
-                                }
+                            if (buttonPressedOn === false) {
+                                buttonPressedOn = true;
+                            } else {
+                                buttonPressedOn = false;
+                                // window.location.reload();
                             }
-                        }
-                    >&#9816;</button>
-                    <button id="diceButton" className="ButtonHome" onClick={() => {
-                        if (luckyVisible === false) {
-                            luckyVisible = true;
-                        } else {
-            
-              
-                      
-                                        // TODO: Right now the block just turns invisable, we need this button to do something else but idk what
-                                        luckyVisible = false;
-                                        window.location.reload();
-                                    }
-                                }}></button>
-                                <button className="ButtonHome">&#9731;</button>
-                            </div>
+                        }}
+                      >&#9816;</button>
+                        <button id="diceButton" className="ButtonHome" onClick={() => {
+                            if (luckyVisible === false) {
+                                luckyVisible = true;
+                            } else {
+                                // TODO: Right now the block just turns invisable, we need this button to do something else but idk what
+                                luckyVisible = false;
+                            }
+                        }}></button>
+                        <button className="ButtonHome">&#9731;</button>
+                    </div>
                 </div>
                 <Navigation user={user} />
 
@@ -110,16 +107,16 @@ function App({ timeElapsed }) {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Login user={user} isLoading={isLoading} />} />
-                <Route path="/login" element={<Login user={user} isLoading={isLoading} setCurrentUser={setCurrentUser} />} />
-                <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
-                <Route path="/register" element={<Register user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
+
+                <Route path="/" element={<Login user={currentUser} isLoading={isLoading}/>} />
+                <Route path="/login" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
+                <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} />} />
+                <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
                 <Route path="/home" element={<Home user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} />} />
                 <Route path="/game" element={<Game user={user} isLoading={isLoading} timeElapsed={timeElapsed} />} />
                 <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} />} />
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} />} />
-
             </Routes>
         </>
     )

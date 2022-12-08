@@ -32,10 +32,8 @@ const positionPlayerClass = new PositionPlayerClass();
 
 export default function VulcanoIsland(props) {
   const { nodes, materials } = useGLTF('/vulcano.gltf')
-  
   flyClass.BirdFlyAnimation()
   steps = diceClass.spawnDiceAnimation(steps, props.luckyVisible);
-
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>

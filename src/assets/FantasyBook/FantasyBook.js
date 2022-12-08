@@ -8,7 +8,6 @@ title: Medieval Fantasy Book
 import { Circle } from '@react-three/drei'
 import React, { useEffect, useRef } from 'react'
 import { useGLTF, useAnimations, Text } from '@react-three/drei'
-import Chopper from '../Chopper/Chopper'
 import Birds from '../Birds/Fly'
 import Dice from '../Dice/Dice'
 import { DiceClass } from '../Dice/DiceClass.js'
@@ -18,14 +17,12 @@ import MichelleIdle from '../Michelle/Idle'
 import Shark from '../Shark/Shark'
 import Cloud from '../Cloud/Cloud'
 import MichelleWalking from '../Michelle/Walking'
-
 let steps;
-const diceClass = new DiceClass();
 const flyClass = new FlyClass();
+const diceClass = new DiceClass();
 
 
 export default function FantasyBook(props) {
-
   const circleClass = new CircleClass();
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/fantasyBook.gltf')
@@ -37,6 +34,7 @@ export default function FantasyBook(props) {
   flyClass.BirdFlyAnimation()
   steps = diceClass.spawnDiceAnimation(steps, props.luckyVisible);
   props.positionPlayerClass.walkTimer(props.buttonStepsPressedOn);
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">

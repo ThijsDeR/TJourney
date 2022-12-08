@@ -44,7 +44,6 @@ export class DiceClass {
                     positionPlayerClass.setDiceNumber(RandomCount(maxCount));
                 }
             } if (this.countAsked && positionPlayerClass.diceNumber === 0) {
-                console.log("SHould reset")
                 this.reset()
             }
         }

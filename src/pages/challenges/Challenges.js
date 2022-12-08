@@ -54,15 +54,6 @@ export function Challenges({ user, isLoading, setIsLoading }) {
         challenges.forEach((challenge) => {
             if (challenge.finished) {
                 const entry = gameSession[0].entries.find((entry) => {
-                    console.log(`
-                        entry: ${entry.date} - ${Date.parse(entry.date)}
-                        challenge: ${challenge.date} - ${Math.floor(
-                        Date.parse(challenge.date) / msInDay
-                    ) * msInDay} - ${Math.ceil(
-                        Date.parse(challenge.date) / msInDay
-                    ) * msInDay}
-                    `)
-
                     return Date.parse(entry.date)
                         >= (
                             Math.floor(

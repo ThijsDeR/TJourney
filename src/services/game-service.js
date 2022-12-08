@@ -5,10 +5,7 @@ export const getGameSession = async () => {
     const localUser = JSON.parse(localStorage.getItem("user"))
 
     const result = await getCurrentUser()
-    console.log(result)
-    console.log(localUser.accessToken)
     if (result) {
-        console.log(result._id)
         return axios.post("/v1/gameSessions/find", {
             findQuery: {
                 "user_id": result._id

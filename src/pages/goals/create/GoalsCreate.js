@@ -20,7 +20,6 @@ export function GoalsCreate({ user, isLoading, setIsLoading }) {
     const [done, setDone] = useState(false)
 
     const setStepHandler = (step) => {
-        console.log(step, category, name, description, startValue, endValue, startDate, endDate, done)
         if (step >= 1 && step <= 4) setStep(step)
     }
 

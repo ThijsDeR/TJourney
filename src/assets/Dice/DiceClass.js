@@ -16,6 +16,7 @@ export class DiceClass {
     luckyMove = true;
     delay = 0;
     countAsked = false;
+    luckyBlockVisible = false
 
 
 
@@ -27,31 +28,26 @@ export class DiceClass {
      * @param {PositionPlayerClass} positionPlayerClass 
      * @returns the steps of the dice
      */
-    spawnDiceAnimation(steps, luckyVisible, positionPlayerClass) {
-
-        if (luckyVisible === true) {
+    spawnDiceAnimation(luckyVisible, positionPlayerClass, maxCount) {
+        this.luckyBlockVisible = luckyVisible
+        if (this.luckyBlockVisible) {
             this.delay++;
-            if (this.luckyMove === true) {
+            if (this.luckyMove) {
                 this.throwDiceAnimation();
             }
             if (this.delay >= 500) {
                 this.luckyMove = false;
                 this.moveLuckyblockToCenter(1, 0)
-                if (this.countAsked === false && this.delay >= 600) {
-                    steps = RandomCount(30);
+                if (!this.countAsked && this.delay >= 600) {
                     this.textAnimation(0);
                     this.countAsked = true;
-                    positionPlayerClass.setDiceNumber(steps)
+                    positionPlayerClass.setDiceNumber(RandomCount(maxCount));
                 }
-            } else if (this.delay > 20000) {
-                luckyVisible = false;
-                this.luckyMove = true;
-                this.delay = 0;
+            } if (this.countAsked && positionPlayerClass.diceNumber === 0) {
+                console.log("SHould reset")
+                this.reset()
             }
-
         }
-
-        return steps;
     }
 
     /**
@@ -134,4 +130,16 @@ export class DiceClass {
         return [0, this.diceRotationX, 0];
     }
 
+    reset() {
+        // this.dicePosition = 0;
+        // this.textPosition = 0;
+        this.luckyMove = true;
+        this.delay = 0;
+        this.countAsked = false;
+        this.luckyBlockVisible = false;
+    }
+
+    isLuckyBlockVisible() {
+        return this.luckyBlockVisible
+    }
 }

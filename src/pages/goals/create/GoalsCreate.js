@@ -2,13 +2,13 @@ import Navigation from "./../../../components/navigation/Navigation.js";
 import Loading from "./../../../components/loading/Loading.js";
 import { SelectGoalCategory } from "./../../../components/goals/SelectGoalCategory.js";
 import { useEffect, useState } from "react";
-import { SelectGoalPlan } from "../../../components/goals/SelectGoalPlan";
-import { SelectPremadePlan } from "../../../components/goals/SelectPremadePlan";
-import { SelectGoalOverzicht } from "../../../components/goals/SelectGoalOverzicht";
+import { SelectGoalPlan } from "../../../components/goals/SelectGoalPlan.js";
+import { SelectPremadePlan } from "../../../components/goals/SelectPremadePlan.js";
+import { SelectGoalOverzicht } from "../../../components/goals/SelectGoalOverzicht.js";
 import { createGoal } from "../../../services/goal-service.js";
 import { Navigate } from "react-router-dom";
 
-export function GoalsCreate({ user, isLoading }) {
+export function GoalsCreate({ user, isLoading, setIsLoading }) {
     const [step, setStep] = useState(1);
     const [category, setCategory] = useState(undefined)
     const [name, setName] = useState(undefined)
@@ -30,6 +30,11 @@ export function GoalsCreate({ user, isLoading }) {
             createGoal(name, description, startValue, endValue, startDate, endDate, category)
         }
     }, [done])
+
+    useEffect(() => {
+        setIsLoading(false)
+    }, [])
+
 
     if (!user && !isLoading) {
         return <Navigate to="/login" replace />;

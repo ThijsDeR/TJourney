@@ -8,11 +8,14 @@ import { getCurrentUser, login } from "../../services/auth-service.js";
 import { Link, Navigate } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 
-function Login({ user, setCurrentUser, isLoading }) {
+function Login({ user, setCurrentUser, isLoading, setIsLoading }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(undefined)
 
+    useEffect(() => {
+        setIsLoading(false)
+    }, [])
 
     const handleLogin = async (e) => {
         e.preventDefault();

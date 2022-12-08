@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { getAllGoals } from "../../../services/goal-service";
 import { Navigate } from "react-router-dom";
 
-export function GoalsIndex({ user, isLoading }) {
+export function GoalsIndex({ user, isLoading, setIsLoading }) {
     const [goals, setGoals] = useState(undefined)
 
     useEffect(() => {
         getAllGoals().then((data) => {
             setGoals(data)
+            setIsLoading(false)
         })
     }, [])
 
@@ -36,7 +37,7 @@ export function GoalsIndex({ user, isLoading }) {
                                                         <article class="media">
                                                             <div class="media-content" style={{ overflow: "hidden" }}>
                                                                 <div class="content">
-                                                                    <ul>
+                                                                    <ul style={{ listStyle: "none" }}>
                                                                         <li>Name: {goal.name}</li>
                                                                         <li>description: {goal.description}</li>
                                                                         <li>startValue: {goal.startValue}</li>

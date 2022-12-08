@@ -89,11 +89,11 @@ export function SelectPremadePlan(props) {
                     <h1 className="is-size-1 has-text-white">Premade Plans</h1>
                 </div>
 
-                <div className="box mx-3 has-background-purple is-size-4 has-text-black" onClick={() => submitHandler(3)}>Make your own plan</div>
+                <div className="box mx-3 is-size-4 has-text-black" onClick={() => submitHandler(3)}>Make your own plan</div>
 
                 {props.category === "excercise" ?
                     goalsExercise.map((goal) => (
-                        <div className="box mx-3 has-background-purple has-text-black">
+                        <div className="box mx-3 has-text-black">
                             <div className="is-size-4">Goal: {goal.Name}</div>
                             <div>Description: {goal.Description}</div>
                             <div>Start value: {goal.Startvalue}</div>
@@ -112,7 +112,7 @@ export function SelectPremadePlan(props) {
 
                 {props.category === "sleep" ?
                     goalsSleep.map((goal) => (
-                        <div className="box mx-3 has-background-purple has-text-black">
+                        <div className="box mx-3 has-text-black">
                             <div className="is-size-4">Goal: {goal.Name}</div>
                             <div>Description: {goal.Description}</div>
                             <div>Start value: {goal.Startvalue}</div>
@@ -131,7 +131,7 @@ export function SelectPremadePlan(props) {
 
                 {props.category === "food" ?
                     goalsFood.map((goal) => (
-                        <div className="box mx-3 has-background-purple has-text-black">
+                        <div className="box mx-3 has-text-black">
                             <div className="is-size-4">Goal: {goal.Name}</div>
                             <div>Description: {goal.Description}</div>
                             <div>Start value: {goal.Startvalue}</div>

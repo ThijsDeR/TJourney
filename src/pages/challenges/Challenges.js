@@ -2,15 +2,16 @@ import Navigation from "../../components/navigation/Navigation";
 import Loading from "../../components/loading/Loading";
 import { useEffect, useState } from "react";
 import { checkChallenge, getAllChallenges, getAllGoals } from "../../services/goal-service";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { getGameSession } from "../../services/game-service";
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import luckyBlock from '../../assets/lg1emBK.png'
 
 
-export function Challenges({ user, isLoading }) {
+export function Challenges({ user, isLoading, setIsLoading }) {
     const [challenges, setChallenges] = useState(undefined);
-    const [dice, setDice] = useState(undefined);
+    const [diceEyesCount, setdiceEyesCount] = useState(undefined);
     const [goals, setGoals] = useState(undefined);
     const [isSelected, setIsSelected] = useState(undefined);
 
@@ -26,11 +27,16 @@ export function Challenges({ user, isLoading }) {
 
     useEffect(() => {
         if (challenges) {
-            calculateDiceCount(challenges).then((data) => {
-                setDice(data)
+            calculatediceEyesCountCount(challenges).then((data) => {
+                setdiceEyesCount(data)
             })
         }
     }, [challenges])
+
+    useEffect(() => {
+        if (challenges && diceEyesCount !== undefined && goals) setIsLoading(false)
+    }, [challenges, diceEyesCount, goals])
+
 
     function selectDropDown(goal_id) {
         if (isSelected === goal_id) {
@@ -40,7 +46,7 @@ export function Challenges({ user, isLoading }) {
         }
     }
 
-    const calculateDiceCount = async (challenges) => {
+    const calculatediceEyesCountCount = async (challenges) => {
         const gameSession = await getGameSession()
         const total = challenges.length
         let finished = 0
@@ -77,7 +83,7 @@ export function Challenges({ user, isLoading }) {
             }
         })
 
-        const diceConfigs = [
+        const diceEyesCountConfigs = [
             [0, 20],
             [0, 12, 20],
             [0, 10, 16, 20],
@@ -86,7 +92,7 @@ export function Challenges({ user, isLoading }) {
             [0, 6, 10, 14, 16, 18, 20],
         ]
 
-        return diceConfigs[total - 1][finished]
+        return diceEyesCountConfigs[total - 1][finished]
     }
 
     const checkChallengeHandler = async (goalId, challengeId, finished) => {
@@ -114,7 +120,19 @@ export function Challenges({ user, isLoading }) {
                                     ?
                                     <>
                                         <div style={{ display: "flex", justifyContent: "center" }}>
-                                            <h1 className="is-size-3 has-text-white">Challenges ({dice ? dice : 0})</h1>
+                                            <h1 className="is-size-3 has-text-white">
+                                                Challenges {
+                                                    diceEyesCount ? (
+                                                        <>
+                                                            <Link to="/game">
+                                                                <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (diceEyesCount !== 0 ? "rgba(0, 200, 200, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px" }}>
+                                                                    <img src={luckyBlock} style={{ width: "50px" }} />
+                                                                    <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? diceEyesCount : "0"}</p>
+                                                                </div>
+                                                            </Link>
+                                                        </>
+                                                    ) : ""}
+                                            </h1>
                                         </div>
                                         <div className="has-text-centered">
                                             <button className="button has-background-grey has-text-white mx-4"><a href="/goals/create" className="has-text-white">Make Goals</a></button>
@@ -168,7 +186,7 @@ export function Challenges({ user, isLoading }) {
                                 challenges
                                     ? <>
                                         <div style={{ display: "flex", justifyContent: "center" }}>
-                                            <h1 className="is-size-3 has-text-white">Challenges ({dice ? dice : 0})</h1>
+                                            <h1 className="is-size-3 has-text-white">Challenges ({diceEyesCount ? diceEyesCount : 0})</h1>
                                         </div>
                                         {challenges.map((challenge) => (
                                             <>

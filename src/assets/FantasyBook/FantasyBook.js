@@ -17,7 +17,6 @@ import MichelleIdle from '../Michelle/Idle'
 import Shark from '../Shark/Shark'
 import Cloud from '../Cloud/Cloud'
 import MichelleWalking from '../Michelle/Walking'
-let steps;
 const flyClass = new FlyClass();
 const diceClass = new DiceClass();
 
@@ -32,8 +31,12 @@ export default function FantasyBook(props) {
   })
 
   flyClass.BirdFlyAnimation()
-  steps = diceClass.spawnDiceAnimation(steps, props.luckyVisible);
-  props.positionPlayerClass.walkTimer(props.buttonStepsPressedOn);
+  diceClass.spawnDiceAnimation(props.luckyVisible, props.positionPlayerClass, props.diceEyesCount);
+  props.positionPlayerClass.walkTimer(props.luckyVisible);
+
+  if (!diceClass.isLuckyBlockVisible()) {
+    props.setLuckyVisible(false)
+  }
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -108,14 +111,14 @@ export default function FantasyBook(props) {
                 <group>
                   <mesh position={props.positionPlayerClass.placeCharacter} rotation={[0, props.positionPlayerClass.rotation, 0]} scale={1.5}>
 
-                    {props.positionPlayerClass.diceNumber===0 ? <MichelleIdle /> : <MichelleWalking />}
+                    {props.positionPlayerClass.diceNumber === 0 ? <MichelleIdle /> : <MichelleWalking />}
                     
                     {props.luckyVisible ? <group >
                       <mesh position={diceClass.dicePosition} rotation={diceClass.diceRotation()} scale={0.5}>
                         <Dice />
                       </mesh>
                       <mesh position={diceClass.textPosition} scale={0.1}>
-                        <Text fontSize={6} color="hotpink">{steps}</Text>
+                        <Text fontSize={6} color="hotpink">{props.positionPlayerClass.diceNumber}</Text>
                       </mesh>
                     </group> : null}
                   </mesh>

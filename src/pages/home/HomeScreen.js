@@ -5,7 +5,7 @@ import "./homeStyles.css";
 import Loading from '../../components/loading/Loading.js';
 import { updateLevel } from '../../services/level-service.js';
 
-function Home({ user, setCurrentUser, isLoading }) {
+function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
     const [userLevel, setUserLevel] = useState(undefined)
     const [level, setLevel] = useState(undefined)
 
@@ -20,6 +20,10 @@ function Home({ user, setCurrentUser, isLoading }) {
     useEffect(() => {
         if (userLevel) setLevel(calculateLevel(userLevel))    
     }, [userLevel])
+
+    useEffect(() => {
+        if (user && userLevel) setIsLoading(false)
+    }, [user, userLevel])
 
     if (!user && !isLoading) {
         return <Navigate to="/login" replace />;

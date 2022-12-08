@@ -23,12 +23,11 @@ import Loading from "./components/loading/Loading";
 import Challenges from "./pages/challenges/ChallengesScreen.js";
 import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
 import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
-import { Challenges } from "./pages/challenges/Challenges.js";
 import FantasyBook from "./assets/FantasyBook/FantasyBook.js";
 import {PositionPlayerClass} from "./components/PositionPlayerClass.js"
 
 let luckyVisible = false;
-let buttonPressedOn = false;
+let buttonStepsPressedOn = false;
 const positionPlayerClass = new PositionPlayerClass();
 
 export function Game({ user, timeElapsed, isLoading }) {
@@ -66,10 +65,10 @@ export function Game({ user, timeElapsed, isLoading }) {
                     <div className="parent">
                     <button className="ButtonHome"
                         onClick={() => {
-                            if (buttonPressedOn === false) {
-                                buttonPressedOn = true;
+                            if (buttonStepsPressedOn === false) {
+                                buttonStepsPressedOn = true;
                             } else {
-                                buttonPressedOn = false;
+                                buttonStepsPressedOn = false;
                                 // window.location.reload();
                             }
                         }}

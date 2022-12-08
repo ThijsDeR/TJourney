@@ -12,7 +12,7 @@ export class PositionPlayerClass {
   [-19, -0.5, -0.5], [-25, -1.4, -0.4], [-30, -2.4, -0.8], [-35, -3.4, -4], [-35.5, -3.6, -9.4], [-35.5, -3.6, -14.4], [-35.5, -3.6, -19.4],
   [-35.5, -3.6, -24.4], [-35.5, -3.6, -29.4], [-32, -2.8, -31.4], [-27, -1.7, -31.6], [-22, -0.9, -31.6], [-17, -0.3, -31.6]];
   rotation = 1.6;
-  
+
   /**
    * Set the position of the character
    * 
@@ -59,6 +59,7 @@ export class PositionPlayerClass {
         this.diceNumber--;
       }
       this.timerCount += 1;
+    }
   }
 
   /**
@@ -72,7 +73,7 @@ export class PositionPlayerClass {
     let cx = calculatePlayerDirection(this.ListofPositionPlaces[currentPos][0], this.ListofPositionPlaces[nextPos][0])
     let cy = calculatePlayerDirection(this.ListofPositionPlaces[currentPos][1], this.ListofPositionPlaces[nextPos][1])
     let cz = calculatePlayerDirection(this.ListofPositionPlaces[currentPos][2], this.ListofPositionPlaces[nextPos][2])
-    this.playerRotation(cx,cz);
+    this.playerRotation(cx, cz);
     this.placeCharacter = [this.placeCharacter[0] + (cx / 100), this.placeCharacter[1] + (cy / 100), this.placeCharacter[2] + (cz / 100)]
   }
 
@@ -105,7 +106,7 @@ export class PositionPlayerClass {
       } else if (this.rotation < -1) {
         this.rotation += 0.1;
       }
-    } 
+    }
     if (cz < -2) {
       console.log('playerRotation: 4')
       if (this.rotation > -3.2) {
@@ -115,15 +116,13 @@ export class PositionPlayerClass {
       }
     }
   }
-}
 
-/**
+  /**
  * Set the Dice number ,so the player can walk
  * 
  * @param {number} diceInputNumber 
  */
-setDiceNumber(diceInputNumber) {
+  setDiceNumber(diceInputNumber) {
     this.diceNumber = diceInputNumber;
-}
- 
+  }
 }

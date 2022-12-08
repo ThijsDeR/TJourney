@@ -68,7 +68,6 @@ export class PositionPlayerClass {
   walkAnimation() {
     const currentPos = this.placeOnTheBoard % this.ListofPositionPlaces.length;
     const nextPos = (this.placeOnTheBoard + 1) % this.ListofPositionPlaces.length;
-    console.log(currentPos, nextPos);
 
     let cx = calculatePlayerDirection(this.ListofPositionPlaces[currentPos][0], this.ListofPositionPlaces[nextPos][0])
     let cy = calculatePlayerDirection(this.ListofPositionPlaces[currentPos][1], this.ListofPositionPlaces[nextPos][1])
@@ -84,7 +83,6 @@ export class PositionPlayerClass {
    */
   playerRotation(cx, cz) {
     if (cx > 2) {
-      console.log('playerRotation: 1')
       if (this.rotation > 2) {
         this.rotation -= 0.1;
       } else if (this.rotation < 1) {
@@ -92,7 +90,6 @@ export class PositionPlayerClass {
       }
     }
     if (cx < -2) {
-      console.log('playerRotation: 2')
       if (this.rotation > 5.5) {
         this.rotation -= 0.1;
       } else if (this.rotation < 4.5) {
@@ -100,7 +97,6 @@ export class PositionPlayerClass {
       }
     }
     if (cz > 2) {
-      console.log('playerRotation: 3')
       if (this.rotation > -0) {
         this.rotation -= 0.1;
       } else if (this.rotation < -1) {
@@ -108,7 +104,6 @@ export class PositionPlayerClass {
       }
     }
     if (cz < -2) {
-      console.log('playerRotation: 4')
       if (this.rotation > -3.2) {
         this.rotation -= 0.1;
       } else if (this.rotation < -2.2) {

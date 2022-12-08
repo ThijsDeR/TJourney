@@ -5,23 +5,22 @@ license: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 source: https://sketchfab.com/3d-models/medieval-fantasy-book-06d5a80a04fc4c5ab552759e9a97d91a
 title: Medieval Fantasy Book
 */
-
+import { Circle } from '@react-three/drei'
 import React, { useEffect, useRef } from 'react'
 import { useGLTF, useAnimations, Text } from '@react-three/drei'
-import Chopper from '../Chopper/Chopper'
 import Birds from '../Birds/Fly'
 import Dice from '../Dice/Dice'
 import { DiceClass } from '../Dice/DiceClass.js'
 import { FlyClass } from '../Birds/FlyClass.js'
+import { CircleClass } from '../../components/CircleClass.js'
 import MichelleIdle from '../Michelle/Idle'
 import Shark from '../Shark/Shark'
-
-let playerPosition = [10.5, -0.1, 0];
 let steps;
-const diceClass = new DiceClass();
 const flyClass = new FlyClass();
+const diceClass = new DiceClass();
 
 export default function FantasyBook(props) {
+  const circleClass = new CircleClass();
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/fantasyBook.gltf')
   const { actions } = useAnimations(animations, group)
@@ -30,7 +29,8 @@ export default function FantasyBook(props) {
   })
 
   flyClass.BirdFlyAnimation()
-  steps = diceClass.spawnDiceAnimation(steps, props.luckyVisible);
+  steps = diceClass.spawnDiceAnimation(steps, props.buttonPressedOn, props.positionPlayerClass);
+  props.positionPlayerClass.walkTimer(props.ListofPositionPlaces, props.buttonPressedOn)
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
@@ -83,19 +83,28 @@ export default function FantasyBook(props) {
                 </group>
                 <group>
                   <mesh position={[-4, -2.6, -25]} rotation={[0, -0.5, 0]} scale={1}>
-                  <Shark />
+                    <Shark />
                   </mesh>
                   <mesh position={[-2, -2.6, -20]} rotation={[0, 0.4, 0]} scale={1}>
-                  <Shark />
+                    <Shark />
                   </mesh>
                   <mesh position={[-1, -3, -30]} scale={1}>
-                  <Shark />
+                    <Shark />
                   </mesh>
                 </group>
                 <group>
-                  <mesh position={playerPosition} rotation={[0, 0, 0]} scale={1}>
+                  {props.ListofPositionPlaces.map((ListofPositionPlaces) => {
+                    return circleClass.drawCircle(ListofPositionPlaces)
+                  })
+                  }
+                  <mesh position={[-17, -1.3, -31.6]} rotation={[-1.55, 0, 0]} scale={2}>
+                    <Circle />
+                  </mesh>
+                </group>
+                <group>
+                  <mesh position={props.positionPlayerClass.SetPosition(props.ListofPositionPlaces)} rotation={[0, 0, 0]} scale={1.5}>
                     <MichelleIdle />
-                    {props.luckyVisible ? <group >
+                    {props.buttonPressedOn ? <group >
                       <mesh position={diceClass.dicePosition} rotation={diceClass.diceRotation()} scale={0.5}>
                         <Dice />
                       </mesh>

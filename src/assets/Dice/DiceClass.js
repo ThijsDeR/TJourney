@@ -1,4 +1,5 @@
 import { RandomCount } from '../../services/math-service'
+import { PositionPlayerClass } from "../../components/PositionPlayerClass";
 
 export class DiceClass {
 
@@ -10,14 +11,24 @@ export class DiceClass {
     radius = 40;
     cx;           // X position of the dice
     cy;           // Y position of the dice
-    cz = 100;     // Z position of the dice
-    levitate = this.cz + 50;
+    cz = 2;     // Z position of the dice
+    levitate = this.cz + 0.5;
     luckyMove = true;
     delay = 0;
     countAsked = false;
 
 
-    spawnDiceAnimation(steps, luckyVisible) {
+
+    /**
+     * spawn the dice animation
+     * 
+     * @param {*} steps 
+     * @param {boolean} luckyVisible buttonpressedon or not
+     * @param {PositionPlayerClass} positionPlayerClass 
+     * @returns the steps of the dice
+     */
+    spawnDiceAnimation(steps, luckyVisible, positionPlayerClass) {
+
         if (luckyVisible === true) {
             this.delay++;
             if (this.luckyMove === true) {
@@ -28,15 +39,18 @@ export class DiceClass {
                 this.moveLuckyblockToCenter(1, 0)
                 if (this.countAsked === false && this.delay >= 600) {
                     steps = RandomCount(30);
-                    this.textAnimation(180);
+                    this.textAnimation(0);
                     this.countAsked = true;
+                    positionPlayerClass.setDiceNumber(steps)
                 }
             } else if (this.delay > 20000) {
-              luckyVisible = false;
-              this.luckyMove = true;
-              this.delay = 0;
+                luckyVisible = false;
+                this.luckyMove = true;
+                this.delay = 0;
             }
+
         }
+
         return steps;
     }
 
@@ -44,18 +58,17 @@ export class DiceClass {
      * function which is called to move the dice or to stop it
      */
     throwDiceAnimation() {
-        let speed = 1;
+        let speed = 0.01;
         let player = 0
         if (this.luckyMove === true) {
             [this.cx, this.cy] = this.moveLuckyblock();
-            this.textPosition = this.dicePosition + 20;
+            this.textPosition = this.dicePosition + 1;
         } else {
             this.moveLuckyblockToCenter(speed, player)
-            this.dicePosition = [player, this.cz, player];
             setTimeout(() => {
                 this.textAnimation(0);
-                if (this.levitate <= this.cz + 80) {
-                    this.levitate = this.levitate + 0.4;
+                if (this.levitate <= this.cz + 10) {
+                    this.levitate = this.levitate + 0.1;
                 }
             }, 500)
         }
@@ -74,7 +87,7 @@ export class DiceClass {
             if (this.cy > player) {
                 this.cy -= speed;
             }
-            this.dicePosition = [this.cx, this.cz, this.cy]
+            this.dicePosition = [this.cx + 0.7, this.cz, this.cy + 0.1]
         }
         if (this.cx < player || this.cy < player) {
             if (this.cx < player) {
@@ -91,7 +104,7 @@ export class DiceClass {
      */
     textAnimation(optionalLevitation) {
         if (optionalLevitation === 0) {
-            this.textPosition = [this.cx, this.levitate, this.cy];
+            this.textPosition = [this.cx - 0.3, this.levitate + 0.6, this.cy - 0.8];
         } else {
             this.textPosition = [this.cx, optionalLevitation, this.cy];
         }
@@ -104,15 +117,16 @@ export class DiceClass {
     moveLuckyblock() {
         // increase the angle of rotation
         this.angle += Math.acos(1 - Math.pow(this.dd / this.radius, 2) / 2);
-        this.dicePosition = [this.radius * Math.cos(this.angle), 100, this.radius * Math.sin(this.angle)]
-        
+        this.dicePosition = [this.radius * Math.cos(this.angle) / 32, 2, this.radius * Math.sin(this.angle) / 32]
 
-        return [this.radius * Math.cos(this.angle), this.radius * Math.sin(this.angle)]
+
+        return [this.radius * Math.cos(this.angle) / 32, this.radius * Math.sin(this.angle) / 32]
     }
 
     /**
+     * makes the dice rotate 
      * 
-     * @returns 
+     * @returns the dicerotation
      */
     diceRotation() {
         this.diceRotationX = this.diceRotationX + 0.1;
@@ -120,19 +134,4 @@ export class DiceClass {
         return [0, this.diceRotationX, 0];
     }
 
-    // function getDicePosition() {
-    //     return dicePosition;
-    // }
-
-    // function setDicePosition(_dicePosition) {
-    //     dicePosition = _dicePosition;
-    // }
-
-    // function getTextPosition() {
-    //     return textPosition;
-    // }
-
-    // function setTextPosition(_textPosition) {
-    //     textPosition = _textPosition;
-    // }
 }

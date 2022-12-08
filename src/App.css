@@ -17,8 +17,14 @@
   z-index: 1;
 }
 
-.ButtonHome {
+.ButtonHome1 {
   border-radius: 70%;
+}
+
+.ButtonHome2 {
+  border-radius: 90%;
+  background-image: url("https://i.imgur.com/lg1emBK.png");
+  background-size: contain;
 }
 
 .parent {
@@ -103,4 +109,24 @@
 
 .luckyButton {
   background-image: "https://d33wubrfki0l68.cloudfront.net/554c3b0e09cf167f0281fda839a5433f2040b349/ecfc9/img/header_logo.svg";
+}
+
+.box.has-background-purple {
+    background-color: rgb(247, 105, 255);
+}
+
+.overflow-y-auto {    
+    overflow-y: auto;
+}
+
+.overflow-y-scroll {    
+    overflow-y: scroll;
+}
+.luckyDiceButton {
+  background-image: url("https://i.imgur.com/lg1emBK.png");
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 80vh;
+  left: 80vh
 }

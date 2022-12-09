@@ -87,7 +87,7 @@ export function Game({ user, timeElapsed, isLoading, setIsLoading }) {
             }
         })
 
-        const diceEyesConfigs = [
+        const diceEyesCountConfigs = [
             [0, 20],
             [0, 12, 20],
             [0, 10, 16, 20],
@@ -96,7 +96,7 @@ export function Game({ user, timeElapsed, isLoading, setIsLoading }) {
             [0, 6, 10, 14, 16, 18, 20],
         ]
 
-        return diceEyesConfigs[total - 1][finished]
+        return diceEyesCountConfigs[Math.max(0, total - 1)][finished]
     }
     if (!user) {
         return <Navigate to="/login" replace />;

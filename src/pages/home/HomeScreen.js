@@ -22,7 +22,8 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
     }, [userLevel])
 
     useEffect(() => {
-        if (user && userLevel) setIsLoading(false)
+        console.log(user, userLevel)
+        if (user && userLevel !== undefined) setIsLoading(false)
     }, [user, userLevel])
 
     if (!user && !isLoading) {

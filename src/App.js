@@ -110,7 +110,7 @@ export function Game({ user, timeElapsed, isLoading, setIsLoading }) {
                 <div className="canvasContainer">
                     <div className="App">
                         <Canvas camera={{ position: [cx - 3, cy + 2, cz] }} style={{ backgroundColor: "#17E7E7" }}>
-                            <OrbitControls position={[cx, cy + 5, cz]} target={[cx + 1.5, cy + 1, cz]} minDistance={5} maxDistance={15} />
+                            <OrbitControls position={[cx, cy + 5, cz]} target={[cx + 1.5, cy + 1, cz]} maxPolarAngle={Math.PI / 1.9} minDistance={5} maxDistance={15} />
 
                             {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
                             <Stars />

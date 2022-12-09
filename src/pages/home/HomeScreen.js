@@ -26,7 +26,7 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
         if (user && userLevel !== undefined) setIsLoading(false)
     }, [user, userLevel])
 
-    if (!user && !isLoading) {
+    if (user === undefined && !isLoading) {
         return <Navigate to="/login" replace />;
     }
 

@@ -98,7 +98,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
         });
     }
 
-    if (!user && !isLoading) {
+    if (user === undefined && !isLoading) {
         return <Navigate to="/login" replace />;
     }
 

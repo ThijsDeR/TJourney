@@ -144,8 +144,8 @@ export function Game({ user, timeElapsed, isLoading, setIsLoading }) {
 }
 
 function App({ timeElapsed }) {
-    const [currentUser, setCurrentUser] = useState(undefined);
-    const [user, setUser] = useState(undefined)
+    const [currentUser, setCurrentUser] = useState(null);
+    const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {

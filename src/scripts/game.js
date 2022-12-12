@@ -4,6 +4,7 @@ import Rotation from './rotation.js';
 export default class Game {
     world;
     player;
+    friends;
     lastPlaceOnBoard;
     shouldUpdate;
 
@@ -12,6 +13,7 @@ export default class Game {
         this.player = new Player(this.world.circles[0].position, new Rotation(0, 0, 0), 1.5, 0)
         this.lastDiceCount = 0;
         this.shouldUpdate = false;
+        this.friends = []
     }
 
     getWorldElement = (timeElapsed) => {

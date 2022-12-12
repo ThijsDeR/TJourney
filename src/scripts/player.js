@@ -1,7 +1,7 @@
 import Dice from "./dice.js";
 import Drawable from "./drawable.js";
-import MichelleWalking from '../assets/Michelle/Walking'
-import MichelleIdle from '../assets/Michelle/Idle'
+import MichelleWalking from '../assets/Michelle/Walking.js'
+import MichelleIdle from '../assets/Michelle/Idle.js'
 import Position from "./position.js";
 import Rotation from "./rotation.js";
 
@@ -21,7 +21,7 @@ export default class Player extends Drawable {
     }
 
     getElement() {
-    return (
+        return (
             <mesh position={this.position.getPositionArray()} rotation={[this.rotation.x, this.rotation.y, this.rotation.z]} scale={this.scale}>
                 {this.dice.count === 0 || this.dice.isThrowing() ? <MichelleIdle /> : <MichelleWalking />}
 
@@ -124,12 +124,12 @@ export default class Player extends Drawable {
         if (x === 0 && z === 0) return 0;
         else {
             const degrees = (atan2 * (180 / Math.PI))
-            
+
 
             if (degrees < 0) {
                 return (360 - Math.abs(degrees))
             }
             return degrees
-        } 
+        }
     }
 }

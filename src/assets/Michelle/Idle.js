@@ -7,7 +7,7 @@ import { useGLTF, useAnimations } from '@react-three/drei'
 
 export default function MichelleIdle(props) {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/idle.glb')
+  const { nodes, materials, animations } = useGLTF('/idleMichelle.gltf')
   const { actions } = useAnimations(animations, group)
   useEffect(() => {
     actions.idle.play();
@@ -17,11 +17,11 @@ export default function MichelleIdle(props) {
       <group name="Scene">
         <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes.mixamorigHips} />
-          <skinnedMesh name="Ch03" geometry={nodes.Ch03.geometry} material={materials.Ch03_Body} skeleton={nodes.Ch03.skeleton} />
+            <skinnedMesh name="Ch03" geometry={nodes.Ch03.geometry} material={materials.Ch03_Body} skeleton={nodes.Ch03.skeleton} />
         </group>
       </group>
     </group>
   )
 }
 
-useGLTF.preload('/idle.glb')
+useGLTF.preload('/idleMichelle.gltf')

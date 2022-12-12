@@ -40,6 +40,26 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
         })
     }
 
+    const getFriendsData = () => {
+        getFriends().then((friends) => {
+            setFriends(friends)
+            friends.forEach((friend) => {
+                console.log(friends, game.friends)
+                const gameFriend = game.friends.find((gameFriend) => gameFriend.userName === friend.user.username)
+
+                console.log(gameFriend)
+
+                if (gameFriend) gameFriend.placeOnTheBoard = friend.gameSession.steps;
+                else {
+                    const newLength = game.friends.push(new Friend(new Position(0, 0, 0), new Rotation(0, 0, 0), 0.5, 0, friend.user.username))
+                    game.friends[newLength - 1].setPosition(friend.gameSession.steps, game.world.circles)
+                }
+
+            })
+            
+        })
+    }
+
     useEffect(() => {
         if (user && !userLevel) {
             setUserLevel(user.level.amount)
@@ -49,15 +69,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
 
     useEffect(() => {
         if (user) {
-            getFriends().then((friends) => {
-                setFriends(friends)
-                console.log(friends)
-                friends.forEach((friend) => {
-                    const newLength = game.friends.push(new Friend(new Position(0, 0, 0), new Rotation(0, 0, 0), 0.5, 0, friend.user.username))
-                    game.friends[newLength - 1].setPosition(friend.gameSession.steps, game.world.circles)
-                })
-                
-            })
+            getFriendsData()
         }
     }, [user])
 
@@ -71,7 +83,8 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
         })
         getGameSession().then((data) => {
             setGameSesion(data)
-            game.player.setPositon(data.steps, game.world.circles)
+            game.lastPlaceOnBoard = data.steps
+            game.player.setPosition(data.steps, game.world.circles)
         })
     }, [])
 
@@ -86,7 +99,6 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
     useEffect(() => {
         if (challenges && diceEyesCount !== undefined && userLevel !== undefined && gameSession !== undefined) setIsLoading(false)
     }, [challenges, diceEyesCount, gameSession, setIsLoading, userLevel])
-
 
     const calculateDiceEyesCount = async (challenges) => {
         const gameSession = await getGameSession()
@@ -137,6 +149,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
 
     if (game.shouldUpdate) {
         game.shouldUpdate = false
+        getFriendsData()
         setSteps(game.player.placeOnTheBoard)
         reloadData()
     }

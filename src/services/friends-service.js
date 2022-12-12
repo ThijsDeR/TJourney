@@ -6,7 +6,7 @@ export const getFriends = async () => {
 
     const result = await getCurrentUser()
     if (result) {
-        const friends = ["6396ff822a2de5672198ca3b", "6396ffa9f368596caa05fe5a"]
+        const friends = ["6396ff822a2de5672198ca3b", "6397a38def91995d96381a45"]
         const promises = [];
         friends.forEach((friend) => {
             promises.push(axios.get("/v1/gameSessions/user/" + friend, {

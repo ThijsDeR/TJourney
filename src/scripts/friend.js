@@ -1,18 +1,16 @@
-import Drawable from "./drawable.js";
 import Position from "./position.js";
 import Shark from "../assets/Shark/Shark.js";
 import Text from "./text.js";
 import Rotation from "./rotation.js";
+import Walkable from "./walkable.js";
 
 
-export default class Friend extends Drawable {
-    placeOnTheBoard;
-    userName
+export default class Friend extends Walkable {
+    userName;
     text;
 
     constructor(position, rotation, scale, placeOnTheBoard, userName) {
-        super(position, rotation, scale)
-        this.placeOnTheBoard = placeOnTheBoard
+        super(position, rotation, scale, placeOnTheBoard)
         this.userName = userName
         this.text = new Text(new Position(0, 2, 0), new Rotation(0, 0, 0), 0.2, this.userName)
     }
@@ -26,9 +24,9 @@ export default class Friend extends Drawable {
         )
     }
 
-    setPosition(steps, circles) {
-        this.placeOnTheBoard = steps;
-        const currentPosition = circles[this.placeOnTheBoard % circles.length].position
-        this.position = new Position(...currentPosition.getPositionArray());
+    update = (timeElapsed, circles) => {
+        if (this.placeOnTheBoard === this.currentPlaceOnTheBoard) return
+        
+        this.walkTimer(timeElapsed, circles)
     }
 }

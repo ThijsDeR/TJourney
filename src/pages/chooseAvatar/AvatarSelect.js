@@ -71,37 +71,37 @@ function AvatarSelect({ user, isLoading, setIsLoading }) {
                 {/* Contains two columns */}
                 <div className="columns is-mobile is-centered">
                     {/* Default column */}
-                    <div className="box my-3 mr-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar(0)}>
+                    <div className="box my-3 mr-2 column is-5" onClick={() => selectAvatar(0)}>
                         {ChopperCanvas}
                     </div>
                     {/* End of first column */}
-                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar(1)}>
+                    <div className="box my-3 ml-2 column is-5" onClick={() => selectAvatar(1)}>
                         {ShibaCanvas}
                     </div>
                 </div>
                 {/* End of first set of columns */}
 
                 <div className="columns is-mobile is-centered">
-                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar(2)}>
+                    <div className="box my-3 mr-2 column is-5" onClick={() => selectAvatar(2)}>
                         {RandomGuyCanvas}
                     </div>
-                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar(2)}>
+                    <div className="box my-3 ml-2 column is-5" onClick={() => selectAvatar(2)}>
                         {PlaceholderCanvas}
                     </div>
                 </div>
                 <div className="columns is-mobile is-centered">
-                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar(2)}>
+                    <div className="box my-3 mr-2 column is-5" onClick={() => selectAvatar(2)}>
                         {PlaceholderCanvas}
                     </div>
-                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar(2)}>
+                    <div className="box my-3 ml-2 column is-5" onClick={() => selectAvatar(2)}>
                         {PlaceholderCanvas}
                     </div>
                 </div>
                 <div className="columns is-mobile is-centered">
-                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar(2)}>
+                    <div className="box my-3 mr-2 column is-5" onClick={() => selectAvatar(2)}>
                         {PlaceholderCanvas}
                     </div>
-                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar(2)}>
+                    <div className="box my-3 ml-2 column is-5" onClick={() => selectAvatar(2)}>
                         {PlaceholderCanvas}
                     </div>
                 </div>

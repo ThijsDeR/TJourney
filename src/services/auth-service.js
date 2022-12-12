@@ -6,6 +6,8 @@ export const register = (email, password, username) => {
         password,
         username
     }).then((response) => {
+        if (response.data.error) throw response.data.error
+        
         if (response.data.data.accessToken) {
             localStorage.setItem("user", JSON.stringify(response.data.data));
         }
@@ -14,17 +16,19 @@ export const register = (email, password, username) => {
     });
 };
 
-export const login = (email, password) => {
-    return axios.post("/v1/users/login", {
+export const login = async (email, password) => {
+    const response = await axios.post("/v1/users/login", {
         email: email,
         password: password,
-    }).then((response) => {
-        if (response.data.data.accessToken) {
-            localStorage.setItem("user", JSON.stringify(response.data.data));
-        }
+    })
 
-        return response.data.data;
-    });
+    if (response.data.error) throw response.data.error
+
+    if (response.data.data.accessToken) {
+        localStorage.setItem("user", JSON.stringify(response.data.data));
+    }
+
+    return response.data.data;
 };
 
 export const logout = () => {
@@ -32,13 +36,16 @@ export const logout = () => {
 };
 
 export const getCurrentUser = async () => {
-    const accessToken = JSON.parse(localStorage.getItem("user")).accessToken
+    const localUser = JSON.parse(localStorage.getItem("user"))
 
-    const data = await axios.get("/v1/users/ownData", {
-        headers: { Authorization: `Bearer ${accessToken}` }
-    })
+    if (localUser && localUser.accessToken) {
+        const data = await axios.get("/v1/users/ownData", {
+            headers: { Authorization: `Bearer ${localUser.accessToken}` }
+        })
+    
+        return data.data.data;
+    }
 
-    return data.data.data;
-
+    return null
 };
 

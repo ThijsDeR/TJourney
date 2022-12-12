@@ -7,7 +7,7 @@
 .App {
   position: absolute;
   display: flex;
-  top: 50px;
+  top: 0px;
   left: 0px;
   right: 0px;
   bottom: 0px;
@@ -17,8 +17,14 @@
   z-index: 1;
 }
 
-.ButtonHome {
+.ButtonHome1 {
   border-radius: 70%;
+}
+
+.ButtonHome2 {
+  border-radius: 90%;
+  background-image: url("https://i.imgur.com/lg1emBK.png");
+  background-size: contain;
 }
 
 .parent {
@@ -69,11 +75,11 @@
   align-items: center;
   position: absolute;
   top: 5%;
-  left: 60%;
+  left: 20%;
   padding: 0 5px;
   display: flex;
   height: 40px;
-  width: 80vh;
+  width: 100px;
   z-index: 4;
 }
 
@@ -99,4 +105,28 @@
 
 .hidden {
     display: none;
+}
+
+.luckyButton {
+  background-image: "https://d33wubrfki0l68.cloudfront.net/554c3b0e09cf167f0281fda839a5433f2040b349/ecfc9/img/header_logo.svg";
+}
+
+.box.has-background-purple {
+    background-color: rgb(247, 105, 255);
+}
+
+.overflow-y-auto {    
+    overflow-y: auto;
+}
+
+.overflow-y-scroll {    
+    overflow-y: scroll;
+}
+.luckyDiceButton {
+  background-image: url("https://i.imgur.com/lg1emBK.png");
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 80vh;
+  left: 80vh
 }

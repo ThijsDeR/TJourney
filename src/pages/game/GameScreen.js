@@ -19,6 +19,7 @@ import { getCurrentUser } from '../../services/auth-service';
 import Friend from '../../scripts/friend';
 import Position from '../../scripts/position';
 import Rotation from '../../scripts/rotation';
+import { getFriends } from '../../services/friends-service';
 
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
@@ -33,7 +34,6 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
 
     const reloadData = () => {
         getCurrentUser().then((user) => {
-            console.log(user)
             setUser(user)
             setUserLevel(user.level.amount)
             setLevel(calculateLevel(user.level.amount))
@@ -49,11 +49,12 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
 
     useEffect(() => {
         if (user) {
-            getFriendsGameSessions().then((friends) => {
+            getFriends().then((friends) => {
                 setFriends(friends)
+                console.log(friends)
                 friends.forEach((friend) => {
-                    const newLength = game.friends.push(new Friend(new Position(0, 0, 0), new Rotation(0, 0, 0), 0.5, 0))
-                    game.friends[newLength - 1].setPosition(friend.steps, game.world.circles)
+                    const newLength = game.friends.push(new Friend(new Position(0, 0, 0), new Rotation(0, 0, 0), 0.5, 0, friend.user.username))
+                    game.friends[newLength - 1].setPosition(friend.gameSession.steps, game.world.circles)
                 })
                 
             })

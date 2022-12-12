@@ -26,6 +26,7 @@ import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
 import { Challenges } from "./pages/challenges/Challenges.js";
 import FantasyBook from "./assets/FantasyBook/FantasyBook.js";
 import { PositionPlayerClass } from "./components/PositionPlayerClass.js"
+import AvatarSelect from "./pages/chooseAvatar/AvatarSelect.js"
 
 import luckyBlock from './assets/lg1emBK.png'
 import { getAllChallenges, getAllGoals } from "./services/goal-service.js";
@@ -160,16 +161,17 @@ function App({ timeElapsed }) {
             <Routes>
                 <Route path="/" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/login" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} setIsLoading={setIsLoading}/>} />
+                <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} setIsLoading={setIsLoading} />} />
                 <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/home" element={<Home user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/game" element={<Game user={user} isLoading={isLoading} timeElapsed={timeElapsed} setIsLoading={setIsLoading} />} />
                 <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                <Route path="/avatarselect" element={<AvatarSelect user={user} isLoading={isLoading} setIsLoading />} />
             </Routes>
         </>
     )
 }
 
-export default App;   
+export default App;

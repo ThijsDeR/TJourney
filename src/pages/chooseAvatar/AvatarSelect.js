@@ -49,7 +49,7 @@ const PlaceholderCanvas =
         <Environment preset="sunset" />
     </Canvas>;
 
-function AvatarSelect() {
+function AvatarSelect({ user, isLoading, setIsLoading }) {
     const [pickedTheMainAvatar, setPickedTheMainAvatar] = useState(false);
     const [chosenAvatar, setChosenAvatar] = useState(undefined);
 
@@ -62,10 +62,9 @@ function AvatarSelect() {
 
     return (
         <>
-            <Navigation />
 
-            <div className="pt-5 mt-5 mx-3">
-                <div className="title text-center has-text-centered">
+            <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto" }}>
+                <div className="title text-center has-text-centered has-text-white">
                     Avatar Select
                 </div>
 
@@ -106,16 +105,8 @@ function AvatarSelect() {
                         {PlaceholderCanvas}
                     </div>
                 </div>
-                <div className="columns is-mobile is-centered">
-                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar(2)}>
-                        {PlaceholderCanvas}
-                    </div>
-                    <div className="box my-3 mr-3 mr-3 column is-5" onClick={() => selectAvatar(2)}>
-                        {PlaceholderCanvas}
-                    </div>
-                </div>
             </div>
-            {/* <Footer /> */}
+            <Navigation user={user} />
         </>
     );
 }

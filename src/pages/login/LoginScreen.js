@@ -53,8 +53,8 @@ function Login({ user, setCurrentUser, isLoading, setIsLoading }) {
                                 </div>
                                 {
                                     error ?
-                                        <div class="notification is-danger is-light">
-                                            <button class="delete" onClick={deleteNotificationHandler}></button>
+                                        <div className="notification is-danger is-light">
+                                            <button className="delete" onClick={deleteNotificationHandler}></button>
                                             {error}
                                         </div> : ''
                                 }
@@ -83,7 +83,7 @@ function Login({ user, setCurrentUser, isLoading, setIsLoading }) {
                                                 <i className="fas fa-exclamation-triangle"></i>
                                             </span>
                                         </div>
-                                        <a href class="help is-link"><Link to="/register">Don't have an account?</Link></a>
+                                        <Link to="/register" className="help is-link">Don't have an account?</Link>
                                     </div>
 
                                     <div className="field is-grouped">

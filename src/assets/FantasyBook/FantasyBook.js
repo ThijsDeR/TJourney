@@ -88,10 +88,8 @@ export default function FantasyBookComponent({ timeElapsed, game }) {
                                     </mesh>
                                 </group>
                                 <group>
-
-                                    {/* TODO draw all circles */}
                                     {
-                                        game.world.circles.map((circle) => (circle.getElement()))
+                                        game.world.circles.map((circle, circleIndex) => (circle.getElement(circleIndex)))
                                     }
                                     <mesh position={[-17, -1.3, -31.6]} rotation={[-1.55, 0, 0]} scale={2}>
                                         <Circle />

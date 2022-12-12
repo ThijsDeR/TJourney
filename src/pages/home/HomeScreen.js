@@ -43,7 +43,7 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                 isLoading ? <Loading /> :
                     <>
                         <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px" }}>
-                            <section class="bg-image" style={{height: "100%"}}>
+                            <section className="bg-image" style={{height: "100%"}}>
                                 <div className="is-flex is-justify-content-center">
                                     <h2 className="is-size-3 has-text-weight-bold">{user.username} ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )</h2>
                                 </div>

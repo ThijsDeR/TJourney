@@ -10,10 +10,10 @@ export default class XPCircle extends Circle {
         this.offset = 1
         this.xp = 100
     }
-    getElement() {
+    getElement(key) {
         return (
-            <mesh position={[this.position.x, this.position.y - this.offset, this.position.z]} rotation={this.rotation.getRotationArray()} material={new THREE.MeshLambertMaterial({color: "blue"})}>
-                <cylinderBufferGeometry attach="geometry" args={[1, 0.5, 2, 32]}/>
+            <mesh key={key} position={[this.position.x, this.position.y - this.offset, this.position.z]} rotation={this.rotation.getRotationArray()} material={new THREE.MeshLambertMaterial({color: "blue"})}>
+                <cylinderGeometry attach="geometry" args={[1, 0.5, 2, 32]}/>
             </mesh>
         )
     }

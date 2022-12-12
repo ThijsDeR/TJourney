@@ -10,9 +10,9 @@ export function SelectGoalCategory({ category, setCategory, setStepHandler }) {
             </div>
             <div className="container mx-3">
                 <div className={"box"} onClick={() => handleCategorySelect("excercise")}>
-                    <article class="media">
-                        <div class="media-content" style={{overflow: "hidden"}}>
-                            <div class="content">
+                    <article className="media">
+                        <div className="media-content" style={{overflow: "hidden"}}>
+                            <div className="content">
                                 <p>
                                     <strong>Excercise</strong>
                                     <br />
@@ -24,9 +24,9 @@ export function SelectGoalCategory({ category, setCategory, setStepHandler }) {
                 </div>
 
                 <div className={"box"} onClick={() => handleCategorySelect("sleep")}>
-                    <article class="media">
-                        <div class="media-content" style={{overflow: "hidden"}}>
-                            <div class="content">
+                    <article className="media">
+                        <div className="media-content" style={{overflow: "hidden"}}>
+                            <div className="content">
                                 <p>
                                     <strong>Sleep</strong>
                                     <br />
@@ -38,9 +38,9 @@ export function SelectGoalCategory({ category, setCategory, setStepHandler }) {
                 </div>
 
                 <div className={"box"} onClick={() => handleCategorySelect("food")}>
-                    <article class="media">
-                        <div class="media-content" style={{overflow: "hidden"}}>
-                            <div class="content">
+                    <article className="media">
+                        <div className="media-content" style={{overflow: "hidden"}}>
+                            <div className="content">
                                 <p>
                                     <strong>Food</strong>
                                     <br />

@@ -34,9 +34,9 @@ export function GoalsIndex({ user, isLoading, setIsLoading }) {
                                             <>
                                                 <div className="container m-3">
                                                     <div className="box">
-                                                        <article class="media">
-                                                            <div class="media-content" style={{ overflow: "hidden" }}>
-                                                                <div class="content">
+                                                        <article className="media">
+                                                            <div className="media-content" style={{ overflow: "hidden" }}>
+                                                                <div className="content">
                                                                     <ul style={{ listStyle: "none" }}>
                                                                         <li>Name: {goal.name}</li>
                                                                         <li>description: {goal.description}</li>
@@ -46,9 +46,9 @@ export function GoalsIndex({ user, isLoading, setIsLoading }) {
                                                                         <li>endDate: {goal.endDate}</li>
                                                                         <li>category: {goal.category}</li>
                                                                     </ul>
-                                                                    <div class="field is-grouped">
-                                                                        <div class="control">
-                                                                            <button class="button is-link">Edit</button>
+                                                                    <div className="field is-grouped">
+                                                                        <div className="control">
+                                                                            <button className="button is-link">Edit</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>

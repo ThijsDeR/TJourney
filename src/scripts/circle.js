@@ -7,10 +7,10 @@ export default class Circle extends Drawable {
         super(position, rotation, scale);
         this.offset = 1
     }
-    getElement() {
+    getElement(key) {
         return (
-            <mesh position={[this.position.x, this.position.y - this.offset, this.position.z]} rotation={this.rotation.getRotationArray()}>
-                <cylinderBufferGeometry attach="geometry" args={[1, 0.5, 2, 32]} />
+            <mesh key={key} position={[this.position.x, this.position.y - this.offset, this.position.z]} rotation={this.rotation.getRotationArray()}>
+                <cylinderGeometry attach="geometry" args={[1, 0.5, 2, 32]} />
             </mesh>
         )
     }

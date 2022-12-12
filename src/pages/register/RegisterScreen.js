@@ -51,8 +51,8 @@ function Register({ user, setCurrentUser, isLoading, setIsLoading }) {
                             </div>
                             {
                                 error ?
-                                    <div class="notification is-danger is-light">
-                                        <button class="delete" onClick={deleteNotificationHandler}></button>
+                                    <div className="notification is-danger is-light">
+                                        <button className="delete" onClick={deleteNotificationHandler}></button>
                                         {error}
                                     </div> : ''
                             }

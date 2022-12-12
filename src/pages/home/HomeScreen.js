@@ -3,7 +3,7 @@ import Navigation from '../../components/navigation/Navigation.js';
 import { Link, Navigate } from "react-router-dom";
 import "./homeStyles.css";
 import Loading from '../../components/loading/Loading.js';
-import { updateLevel } from '../../services/level-service.js';
+import { calculateLevel, updateLevel } from '../../services/level-service.js';
 
 function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
     const [userLevel, setUserLevel] = useState(undefined)
@@ -22,7 +22,6 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
     }, [userLevel])
 
     useEffect(() => {
-        console.log(user, userLevel)
         if (user && userLevel !== undefined) setIsLoading(false)
     }, [user, userLevel])
 
@@ -36,20 +35,6 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
         updateLevel(amount).then((data) => {
             setCurrentUser(data.userData)
         })
-    }
-
-    const calculateLevel = (xp) => {
-        const getNeededXP = (level) => {
-            return level * 100
-        }
-        let calculateXP = xp
-        let level = 0
-        while (calculateXP >= getNeededXP(level + 1)) {
-            calculateXP -= getNeededXP(level + 1)
-            level++
-        }
-
-        return {level: level, xp: calculateXP, neededXP: getNeededXP(level + 1)}
     }
 
     return (

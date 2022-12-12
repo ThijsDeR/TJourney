@@ -7,10 +7,12 @@ export const updateLevel = async (amount) => {
 
     if (localUser && localUser.accessToken) {
         const data = await axios.put(
-            `/v1/users/${user._id}`,
+            `/v1/users/`,
             {
-                level: {
-                    amount: amount
+                updateQuery: {
+                    $set: {
+                        "level.amount": amount
+                    }
                 }
             },
             {
@@ -23,3 +25,22 @@ export const updateLevel = async (amount) => {
 
     return null
 };
+
+export const addLevelAmount = async (amount) => {
+    const user = await getCurrentUser();
+    return await updateLevel(user.level.amount + amount);
+}
+
+export const calculateLevel = (xp) => {
+    const getNeededXP = (level) => {
+        return level * 100
+    }
+    let calculateXP = xp
+    let level = 0
+    while (calculateXP >= getNeededXP(level + 1)) {
+        calculateXP -= getNeededXP(level + 1)
+        level++
+    }
+
+    return {level: level, xp: calculateXP, neededXP: getNeededXP(level + 1)}
+}

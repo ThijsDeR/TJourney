@@ -33,7 +33,6 @@ function Login({ user, setCurrentUser, isLoading, setIsLoading }) {
         }
     };
 
-    console.log(user, isLoading)
     if (user && !isLoading) {
         return <Navigate to="/home" replace />;
 

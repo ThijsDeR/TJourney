@@ -1,14 +1,12 @@
 
 import { useState, useEffect } from "react";
-import { getCurrentUser, logout } from "./services/auth-service.js";
+import { getCurrentUser} from "./services/auth-service.js";
 import 'bulma/css/bulma.min.css';
 import "./App.css";
 // for routing
 import {
     Routes,
     Route,
-    Navigate,
-    Link,
 } from "react-router-dom";
 
 import Login from "./pages/login/LoginScreen.js";

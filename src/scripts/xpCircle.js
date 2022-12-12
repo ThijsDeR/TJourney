@@ -1,11 +1,11 @@
 import Circle from "./circle.js";
 import * as THREE from 'three';
-import { addLevelAmount, updateLevel } from "../services/level-service.js";
+import { addLevelAmount } from "../services/level-service.js";
 
 export default class XPCircle extends Circle {
     offset;
     xp;
-    constructor(position, rotation, scale, updateLevel) {
+    constructor(position, rotation, scale) {
         super(position, rotation, scale);
         this.offset = 1
         this.xp = 100

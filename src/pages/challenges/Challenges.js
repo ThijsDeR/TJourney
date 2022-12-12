@@ -35,7 +35,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
 
     useEffect(() => {
         if (challenges && diceEyesCount !== undefined && goals) setIsLoading(false)
-    }, [challenges, diceEyesCount, goals])
+    }, [challenges, diceEyesCount, goals, setIsLoading])
 
 
     function selectDropDown(goal_id) {
@@ -113,7 +113,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
                                             <>
                                                 <Link to="/game">
                                                     <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (diceEyesCount !== 0 ? "rgba(0, 200, 200, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px" }}>
-                                                        <img src={luckyBlock} style={{ width: "50px" }} />
+                                                        <img src={luckyBlock} style={{ width: "50px" }} alt="Lucky block"/>
                                                         <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? diceEyesCount : "0"}</p>
                                                     </div>
                                                 </Link>

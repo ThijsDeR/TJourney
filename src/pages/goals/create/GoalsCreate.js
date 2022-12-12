@@ -28,11 +28,11 @@ export function GoalsCreate({ user, isLoading, setIsLoading }) {
             setDone(false)
             createGoal(name, description, startValue, endValue, startDate, endDate, category)
         }
-    }, [done])
+    }, [done, name, description, startValue, endValue, startDate, endDate, category])
 
     useEffect(() => {
         setIsLoading(false)
-    }, [])
+    }, [setIsLoading])
 
 
     if (user === undefined && !isLoading) {

@@ -1,5 +1,4 @@
 import "./navigation.css";
-import HZLogo from './hz-removebg.png';
 
 import {
     Link

@@ -1,4 +1,3 @@
-import Footer from "../../components/footer/Footer";
 import Navigation from "../../components/navigation/Navigation.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faKey, faUser } from '@fortawesome/free-solid-svg-icons'
@@ -15,7 +14,7 @@ function Register({ user, setCurrentUser, isLoading, setIsLoading }) {
 
     useEffect(() => {
         setIsLoading(false)
-    }, [])
+    }, [setIsLoading])
 
     const handleRegister = (e) => {
         e.preventDefault();

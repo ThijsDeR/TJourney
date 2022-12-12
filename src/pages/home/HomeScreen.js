@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navigation from '../../components/navigation/Navigation.js';
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import "./homeStyles.css";
 import Loading from '../../components/loading/Loading.js';
 import { calculateLevel, updateLevel } from '../../services/level-service.js';
@@ -14,7 +14,7 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
             setUserLevel(user.level.amount)
             setLevel(calculateLevel(user.level.amount))
         }
-    }, [user])
+    }, [user, userLevel])
 
 
     useEffect(() => {
@@ -23,7 +23,7 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
 
     useEffect(() => {
         if (user && userLevel !== undefined) setIsLoading(false)
-    }, [user, userLevel])
+    }, [user, userLevel, setIsLoading])
 
     if (user === undefined && !isLoading) {
         return <Navigate to="/login" replace />;

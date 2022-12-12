@@ -5,17 +5,16 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Environment, Stars, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
-import { PositionPlayerClass } from "../../components/PositionPlayerClass.js"
 
 import luckyBlock from '../../assets/lg1emBK.png'
-import { getAllChallenges, getAllGoals } from "../../services/goal-service.js";
+import { getAllChallenges} from "../../services/goal-service.js";
 import { getGameSession, setSteps } from "../../services/game-service.js";
 import { Navigate } from 'react-router-dom';
 import Loading from '../../components/loading/Loading';
 import Navigation from '../../components/navigation/Navigation';
 import Game from '../../scripts/game.js';
 import FantasyBook from '../../scripts/fantasyBook';
-import { calculateLevel, updateLevel } from '../../services/level-service';
+import { calculateLevel } from '../../services/level-service';
 import { getCurrentUser } from '../../services/auth-service';
 
 const fantasyBook = new FantasyBook();
@@ -42,7 +41,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
             setUserLevel(user.level.amount)
             setLevel(calculateLevel(user.level.amount))
         }
-    }, [user])
+    }, [user, userLevel])
 
 
     useEffect(() => {
@@ -69,7 +68,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
 
     useEffect(() => {
         if (challenges && diceEyesCount !== undefined && userLevel !== undefined && gameSession !== undefined) setIsLoading(false)
-    }, [challenges, diceEyesCount, gameSession])
+    }, [challenges, diceEyesCount, gameSession, setIsLoading, userLevel])
 
 
     const calculateDiceEyesCount = async (challenges) => {
@@ -159,7 +158,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
                             if (diceEyesCount !== 0 && game.player.dice.count === 0) game.throwDice(diceEyesCount)
                         }}
                     >
-                        <img src={luckyBlock} style={{ width: "50px" }} />
+                        <img src={luckyBlock} style={{ width: "50px" }} alt="lucky block"/>
                         <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? diceEyesCount : "0"}</p>
                     </div>
                 </div>

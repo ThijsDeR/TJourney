@@ -13,11 +13,11 @@ export function SelectPremadePlan(props) {
 
     const submitHandler = (step, goal) => {
         if (step === 4) {
-            let date = new Date;
+            let date = new Date();
             date = date.toISOString().slice(0, 10);
             props.setStartDate(date);
 
-            date = new Date;
+            date = new Date();
             date = date.setDate(date.getDate() + time)
             date = new Date(date);
             date = date.toISOString().slice(0, 10)
@@ -85,7 +85,7 @@ export function SelectPremadePlan(props) {
         <>
             <div style={{ position: "fixed", top: "0", bottom: "100px", right: "0", left: "0", overflowY: "auto" }}>
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 20 }}>
-                    <a className="is-small is-size-1 has-text-white" onClick={stepBackHandler}>&lt;</a>
+                    <a href className="is-small is-size-1 has-text-white" onClick={stepBackHandler}>&lt;</a>
                     <h1 className="is-size-1 has-text-white">Premade Plans</h1>
                 </div>
 

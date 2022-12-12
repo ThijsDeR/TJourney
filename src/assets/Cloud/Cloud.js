@@ -6,7 +6,7 @@ source: https://sketchfab.com/3d-models/stylized-clouds-e326c36890364526910cba03
 title: Stylized clouds
 */
 
-import React, { useRef } from 'react'
+import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function Cloud(props) {

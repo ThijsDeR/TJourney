@@ -1,10 +1,9 @@
-import Footer from "../../components/footer/Footer";
 import Navigation from "../../components/navigation/Navigation";
 import "./login.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from "react";
-import { getCurrentUser, login } from "../../services/auth-service.js";
+import { login } from "../../services/auth-service.js";
 import { Link, Navigate } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 
@@ -15,7 +14,7 @@ function Login({ user, setCurrentUser, isLoading, setIsLoading }) {
 
     useEffect(() => {
         setIsLoading(false)
-    }, [])
+    }, [setIsLoading])
 
     const handleLogin = async (e) => {
         e.preventDefault();

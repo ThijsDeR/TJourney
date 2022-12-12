@@ -28,14 +28,12 @@ export function Challenges({ user, isLoading, setIsLoading }) {
     useEffect(() => {
         if (challenges) {
             calculatediceEyesCountCount(challenges).then((data) => {
-                console.log(data)
                 setdiceEyesCount(data)
             })
         }
     }, [challenges])
 
     useEffect(() => {
-        console.log(challenges, diceEyesCount, goals)
         if (challenges && diceEyesCount !== undefined && goals) setIsLoading(false)
     }, [challenges, diceEyesCount, goals])
 
@@ -55,7 +53,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
         const msInDay = 1000 * 60 * 60 * 24
         challenges.forEach((challenge) => {
             if (challenge.finished) {
-                const entry = gameSession[0].entries.find((entry) => {
+                const entry = gameSession.entries.find((entry) => {
                     return Date.parse(entry.date)
                         >= (
                             Math.floor(

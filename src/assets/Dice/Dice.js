@@ -6,11 +6,10 @@ source: https://sketchfab.com/3d-models/lucky-block-c1d5cfdbd2c24c3aa0a3b82286a1
 title: Lucky Block
 */
 
-import React, { useRef } from 'react'
+import React from 'react'
 import { useGLTF } from '@react-three/drei'
-import { getLuckyMove } from '../../App'
 
-export default function Dice(props) {
+export default function DiceComponent(props) {
   const { nodes, materials } = useGLTF('/dice.gltf')
   return (
     <group {...props} dispose={null}>

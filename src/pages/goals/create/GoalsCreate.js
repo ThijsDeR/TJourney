@@ -35,9 +35,7 @@ export function GoalsCreate({ user, isLoading, setIsLoading }) {
     }, [])
 
 
-    console.log(user, isLoading)
     if (user === undefined && !isLoading) {
-        console.log(user, isLoading)
         return <Navigate to="/login" replace />;
     }
 

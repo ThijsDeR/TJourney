@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Buffer } from "buffer";
-import loader from "../assets/loader.gif";
+import loader from "../../assets/loader.gif";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { setAvatarRoute } from "../utils/APIRoutes";
-export default function SetAvatar() {
+import { setAvatarRoute } from "../../utils/APIRoutes";
+export  function SetAvatar() {
   const api = `https://api.multiavatar.com/45678943`;
   const navigate = useNavigate();
   const [avatars, setAvatars] = useState([]);
@@ -23,7 +23,7 @@ export default function SetAvatar() {
 
   useEffect( () => {
     const navigationTo = async () =>{
-       if (!localStorage.getItem('chat-app-user'))
+       if (!localStorage.getItem('user'))
       navigate("/login");  
     }
    navigationTo();
@@ -34,7 +34,7 @@ export default function SetAvatar() {
       toast.error("Please select an avatar", toastOptions);
     } else {
       const user = await JSON.parse(
-        localStorage.getItem('chat-app-user')
+        localStorage.getItem('user')
       );
 
       const { data } = await axios.post(`${setAvatarRoute}/${user._id}`, {
@@ -45,7 +45,7 @@ export default function SetAvatar() {
         user.isAvatarImageSet = true;
         user.avatarImage = data.image;
         localStorage.setItem(
-          'chat-app-user',
+          'user',
           JSON.stringify(user)
         );
         navigate("/");

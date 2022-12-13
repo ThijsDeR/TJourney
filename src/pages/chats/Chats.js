@@ -27,7 +27,7 @@ export  function Chats() {
         navigate("/login");
       }
       else {
-        setCurrentUser(await JSON.parse(localStorage.getItem('chat-app-user')));
+        setCurrentUser(await JSON.parse(localStorage.getItem("user")));
         setIsLoaded(true);
       }
     }

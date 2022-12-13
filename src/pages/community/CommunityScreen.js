@@ -1,12 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCircle, faAngleRight, faSquare } from '@fortawesome/free-solid-svg-icons'
-
 import Footer from "../../components/footer/Footer";
 import Navigation from "../../components/navigation/Navigation";
-import 'bulma/css/bulma.min.css';
 
 import { getAllChallenges } from "../../services/goal-service.js";
 import { getGameSession, setSteps } from "../../services/game-service.js";
@@ -15,15 +11,40 @@ import Loading from '../../components/loading/Loading';
 import { calculateLevel } from '../../services/level-service';
 import { getCurrentUser } from '../../services/auth-service';
 
-import { title } from '../../styling/StylingVariables.js';
+// styling
+import 'bulma/css/bulma.min.css';
+import { pageStyle, title, primaryColor, tabs, tabPanel, tab, appContainer } from '../../styling/StylingVariables.js';
+
+// icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretDown, faCircle, faAngleRight, faSquare } from '@fortawesome/free-solid-svg-icons'
+
+// tabs
+import Tabs from '../../components/tabs/Tabs';
+import Tab from '../../components/tabs/Tab';
+
+// tab content
+import Friends from './Friends.js';
+import Groups from './Groups.js';
+import Leaderboard from './Leaderboard.js';
 
 function CommunityScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
 
     return (
         <>
-            <div style={{ position: "fixed", top: "0px", left: "0px", right: "0px", zIndex: 999 }}>
-                <div className="is-flex is-justify-content-center">
-                    <h1 style={title}>hi</h1>
+            <div style={pageStyle}>
+                <div style={appContainer}>
+                    <Tabs>
+                        <div label="Friends">
+                            <Friends />
+                        </div>
+                        <div label="Groups">
+                            <Groups />
+                        </div>
+                        <div label="Leaderboard">
+                            <Leaderboard />
+                        </div>
+                    </Tabs>
                 </div>
             </div>
             <Navigation user={user} />

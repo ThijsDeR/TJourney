@@ -18,7 +18,7 @@ import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
 import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
 import { Challenges } from "./pages/challenges/Challenges.js";
 import GameScreen from "./pages/game/GameScreen.js";
-import {Chats} from "./pages/chats/Chats.jsx";
+import {Chats} from "./pages/chats/Chats.js";
 
 
 function App({ timeElapsed }) {
@@ -45,6 +45,7 @@ function App({ timeElapsed }) {
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/chat" element={<Chats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                {/* console.log(<Chats />) */}
             </Routes>
         </>
     )

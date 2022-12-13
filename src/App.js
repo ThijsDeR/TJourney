@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { getCurrentUser} from "./services/auth-service.js";
+import { getCurrentUser } from "./services/auth-service.js";
 import 'bulma/css/bulma.min.css';
 import "./App.css";
 // for routing
@@ -13,6 +13,7 @@ import Login from "./pages/login/LoginScreen.js";
 import Register from "./pages/register/RegisterScreen.js";
 import Logout from "./pages/logout/Logout";
 import Home from "./pages/home/HomeScreen.js";
+import Account from "./pages/account/Account.js";
 
 import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
 import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
@@ -36,13 +37,14 @@ function App({ timeElapsed }) {
             <Routes>
                 <Route path="/" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/login" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} setIsLoading={setIsLoading}/>} />
+                <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} setIsLoading={setIsLoading} />} />
                 <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/home" element={<Home user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/game" element={<GameScreen user={user} setUser={setUser} isLoading={isLoading} timeElapsed={timeElapsed} setIsLoading={setIsLoading} />} />
                 <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                <Route path="/account" element={<Account user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
             </Routes>
         </>
     )

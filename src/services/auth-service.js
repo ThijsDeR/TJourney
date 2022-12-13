@@ -1,3 +1,4 @@
+import { redirect } from "react-router-dom";
 import axios from "../api/axios.js";
 
 export const register = (email, password, username) => {
@@ -7,7 +8,7 @@ export const register = (email, password, username) => {
         username
     }).then((response) => {
         if (response.data.error) throw response.data.error
-        
+
         if (response.data.data.accessToken) {
             localStorage.setItem("user", JSON.stringify(response.data.data));
         }
@@ -40,12 +41,28 @@ export const getCurrentUser = async () => {
 
     if (localUser && localUser.accessToken) {
         const data = await axios.get("/v1/users/ownData", {
-            headers: { Authorization: `Bearer ${localUser.accessToken}` }
+            headers: { Authorization: `Bearer ${localUser.accessToken}` },
         })
-    
+
         return data.data.data;
     }
 
     return null
 };
 
+export const deleteAccount = async () => {
+    const localUser = JSON.parse(localStorage.getItem("user"));
+
+    if (localUser && localUser.accessToken) {
+        const data = await axios.delete("/v1/users/", {
+            headers: { Authorization: `Bearer ${localUser.accessToken}` },
+            body: localUser
+        })
+        localStorage.removeItem("user");
+        window.location.href="/login";
+
+        return data.data.data;
+    }
+
+    return null;
+}

@@ -19,8 +19,10 @@ export  function Chats() {
   
 
   useEffect( ()=>{
+    console.log("user:"+localStorage.getItem("user"))
     const navigationTo = async () => {
-      if (!localStorage.getItem('chat-app-user'))
+      
+      if (!localStorage.getItem("user"))
       {
         navigate("/login");
       }

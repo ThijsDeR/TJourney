@@ -2,7 +2,7 @@ import React, { useState, useEffect , useRef} from 'react'
 import styled from "styled-components"
 import ChatInput from './ChatInput';
 import axios from "axios";
-import { getAllMessagesRoute, sendMessageRoute } from '../utils/APIRoutes'
+import { getAllMessagesRoute, sendMessageRoute } from '../../utils/APIRoutes'
 import { v4 as uuidv4} from "uuid";
 
 export default function ChatContainer({ currentChat, currentUser, socket }) {

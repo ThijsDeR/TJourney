@@ -44,6 +44,10 @@ export const boldText = {
     fontWeight: 'bold',
 }
 
+export const bolderText = {
+    fontWeight: 'bolder',
+}
+
 export const lightText = {
     fontWeight: 'lighter',
 }
@@ -182,7 +186,7 @@ export const chatDivider = {
     margin: '0px 0px 0px 75px',
 }
 
-export const suggestedFriendsBox = {
+export const suggestedBox = {
     display: 'table',
     width: '100%',
     margin: '20px 0px',
@@ -190,7 +194,7 @@ export const suggestedFriendsBox = {
     borderSpacing: '5px 0',
 }
 
-export const suggestedFriendsTile = {
+export const suggestedTile = {
     backgroundColor: secondaryColor,
     borderRadius: '5px',
     height: '125px',

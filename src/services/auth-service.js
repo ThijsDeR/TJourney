@@ -49,3 +49,16 @@ export const getCurrentUser = async () => {
     return null
 };
 
+export const getAllTheUsers = async () => {
+    const localUser = JSON.parse(localStorage.getItem("user"))
+
+    if (localUser && localUser.accessToken) {
+        const data = await axios.get("/v1/users/", {
+            headers: { Authorization: `Bearer ${localUser.accessToken}` }
+        })
+    
+        return data.data.data;
+    }
+
+    return null
+};

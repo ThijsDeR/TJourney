@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { setAvatarRoute } from "../../utils/APIRoutes";
-export  function SetAvatar() {
+export  function SetAvatar( {user}) {
   const api = `https://api.multiavatar.com/45678943`;
   const navigate = useNavigate();
   const [avatars, setAvatars] = useState([]);
@@ -24,8 +24,10 @@ export  function SetAvatar() {
   useEffect( () => {
     const navigationTo = async () =>{
        if (!localStorage.getItem('user'))
+       
       navigate("/login");  
     }
+    // console.log("User"+user)
    navigationTo();
   },[]);
 

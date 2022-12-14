@@ -27,12 +27,12 @@ function App({ timeElapsed }) {
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
 
+
     useEffect(() => {
         getCurrentUser().then((data) => {
             setUser(data)
         });
     }, [currentUser]);
-
     return (
         <>
             <Routes>

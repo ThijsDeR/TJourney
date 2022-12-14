@@ -9,9 +9,10 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
     
 
     useEffect(() => {
-      console.log(currentUser.id)
+      // console.log(currentUser.username)
+
         if (currentUser) {
-            setCurrentUserImage(currentUser.avatarImage);
+            // setCurrentUserImage(currentUser.avatarImage);
             setCurrentUserName(currentUser.username);
         }
     }, [currentUser]);
@@ -23,7 +24,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
     return (
         <>
             {
-                currentUserImage && currentUserName && (
+                 currentUserName && (
                     <Container>
                         <div className="brand">
                             <img src={Logo} alt="logo" />
@@ -35,6 +36,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 
                                 contacts.map((contact, index) => {
                                     return (
+                               
                                         <div
                                          className={`contact ${
                                             index === currentSelected ? "selected" : ""

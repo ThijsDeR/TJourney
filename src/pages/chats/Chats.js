@@ -50,17 +50,17 @@ export function Chats({ user, isLoading, setIsLoading }) {
       console.log()
 
       if (currentUser) {
-        if (currentUser.isAvatarImageSet) {
+        
           // console.log(currentUser);
-          console.log("user" + user)
-          const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
+          // console.log("user" + user)
+          // const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
           // console.log(data);
           setContacts(await getAllTheUsers());
-        } else {
+        
 
-          navigate('/chat');
+          
 
-        }
+        
       }
     }
     getCurrentUser();

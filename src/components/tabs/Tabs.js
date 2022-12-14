@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Tab from "./Tab";
-import { tabListItemContainer, tabList, tabContent, tabListItem } from "../../styling/StylingVariables.js"
+import { tabListItemContainer, tabList, tabContent, tabListItem, centerDiv } from "../../styling/StylingVariables.js"
 
 class Tabs extends Component {
     static propTypes = {
@@ -30,21 +30,23 @@ class Tabs extends Component {
         return (
             <div className="tabs" style={tabListItemContainer}>
                 <div className="item" style={tabList}>
-                    <ol className="tab-list" style={tabListItem}>
-                        {/* returns all the tab items as a li */}
-                        {children.map((child) => {
-                            const { label } = child.props;
+                    <div style={centerDiv}>
+                        <ol className="tab-list" style={tabListItem}>
+                            {/* returns all the tab items as a li */}
+                            {children.map((child) => {
+                                const { label } = child.props;
 
-                            return (
-                                <Tab
-                                    activeTab={activeTab}
-                                    key={label}
-                                    label={label}
-                                    onClick={onClickTabItem}
-                                />
-                            );
-                        })}
-                    </ol>
+                                return (
+                                    <Tab
+                                        activeTab={activeTab}
+                                        key={label}
+                                        label={label}
+                                        onClick={onClickTabItem}
+                                    />
+                                );
+                            })}
+                        </ol>
+                    </div>
                 </div>
                 <div className="tab-content" style={tabContent}>
                     {children.map((child) => {

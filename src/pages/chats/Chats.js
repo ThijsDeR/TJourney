@@ -50,17 +50,8 @@ export function Chats({ user, isLoading, setIsLoading }) {
       console.log()
 
       if (currentUser) {
-        
-          // console.log(currentUser);
-          // console.log("user" + user)
-          // const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
-          // console.log(data);
           setContacts(await getAllTheUsers());
-        
-
-          
-
-        
+                   
       }
     }
     getCurrentUser();

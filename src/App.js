@@ -46,8 +46,7 @@ function App({ timeElapsed }) {
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/chat" element={<Chats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                <Route path="/setAvatar" element={<SetAvatar user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                {/* console.log(<Chats />) */}
+                {/* <Route path="/setAvatar" element={<SetAvatar user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} /> */}
             </Routes>
         </>
     )

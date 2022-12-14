@@ -12,7 +12,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
   const scrollRef = useRef();
 
   useEffect(() => {
-    console.log("test ")
+  
 
     const fetchData = async () => {
       if(currentChat){

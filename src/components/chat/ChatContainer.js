@@ -72,12 +72,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
           <Container>
             <div className="chat-header">
               <div className="user-details">
-                <div className="avatar">
-                  <img
-                    src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}
-                    alt="avatar" />
-                </div>
-                <div className="username">
+                             <div className="username">
                   <h3>{currentChat.username}</h3>
                 </div>
               </div>
@@ -101,7 +96,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
                 );
               })}
             </div>
-            {/* <ChatInput handleSendMsg={handleSendMsg} /> */}
+            <ChatInput handleSendMsg={handleSendMsg} />
           </Container>
         )
       }

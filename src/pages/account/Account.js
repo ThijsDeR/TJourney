@@ -7,13 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 
-import { login, deleteAccount, editUser } from "../../services/auth-service";
+import { login, deleteAccount, editUsername, editPassword } from "../../services/auth-service";
 
 function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
     const [userLevel, setUserLevel] = useState(undefined);
     const [level, setLevel] = useState(undefined);
     const [deleteAccountInput, showDeleteAccountInput] = useState(false);
-    const [editPassword, setEditPassword] = useState(false);
+    const [inputPassword, setInputPassword] = useState(false);
     const [inputUserName, setInputUserName] = useState(false);
     const [newUserName, setNewUsername] = useState(undefined);
     const [password, setPassword] = useState("");
@@ -21,21 +21,24 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
     const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
     const [passwordNotSame, setPasswordNotSame] = useState(false);
 
-    function handleNewPassword() {
+    async function handleNewPassword() {
         console.log("handle new password");
         if (newPassword !== newPasswordConfirm) {
             setPasswordNotSame(true);
             return;
         }
+        setPasswordNotSame(false);
 
-        // Change pass function
-
+        await login(user.email, password);
+        await editPassword(newPassword);
+        localStorage.removeItem("user");
+        window.location.href = "/login";
     }
 
     function handleEditUserName(e) {
         e.preventDefault();
 
-        editUser(user, newUserName).then((data) => {
+        editUsername(newUserName).then((data) => {
             window.location.reload();
         });
     }
@@ -101,8 +104,9 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                                         {inputUserName
                                             ?
                                             <form onSubmit={(e) => handleEditUserName(e)}>
-                                                <input className=" has-text-white has-background-black" type="text" placeholder="username" defaultValue={user.username} onChange={(e) => setNewUsername(e.target.value)} />
-                                                <button className="button">Submit</button>
+                                                <input className="input has-text-white has-text-centered has-background-black" style={{ width: "35vw" }} type="text" placeholder="username" defaultValue={user.username} onChange={(e) => setNewUsername(e.target.value)} />
+                                                <button className="is-pulled-right button" onClick={() => setInputUserName(!inputUserName)}>Cancel</button>
+                                                <button className="is-pulled-right button">Submit</button>
                                             </form>
                                             :
                                             <>
@@ -115,10 +119,10 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                                     <div>
                                         Level: ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )
                                     </div>
-                                    <button className="button" onClick={() => setEditPassword(!editPassword)}>
+                                    <button className="button" onClick={() => setInputPassword(!inputPassword)}>
                                         Edit password
                                     </button>
-                                    {editPassword ?
+                                    {inputPassword ?
                                         <>
                                             <div>
                                                 Old password
@@ -139,9 +143,10 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                                                 Confirm new password
                                                 <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setNewPasswordConfirm(e.target.value)} />
                                             </div>
-                                            <button className="button mt-3" onClick={() => handleNewPassword()}>
+                                            <button className="is-pulled-right button mt-3" onClick={() => handleNewPassword()}>
                                                 Submit
                                             </button>
+                                            <div className="is-clearfix"></div>
                                         </>
                                         :
                                         ""

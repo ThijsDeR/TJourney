@@ -67,7 +67,7 @@ export const deleteAccount = async () => {
     return null;
 }
 
-export const editUser = async (user, newUsername) => {
+export const editUsername = async (newUsername) => {
     const localUser = JSON.parse(localStorage.getItem("user"));
 
     if (localUser && localUser.accessToken) {
@@ -75,6 +75,26 @@ export const editUser = async (user, newUsername) => {
             updateQuery: {
                 $set: {
                     "username": newUsername
+                }
+            }
+        }, {
+            headers: { Authorization: `Bearer ${localUser.accessToken}` }
+        }).then((response) => {
+            if (response.data.error) throw response.data.error
+
+            return response.data.data;
+        });
+    }
+}
+
+export const editPassword = async (newPassword) => {
+    const localUser = JSON.parse(localStorage.getItem("user"));
+
+    if (localUser && localUser.accessToken) {
+        return axios.put("/v1/users/", {
+            updateQuery: {
+                $set: {
+                    "password": newPassword
                 }
             }
         }, {

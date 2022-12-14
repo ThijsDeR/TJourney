@@ -16,7 +16,7 @@ function Leaderboard({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
 
     return (
         <>
-            <h1 style={title}>Leaderboard</h1>
+            <h1 style={{ ...title, ...{ padding: 'unset' } }}>Leaderboard</h1>
             <div>Your leaderboard</div>
         </>
     )

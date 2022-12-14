@@ -16,8 +16,8 @@ function Groups({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
 
     return (
         <>
-            <h1 style={title}>Groups</h1>
-            <div>List of your groups</div>
+            <h1 style={{ ...title, ...{ padding: 'unset' } }}>Groups</h1>
+            <div>List of your friends</div>
         </>
     )
 }

@@ -6,6 +6,10 @@ import { calculateLevel, updateLevel } from '../../services/level-service.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
+import { Canvas } from "@react-three/fiber";
+import Chopper from '../../assets/Chopper/Chopper';
+import { Environment, OrbitControls } from "@react-three/drei";
+
 
 import { login, deleteAccount, editUsername, editPassword } from "../../services/auth-service";
 
@@ -41,13 +45,6 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
         editUsername(newUserName).then((data) => {
             window.location.reload();
         });
-    }
-
-    function handleEditProfilePicture() {
-        console.log("edit pfp")
-
-
-
     }
 
     async function handleDeleteAccount(e) {
@@ -91,16 +88,15 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                     <>
                         <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px", backgroundColor: "black", color: "white" }}>
                             <div className="mx-5">
+                                <div className="is-size-3" style={{ position: "absolute", right: "5vw" }}>
+                                    <Link to="/home" className="has-text-white"><FontAwesomeIcon icon={faGear} /></Link>
+                                </div>
                                 <div className="is-size-3 has-text-centered">
                                     Account
-                                    <Link to="/home" className="is-pulled-right has-text-white"><FontAwesomeIcon icon={faGear} /></Link>
                                 </div>
 
                                 <div className="is-size-4 mt-3">
-                                    <div className="has-text-centered mb-5">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
-                                            alt="user profile" className="is-pulled-left" style={{ width: "10vw", height: "5vh", borderRadius: "20px" }}
-                                            onClick={() => handleEditProfilePicture()} />
+                                    <div className="mb-5">
                                         {inputUserName
                                             ?
                                             <form onSubmit={(e) => handleEditUserName(e)}>
@@ -119,9 +115,22 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                                     <div>
                                         Level: ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )
                                     </div>
-                                    <button className="button" onClick={() => setInputPassword(!inputPassword)}>
-                                        Edit password
-                                    </button>
+
+                                    < Canvas camera={{ position: [3, 2, 3] }}>
+                                        {/* Where the camera orbits around, recommend putting the y a bit up */}
+                                        < OrbitControls target={[0, 2.5, 0]} enableZoom={false} enablePan={true} autoRotate={true} autoRotateSpeed={5} />
+                                        {/* Leave the position at 0, scale depends on the avatar */}
+                                        < mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.05} >
+                                            <Chopper />
+                                        </mesh >
+                                        <Environment preset="sunset" />
+                                    </Canvas >
+
+                                    <div style={{ position: "absolute", bottom: "10vh", right: "5vw" }}>
+                                        <button className="button" onClick={() => setInputPassword(!inputPassword)}>
+                                            Edit password
+                                        </button>
+                                    </div>
                                     {inputPassword ?
                                         <>
                                             <div>
@@ -152,7 +161,10 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                                         ""
                                     }
                                 </div>
-                                <button className="button is-danger mt-5" onClick={() => showDeleteAccountInput(!deleteAccountInput)} /*style={{ bottom: "100px" }}*/>Delete account</button>
+                                
+                                <div style={{ position: "absolute", bottom: "10vh" }}>
+                                    <button className="button is-danger mt-5 is-relative" onClick={() => showDeleteAccountInput(!deleteAccountInput)}>Delete account</button>
+                                </div>
 
                                 {deleteAccountInput ?
                                     <>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Navigation from '../../components/navigation/Navigation.js';
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import "./homeStyles.css";
 import Loading from '../../components/loading/Loading.js';
-import { updateLevel } from '../../services/level-service.js';
+import { calculateLevel, updateLevel } from '../../services/level-service.js';
 
 function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
     const [userLevel, setUserLevel] = useState(undefined)
@@ -14,7 +14,7 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
             setUserLevel(user.level.amount)
             setLevel(calculateLevel(user.level.amount))
         }
-    }, [user])
+    }, [user, userLevel])
 
 
     useEffect(() => {
@@ -22,11 +22,10 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
     }, [userLevel])
 
     useEffect(() => {
-        console.log(user, userLevel)
         if (user && userLevel !== undefined) setIsLoading(false)
-    }, [user, userLevel])
+    }, [user, userLevel, setIsLoading])
 
-    if (!user && !isLoading) {
+    if (user === undefined && !isLoading) {
         return <Navigate to="/login" replace />;
     }
 
@@ -38,29 +37,15 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
         })
     }
 
-    const calculateLevel = (xp) => {
-        const getNeededXP = (level) => {
-            return level * 100
-        }
-        let calculateXP = xp
-        let level = 0
-        while (calculateXP >= getNeededXP(level + 1)) {
-            calculateXP -= getNeededXP(level + 1)
-            level++
-        }
-
-        return {level: level, xp: calculateXP, neededXP: getNeededXP(level + 1)}
-    }
-
     return (
         <>
             {
                 isLoading ? <Loading /> :
                     <>
                         <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px" }}>
-                            <section class="bg-image" style={{height: "100%"}}>
+                            <section className="bg-image" style={{height: "100%"}}>
                                 <div className="is-flex is-justify-content-center">
-                                    <h2 className="is-size-3 has-text-weight-bold">{user.username} ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )</h2>
+                                    <h2 className="is-size-3 has-text-weight-bold">{user ? user.username : ""} ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )</h2>
                                 </div>
 
                                 <div className="is-flex is-justify-content-center">

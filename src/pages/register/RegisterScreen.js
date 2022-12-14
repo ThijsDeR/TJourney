@@ -1,4 +1,3 @@
-import Footer from "../../components/footer/Footer";
 import Navigation from "../../components/navigation/Navigation.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faKey, faUser } from '@fortawesome/free-solid-svg-icons'
@@ -15,7 +14,7 @@ function Register({ user, setCurrentUser, isLoading, setIsLoading }) {
 
     useEffect(() => {
         setIsLoading(false)
-    }, [])
+    }, [setIsLoading])
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -52,8 +51,8 @@ function Register({ user, setCurrentUser, isLoading, setIsLoading }) {
                             </div>
                             {
                                 error ?
-                                    <div class="notification is-danger is-light">
-                                        <button class="delete" onClick={deleteNotificationHandler}></button>
+                                    <div className="notification is-danger is-light">
+                                        <button className="delete" onClick={deleteNotificationHandler}></button>
                                         {error}
                                     </div> : ''
                             }

@@ -28,16 +28,14 @@ export function Challenges({ user, isLoading, setIsLoading }) {
     useEffect(() => {
         if (challenges) {
             calculatediceEyesCountCount(challenges).then((data) => {
-                console.log(data)
                 setdiceEyesCount(data)
             })
         }
     }, [challenges])
 
     useEffect(() => {
-        console.log(challenges, diceEyesCount, goals)
         if (challenges && diceEyesCount !== undefined && goals) setIsLoading(false)
-    }, [challenges, diceEyesCount, goals])
+    }, [challenges, diceEyesCount, goals, setIsLoading])
 
 
     function selectDropDown(goal_id) {
@@ -55,7 +53,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
         const msInDay = 1000 * 60 * 60 * 24
         challenges.forEach((challenge) => {
             if (challenge.finished) {
-                const entry = gameSession[0].entries.find((entry) => {
+                const entry = gameSession.entries.find((entry) => {
                     return Date.parse(entry.date)
                         >= (
                             Math.floor(
@@ -115,7 +113,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
                                             <>
                                                 <Link to="/game">
                                                     <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (diceEyesCount !== 0 ? "rgba(0, 200, 200, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px" }}>
-                                                        <img src={luckyBlock} style={{ width: "50px" }} />
+                                                        <img src={luckyBlock} style={{ width: "50px" }} alt="Lucky block"/>
                                                         <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? diceEyesCount : "0"}</p>
                                                     </div>
                                                 </Link>
@@ -131,10 +129,10 @@ export function Challenges({ user, isLoading, setIsLoading }) {
                             <div className="is-size-4 has-text-white has-text-centered box has-background-grey mx-5 mt-5 mb-0" onClick={() => selectDropDown(0)}>
                                 Today's Challenges<FontAwesomeIcon className="is-pulled-right pr-5" icon={faCaretDown} />
                             </div>
-                            {challenges.map((challenge) => (
+                            {challenges ? challenges.map((challenge, challengeIndex) => (
                                 <>
                                     {isSelected === 0 ?
-                                        <div className="columns is-mobile mx-5 my-1">
+                                        <div key={challengeIndex.toString() + "-c"} className="columns is-mobile mx-5 my-1">
                                             <div className="column is-3 box has-background-black has-text-white my-1">Day: {challenge.id}</div>
                                             <div className="column is-9 box has-background-grey-dark has-text-white my-1">{challenge.name}
                                                 <input type="checkbox" className="is-pulled-right" style={{ width: "25px", height: "25px" }} checked={challenge.finished} onClick={() => checkChallengeHandler(challenge.goal_id, challenge.id, challenge.finished)} />
@@ -142,18 +140,18 @@ export function Challenges({ user, isLoading, setIsLoading }) {
                                         </div>
                                         : ""
                                     }
-                                </>
-                            ))}
+                                </> 
+                            )) : ''}
 
-                            {goals.map((goal) =>
+                            {goals ? goals.map((goal, goalIndex) =>
                                 <>
-                                    <div className="is-size-4 has-text-white has-text-centered box has-background-grey mx-5 mt-5 mb-0" onClick={() => selectDropDown(goal._id)}>
+                                    <div key={goalIndex.toString() + "-g"} className="is-size-4 has-text-white has-text-centered box has-background-grey mx-5 mt-5 mb-0" onClick={() => selectDropDown(goal._id)}>
                                         {goal.name}<FontAwesomeIcon className="is-pulled-right pr-5" icon={faCaretDown} />
                                     </div>
-                                    {goal.challenges.map((challenge) => (
+                                    {goal.challenges ? goal.challenges.map((challenge, challengeIndex) => (
                                         <>
                                             {isSelected === goal._id ?
-                                                <div className="columns is-mobile mx-5 my-1">
+                                                <div key={challengeIndex.toString() + "-gc"} className="columns is-mobile mx-5 my-1">
                                                     <div className="column is-3 box has-background-black has-text-white my-1">Day: {challenge.id}</div>
                                                     <div className="column is-9 box has-background-grey-dark has-text-white my-1">{challenge.name}
                                                         <input type="checkbox" className="is-pulled-right" style={{ width: "25px", height: "25px" }} checked={challenge.finished} onClick={() => checkChallengeHandler(goal._id, challenge.id, challenge.finished)} />
@@ -162,44 +160,9 @@ export function Challenges({ user, isLoading, setIsLoading }) {
                                                 : ""
                                             }
                                         </>
-                                    ))}
+                                    )) : ""}
                                 </>
-                            )}
-                            {/* Fucking thissa versie */}
-                            {/* {
-                                challenges
-                                    ? <>
-                                        <div style={{ display: "flex", justifyContent: "center" }}>
-                                            <h1 className="is-size-3 has-text-white">Challenges ({diceEyesCount ? diceEyesCount : 0})</h1>
-                                        </div>
-                                        {challenges.map((challenge) => (
-                                            <>
-                                                <div className="columns is-mobile mx-5 my-1">
-                                                    <div className="column is-3 box has-background-black has-text-white my-1">Day: {challenge.id}</div>
-                                                    <div className="column is-9 box has-background-grey-dark has-text-white my-1">{challenge.name}</div>
-
-                                                </div>
-
-                                                <div className="container m-3">
-                                                    <div className="box">
-                                                        <article class="media">
-                                                            <div class="media-content" style={{ overflow: "hidden" }}>
-                                                                <div class="content is-flex is-justify-content-between is-align-items-center">
-                                                                    <h2 className="has-text-centered m-0">{challenge.name}</h2>
-                                                                    <div class="field">
-                                                                        <div class="control">
-                                                                            <input type="checkbox" style={{ width: "50px", height: "50px" }} checked={challenge.finished} onClick={() => checkChallengeHandler(challenge.goal_id, challenge.id, challenge.finished)} />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </article>
-                                                    </div>
-                                                </div> 
-                                            </>
-                                        ))}
-                                    </> : ""
-                            } */}
+                            ) : ""}
                         </div>
                         <Navigation user={user} />
                     </>

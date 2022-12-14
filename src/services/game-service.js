@@ -6,15 +6,35 @@ export const getGameSession = async () => {
 
     const result = await getCurrentUser()
     if (result) {
-        return axios.post("/v1/gameSessions/find", {
-            findQuery: {
-                "user_id": result._id
+        return axios.get("/v1/gameSessions/", {
+            headers: { Authorization: `Bearer ${localUser.accessToken}` }
+        }).then((response) => {
+            if (response.data.error) throw response.data.error
+
+            return response.data.data;
+        });
+    }
+
+    return null
+}
+
+
+export const setSteps = async (steps) => {
+    const localUser = JSON.parse(localStorage.getItem("user"))
+
+    const result = await getCurrentUser()
+    if (result) {
+        return axios.put("/v1/gameSessions/", {
+            updateQuery: {
+                $set: {
+                    steps: steps
+                }
             },
         }, {
             headers: { Authorization: `Bearer ${localUser.accessToken}` }
         }).then((response) => {
             if (response.data.error) throw response.data.error
-            
+
             return response.data.data;
         });
     }

@@ -6,7 +6,7 @@ source: https://sketchfab.com/3d-models/low-poly-shark-58eddd6fbc2448c38efd1e3df
 title: Low Poly Shark
 */
 
-import React, { useRef } from 'react'
+import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function Shark(props) {

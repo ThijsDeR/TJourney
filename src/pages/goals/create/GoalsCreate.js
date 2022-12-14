@@ -28,16 +28,14 @@ export function GoalsCreate({ user, isLoading, setIsLoading }) {
             setDone(false)
             createGoal(name, description, startValue, endValue, startDate, endDate, category)
         }
-    }, [done])
+    }, [done, name, description, startValue, endValue, startDate, endDate, category])
 
     useEffect(() => {
         setIsLoading(false)
-    }, [])
+    }, [setIsLoading])
 
 
-    console.log(user, isLoading)
     if (user === undefined && !isLoading) {
-        console.log(user, isLoading)
         return <Navigate to="/login" replace />;
     }
 

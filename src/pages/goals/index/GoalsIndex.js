@@ -12,7 +12,7 @@ export function GoalsIndex({ user, isLoading, setIsLoading }) {
             setGoals(data)
             setIsLoading(false)
         })
-    }, [])
+    }, [setIsLoading])
 
     if (!user && !isLoading) {
         return <Navigate to="/login" replace />;
@@ -34,9 +34,9 @@ export function GoalsIndex({ user, isLoading, setIsLoading }) {
                                             <>
                                                 <div className="container m-3">
                                                     <div className="box">
-                                                        <article class="media">
-                                                            <div class="media-content" style={{ overflow: "hidden" }}>
-                                                                <div class="content">
+                                                        <article className="media">
+                                                            <div className="media-content" style={{ overflow: "hidden" }}>
+                                                                <div className="content">
                                                                     <ul style={{ listStyle: "none" }}>
                                                                         <li>Name: {goal.name}</li>
                                                                         <li>description: {goal.description}</li>
@@ -46,31 +46,12 @@ export function GoalsIndex({ user, isLoading, setIsLoading }) {
                                                                         <li>endDate: {goal.endDate}</li>
                                                                         <li>category: {goal.category}</li>
                                                                     </ul>
-                                                                    <div class="field is-grouped">
-                                                                        <div class="control">
-                                                                            <button class="button is-link">Edit</button>
+                                                                    <div className="field is-grouped">
+                                                                        <div className="control">
+                                                                            <button className="button is-link">Edit</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <nav class="level is-mobile">
-                                                                    <div class="level-left">
-                                                                        <a class="level-item" aria-label="reply">
-                                                                            <span class="icon is-small">
-                                                                                <i class="fas fa-reply" aria-hidden="true"></i>
-                                                                            </span>
-                                                                        </a>
-                                                                        <a class="level-item" aria-label="retweet">
-                                                                            <span class="icon is-small">
-                                                                                <i class="fas fa-retweet" aria-hidden="true"></i>
-                                                                            </span>
-                                                                        </a>
-                                                                        <a class="level-item" aria-label="like">
-                                                                            <span class="icon is-small">
-                                                                                <i class="fas fa-heart" aria-hidden="true"></i>
-                                                                            </span>
-                                                                        </a>
-                                                                    </div>
-                                                                </nav>
                                                             </div>
                                                         </article>
                                                     </div>

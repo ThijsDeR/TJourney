@@ -10,14 +10,14 @@ export function SelectGoalOverzicht(props) {
         <>
             <div style={{ position: "fixed", top: "0", bottom: "100px", right: "0", left: "0", overflowY: "auto" }}>
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 20 }}>
-                    <a className="is-small is-size-1 has-text-white" onClick={stepBackHandler}>&lt;</a>
+                    <a href className="is-small is-size-1 has-text-white" onClick={stepBackHandler}>&lt;</a>
                     <h1 className="is-size-1 has-text-white">Overview</h1>
                 </div>
                 <div className="container mx-3 " >
                     <div className="box has-background-grey-light">
-                        <article class="media">
-                            <div class="media-content">
-                                <div class="content">
+                        <article className="media">
+                            <div className="media-content">
+                                <div className="content">
                                     <ul>
                                         <li>Name: {props.name}</li>
                                         <li>Description: {props.description}</li>
@@ -27,12 +27,12 @@ export function SelectGoalOverzicht(props) {
                                         <li>endDate: {props.endDate}</li>
                                         <li>category: {props.category}</li>
                                     </ul>
-                                    <div class="field is-grouped">
-                                        <div class="control">
-                                            <button class="button is-link" style={{ backgroundColor: "rgb(247, 105, 255)" }} onClick={submitHandler}>Submit</button>
+                                    <div className="field is-grouped">
+                                        <div className="control">
+                                            <button className="button is-link" style={{ backgroundColor: "rgb(247, 105, 255)" }} onClick={submitHandler}>Submit</button>
                                         </div>
-                                        <div class="control">
-                                            <button class="button is-link is-light">Cancel</button>
+                                        <div className="control">
+                                            <button className="button is-link is-light">Cancel</button>
                                         </div>
                                     </div>
                                 </div>

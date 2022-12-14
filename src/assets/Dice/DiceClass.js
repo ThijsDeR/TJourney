@@ -1,4 +1,4 @@
-import { RandomCount } from '../../services/math-service'
+import { randomCount } from '../../services/math-service'
 import { PositionPlayerClass } from "../../components/PositionPlayerClass";
 
 export class DiceClass {
@@ -41,7 +41,7 @@ export class DiceClass {
                 if (!this.countAsked && this.delay >= 600) {
                     this.textAnimation(0);
                     this.countAsked = true;
-                    positionPlayerClass.setDiceNumber(RandomCount(maxCount));
+                    positionPlayerClass.setDiceNumber(randomCount(maxCount));
                 }
             } if (this.countAsked && positionPlayerClass.diceNumber === 0) {
                 this.reset()

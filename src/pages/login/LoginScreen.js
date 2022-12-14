@@ -1,10 +1,9 @@
-import Footer from "../../components/footer/Footer";
 import Navigation from "../../components/navigation/Navigation";
 import "./login.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from "react";
-import { getCurrentUser, login } from "../../services/auth-service.js";
+import { login } from "../../services/auth-service.js";
 import { Link, Navigate } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 
@@ -15,7 +14,7 @@ function Login({ user, setCurrentUser, isLoading, setIsLoading }) {
 
     useEffect(() => {
         setIsLoading(false)
-    }, [])
+    }, [setIsLoading])
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -33,7 +32,6 @@ function Login({ user, setCurrentUser, isLoading, setIsLoading }) {
         }
     };
 
-    console.log(user, isLoading)
     if (user && !isLoading) {
         return <Navigate to="/home" replace />;
 
@@ -55,8 +53,8 @@ function Login({ user, setCurrentUser, isLoading, setIsLoading }) {
                                 </div>
                                 {
                                     error ?
-                                        <div class="notification is-danger is-light">
-                                            <button class="delete" onClick={deleteNotificationHandler}></button>
+                                        <div className="notification is-danger is-light">
+                                            <button className="delete" onClick={deleteNotificationHandler}></button>
                                             {error}
                                         </div> : ''
                                 }
@@ -85,7 +83,7 @@ function Login({ user, setCurrentUser, isLoading, setIsLoading }) {
                                                 <i className="fas fa-exclamation-triangle"></i>
                                             </span>
                                         </div>
-                                        <a href class="help is-link"><Link to="/register">Don't have an account?</Link></a>
+                                        <Link to="/register" className="help is-link">Don't have an account?</Link>
                                     </div>
 
                                     <div className="field is-grouped">

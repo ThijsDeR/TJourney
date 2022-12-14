@@ -59,10 +59,30 @@ export const deleteAccount = async () => {
             body: localUser
         })
         localStorage.removeItem("user");
-        window.location.href="/login";
+        window.location.href = "/login";
 
         return data.data.data;
     }
 
     return null;
+}
+
+export const editUser = async (user, newUsername) => {
+    const localUser = JSON.parse(localStorage.getItem("user"));
+
+    if (localUser && localUser.accessToken) {
+        return axios.put("/v1/users/", {
+            updateQuery: {
+                $set: {
+                    "username": newUsername
+                }
+            }
+        }, {
+            headers: { Authorization: `Bearer ${localUser.accessToken}` }
+        }).then((response) => {
+            if (response.data.error) throw response.data.error
+
+            return response.data.data;
+        });
+    }
 }

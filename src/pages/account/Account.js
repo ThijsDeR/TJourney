@@ -17,8 +17,8 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
     const [userLevel, setUserLevel] = useState(undefined);
     const [level, setLevel] = useState(undefined);
     const [deleteAccountInput, showDeleteAccountInput] = useState(false);
-    const [inputPassword, setInputPassword] = useState(false);
-    const [inputUserName, setInputUserName] = useState(false);
+    const [inputPassword, showInputPassword] = useState(false);
+    const [inputUserName, showInputUserName] = useState(false);
     const [newUserName, setNewUsername] = useState(undefined);
     const [password, setPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -101,13 +101,13 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                                             ?
                                             <form onSubmit={(e) => handleEditUserName(e)}>
                                                 <input className="input has-text-white has-text-centered has-background-black" style={{ width: "35vw" }} type="text" placeholder="username" defaultValue={user.username} onChange={(e) => setNewUsername(e.target.value)} />
-                                                <button className="is-pulled-right button" onClick={() => setInputUserName(!inputUserName)}>Cancel</button>
+                                                <button className="is-pulled-right button ml-3" onClick={() => showInputUserName(!inputUserName)}>Cancel</button>
                                                 <button className="is-pulled-right button">Submit</button>
                                             </form>
                                             :
                                             <>
                                                 {user.username}
-                                                <button className="is-pulled-right button" onClick={() => setInputUserName(!inputUserName)}>Edit</button>
+                                                <button className="is-pulled-right button" onClick={() => showInputUserName(!inputUserName)}>Edit</button>
                                             </>
                                         }
 
@@ -127,7 +127,7 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                                     </Canvas >
 
                                     <div style={{ position: "absolute", bottom: "10vh", right: "5vw" }}>
-                                        <button className="button" onClick={() => setInputPassword(!inputPassword)}>
+                                        <button className="button" onClick={() => [showInputPassword(!inputPassword), showDeleteAccountInput(false)]}>
                                             Edit password
                                         </button>
                                     </div>
@@ -137,18 +137,18 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                                                 Old password
                                                 <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                                             </div>
-                                            {passwordNotSame ?
-                                                <div className="has-text-danger">
-                                                    Passwords don't match
-                                                </div>
-                                                :
-                                                ""
-                                            }
-                                            <div>
+                                            <div className="mt-3">
+                                                {passwordNotSame ?
+                                                    <div className="has-text-danger is-size-5 my-0 ">
+                                                        Passwords don't match
+                                                    </div>
+                                                    :
+                                                    ""
+                                                }
                                                 New password
                                                 <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setNewPassword(e.target.value)} />
                                             </div>
-                                            <div>
+                                            <div className="mt-3">
                                                 Confirm new password
                                                 <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setNewPasswordConfirm(e.target.value)} />
                                             </div>
@@ -161,9 +161,9 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                                         ""
                                     }
                                 </div>
-                                
+
                                 <div style={{ position: "absolute", bottom: "10vh" }}>
-                                    <button className="button is-danger mt-5 is-relative" onClick={() => showDeleteAccountInput(!deleteAccountInput)}>Delete account</button>
+                                    <button className="button is-danger mt-5 is-relative" onClick={() => [showDeleteAccountInput(!deleteAccountInput), showInputPassword(false)]}>Delete account</button>
                                 </div>
 
                                 {deleteAccountInput ?
@@ -171,7 +171,7 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                                         <form onSubmit={(e) => handleDeleteAccount(e)}>
                                             <div className="is-size-4">Confirm deletion by entering your password:</div>
                                             <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-                                            <button className="button mt-1 is-pulled-right">Submit</button>
+                                            <button className="button mt-3 is-pulled-right">Submit</button>
                                         </form>
                                     </>
                                     :

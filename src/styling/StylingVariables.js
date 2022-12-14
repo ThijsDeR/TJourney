@@ -267,12 +267,37 @@ export const leaderboardContainer = {
     width: '100%',
     display: 'grid',
     gridTemplateColumns: '1fr 1fr 1fr',
+    alignItems: 'center',
 }
 
 export const leaderboardLevel = {
-    justifySelf: 'end'
+    gridColumn: 'end'
 }
 
+export const fakePfLeaderboard = {
+    backgroundColor: white,
+    borderRadius: '50%',
+    height: '40px',
+    width: '40px',
+    margin: '5px 10px 5px 5px',
+}
+
+export const rankingBubbleLeaderboard = {
+    backgroundColor: primaryColor,
+    height: '25px',
+    width: '25px',
+    borderRadius: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '0px 7px',
+    fontWeight: 'bold',
+    // put div above the pf
+    zIndex: '1',
+    position: 'relative',
+    top: '-55px',
+    left: '0px',
+
+}
 
 
 

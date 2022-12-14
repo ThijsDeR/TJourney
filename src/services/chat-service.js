@@ -18,3 +18,14 @@ export const createMessage = (messages, user, sender) => {
         return response.data.data;
     });
 };
+
+export const getAllMessages = async () => {
+    const localUser = JSON.parse(localStorage.getItem("user"))
+
+    const messages = await axios.get("/v1/messages/", {
+        headers: { Authorization: `Bearer ${localUser.accessToken}` }
+    })
+
+
+    return messages.data.data
+}

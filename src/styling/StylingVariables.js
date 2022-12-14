@@ -52,6 +52,11 @@ export const lightText = {
     fontWeight: 'lighter',
 }
 
+export const bigTitle = {
+    fontSize: '25px',
+    fontWeight: 'bold',
+}
+
 export const buttonStyle = {
     color: primaryColor,
     height: '35px',
@@ -208,5 +213,67 @@ export const pfBox = {
     alignItems: 'center',
     justifyContent: 'center',
 }
+
+export const myRank = {
+    backgroundColor: primaryColor,
+    padding: '5px 10px',
+    borderRadius: '5px',
+}
+
+export const topThreeContainer = {
+    width: '100%',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr',
+    justifyItems: 'center',
+    margin: '20px 0px',
+}
+
+export const topThreePfOne = {
+    backgroundColor: white,
+    height: '120px',
+    width: '120px',
+    borderRadius: '50%',
+    display: 'inline-block',
+    alignSelf: 'flex-end'
+}
+
+export const topThreePfTwoThree = {
+    backgroundColor: white,
+    height: '70px',
+    width: '70px',
+    borderRadius: '50%',
+    bottom: '0',
+    display: 'inline-block',
+    alignSelf: 'flex-end'
+}
+
+export const topThreeInfo = {
+}
+
+export const topThreeTileOne = {
+}
+
+export const topThreeTileTwo = {
+}
+
+export const topThreeTileThree = {
+}
+
+export const leaderboardContainer = {
+    backgroundColor: secondaryColor,
+    padding: '10px 10px',
+    borderRadius: '5px',
+    margin: '10px 0px',
+    width: '100%',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr',
+}
+
+export const leaderboardLevel = {
+    justifySelf: 'end'
+}
+
+
+
 
 

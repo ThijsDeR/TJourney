@@ -44,7 +44,7 @@ function App({ timeElapsed }) {
                 <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                <Route path="/avatarselect" element={<AvatarSelect user={user} isLoading={isLoading} setIsLoading />} />
+                <Route path="/avatarselect" element={<AvatarSelect user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
             </Routes>
         </>
     )

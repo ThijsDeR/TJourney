@@ -7,6 +7,7 @@ import { getGameSession } from "../../services/game-service";
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import luckyBlock from '../../assets/lg1emBK.png'
+import { dice } from "../../services/dice-service";
 
 
 export function Challenges({ user, isLoading, setIsLoading }) {
@@ -74,14 +75,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
             }
         })
 
-        const diceEyesCountConfigs = [
-            [0, 20],
-            [0, 12, 20],
-            [0, 10, 16, 20],
-            [0, 8, 14, 18, 20],
-            [0, 6, 12, 16, 18, 20],
-            [0, 6, 10, 14, 16, 18, 20],
-        ]
+        const diceEyesCountConfigs = dice();
 
         return diceEyesCountConfigs[Math.max(0, total - 1)][finished]
     }

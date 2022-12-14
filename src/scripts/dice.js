@@ -6,6 +6,9 @@ import DiceComponent from "../assets/Dice/Dice.js";
 import { randomCount } from "../services/math-service.js";
 import Position from "./position.js";
 import Rotation from "./rotation.js";
+import { dice } from '../services/dice-service'
+import Player from './player.js'
+import { noDicesLeft, setAmountOfDices } from "../pages/game/GameScreen.js";
 
 
 export default class Dice extends Drawable {
@@ -15,11 +18,13 @@ export default class Dice extends Drawable {
     count;
     animationTime;
     maxThrowingTime;
+    spawnTime;
     animationAngle;
     animationDD;
     animationRadius;
     originalPosition;
     spinEndingPosition;
+    highestPointOfGraphTime;
 
     constructor(position, rotation, scale) {
         super(position, rotation, scale)
@@ -29,8 +34,10 @@ export default class Dice extends Drawable {
         this.count = 0;
         this.animationTime = 0;
         this.maxThrowingTime = 500;
-        this.animationAngle = 0
-        this.animationDD = 1
+        this.spawnTime = 200;
+        this.highestPointOfGraphTime = 300;
+        this.animationAngle = 0;
+        this.animationDD = 1;
         this.animationRadius = 40;
         this.spinEndingPosition = null;
     }
@@ -78,9 +85,13 @@ export default class Dice extends Drawable {
 
             this.textVisible = this.animationTime >= this.maxThrowingTime * 1.2
 
-            if (this.count === 0) this.reset();
-        } else this.throwDiceAnimation()
+            setAmountOfDices(false);
+            noDicesLeft();
 
+            if (this.count === 0) this.reset();
+        } else {
+            this.throwDiceAnimation(this.animationTime)      
+        }
     }
 
     isThrowing() {
@@ -90,9 +101,9 @@ export default class Dice extends Drawable {
     /**
      * function which is called to move the dice or to stop it
      */
-    throwDiceAnimation() {
+    throwDiceAnimation(animationTime) {
         // if (this.luckyMove === true) {
-        this.moveLuckyblock();
+        this.moveLuckyblock(animationTime, this.diceNumberTotal);
         // } 
         // else {
         //     this.moveLuckyblockToCenter(speed, player)
@@ -140,9 +151,9 @@ export default class Dice extends Drawable {
      */
     moveLuckyblock() {
         // increase the angle of rotation
-        this.animationAngle += Math.acos(1 - Math.pow(this.animationDD / this.animationRadius, 2) / 2);
+        this.animationAngle += Math.acos(1 - Math.pow(this.animationDD / this.animationRadius, 2) / 2) + 0;
         this.position.x = this.animationRadius * Math.cos(this.animationAngle) / 32
-        this.position.y = 2
+        this.position.y = 0
         this.position.z = this.animationRadius * Math.sin(this.animationAngle) / 32
     }
 

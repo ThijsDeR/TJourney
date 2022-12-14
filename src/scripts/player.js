@@ -11,13 +11,16 @@ export default class Player extends Drawable {
     placeOnTheBoard;
     walkDelay;
     walkDuration;
+    listOfDices;
 
     constructor(position, rotation, scale, placeOnTheBoard) {
         super(position, rotation, scale)
-        this.dice = new Dice(new Position(0, 2, 0), new Rotation(0, 0, 0), 1)
+        this.listOfDices = [];
+        this.dice = new Dice(new Position(0, 2, 0), new Rotation(0, 0, 0), 0.5)
         this.placeOnTheBoard = placeOnTheBoard;
         this.walkDelay = 0;
         this.walkDuration = 1000;
+        this.listOfDices.push(this.dice);
     }
 
     getElement() {
@@ -28,6 +31,10 @@ export default class Player extends Drawable {
                 {this.dice.getElement()}
             </mesh>
         )
+    }
+
+    getlistOfDices() {
+        return this.listOfDices;
     }
 
     update = (timeElapsed, circles) => {

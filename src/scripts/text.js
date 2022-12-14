@@ -5,7 +5,7 @@ export default class Text extends Drawable {
     text;
     fontSize;
     color;
-    constructor(position, rotation, scale, text, fontSize = 6, color = "white") {
+    constructor(position, rotation, scale, text, fontSize = 6, color = "pink") {
         super(position, rotation, scale)
         this.text = text;
         this.fontSize = fontSize;

@@ -116,6 +116,13 @@ export default function FantasyBookComponent({ timeElapsed, game }) {
                                         <Cloud />
                                     </mesh>
                                 </group>
+                                
+                                {/* Black hole in the castle wall */}
+                                {/* <group>
+                                <mesh position={[-17, 0, -31.6]} rotation={[-1.55, 0, 0]} scale={5}>
+                                        <Circle meshStandardMaterial={'black'}/>
+                                    </mesh>
+                                </group> */}
                             </group>
                         </group>
                     </group>

@@ -16,9 +16,13 @@ import Game from '../../scripts/game.js';
 import FantasyBook from '../../scripts/fantasyBook';
 import { calculateLevel } from '../../services/level-service';
 import { getCurrentUser } from '../../services/auth-service';
+import { dice } from '../../services/dice-service';
+import { randomCount } from '../../services/math-service';
 
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
+let amountOfDicesAnimation = false;
+let dicesLeft = dice().length;
 
 function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
     const [challenges, setChallenges] = useState(undefined);
@@ -100,14 +104,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
             }
         })
 
-        const diceEyesCountConfigs = [
-            [0, 20],
-            [0, 12, 20],
-            [0, 10, 16, 20],
-            [0, 8, 14, 18, 20],
-            [0, 6, 12, 16, 18, 20],
-            [0, 6, 10, 14, 16, 18, 20],
-        ]
+        const diceEyesCountConfigs = dice()
 
         return diceEyesCountConfigs[Math.max(0, total - 1)][finished]
     }
@@ -122,6 +119,14 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
         game.shouldUpdate = false
         setSteps(game.player.placeOnTheBoard)
         reloadData()
+    }
+
+    const generateRandomEyesAmount = () => {
+        if (amountOfDicesAnimation === true) {
+            return randomCount(30);
+        } else {
+            return dicesLeft;
+        }
     }
 
     return (
@@ -155,16 +160,27 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (diceEyesCount !== 0 ? "rgba(0, 0, 0, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px" }}
                         onClick={() => {
-                            if (diceEyesCount !== 0 && game.player.dice.count === 0) game.throwDice(diceEyesCount)
+                            if (diceEyesCount !== 0 && game.player.dice.count === 0) {
+                                game.throwDice(diceEyesCount);
+                                amountOfDicesAnimation = true;
+                            }
                         }}
                     >
                         <img src={luckyBlock} style={{ width: "50px" }} alt="lucky block"/>
-                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? diceEyesCount : "0"}</p>
+                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? generateRandomEyesAmount() : "0"}</p>
                     </div>
                 </div>
                 <Navigation user={user} />
 
             </>
     )
+}
+
+export function setAmountOfDices(boolean) {
+    amountOfDicesAnimation = boolean;
+}
+
+export function noDicesLeft() {
+    dicesLeft = 0;
 }
 export default GameScreen;

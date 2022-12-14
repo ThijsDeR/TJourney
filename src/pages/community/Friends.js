@@ -5,7 +5,7 @@ import Navigation from "../../components/navigation/Navigation";
 
 // styling
 import 'bulma/css/bulma.min.css';
-import { pageStyle, title, primaryColor, containerCenteredBetween, containerLeftRight, goals, tileStyle, containerCenteredLeftItem, smallButton, white, friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, suggestedFriendsBox, suggestedFriendsTile, pfBox, boldText, lightText, chatDivider } from '../../styling/StylingVariables.js';
+import { pageStyle, title, primaryColor, containerCenteredBetween, containerLeftRight, goals, tileStyle, containerCenteredLeftItem, smallButton, white, friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, suggestedBox, suggestedTile, pfBox, boldText, lightText, chatDivider } from '../../styling/StylingVariables.js';
 
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -24,32 +24,32 @@ function Friends({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
                 <Link style={{ height: '24px', border: 'unset' }}><div style={{ color: primaryColor }} >See more</div></Link>
             </div>
 
-            <div style={suggestedFriendsBox}>
+            <div style={suggestedBox}>
 
                 {/* TODO: four suggested friends form db */}
                 {/* Suggested friend block */}
-                <div style={suggestedFriendsTile}>
+                <div style={suggestedTile}>
                     <div style={pfBox}><div style={fakePF}></div></div>
                     <div style={boldText}>Name</div>
                     <div style={lightText}>Level x</div>
                 </div>
 
                 {/* Suggested friend block */}
-                <div style={suggestedFriendsTile}>
+                <div style={suggestedTile}>
                     <div style={pfBox}><div style={fakePF}></div></div>
                     <div style={boldText}>Name</div>
                     <div style={lightText}>Level x</div>
                 </div>
 
                 {/* Suggested friend block */}
-                <div style={suggestedFriendsTile}>
+                <div style={suggestedTile}>
                     <div style={pfBox}><div style={fakePF}></div></div>
                     <div style={boldText}>Name</div>
                     <div style={lightText}>Level x</div>
                 </div>
 
                 {/* Suggested friend block */}
-                <div style={suggestedFriendsTile}>
+                <div style={suggestedTile}>
                     <div style={pfBox}><div style={fakePF}></div></div>
                     <div style={boldText}>Name</div>
                     <div style={lightText}>Level x</div>

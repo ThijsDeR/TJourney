@@ -8,7 +8,7 @@ export const white = '#F7F7F7'; // high emphasis
 const backgroundColor = '#121212';
 
 // when you change this color, you will change the primary color of the whole page
-export const primaryColor = blue;
+export const primaryColor = green;
 export const secondaryColor = '#323232';
 export const tertiaryColor = '#505050';
 
@@ -136,8 +136,15 @@ export const smallButton = {
     alignItems: 'center',
 }
 
+export const fakePF = {
+    backgroundColor: white,
+    borderRadius: '50%',
+    height: '50px',
+    width: '50px',
+    margin: '5px 10px 5px 5px',
+}
+
 export const friendsTile = {
-    backgroundColor: secondaryColor,
     color: white,
     borderRadius: '5px',
     padding: '3px 10px',
@@ -155,26 +162,24 @@ export const friendItems = {
     alignItems: 'center',
 }
 
-export const messageButton = {
+export const notifacationBubble = {
     backgroundColor: primaryColor,
     justifySelf: 'flex-end',
     display: 'flex',
     alignItems: 'center',
-    borderRadius: '5px',
+    borderRadius: '50px',
     height: '30px',
+    width: '30px',
     padding: '0px 10px',
 }
 
-export const fakePF = {
-    backgroundColor: white,
-    borderRadius: '50%',
-    height: '50px',
-    width: '50px',
-    margin: '5px 10px 5px 5px',
-}
 
-export const friendsContainer = {
+export const chatContainer = {
     display: 'block'
+}
+export const chatDivider = {
+    backgroundColor: secondaryColor,
+    margin: '0px 0px 0px 75px',
 }
 
 export const suggestedFriendsBox = {
@@ -199,4 +204,5 @@ export const pfBox = {
     alignItems: 'center',
     justifyContent: 'center',
 }
+
 

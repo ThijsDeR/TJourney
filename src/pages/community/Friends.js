@@ -5,7 +5,7 @@ import Navigation from "../../components/navigation/Navigation";
 
 // styling
 import 'bulma/css/bulma.min.css';
-import { pageStyle, title, primaryColor, containerCenteredBetween, containerLeftRight, goals, tileStyle, containerCenteredLeftItem, smallButton, white, friendsTile, friendItems, messageButton, fakePF, friendsContainer, suggestedFriendsBox, suggestedFriendsTile, pfBox, boldText, lightText } from '../../styling/StylingVariables.js';
+import { pageStyle, title, primaryColor, containerCenteredBetween, containerLeftRight, goals, tileStyle, containerCenteredLeftItem, smallButton, white, friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, suggestedFriendsBox, suggestedFriendsTile, pfBox, boldText, lightText, chatDivider } from '../../styling/StylingVariables.js';
 
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -66,17 +66,34 @@ function Friends({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
             </div>
 
             {/* Friend block */}
-            <div style={friendsContainer}>
+            <div style={chatContainer}>
                 <div className='friendTile' style={friendsTile}>
                     <div className='friendItems' style={friendItems}>
                         <div className='friendIcon' style={fakePF}></div>
                         <div className='friendInfo'>
-                            <div className='friendName' style={{ fontWeight: 'bold' }}> Name </div>
-                            <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Level 6 </div>
+                            <div className='friendName' style={{ fontWeight: 'bold' }}> Name <em style={lightText}>level x</em> </div>
+                            <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Last message </div>
                         </div>
                     </div>
-                    <div className='messageButton' style={messageButton}>Send message</div>
+                    <div className='messageButton' style={notifacationBubble}>8</div>
                 </div>
+                <hr style={chatDivider} />
+
+            </div>
+
+            <div style={chatContainer}>
+                <div className='friendTile' style={friendsTile}>
+                    <div className='friendItems' style={friendItems}>
+                        <div className='friendIcon' style={fakePF}></div>
+                        <div className='friendInfo'>
+                            <div className='friendName' style={{ fontWeight: 'bold' }}> Name <em style={lightText}>level x</em> </div>
+                            <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Last message </div>
+                        </div>
+                    </div>
+                    <div className='messageButton' style={notifacationBubble}>8</div>
+                </div>
+                <hr style={chatDivider} />
+
             </div>
 
 

@@ -29,7 +29,6 @@ import Groups from './Groups.js';
 import Leaderboard from './Leaderboard.js';
 
 function CommunityScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
-
     return (
         <>
             <div style={pageStyle}>

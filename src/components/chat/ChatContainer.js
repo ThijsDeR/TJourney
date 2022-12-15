@@ -5,6 +5,7 @@ import ChatInput from './ChatInput';
 import axios from "axios";
 import { getAllMessagesRoute, sendMessageRoute } from '../../utils/APIRoutes'
 import { v4 as uuidv4} from "uuid";
+import { getAllMessages, createMessage } from '../../services/chat-service.js';
 
 export default function ChatContainer({ currentChat, currentUser, socket }) {
   const [messages, setMessages] = useState([]);
@@ -16,46 +17,46 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 
     const fetchData = async () => {
       if(currentChat){
-        const response = await axios.post(getAllMessagesRoute, {
-          from: currentUser._id,
-          to: currentChat._id,
-        });
-        setMessages(response.data);
+        const response =await getAllMessages();
+        console.log(response);
+        setMessages(response);
       }
     }
     fetchData();
   }, [currentChat]);
 
   const handleSendMsg = async (msg) => {
-    await axios.post(sendMessageRoute, {
-      from: currentUser._id,
-      to: currentChat._id,
-      message: msg,
-    });
-    socket.current.emit("send-msg", {
-      to: currentChat._id,
-      from: currentUser._id,
-      message: msg,
-    });
+    console.log(msg)
+   await createMessage(msg,currentUser._id,currentChat._id)
+    // await axios.post(sendMessageRoute, {
+    //   from: currentUser._id,
+    //   to: currentChat._id,
+    //   message: msg,
+    // });
+    // socket.current.emit("send-msg", {
+    //   to: currentChat._id,
+    //   from: currentUser._id,
+    //   message: msg,
+    // });
 
-    const msgs = [...messages];
-    msgs.push({
-      fromSelf: true,
-      message: msg,
-    });
-    setMessages(msgs);
+    // const msgs = [...messages];
+    // msgs.push({
+    //   fromSelf: true,
+    //   message: msg,
+    // });
+    // setMessages(msgs);
   };
 
-  useEffect(() => {
-    if (socket.current) {
-      socket.current.on("msg-recieved", (msg) => {
-        setArrivalMessage({
-          fromSelf: false,
-          message: msg,
-        });
-      })
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (socket.current) {
+  //     socket.current.on("msg-recieved", (msg) => {
+  //       setArrivalMessage({
+  //         fromSelf: false,
+  //         message: msg,
+  //       });
+  //     })
+  //   }
+  // }, []);
 
   useEffect(()=>{
     arrivalMessage && setMessages((prev)=>[...prev,arrivalMessage]);

@@ -29,3 +29,14 @@ export const getAllMessages = async () => {
 
     return messages.data.data
 }
+
+export const getMessages = async (currentUser,currentChat) => {
+    const localUser = JSON.parse(localStorage.getItem("user"))
+
+    const messages = await axios.get("/v1/messages/", {
+        headers: { Authorization: `Bearer ${localUser.accessToken}` }
+    })
+
+
+    return messages.data.data
+}

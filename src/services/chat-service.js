@@ -4,7 +4,7 @@ import { getCurrentUser } from "./auth-service.js";
 export const createMessage = (messages, user, sender) => {
     const localUser = JSON.parse(localStorage.getItem("user"))
 
-    return axios.post("/v1/goals", {
+    return axios.post("/v1/messages", {
         messages,
         user,
         sender

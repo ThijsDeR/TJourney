@@ -36,17 +36,17 @@ const RandomguyCanvas =
     </Canvas>;
 
 const MichelleIdleCanvas =
-<Canvas camera={{ position: [2, 2, 2] }}>
+<Canvas camera={{ position: [2.2, 2.2, 2.2] }}>
     <OrbitControls target={[0, 1.8, 0]} enableZoom={false} enablePan={true} autoRotate={true} autoRotateSpeed={5} />
-    <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={2.3}>
+    <mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={2}>
         <MichelleIdle />
     </mesh>
     <Environment preset="sunset" />
 </Canvas>;
 
 export const DefaultAvatars = {
-    ChopperCanvas,
-    ShibaCanvas,
-    RandomguyCanvas,
-    MichelleIdleCanvas
+    Chopper: ChopperCanvas,
+    Shiba: ShibaCanvas,
+    Randomguy: RandomguyCanvas,
+    MichelleIdle: MichelleIdleCanvas
 };

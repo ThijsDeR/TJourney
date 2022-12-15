@@ -33,22 +33,22 @@ function AvatarSelect({ user, isLoading, setIsLoading }) {
                         {/* Contains two columns */}
                         <div className="columns is-mobile is-centered">
                             {/* Default column */}
-                            <div className="box my-3 mr-2 column is-5 has-background-grey-dark" onClick={() => selectAvatar("Chopper")}>
-                                {DefaultAvatars.ChopperCanvas}
+                            <div className="box my-3 mr-2 column is-5 has-background-dark" onClick={() => selectAvatar("Chopper")}>
+                                {DefaultAvatars.Chopper}
                             </div>
                             {/* End of first column */}
-                            <div className="box my-3 ml-2 column is-5 has-background-grey-dark" onClick={() => selectAvatar("Shiba")}>
-                                {DefaultAvatars.ShibaCanvas}
+                            <div className="box my-3 ml-2 column is-5 has-background-dark" onClick={() => selectAvatar("Shiba")}>
+                                {DefaultAvatars.Shiba}
                             </div>
                         </div>
                         {/* End of first set of columns */}
 
                         <div className="columns is-mobile is-centered">
-                            <div className="box my-3 mr-2 column is-5 has-background-grey-dark" onClick={() => selectAvatar("Randomguy")}>
-                                {DefaultAvatars.RandomguyCanvas}
+                            <div className="box my-3 mr-2 column is-5 has-background-dark" onClick={() => selectAvatar("Randomguy")}>
+                                {DefaultAvatars.Randomguy}
                             </div>
-                            <div className="box my-3 ml-2 column is-5 has-background-grey-dark" onClick={() => selectAvatar("Randomguy")}>
-                                {DefaultAvatars.MichelleIdleCanvas}
+                            <div className="box my-3 ml-2 column is-5 has-background-dark" onClick={() => selectAvatar("MichelleIdle")}>
+                                {DefaultAvatars.MichelleIdle}
                             </div>
                         </div>
                     </div>

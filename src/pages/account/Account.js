@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
-import Chopper from '../../assets/Chopper/Chopper';
+import { DefaultAvatars } from '../../assets/DefaultAvatars/DefaultAvatarsCanvas';
 import { Environment, OrbitControls } from "@react-three/drei";
 
 import { login, deleteAccount, editUsername, editPassword } from "../../services/auth-service";
@@ -25,6 +25,22 @@ function Account({ user, isLoading, setIsLoading }) {
     const [newPassword, setNewPassword] = useState("");
     const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
     const [passwordNotSame, setPasswordNotSame] = useState(false);
+
+    function getAvatar() {
+        let avatar = undefined;
+        Object.keys(DefaultAvatars).forEach(function (key, index) {
+            if (key === user.avatar) {
+                avatar = DefaultAvatars[key];
+                return;
+            }
+        });
+        if (avatar !== undefined) {
+            return avatar;
+        } else {
+            // Defaults to chopper if no avatar in db
+            return DefaultAvatars.Chopper
+        }
+    }
 
     async function handleNewPassword() {
         if (newPassword !== newPasswordConfirm) {
@@ -116,14 +132,9 @@ function Account({ user, isLoading, setIsLoading }) {
                                         Level: ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )
                                     </div>
 
-                                    < Canvas camera={{ position: [3, 2, 3] }}>
-                                        < OrbitControls target={[0, 2.5, 0]} enableZoom={false} enablePan={true} autoRotate={true} autoRotateSpeed={5} />
-                                        < mesh position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.05} >
-                                            {/* TODO: Needs to be a changeable avatar */}
-                                            <Chopper />
-                                        </mesh >
-                                        <Environment preset="sunset" />
-                                    </Canvas >
+                                    <div className="has-background-black-ter box">
+                                        {getAvatar()}
+                                    </div>
 
                                     <div style={{ position: "absolute", bottom: "10vh", right: "5vw" }}>
                                         <button className="button has-background-info has-text-white" onClick={() => [showInputPassword(!inputPassword), showInputDeleteAccount(false)]}>

@@ -18,6 +18,7 @@ import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
 import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
 import { Challenges } from "./pages/challenges/ChallengesScreen.js";
 import GameScreen from "./pages/game/GameScreen.js";
+import CommunityScreen from "./pages/community/CommunityScreen.js";
 
 
 function App({ timeElapsed }) {
@@ -50,4 +51,4 @@ function App({ timeElapsed }) {
     )
 }
 
-export default App;   
+export default App;

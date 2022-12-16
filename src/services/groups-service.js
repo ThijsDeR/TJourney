@@ -5,6 +5,7 @@ export const getGroups = async () => {
     const localUser = JSON.parse(localStorage.getItem("user"))
 
     const result = await getCurrentUser()
+    console.log(result);
     if (result) {
         const promises = [];
         result.groups.forEach((group) => {
@@ -16,8 +17,9 @@ export const getGroups = async () => {
                 const user = await axios.get("/v1/users/" + group, {
                     headers: { Authorization: `Bearer ${localUser.accessToken}` }
                 }).then((response) => {
+                    
                     if (response.data.error) throw response.data.error
-
+                    
                     return response.data.data;
                 })
 

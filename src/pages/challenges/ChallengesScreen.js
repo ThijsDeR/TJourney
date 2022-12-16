@@ -127,8 +127,6 @@ export function Challenges({ user, isLoading, setIsLoading }) {
 
     const setDayHandler = async (day) => {
         setCurrentDay(day)
-        console.log(day)
-        console.log(days[day])
     }
 
     if (user === undefined && !isLoading) {

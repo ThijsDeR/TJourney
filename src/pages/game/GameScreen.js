@@ -16,6 +16,10 @@ import Game from '../../scripts/game.js';
 import FantasyBook from '../../scripts/fantasyBook';
 import { calculateLevel } from '../../services/level-service';
 import { getCurrentUser } from '../../services/auth-service';
+import { getFriends } from '../../services/friends-service';
+import Friend from '../../scripts/friend.js'
+import Position from '../../scripts/position.js'
+import Rotation from '../../scripts/rotation.js'
 
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
@@ -33,6 +37,23 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
             setUser(user)
             setUserLevel(user.level.amount)
             setLevel(calculateLevel(user.level.amount))
+        })
+    }
+
+    const getFriendsData = () => {
+        getFriends().then((friends) => {
+            // setFriends(friends)
+            friends.forEach((friend) => {
+                const gameFriend = game.friends.find((gameFriend) => gameFriend.userName === friend.user.username)
+
+                if (gameFriend) gameFriend.placeOnTheBoard = friend.gameSession.steps;
+                else {
+                    const newLength = game.friends.push(new Friend(new Position(0, 0, 0), new Rotation(0, 0, 0), 0.5, 0, friend.user.username))
+                    game.friends[newLength - 1].setPosition(friend.gameSession.steps, game.world.circles)
+                }
+
+            })
+            
         })
     }
 
@@ -54,7 +75,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
         })
         getGameSession().then((data) => {
             setGameSesion(data)
-            game.player.setPositon(data.steps, game.world.circles)
+            game.player.setPosition(data.steps, game.world.circles)
         })
     }, [])
 

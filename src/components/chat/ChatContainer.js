@@ -171,7 +171,7 @@ const Container = styled.div`
     .message {
       display: flex;
       align-items: center;
-      background-color: black;
+      background-color: #100c14;
       .content {
         max-width: 40%;
         overflow-wrap: break-word;
@@ -187,13 +187,13 @@ const Container = styled.div`
     .sended {
       justify-content: flex-end;
       .content {
-        background-color: blue;
+        background-color:  #4f04ff21;
       }
     }
     .recieved {
       justify-content: flex-start;
       .content {
-        background-color: green;
+        background-color: #9900ff20;;
       }
     }
   }

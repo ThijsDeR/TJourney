@@ -6,9 +6,8 @@ import DiceComponent from "../assets/Dice/Dice.js";
 import { randomCount } from "../services/math-service.js";
 import Position from "./position.js";
 import Rotation from "./rotation.js";
-import { dice } from '../services/dice-service'
+import { dice, diceAmountDown } from '../services/dice-service'
 import Player from './player.js'
-import { noDicesLeft, setAmountOfDices } from "../pages/game/GameScreen.js";
 
 
 export default class Dice extends Drawable {
@@ -85,8 +84,7 @@ export default class Dice extends Drawable {
 
             this.textVisible = this.animationTime >= this.maxThrowingTime * 1.2
 
-            setAmountOfDices(false);
-            noDicesLeft();
+            diceAmountDown()
 
             if (this.count === 0) this.reset();
         } else {

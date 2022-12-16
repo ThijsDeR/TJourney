@@ -7,7 +7,7 @@ import { getGameSession } from "../../services/game-service";
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import luckyBlock from '../../assets/lg1emBK.png'
-import { dice } from "../../services/dice-service";
+import { dice, diceAmountUp, getDiceAmount, setDiceAmount } from "../../services/dice-service";
 
 
 export function Challenges({ user, isLoading, setIsLoading }) {
@@ -88,6 +88,12 @@ export function Challenges({ user, isLoading, setIsLoading }) {
         getAllGoals().then((data) => {
             setGoals(data)
         });
+        checkFinishedChallenges()
+        console.log(challenges)
+    }
+
+    const checkFinishedChallenges = () => {
+        setDiceAmount(challenges.filter((challenge) => challenge.finished).length)
     }
 
     if (user === undefined && !isLoading) {
@@ -106,9 +112,9 @@ export function Challenges({ user, isLoading, setIsLoading }) {
                                         diceEyesCount ? (
                                             <>
                                                 <Link to="/game">
-                                                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (diceEyesCount !== 0 ? "rgba(0, 200, 200, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px" }}>
+                                                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (getDiceAmount() !== 0 ? "rgba(0, 200, 200, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px" }}>
                                                         <img src={luckyBlock} style={{ width: "50px" }} alt="Lucky block"/>
-                                                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? diceEyesCount : "0"}</p>
+                                                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? getDiceAmount() : "0"}</p>
                                                     </div>
                                                 </Link>
                                             </>

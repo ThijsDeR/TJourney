@@ -1,3 +1,5 @@
+let amountOfDices = 0;
+
 export function dice() {
     const diceEyesCountConfigs = [
         [0, 20],
@@ -9,4 +11,27 @@ export function dice() {
     ]
 
     return diceEyesCountConfigs
+}
+
+export function diceAmountUp() {
+    amountOfDices++;
+    return amountOfDices;
+}
+
+export function diceAmountDown() {
+    amountOfDices--;
+    return amountOfDices;
+}
+
+export function diceAmountToZero() {
+    amountOfDices = 0;
+    return amountOfDices;
+}
+
+export function getDiceAmount() {
+    return amountOfDices;
+}
+
+export function setDiceAmount(setDice) {
+    amountOfDices = setDice;
 }

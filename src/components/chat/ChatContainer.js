@@ -2,8 +2,6 @@
 import React, { useState, useEffect , useRef} from 'react'
 import styled from "styled-components"
 import ChatInput from './ChatInput';
-import axios from "axios";
-import { getAllMessagesRoute, sendMessageRoute } from '../../utils/APIRoutes'
 import { v4 as uuidv4} from "uuid";
 import { getAllMessages, createMessage } from '../../services/chat-service.js';
 
@@ -41,43 +39,9 @@ function SelectChat(response) {
 
 
   const handleSendMsg = async (msg) => {
-    console.log(msg)
    await createMessage(msg,currentChat._id,currentUser._id)
-   console.log(currentChat._id)
-   console.log(currentChat)
-    // await axios.post(sendMessageRoute, {
-    //   from: currentUser._id,
-    //   to: currentChat._id,
-    //   message: msg,
-    // });
-    // socket.current.emit("send-msg", {
-    //   to: currentChat._id,
-    //   from: currentUser._id,
-    //   message: msg,
-    // });
 
-    // const msgs = [...messages];
-    // msgs.push({
-    //   fromSelf: true,
-    //   message: msg,
-    // });
-    // setMessages(msgs);
   };
-
-  // useEffect(() => {
-  //   if (socket.current) {
-  //     socket.current.on("msg-recieved", (msg) => {
-  //       setArrivalMessage({
-  //         fromSelf: false,
-  //         message: msg,
-  //       });
-  //     })
-  //   }
-  // }, []);
-
-  useEffect(()=>{
-    arrivalMessage && setMessages((prev)=>[...prev,arrivalMessage]);
-  },[arrivalMessage]);
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -123,7 +87,6 @@ function SelectChat(response) {
     </>
   );
 }
-
 const Container = styled.div`
   display: grid;
   grid-template-rows: 10% 80% 10%;

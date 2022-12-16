@@ -13,13 +13,10 @@ import Loading from '../../components/loading/Loading.js';
 
 
 export function Chats({ user, isLoading, setIsLoading }) {
-  const socket = useRef();
-  const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const currentUser = user;
   const [currentChat, setCurrentChat] = useState(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
-  // console.log(user)
 
   useEffect(() => {
     if (user) setIsLoading(false)
@@ -27,45 +24,25 @@ export function Chats({ user, isLoading, setIsLoading }) {
   useEffect(() => {
 
     const navigationTo = async () => {
-
-
       setIsLoaded(true);
     }
-
     navigationTo();
   });
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     socket.current = io(host);
-  //     socket.current.emit("add-user", currentUser._id);
-  //   }
-  // }, [currentUser]);
-
-
   useEffect(() => {
-
-
     const getCurrentUser = async () => {
-      console.log()
-
-      if (currentUser) {
-       
-       
-       
+        if (currentUser) {
         setContacts( removeOwnUserFromList( await getAllTheUsers()));
       }
     }
     getCurrentUser();
   }, [user, currentUser]);
 
-  function removeOwnUserFromList(listAllUsers) {
+function removeOwnUserFromList(listAllUsers) {
 const ContactList = listAllUsers;
     for (let i = 0; i < ContactList.length; i++) {
-      if (currentUser._id === ContactList[i]._id) {
-       
+      if (currentUser._id === ContactList[i]._id) {      
         ContactList.splice(i, 1)
-        // console.log(listUsers);
       }
 
     }
@@ -87,7 +64,7 @@ const ContactList = listAllUsers;
             {isLoaded &&
               currentChat === undefined ?
               <Welcome currentUser={currentUser} /> :
-              <ChatContainer currentChat={currentChat} socket={socket} currentUser={currentUser} />
+              <ChatContainer currentChat={currentChat} currentUser={currentUser} />
             }
           </div>
         </Container>

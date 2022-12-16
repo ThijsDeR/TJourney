@@ -19,6 +19,11 @@ export const disabledEmphasis = '#636363';
 export const paddingPage = '10px 20px'
 export const marginFinishedChallenges = '3px 0px 3px 30px'
 
+export const unsetLinkStyle = {
+    textDecoration: 'none',
+    color: 'unset',
+}
+
 export const pageStyle = {
     position: 'fixed',
     top: '0px',

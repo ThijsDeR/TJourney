@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
 import Navigation from "../../components/navigation/Navigation";
+import { Link, Navigate } from "react-router-dom";
 
 // styling
 import 'bulma/css/bulma.min.css';
-import { pageStyle, appContainer, searchBar, chatContainer, friendItems, friendsTile, fakePF, lightText, chatDivider, primaryColor, goBackIndicator } from '../../styling/StylingVariables.js';
+import { pageStyle, appContainer, searchBar, chatContainer, friendItems, friendsTile, fakePF, lightText, chatDivider, primaryColor, goBackIndicator, smallButton, unsetLinkStyle } from '../../styling/StylingVariables.js';
 
 // tabs
 import Tabs from '../../components/tabs/Tabs';
@@ -47,10 +48,12 @@ function AddFriends({ user }) {
             <div style={pageStyle}>
                 <div style={appContainer}>
 
-                    <div style={goBackIndicator}>
-                        <FontAwesomeIcon icon={faAngleLeft} size='lg' />
-                        <span style={{ paddingLeft: '10px' }}>Friends</span>
-                    </div>
+                    <Link to='/community' style={{ textDecoration: 'none' }}>
+                        <div style={goBackIndicator}>
+                            <FontAwesomeIcon icon={faAngleLeft} size='lg' />
+                            <span style={{ paddingLeft: '10px' }}>Friends</span>
+                        </div>
+                    </Link>
 
 
 
@@ -71,7 +74,20 @@ function AddFriends({ user }) {
                                             <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Level {user.level} </div>
                                         </div>
                                     </div>
+
+                                    {/* TODO: add friend when button is clicked */}
+                                    <div style={{
+                                        justifySelf: 'flex-end',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                    }}>
+                                        <Link style={unsetLinkStyle}>
+                                            <div style={{ ...smallButton, ...{ width: '70px' } }}>Add</div>
+                                        </Link>
+                                    </div>
+
                                 </div>
+
                             </div>
                         </div>
                     ))

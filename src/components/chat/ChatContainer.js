@@ -17,12 +17,9 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 
     const fetchData = async () => {
       if(currentChat && currentUser){
-        const response =await getAllMessages();
-       
-       SelectChat(response)
-        // console.log(response[0].message)
+        const messages =await getAllMessages();
+     let  response=SelectChat(messages)
         setMessages(response);
-        // console.log(messages);
       }
     }
     fetchData();
@@ -31,12 +28,9 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 function SelectChat(response) {
   let ListWithCorrespondingChatMessages=[] ;
   for (let i = 0; i < response.length; i++) {
-  //  console.log(currentChat._id=== response[i].user[0]||)
          if (currentChat._id === response[i].user[1]||currentChat._id === response[i].user[0]) {
-          console.log(currentChat._id === response[i].user[1]||currentChat._id===response[i].user[0])
           if (currentUser._id === response[i].user[1]||response[i].user[0]===currentUser._id ) {
     ListWithCorrespondingChatMessages.push(response[i])
-            console.log(response[i])
           }
     
          }

@@ -101,10 +101,12 @@ function SelectChat(response) {
                 return (
                   <div ref={scrollRef} key={uuidv4()}>
                     <div 
-                      className={`message ${message.fromSelf ?
+                    
+                      className={`message ${message.sender===currentUser._id ?
                         "sended" :
                         "recieved"
-                        }`}
+                        }`
+                      }
                     >
                       <div className="content ">
                         <p>{message.message}</p>

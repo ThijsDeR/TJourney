@@ -19,6 +19,7 @@ import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
 import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
 import { Challenges } from "./pages/challenges/Challenges.js";
 import GameScreen from "./pages/game/GameScreen.js";
+import AvatarSelect from "./pages/chooseAvatar/AvatarSelect";
 
 
 function App({ timeElapsed }) {
@@ -45,9 +46,10 @@ function App({ timeElapsed }) {
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/account" element={<Account user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                <Route path="/avatarselect" element={<AvatarSelect user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
             </Routes>
         </>
     )
 }
 
-export default App;   
+export default App;

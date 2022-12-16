@@ -12,6 +12,8 @@ import Birds from '../Birds/Fly'
 import { FlyClass } from '../Birds/FlyClass.js'
 import Shark from '../Shark/Shark'
 import Cloud from '../Cloud/Cloud'
+import MichelleIdle from '../Michelle/Idle'
+import Chopper from '../Chopper/Chopper'
 const flyClass = new FlyClass();
 
 
@@ -98,6 +100,12 @@ export default function FantasyBookComponent({ timeElapsed, game }) {
                                 <group>
                                     {
                                         game.player.getElement()
+                                    }
+                                    
+                                    {
+                                        game.friends.map((friend, friendIndex) => (
+                                            friend.getElement(friendIndex)
+                                        ))
                                     }
                                 </group>
                                 <group>

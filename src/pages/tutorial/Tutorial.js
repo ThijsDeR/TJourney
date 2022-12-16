@@ -3,12 +3,21 @@ import Navigation from '../../components/navigation/Navigation.js';
 import { Navigate } from "react-router-dom";
 import Loading from '../../components/loading/Loading.js';
 import HomescreenTutorial from './tutorialscreens/homeTutorial.js';
+import ChallengesTutorial from './tutorialscreens/challengesTutorial.js';
 
 function Tutorial({ user, isLoading, setIsLoading }) {
     const [tutorialPosition, setTutorialPosition] = useState(0);
+    const [screenPart, setScreenPart] = useState(0);
 
     function updateTutorialPosition() {
+        console.log("next screen")
+        setScreenPart(0);
         setTutorialPosition(tutorialPosition + 1);
+    }
+
+    function updateTutorialScreenPart() {
+        setScreenPart(screenPart + 1);
+        console.log(screenPart);
     }
 
     useEffect(() => {
@@ -19,15 +28,16 @@ function Tutorial({ user, isLoading, setIsLoading }) {
         return <Navigate to="/login" replace />;
     }
 
+    const data = { user, updateTutorialPosition, screenPart, updateTutorialScreenPart }
+    const TutorialScreens = [<HomescreenTutorial {...data} />, <ChallengesTutorial {...data} />]
     return (
         <>
             {
                 isLoading ? <Loading /> :
                     <>
-                        <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px" }}>
-                            <HomescreenTutorial />
-                        </div >
-                        <Navigation user={user} />
+                        <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto", overflowX: "hidden" }}>
+                            {TutorialScreens[tutorialPosition]}
+                        </div>
                     </>
             }
         </>

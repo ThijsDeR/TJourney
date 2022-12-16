@@ -44,10 +44,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
         getFriends().then((friends) => {
             setFriends(friends)
             friends.forEach((friend) => {
-                console.log(friends, game.friends)
                 const gameFriend = game.friends.find((gameFriend) => gameFriend.userName === friend.user.username)
-
-                console.log(gameFriend)
 
                 if (gameFriend) gameFriend.placeOnTheBoard = friend.gameSession.steps;
                 else {

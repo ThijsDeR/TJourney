@@ -20,12 +20,10 @@ import { Challenges } from "./pages/challenges/Challenges.js";
 import GameScreen from "./pages/game/GameScreen.js";
 import {Chats} from "./pages/chats/Chats.js";
 
-
 function App({ timeElapsed }) {
     const [currentUser, setCurrentUser] = useState(null);
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
-
 
     useEffect(() => {
         getCurrentUser().then((data) => {

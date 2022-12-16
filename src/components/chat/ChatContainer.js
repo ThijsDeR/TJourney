@@ -1,46 +1,40 @@
 
-import React, { useState, useEffect , useRef} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from "styled-components"
 import ChatInput from './ChatInput';
-import { v4 as uuidv4} from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import { getAllMessages, createMessage } from '../../services/chat-service.js';
 
 export default function ChatContainer({ currentChat, currentUser, socket }) {
   const [messages, setMessages] = useState([]);
-  const [arrivalMessage, setArrivalMessage] = useState(null);
   const scrollRef = useRef();
 
   useEffect(() => {
-  
-
     const fetchData = async () => {
-      if(currentChat && currentUser){
-        const messages =await getAllMessages();
-     let  response=SelectChat(messages)
+      if (currentChat && currentUser) {
+        const messages = await getAllMessages();
+        let response = SelectChat(messages)
         setMessages(response);
       }
     }
     fetchData();
   }, [currentChat]);
 
-function SelectChat(response) {
-  let ListWithCorrespondingChatMessages=[] ;
-  for (let i = 0; i < response.length; i++) {
-         if (currentChat._id === response[i].user[1]||currentChat._id === response[i].user[0]) {
-          if (currentUser._id === response[i].user[1]||response[i].user[0]===currentUser._id ) {
-    ListWithCorrespondingChatMessages.push(response[i])
-          }
-    
-         }
-         
-  }
- return ListWithCorrespondingChatMessages;
-}
+  function SelectChat(response) {
+    let ListWithCorrespondingChatMessages = [];
+    for (let i = 0; i < response.length; i++) {
+      if (currentChat._id === response[i].user[1] || currentChat._id === response[i].user[0]) {
+        if (currentUser._id === response[i].user[1] || response[i].user[0] === currentUser._id) {
+          ListWithCorrespondingChatMessages.push(response[i])
+        }
+      }
 
+    }
+    return ListWithCorrespondingChatMessages;
+  }
 
   const handleSendMsg = async (msg) => {
-   await createMessage(msg,currentChat._id,currentUser._id)
-
+    await createMessage(msg, currentChat._id, currentUser._id)
   };
 
   useEffect(() => {
@@ -54,19 +48,19 @@ function SelectChat(response) {
           <Container>
             <div className="chat-header">
               <div className="user-details">
-                             <div className="username">
+                <div className="username">
                   <h3>{currentChat.username}</h3>
                 </div>
               </div>
-            
+
             </div>
             <div className="chat-messages">
               {messages.map((message) => {
                 return (
                   <div ref={scrollRef} key={uuidv4()}>
-                    <div 
-                    
-                      className={`message ${message.sender===currentUser._id ?
+                    <div
+
+                      className={`message ${message.sender === currentUser._id ?
                         "sended" :
                         "recieved"
                         }`

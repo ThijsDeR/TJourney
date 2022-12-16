@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import Tab from "./Tab";
 import { tabListItemContainer, tabList, tabContent, tabListItem, centerDiv } from "../../styling/StylingVariables.js"
 
-function Tabs(props, { children }) {
-
-    const propTypes = {
-        children: PropTypes.instanceOf(Array).isRequired,
-    };
-
+function Tabs(props) {
     const [activeTab, setActiveTab] = useState(props.children[0].props.label);
 
     const onClickTabItem = (tab) => {

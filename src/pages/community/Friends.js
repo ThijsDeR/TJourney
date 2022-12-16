@@ -11,7 +11,7 @@ import { pageStyle, title, primaryColor, containerCenteredBetween, containerLeft
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCircle, faAngleRight, faSquare } from '@fortawesome/free-solid-svg-icons'
 
-function Friends({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
+function Friends() {
 
     return (
         <>

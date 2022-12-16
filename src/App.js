@@ -49,6 +49,7 @@ function App({ timeElapsed }) {
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/account" element={<Account user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/avatarselect" element={<AvatarSelect user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                <Route path="/community" element={<CommunityScreen user={user} />} />
             </Routes>
         </>
     )

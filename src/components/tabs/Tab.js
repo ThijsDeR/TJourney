@@ -1,16 +1,7 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { tabList, tabListItemActive } from "../../styling/StylingVariables.js"
 
 function Tab(props) {
-    const propTypes = {
-        activeTab: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
-        onClick: PropTypes.func.isRequired,
-    };
-
-    console.log(props);
-
     const activeTab = props.activeTab;
 
     const label = props.label;

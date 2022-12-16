@@ -1,11 +1,10 @@
 import axios from "../api/axios.js";
 import { getCurrentUser } from "./auth-service.js";
 
-export const createMessage = (messages, user, sender) => {
+export const createMessage = (message, user, sender) => {
     const localUser = JSON.parse(localStorage.getItem("user"))
-
     return axios.post("/v1/messages", {
-        messages,
+        message,
         user,
         sender
 

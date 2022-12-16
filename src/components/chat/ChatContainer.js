@@ -18,8 +18,9 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
     const fetchData = async () => {
       if(currentChat){
         const response =await getAllMessages();
-        console.log(response);
+        console.log(response[0].message)
         setMessages(response);
+        // console.log(messages);
       }
     }
     fetchData();

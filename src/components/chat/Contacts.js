@@ -47,6 +47,8 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
                                             </div>
                                             <div className="username">
                                                 <h3>{contact.username}</h3>
+
+                                                
                                             </div>
                                         </div>
                                     )

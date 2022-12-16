@@ -28,10 +28,10 @@ export function Chats({ user, isLoading, setIsLoading }) {
 
     const navigationTo = async () => {
 
-    
-        setIsLoaded(true);
-      }
-    
+
+      setIsLoaded(true);
+    }
+
     navigationTo();
   });
 
@@ -50,12 +50,28 @@ export function Chats({ user, isLoading, setIsLoading }) {
       console.log()
 
       if (currentUser) {
-          setContacts(await getAllTheUsers());
-                   
+       
+       
+       
+        setContacts( removeOwnUserFromList( await getAllTheUsers()));
       }
     }
     getCurrentUser();
   }, [user, currentUser]);
+
+  function removeOwnUserFromList(listAllUsers) {
+const ContactList = listAllUsers;
+    for (let i = 0; i < ContactList.length; i++) {
+      if (currentUser._id === test[i]._id) {
+       
+        ContactList.splice(i, 1)
+        // console.log(listUsers);
+      }
+
+    }
+    return ContactList
+  }
+
 
   const handleChatChange = (chat) => {
     setCurrentChat(chat);

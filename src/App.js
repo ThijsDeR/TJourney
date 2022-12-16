@@ -18,6 +18,7 @@ import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
 import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
 import { Challenges } from "./pages/challenges/Challenges.js";
 import GameScreen from "./pages/game/GameScreen.js";
+import Tutorial from "./pages/tutorial/Tutorial.js";
 
 
 function App({ timeElapsed }) {
@@ -43,6 +44,7 @@ function App({ timeElapsed }) {
                 <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                <Route path="/tutorial" element={<Tutorial user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
             </Routes>
         </>
     )

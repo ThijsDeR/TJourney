@@ -30,10 +30,10 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 
 function SelectChat(response) {
   for (let i = 0; i < response.length; i++) {
-   
-         if (currentChat._id === response[i].user[1]||response[i].user[0]) {
-          console.log(currentChat._id === response[i].user[1]||response[i].user[0])
-          if (currentUser._id === response[i].user[1]||response[i].user[0]) {
+  //  console.log(currentChat._id=== response[i].user[0]||)
+         if (currentChat._id === response[i].user[1]||currentChat._id === response[i].user[0]) {
+          console.log(currentChat._id === response[i].user[1]||currentChat._id===response[i].user[0])
+          if (currentUser._id === response[i].user[1]||response[i].user[0]===currentUser._id ) {
     
             console.log(response[i])
           }

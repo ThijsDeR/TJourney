@@ -59,6 +59,9 @@ export const deleteAccount = async () => {
             body: localUser
         })
         localStorage.removeItem("user");
+        // If this isn't here you can access the app in a broken state for a bit
+        // until it fully breaks and the pages either brake or load endlessly, 
+        // it doesn't automatically send you to login otherwise
         window.location.href = "/login";
 
         return data.data.data;

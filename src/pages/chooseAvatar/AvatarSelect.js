@@ -13,6 +13,7 @@ function AvatarSelect({ user, isLoading, setIsLoading }) {
 
     function selectAvatar(avatar) {
         editAvatar(avatar).then((data) => {
+            // Needs to fully reload so canvas updates correctly, tried using Navigate but it shows the avatar wrong until reload
             window.location.href = "/account";
         });
     }

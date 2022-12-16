@@ -130,7 +130,7 @@ function Account({ user, isLoading, setIsLoading }) {
                                     </div>
 
                                     {/* Avatar canvas */}
-                                    <div className="has-background-black-ter box" onClick={() => {window.location.href = "/avatarselect"}}>
+                                    <div className="has-background-black-ter box" onClick={() => { window.location.href = "/avatarselect" }}>
                                         {getAvatar()}
                                     </div>
 
@@ -142,29 +142,37 @@ function Account({ user, isLoading, setIsLoading }) {
                                     </div>
                                     {inputPassword ?
                                         <>
-                                            <div>
-                                                Old password
-                                                <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-                                            </div>
-                                            <div className="mt-3">
-                                                {passwordNotSame ?
-                                                    <div className="has-text-danger is-size-5 my-0 ">
-                                                        Passwords don't match
+                                            <div className="modal is-active px-5">
+                                                <div className="modal-background"></div>
+                                                <div className="modal-content px-2 py-3 has-background-dark" style={{ borderRadius: "15px" }}>
+                                                    <div>
+                                                        Old password
+                                                        <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                                                     </div>
-                                                    :
-                                                    ""
-                                                }
-                                                New password
-                                                <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setNewPassword(e.target.value)} />
+                                                    <div className="mt-3">
+                                                        {passwordNotSame ?
+                                                            <div className="has-text-danger is-size-5 my-0 ">
+                                                                Passwords don't match
+                                                            </div>
+                                                            :
+                                                            ""
+                                                        }
+                                                        New password
+                                                        <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setNewPassword(e.target.value)} />
+                                                    </div>
+                                                    <div className="mt-3">
+                                                        Confirm new password
+                                                        <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setNewPasswordConfirm(e.target.value)} />
+                                                    </div>
+                                                    <button className="button mt-3 has-background-danger has-text-black" onClick={() => showInputPassword(false)}>
+                                                        Close
+                                                    </button>
+                                                    <button className="is-pulled-right button mt-3 has-background-success has-text-black" onClick={() => handleNewPassword()}>
+                                                        Submit
+                                                    </button>
+                                                    <div className="is-clearfix"></div>
+                                                </div>
                                             </div>
-                                            <div className="mt-3">
-                                                Confirm new password
-                                                <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setNewPasswordConfirm(e.target.value)} />
-                                            </div>
-                                            <button className="is-pulled-right button mt-3 has-background-success has-text-black" onClick={() => handleNewPassword()}>
-                                                Submit
-                                            </button>
-                                            <div className="is-clearfix"></div>
                                         </>
                                         :
                                         ""
@@ -177,11 +185,17 @@ function Account({ user, isLoading, setIsLoading }) {
                                 </div>
                                 {inputDeleteAccount ?
                                     <>
-                                        <form onSubmit={(e) => handleDeleteAccount(e)}>
-                                            <div className="is-size-4 mb-1">Confirm deletion by entering your password:</div>
-                                            <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-                                            <button className="button mt-3 is-pulled-right has-background-danger has-text-white">Submit</button>
-                                        </form>
+                                        <div className="modal is-active px-5">
+                                            <div className="modal-background"></div>
+                                            <div className="modal-content px-2 py-3 has-background-dark" style={{ borderRadius: "15px" }}>
+                                                <form onSubmit={(e) => handleDeleteAccount(e)}>
+                                                    <div className="is-size-4 mb-1 has-text-white">Confirm deletion by entering your password:</div>
+                                                    <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                                    <button className="button mt-3 is-pulled-right has-background-success has-text-black">Submit</button>
+                                                    <button className="button mt-3 has-background-danger has-text-black" onClick={() => showInputDeleteAccount(false)}>Close</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </>
                                     :
                                     ""

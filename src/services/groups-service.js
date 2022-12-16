@@ -32,13 +32,17 @@ export const getGroups = async () => {
     return null
 }
 
-export const addGroup = async (userId) => {
+export const addGroup = async (name, userId, groupImage) => {
     const localUser = JSON.parse(localStorage.getItem("user"))
 
     return await axios.put("/v1/users", {
         updateQuery: {
             $push: {
-                groups: userId
+                groups: {
+                    groupName: name,
+                    member: userId,
+                    image: groupImage
+                }
             }
         },
     }, {
@@ -51,13 +55,15 @@ export const addGroup = async (userId) => {
 
 }
 
-export const removeGroup = async (userId) => {
+export const removeGroup = async (userId, name, groupImage) => {
     const localUser = JSON.parse(localStorage.getItem("user"))
 
     return await axios.put("/v1/users", {
         updateQuery: {
             $pull: {
-                groups: userId
+                groupName: name,
+                member: userId,
+                image: groupImage
             }
         },
     }, {

@@ -4,7 +4,7 @@ import Navigation from "../../components/navigation/Navigation";
 
 // styling
 import 'bulma/css/bulma.min.css';
-import { pageStyle, appContainer } from '../../styling/StylingVariables.js';
+import { pageStyle, appContainer, searchBar, chatContainer, friendItems, friendsTile, fakePF, lightText, chatDivider, primaryColor, goBackIndicator } from '../../styling/StylingVariables.js';
 
 // tabs
 import Tabs from '../../components/tabs/Tabs';
@@ -13,6 +13,10 @@ import Tabs from '../../components/tabs/Tabs';
 import Friends from './Friends.js';
 import Groups from './Groups.js';
 import Leaderboard from './Leaderboard.js';
+
+// icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 
 function AddFriends({ user }) {
 
@@ -42,18 +46,38 @@ function AddFriends({ user }) {
         <>
             <div style={pageStyle}>
                 <div style={appContainer}>
+
+                    <div style={goBackIndicator}>
+                        <FontAwesomeIcon icon={faAngleLeft} size='lg' />
+                        <span style={{ paddingLeft: '10px' }}>Friends</span>
+                    </div>
+
+
+
                     <input
+                        style={searchBar}
                         type="text"
-                        placeholder="Search here"
+                        placeholder="Search"
                         onChange={handleSearchInput}
                         value={searchInput} />
                     {searchResults.map(user => (
                         <div key={user.id}>
-                            <p>{user.name}</p>
+                            <div style={chatContainer}>
+                                <div className='friendTile' style={{ ...friendsTile, ...{ margin: 'unset' } }}>
+                                    <div className='friendItems' style={friendItems}>
+                                        <div className='friendIcon' style={fakePF}></div>
+                                        <div className='friendInfo'>
+                                            <div className='friendName' style={{ fontWeight: 'bold' }}> {user.name} </div>
+                                            <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Level {user.level} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    ))}
-                </div>
-            </div>
+                    ))
+                    }
+                </div >
+            </div >
             <Navigation user={user} />
         </>
     )

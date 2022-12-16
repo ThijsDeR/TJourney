@@ -7,10 +7,6 @@ import Navigation from "../../components/navigation/Navigation";
 import 'bulma/css/bulma.min.css';
 import { pageStyle, title, primaryColor, containerCenteredBetween, containerLeftRight, goals, tileStyle, containerCenteredLeftItem, smallButton, white, friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, suggestedBox, suggestedTile, pfBox, boldText, lightText, chatDivider } from '../../styling/StylingVariables.js';
 
-// icons
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCircle, faAngleRight, faSquare } from '@fortawesome/free-solid-svg-icons'
-
 function Friends() {
 
     return (
@@ -78,7 +74,6 @@ function Friends() {
                     <div className='messageButton' style={notifacationBubble}>8</div>
                 </div>
                 <hr style={chatDivider} />
-
             </div>
 
             <div style={chatContainer}>

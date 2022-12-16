@@ -59,10 +59,10 @@ function Friends() {
             {/* your friends */}
             <div style={containerLeftRight}>
                 <div style={{ verticalAlign: 'middle' }}>
-                    <h1 style={{ ...title, ...{ padding: 'unset' } }}>Chats</h1>
+                    <h1 style={{ ...title, ...{ padding: 'unset' } }}>Friends</h1>
                 </div>
                 {/* TODO: link to add friend page? */}
-                <Link style={{ height: '24px', border: 'unset' }}><div style={{ color: primaryColor }} >New chat</div></Link>
+                <Link style={{ height: '24px', border: 'unset' }}><div style={{ color: primaryColor }} >Add friend</div></Link>
             </div>
 
             {/* Friend block */}

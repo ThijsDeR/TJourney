@@ -17,9 +17,11 @@ import Account from "./pages/account/Account.js";
 
 import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
 import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
-import { Challenges } from "./pages/challenges/Challenges.js";
+import { Challenges } from "./pages/challenges/ChallengesScreen.js";
 import GameScreen from "./pages/game/GameScreen.js";
 import AvatarSelect from "./pages/chooseAvatar/AvatarSelect";
+import CommunityScreen from "./pages/community/CommunityScreen.js";
+
 
 
 function App({ timeElapsed }) {

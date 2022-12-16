@@ -8,7 +8,7 @@ import { Physics } from "@react-three/cannon";
 
 import luckyBlock from '../../assets/lg1emBK.png'
 import { getAllChallenges} from "../../services/goal-service.js";
-import { getFriendsGameSessions, getGameSession, setSteps } from "../../services/game-service.js";
+import { getGameSession, setSteps } from "../../services/game-service.js";
 import { Navigate } from 'react-router-dom';
 import Loading from '../../components/loading/Loading';
 import Navigation from '../../components/navigation/Navigation';
@@ -19,7 +19,7 @@ import { getCurrentUser } from '../../services/auth-service';
 import Friend from '../../scripts/friend';
 import Position from '../../scripts/position';
 import Rotation from '../../scripts/rotation';
-import { getFriends } from '../../services/friends-service';
+import { getFriends } from '../../services/friends-service.js';
 
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);

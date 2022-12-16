@@ -38,6 +38,8 @@ export function Chats({ user, isLoading, setIsLoading }) {
     getCurrentUser();
   }, [user, currentUser]);
 
+
+  //Removes your own username from the contact list
 function removeOwnUserFromList(listAllUsers) {
 const ContactList = listAllUsers;
     for (let i = 0; i < ContactList.length; i++) {

@@ -49,6 +49,8 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
             <div className="chat-header">
               <div className="user-details">
                 <div className="username">
+                  {//shows the username of the person you sent a message to
+                  }
                   <h3>{currentChat.username}</h3>
                 </div>
               </div>
@@ -59,7 +61,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
                 return (
                   <div ref={scrollRef} key={uuidv4()}>
                     <div
-
+                      //Puts the messages you sent to right and the messsages you get on the left
                       className={`message ${message.sender === currentUser._id ?
                         "sended" :
                         "recieved"

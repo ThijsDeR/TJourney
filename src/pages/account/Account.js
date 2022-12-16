@@ -6,10 +6,7 @@ import { calculateLevel } from '../../services/level-service.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
-import { Canvas } from "@react-three/fiber";
 import { DefaultAvatars } from '../../assets/DefaultAvatars/DefaultAvatarsCanvas';
-import { Environment, OrbitControls } from "@react-three/drei";
-
 import { login, deleteAccount, editUsername, editPassword } from "../../services/auth-service";
 
 function Account({ user, isLoading, setIsLoading }) {
@@ -58,7 +55,7 @@ function Account({ user, isLoading, setIsLoading }) {
     function handleEditUserName(e) {
         e.preventDefault();
 
-        editUsername(newUserName).then((data) => {
+        editUsername(newUserName).then(() => {
             window.location.reload();
         });
     }
@@ -67,11 +64,9 @@ function Account({ user, isLoading, setIsLoading }) {
         e.preventDefault();
 
         await login(user.email, password);
-
         if (!window.confirm("Are you certain you wish to delete your account?")) {
             return;
         }
-
         deleteAccount();
     }
 
@@ -109,6 +104,7 @@ function Account({ user, isLoading, setIsLoading }) {
                                     Account
                                 </div>
 
+                                {/* Username section */}
                                 <div className="is-size-4 mt-3">
                                     <div className="mb-5">
                                         {inputUserName
@@ -126,16 +122,19 @@ function Account({ user, isLoading, setIsLoading }) {
                                                 <button className="is-pulled-right button has-background-black has-text-white" onClick={() => showInputUserName(!inputUserName)}>Edit</button>
                                             </div>
                                         }
-
                                     </div>
+
+                                    {/* Level */}
                                     <div>
                                         Level: ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )
                                     </div>
 
-                                    <div className="has-background-black-ter box">
+                                    {/* Avatar canvas */}
+                                    <div className="has-background-black-ter box" onClick={() => {window.location.href = "/avatarselect"}}>
                                         {getAvatar()}
                                     </div>
 
+                                    {/* Edit password */}
                                     <div style={{ position: "absolute", bottom: "10vh", right: "5vw" }}>
                                         <button className="button has-background-info has-text-white" onClick={() => [showInputPassword(!inputPassword), showInputDeleteAccount(false)]}>
                                             Edit password
@@ -172,10 +171,10 @@ function Account({ user, isLoading, setIsLoading }) {
                                     }
                                 </div>
 
+                                {/* Delete account */}
                                 <div style={{ position: "absolute", bottom: "10vh" }}>
                                     <button className="button is-danger mt-5 is-relative" onClick={() => [showInputDeleteAccount(!inputDeleteAccount), showInputPassword(false)]}>Delete account</button>
                                 </div>
-
                                 {inputDeleteAccount ?
                                     <>
                                         <form onSubmit={(e) => handleDeleteAccount(e)}>

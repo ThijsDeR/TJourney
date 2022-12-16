@@ -1,14 +1,7 @@
+// Base for variation that currently unused
+
 import React from 'react';
 import { useState, useEffect } from "react";
-import Navigation from "../../components/navigation/Navigation";
-import Footer from "../../components/footer/Footer";
-import { Canvas } from "@react-three/fiber";
-import { Environment, Stars, OrbitControls, PresentationControls } from "@react-three/drei";
-
-import Chopper from '../../assets/Chopper/Chopper';
-import Shiba from '../../assets/Shiba/Shiba';
-import RandomGuy from '../../assets/Random/Random';
-import Dragon from '../../assets/Dragon/Dragon';
 
 function VariationSelect() {
     const [chosenAvatar, setChosenAvatar] = useState(undefined);

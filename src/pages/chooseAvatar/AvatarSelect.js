@@ -1,8 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import Navigation from "../../components/navigation/Navigation";
-import { Canvas } from "@react-three/fiber";
-import { Environment, OrbitControls } from "@react-three/drei";
 import { editAvatar } from "../../services/auth-service";
 import Loading from '../../components/loading/Loading.js';
 
@@ -14,9 +12,8 @@ function AvatarSelect({ user, isLoading, setIsLoading }) {
     }, [user, setIsLoading])
 
     function selectAvatar(avatar) {
-
         editAvatar(avatar).then((data) => {
-            window.location.href = "/home";
+            window.location.href = "/account";
         });
     }
 

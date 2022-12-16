@@ -9,23 +9,12 @@ function Tabs(props, { children }) {
         children: PropTypes.instanceOf(Array).isRequired,
     };
 
-    console.log("tab props", props);
-
     const [activeTab, setActiveTab] = useState(props.children[0].props.label);
 
     const onClickTabItem = (tab) => {
-        setActiveTab({ activeTab: tab });
+        // set props.activeTab to the label of the tab that was clicked
+        setActiveTab(tab);
     };
-
-    // const props = { children };
-
-
-    // render() {
-    //     const {
-    //         onClickTabItem,
-    //         props: { children },
-    //         state: { activeTab },
-    //     } = this;
 
     return (
         <div className="tabs" style={tabListItemContainer}>

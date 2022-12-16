@@ -35,12 +35,12 @@ export function Chats({ user, isLoading, setIsLoading }) {
     navigationTo();
   });
 
-  useEffect(() => {
-    if (currentUser) {
-      socket.current = io(host);
-      socket.current.emit("add-user", currentUser._id);
-    }
-  }, [currentUser]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     socket.current = io(host);
+  //     socket.current.emit("add-user", currentUser._id);
+  //   }
+  // }, [currentUser]);
 
 
   useEffect(() => {

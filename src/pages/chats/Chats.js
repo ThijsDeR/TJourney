@@ -62,7 +62,7 @@ export function Chats({ user, isLoading, setIsLoading }) {
   function removeOwnUserFromList(listAllUsers) {
 const ContactList = listAllUsers;
     for (let i = 0; i < ContactList.length; i++) {
-      if (currentUser._id === test[i]._id) {
+      if (currentUser._id === ContactList[i]._id) {
        
         ContactList.splice(i, 1)
         // console.log(listUsers);

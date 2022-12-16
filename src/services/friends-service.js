@@ -21,13 +21,37 @@ export const getFriends = async () => {
 
                     return response.data.data;
                 })
-    
-                
-                return {user: user, gameSession: response.data.data};
+
+
+                return { user: user, gameSession: response.data.data };
             }));
         })
 
         return await Promise.all(promises);
+    }
+
+    return null
+}
+
+export const addFriend = async (userId) => {
+    const localUser = JSON.parse(localStorage.getItem("user"))
+
+    const result = await getCurrentUser()
+    if (result) {
+        console.log(result)
+        return await axios.put("/v1/users", {
+            updateQuery: {
+                $push: {
+                    friends: userId
+                }
+            },
+        }, {
+            headers: { Authorization: `Bearer ${localUser.accessToken}` }
+        }).then(async (response) => {
+            if (response.data.error) throw response.data.error
+
+            return response.data.data;
+        })
     }
 
     return null

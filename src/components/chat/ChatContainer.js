@@ -16,20 +16,38 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
   
 
     const fetchData = async () => {
-      if(currentChat){
+      if(currentChat && currentUser){
         const response =await getAllMessages();
-        console.log(response[0].message)
+       
+       SelectChat(response)
+        // console.log(response[0].message)
         setMessages(response);
-        // console.log(messages);
+        console.log(messages);
       }
     }
     fetchData();
   }, [currentChat]);
 
+function SelectChat(response) {
+  for (let i = 0; i < response.length; i++) {
+   
+         if (currentChat._id === response[i].user[1]||response[i].user[0]) {
+          console.log(currentChat._id === response[i].user[1]||response[i].user[0])
+          if (currentUser._id === response[i].user[1]||response[i].user[0]) {
+    
+            console.log(response[i])
+          }
+    
+         }
+         
+  }
+}
+
+
   const handleSendMsg = async (msg) => {
     console.log(msg)
    await createMessage(msg,currentChat._id,currentUser._id)
-   console.log(currentUser._id)
+   console.log(currentChat._id)
    console.log(currentChat)
     // await axios.post(sendMessageRoute, {
     //   from: currentUser._id,

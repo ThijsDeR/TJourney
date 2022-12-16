@@ -28,7 +28,9 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 
   const handleSendMsg = async (msg) => {
     console.log(msg)
-   await createMessage(msg,currentUser._id,currentChat._id)
+   await createMessage(msg,currentChat._id,currentUser._id)
+   console.log(currentUser._id)
+   console.log(currentChat)
     // await axios.post(sendMessageRoute, {
     //   from: currentUser._id,
     //   to: currentChat._id,

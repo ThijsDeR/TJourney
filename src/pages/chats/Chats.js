@@ -25,18 +25,24 @@ export function Chats({ user, isLoading, setIsLoading }) {
   });
 
   useEffect(() => {
-    const getCurrentUser = async () => {
+    const getUsers = async () => {
       if (currentUser) {
         setContacts(removeOwnUserFromList(await getAllTheUsers()));
       }
     }
-    getCurrentUser();
+    getUsers();
   }, [user, currentUser]);
 
 
-  //Removes your own username from the contact list
-function removeOwnUserFromList(listAllUsers) {
-const ContactList = listAllUsers;
+
+  /**
+   * Removes your own username from the contact list
+   * 
+   * @param {*} listOffAllTheUsers all the users 
+   * @returns list users without the currentuser
+   */
+function removeOwnUserFromList(listOffAllTheUsers) {
+const ContactList = listOffAllTheUsers;
     for (let i = 0; i < ContactList.length; i++) {
       if (currentUser._id === ContactList[i]._id) {
         ContactList.splice(i, 1)

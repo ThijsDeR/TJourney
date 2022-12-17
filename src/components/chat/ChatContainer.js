@@ -13,8 +13,8 @@ export default function ChatContainer({ currentChat, currentUser }) {
     const fetchData = async () => {
       if (currentChat && currentUser) {
         const messages = await getAllMessages();
-        let response = SelectChat(messages)
-        setMessages(response);
+        let messagesWithTheCurrentUser = SelectChat(messages)
+        setMessages(messagesWithTheCurrentUser);
       }
     }
     fetchData();

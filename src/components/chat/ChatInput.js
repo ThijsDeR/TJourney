@@ -67,6 +67,7 @@ padding-bottom: 0.3rem;
             cursor: pointer;
         }
 
+        // changes the position of the emoji box
         aside{
             top:-350px;
             left:200px;

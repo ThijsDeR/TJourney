@@ -59,13 +59,19 @@ padding-bottom: 0.3rem;
     align-items: center;
     color: white;
     gap: 1rem;
-    .emoji{
-        position: relative;
+    .emoji{ 
+        position: absolute;
         svg{
             font-size: 1.5rem;
             color: #ffff00c8;
             cursor: pointer;
         }
+
+        aside{
+            top:-350px;
+            left:200px;
+        }
+
         .emoji-picker-react{
             position: absolute;
             top: -350px;

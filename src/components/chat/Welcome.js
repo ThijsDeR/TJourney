@@ -4,6 +4,7 @@ import Robot from "../../assets/robot.gif"
 
 export default function Welcome({currentUser}) {
   return (
+    //Shows a welcome message when you open the page
     <Container>
         <img src={Robot} alt="welcome" />
         <h1>

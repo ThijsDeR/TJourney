@@ -33,8 +33,10 @@ export function Chats({ user, isLoading, setIsLoading }) {
     getCurrentUser();
   }, [user, currentUser]);
 
-  function removeOwnUserFromList(listAllUsers) {
-    const ContactList = listAllUsers;
+
+  //Removes your own username from the contact list
+function removeOwnUserFromList(listAllUsers) {
+const ContactList = listAllUsers;
     for (let i = 0; i < ContactList.length; i++) {
       if (currentUser._id === ContactList[i]._id) {
         ContactList.splice(i, 1)

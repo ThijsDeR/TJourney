@@ -19,7 +19,7 @@ export default function ChatContainer({ currentChat, currentUser }) {
     }
     fetchData();
   }, [currentChat]);
-
+  
   function SelectChat(response) {
     let ListWithCorrespondingChatMessages = [];
     for (let i = 0; i < response.length; i++) {

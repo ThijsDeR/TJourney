@@ -5,7 +5,7 @@ import ChatInput from './ChatInput';
 import { v4 as uuidv4 } from "uuid";
 import { getAllMessages, createMessage } from '../../services/chat-service.js';
 
-export default function ChatContainer({ currentChat, currentUser, socket }) {
+export default function ChatContainer({ currentChat, currentUser }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
 

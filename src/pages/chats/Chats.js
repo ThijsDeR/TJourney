@@ -1,14 +1,9 @@
 import styled from "styled-components"
 import { useState, useEffect, useRef } from 'react'
-import axios from "axios";
-import { json, useNavigate } from "react-router-dom";
-import { allUsersRoute, host } from "../../utils/APIRoutes.js";
 import Contacts from "../../components/chat/Contacts.js";
 import Welcome from "../../components/chat/Welcome.js";
 import ChatContainer from "../../components/chat/ChatContainer.js";
-import { io } from "socket.io-client";
 import { getAllTheUsers } from "../../services/auth-service.js";
-import { getCurrentUser } from "../../services/auth-service.js"
 import Loading from '../../components/loading/Loading.js';
 
 
@@ -31,24 +26,23 @@ export function Chats({ user, isLoading, setIsLoading }) {
 
   useEffect(() => {
     const getCurrentUser = async () => {
-        if (currentUser) {
-        setContacts( removeOwnUserFromList( await getAllTheUsers()));
+      if (currentUser) {
+        setContacts(removeOwnUserFromList(await getAllTheUsers()));
       }
     }
     getCurrentUser();
   }, [user, currentUser]);
 
-function removeOwnUserFromList(listAllUsers) {
-const ContactList = listAllUsers;
+  function removeOwnUserFromList(listAllUsers) {
+    const ContactList = listAllUsers;
     for (let i = 0; i < ContactList.length; i++) {
-      if (currentUser._id === ContactList[i]._id) {      
+      if (currentUser._id === ContactList[i]._id) {
         ContactList.splice(i, 1)
       }
 
     }
     return ContactList
   }
-
 
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
@@ -58,7 +52,6 @@ const ContactList = listAllUsers;
     <>
       {isLoading ? <Loading /> :
         <Container>
-
           <div className="container">
             <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} />
             {isLoaded &&
@@ -71,8 +64,8 @@ const ContactList = listAllUsers;
       }
     </>
   )
-
 }
+
 
 const Container = styled.div`
   height: 100vh;

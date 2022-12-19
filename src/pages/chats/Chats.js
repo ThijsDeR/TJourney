@@ -25,6 +25,9 @@ export function Chats({ user, isLoading, setIsLoading }) {
     navigationTo();
   });
 
+  /**
+   * set the users
+   */
   useEffect(() => {
     const getUsers = async () => {
       if (currentUser) {
@@ -54,6 +57,11 @@ const ContactList = listOffAllTheUsers;
     return ContactList
   }
 
+  /**
+   * set current chat
+   * 
+   * @param {*} chat the chat
+   */
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   }

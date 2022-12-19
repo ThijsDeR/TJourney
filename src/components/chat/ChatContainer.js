@@ -46,6 +46,7 @@ export default function ChatContainer({ currentChat, currentUser }) {
       {
         currentChat && (
           <Container>
+               <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <div className="chat-header">
               <div className="user-details">
                 <div className="username">
@@ -85,6 +86,8 @@ export default function ChatContainer({ currentChat, currentUser }) {
 }
 const Container = styled.div`
   display: grid;
+  overflow-x: hidden;
+
   grid-template-rows: 10% 80% 10%;
   gap: 0.1rem;
   overflow: hidden;

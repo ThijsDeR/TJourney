@@ -22,7 +22,10 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
       {
         currentUserName && (
           <Container>
+               <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <div className="brand">
+              
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
               <img src={Logo} alt="logo" />
               <h3>TChat</h3>
             </div>
@@ -38,8 +41,8 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
                         }`}
                       key={contact._id}
                       onClick={() => changeCurrentChat(index, contact)}>
-                      <div className="avatar">
-                      </div>
+                      {/* <div className="avatar">
+                      </div> */}
                       <div className="username">
                         <h3>{contact.username}</h3>
                       </div>
@@ -49,8 +52,8 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
               }
             </div>
             <div className="current-user">
-              <div className="avatar">
-              </div>
+              {/* <div className="avatar">
+              </div> */}
               <div className="username">
                 <h2>{currentUserName}</h2>
               </div>
@@ -65,7 +68,11 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 
 const Container = styled.div`
   display: grid;
+  overflow-x: hidden;
+
   grid-template-rows: 10% 75% 15%;
+  max-width: 100%;
+  overflow-x: hidden;
   overflow: hidden;
   background-color: #080420;
   .brand {
@@ -85,6 +92,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    
     overflow: auto;
     gap: 0.8rem;
     &::-webkit-scrollbar {
@@ -102,6 +110,7 @@ const Container = styled.div`
       width: 90%;
       border-radius: 0.2rem;
       padding: 0.4rem;
+     
       display: flex;
       gap: 1rem;
       align-items: center;
@@ -115,6 +124,8 @@ const Container = styled.div`
         h3 {
           color: white;
           text-transform: capitalize;
+          align-items:center;
+         
         }
       }
     }
@@ -138,6 +149,7 @@ const Container = styled.div`
       h2 {
         color: white;
         text-transform: capitalize;
+        text-align: center
       }
     }
     @media screen and (min-width: 720px) and (max-width: 1080px) {
@@ -145,6 +157,8 @@ const Container = styled.div`
       .username {
         h2 {
           font-size: 1rem;
+          
+          
         }
       }
     }

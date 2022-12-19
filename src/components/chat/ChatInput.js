@@ -27,6 +27,8 @@ export default function ChatInput({ handleSendMsg }) {
     }
     return (
         <Container>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
             <div className="button-container">
                 <div className="emoji" >
                     <BsEmojiSmileFill onClick={handleEmojiPickerHideShow} />
@@ -45,6 +47,8 @@ export default function ChatInput({ handleSendMsg }) {
 
 const Container = styled.div`
 display: grid;
+overflow-x: hidden;
+
 grid-template-columns: 5% 95%;
 align-items: center;
 background-color: #080420;
@@ -61,17 +65,26 @@ padding-bottom: 0.3rem;
     gap: 1rem;
     .emoji{ 
         position: fixed;
+        @media screen and (min-width: 720px) and (max-width: 1080px){
+            svg{
+            
+                margin: 1em;
+    
+            }
+             
+         }
         svg{
+            
             font-size: 1.5rem;
             color: #ffff00c8;
             cursor: pointer;
+
         }
 
         // changes the position of the emoji box
         aside{
             top:220px;
             position: fixed;
-            right:4 px;
         }
 
         .emoji-picker-react{

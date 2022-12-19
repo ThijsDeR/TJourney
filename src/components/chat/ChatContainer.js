@@ -5,6 +5,7 @@ import ChatInput from './ChatInput';
 import { v4 as uuidv4 } from "uuid";
 import { getAllMessages, createMessage } from '../../services/chat-service.js';
 
+let timer = 0;
 export default function ChatContainer({ currentChat, currentUser }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
@@ -19,7 +20,24 @@ export default function ChatContainer({ currentChat, currentUser }) {
     }
     fetchData();
   }, [currentChat]);
-  
+
+  function updateData() {
+    if (currentChat === undefined) {
+    } else if (timer > 2000) {
+      const fetchNewData = async () => {
+        const messages = await getAllMessages();
+        let messagesWithTheCurrentUser = SelectChat(messages)
+        setMessages(messagesWithTheCurrentUser);
+        timer = 0;
+      }
+      fetchNewData()
+    } else {
+      timer = timer + 1;
+    }
+  }
+
+  updateData()
+
   function SelectChat(response) {
     let ListWithCorrespondingChatMessages = [];
     for (let i = 0; i < response.length; i++) {

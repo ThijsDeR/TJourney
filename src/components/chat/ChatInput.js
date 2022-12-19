@@ -83,6 +83,13 @@ padding-bottom: 0.3rem;
 
         // changes the position of the emoji box
         aside{
+            @media screen and (min-width: 720px) and (max-width: 1080px){
+                position:fixed;
+                width:200;
+                
+                    
+        
+                }
             top:220px;
             position: fixed;
         }
@@ -140,7 +147,7 @@ padding-bottom: 0.3rem;
         }
     }
     button{
-        padding: 0.3rem 2rem;
+        padding:  0.5rem;
         border-radius: 2rem;
         display: flex;
         justify-content: center;
@@ -150,6 +157,7 @@ padding-bottom: 0.3rem;
         cursor: pointer;
         @media screen and (min-width: 720px) and (max-width: 1080px){
             padding: 0.3rem 1rem;
+            background-color: red
             svg{
             font-size: 1rem;
             color: white;

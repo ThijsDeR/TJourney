@@ -21,6 +21,7 @@ import { Challenges } from "./pages/challenges/ChallengesScreen.js";
 import GameScreen from "./pages/game/GameScreen.js";
 import AvatarSelect from "./pages/chooseAvatar/AvatarSelect";
 import CommunityScreen from "./pages/community/CommunityScreen.js";
+import AddFriends from "./pages/community/AddFriends.js";
 
 
 
@@ -50,6 +51,7 @@ function App({ timeElapsed }) {
                 <Route path="/account" element={<Account user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/avatarselect" element={<AvatarSelect user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/community" element={<CommunityScreen user={user} />} />
+                <Route path="/add-friend" element={<AddFriends user={user} />} />
             </Routes>
         </>
     )

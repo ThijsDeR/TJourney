@@ -38,9 +38,9 @@ function AddFriends({ user }) {
         //  prevent page refresh
         e.preventDefault();
         setSearchInput(e.target.value);
-        console.log(searchInput);
     }
 
+    // TODO: remove all users that are already friends
     const searchResults = users.filter(user => user.name.toLowerCase().includes(searchInput.toLowerCase()));
 
     return (
@@ -54,8 +54,6 @@ function AddFriends({ user }) {
                             <span style={{ paddingLeft: '10px' }}>Friends</span>
                         </div>
                     </Link>
-
-
 
                     <input
                         style={searchBar}

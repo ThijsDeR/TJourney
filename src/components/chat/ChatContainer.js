@@ -10,6 +10,10 @@ export default function ChatContainer({ currentChat, currentUser }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   updateData()
+
+  /**
+   * gets the messsage when you open the chat( only in the beginning)
+   */
   useEffect(() => {
     const fetchData = async () => {
       if (currentChat && currentUser) {
@@ -21,6 +25,10 @@ export default function ChatContainer({ currentChat, currentUser }) {
     fetchData();
   }, [currentChat]);
 
+
+  /**
+   * update the messages
+   */
   function updateData() {
      if (timer > 500) {
       const fetchNewData = async () => {
@@ -36,7 +44,12 @@ export default function ChatContainer({ currentChat, currentUser }) {
   }
 
 
-
+/**
+ * select the messages from the corresponding chat
+ * 
+ * @param {*} response List witg all the messages
+ * @returns selected messages from the correct chat
+ */
   function SelectChat(response) {
     let ListWithCorrespondingChatMessages = [];
     for (let i = 0; i < response.length; i++) {
@@ -50,6 +63,11 @@ export default function ChatContainer({ currentChat, currentUser }) {
     return ListWithCorrespondingChatMessages;
   }
 
+  /**
+   * send the messages to the database
+   * 
+   * @param {*} msg the message
+   */
   const handleSendMsg = async (msg) => {
     await createMessage(msg, currentChat._id, currentUser._id)
   };
@@ -77,7 +95,7 @@ export default function ChatContainer({ currentChat, currentUser }) {
             <div className="chat-messages">
               {messages.map((message) => {
                 return (
-                  <div ref={scrollRef} key={uuidv4()}>
+                  <div key={uuidv4()}>
                     <div
                       //Puts the messages you sent to right and the messsages you get on the left
                       className={`message ${message.sender === currentUser._id ?

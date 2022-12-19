@@ -52,8 +52,9 @@ overflow-x: hidden;
 grid-template-columns: 5% 95%;
 align-items: center;
 background-color: #080420;
-padding: 0 2rem;
-padding-bottom: 0.3rem;
+// padding: 0 2rem;
+padding-bottom: 0.2rem;
+padding-left:0.3rem;
 @media screen and (min-width: 720px) and (max-width: 1080px){
     padding: 0 1rem;
     gap: 1rem;
@@ -64,7 +65,7 @@ padding-bottom: 0.3rem;
     color: white;
     gap: 1rem;
     .emoji{ 
-        position: fixed;
+        position: absolute;
         @media screen and (min-width: 720px) and (max-width: 1080px){
             svg{
             
@@ -83,15 +84,19 @@ padding-bottom: 0.3rem;
 
         // changes the position of the emoji box
         aside{
-            @media screen and (min-width: 720px) and (max-width: 1080px){
-                position:fixed;
-                width:200;
+            // @media screen and (min-width: 720px) and (max-width: 1080px){
+            //     position:fixed;
+            //     width:200px;
+            //     height: 100px;
                 
                     
         
-                }
+            //     }
             top:220px;
             position: fixed;
+            width:250px !important;
+            height: 300px ;
+                
         }
 
         .emoji-picker-react{

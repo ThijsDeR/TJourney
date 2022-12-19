@@ -92,7 +92,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    overflow-x: hidden;
     overflow: auto;
     gap: 0.8rem;
     &::-webkit-scrollbar {
@@ -110,7 +110,7 @@ const Container = styled.div`
       width: 90%;
       border-radius: 0.2rem;
       padding: 0.4rem;
-     
+      overflow-x: hidden;
       display: flex;
       gap: 1rem;
       align-items: center;

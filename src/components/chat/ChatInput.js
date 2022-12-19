@@ -76,7 +76,8 @@ padding-left:0.3rem;
          }
         svg{
             
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+         
             color: #ffff00c8;
             cursor: pointer;
 
@@ -92,7 +93,7 @@ padding-left:0.3rem;
                     
         
             //     }
-            top:220px;
+            top:22%;
             position: fixed;
             width:250px !important;
             height: 300px ;
@@ -130,10 +131,11 @@ padding-left:0.3rem;
 }
 
 .input-container{
-    width: 100%;
+    width: 90%;
     border-radius: 2rem;
     display: flex;
     align-items: center;
+    margin-left: 1rem;
     gap: 2rem;
     background-color: #ffffff34;
     input{

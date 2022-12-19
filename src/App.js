@@ -19,8 +19,10 @@ import { GoalsIndex } from "./pages/goals/index/GoalsIndex.js";
 import { GoalsCreate } from "./pages/goals/create/GoalsCreate.js";
 import { Challenges } from "./pages/challenges/ChallengesScreen.js";
 import GameScreen from "./pages/game/GameScreen.js";
+import {Chats} from "./pages/chats/Chats.js";
 import AvatarSelect from "./pages/chooseAvatar/AvatarSelect";
 import CommunityScreen from "./pages/community/CommunityScreen.js";
+import AddFriends from "./pages/community/AddFriends.js";
 
 
 
@@ -34,7 +36,6 @@ function App({ timeElapsed }) {
             setUser(data)
         });
     }, [currentUser]);
-
     return (
         <>
             <Routes>
@@ -47,9 +48,11 @@ function App({ timeElapsed }) {
                 <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                <Route path="/chat" element={<Chats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/account" element={<Account user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/avatarselect" element={<AvatarSelect user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/community" element={<CommunityScreen user={user} />} />
+                <Route path="/add-friend" element={<AddFriends user={user} />} />
             </Routes>
         </>
     )

@@ -93,6 +93,18 @@ export const createGroups = (name, description, members, admin, image) => {
     });
 };
 
+export const deleteGroups = (id) => {
+    const localUser = JSON.parse(localStorage.getItem("user"))
+
+    return axios.delete("/v1/groups/" + id, {
+        headers: { Authorization: `Bearer ${localUser.accessToken}` }
+    }).then((response) => {
+        if (response.data.error) throw response.data.error
+
+        return response.data.data;
+    });
+};
+
 export const getAllGroups = async () => {
     const localUser = JSON.parse(localStorage.getItem("user"))
 

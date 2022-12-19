@@ -18,7 +18,7 @@ function Groups() {
 
     return (
         <>
-            {/* Suggested friends */}
+            {/* Suggested groups */}
             <div style={containerLeftRight}>
                 <div style={{ verticalAlign: 'middle' }}>
                     <h1 style={{ ...title, ...{ padding: 'unset' } }}>Suggested groups</h1>
@@ -29,29 +29,29 @@ function Groups() {
 
             <div style={suggestedBox}>
 
-                {/* TODO: four suggested friends form db */}
-                {/* Suggested friend block */}
+                {/* TODO: four suggested groups form db */}
+                {/* Suggested group block */}
                 <div style={suggestedTile}>
                     <div style={pfBox}><div style={fakePF}></div></div>
                     <div style={boldText}>Name</div>
                     <div style={lightText}>x players</div>
                 </div>
 
-                {/* Suggested friend block */}
+                {/* Suggested group block */}
                 <div style={suggestedTile}>
                     <div style={pfBox}><div style={fakePF}></div></div>
                     <div style={boldText}>Name</div>
                     <div style={lightText}>x players</div>
                 </div>
 
-                {/* Suggested friend block */}
+                {/* Suggested group block */}
                 <div style={suggestedTile}>
                     <div style={pfBox}><div style={fakePF}></div></div>
                     <div style={boldText}>Name</div>
                     <div style={lightText}>x players</div>
                 </div>
 
-                {/* Suggested friend block */}
+                {/* Suggested group block */}
                 <div style={suggestedTile}>
                     <div style={pfBox}><div style={fakePF}></div></div>
                     <div style={boldText}>Name</div>
@@ -59,10 +59,10 @@ function Groups() {
                 </div>
             </div>
 
-            {/* your friends */}
+            {/* your groups */}
             <div style={containerLeftRight}>
                 <div style={{ verticalAlign: 'middle' }}>
-                    <h1 style={{ ...title, ...{ padding: 'unset' } }}>Chats</h1>
+                    <h1 style={{ ...title, ...{ padding: 'unset' } }}>Groups</h1>
                 </div>
                 {/* TODO: link to add friend page? */}
                 <Link style={{ height: '24px', border: 'unset' }}><div style={{ color: primaryColor }} onClick={() => createGroups("name", "description", "member", "admin", "image")}>New chat</div></Link>

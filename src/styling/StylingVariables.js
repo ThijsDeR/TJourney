@@ -8,7 +8,7 @@ export const white = '#F7F7F7'; // high emphasis
 const backgroundColor = '#121212';
 
 // when you change this color, you will change the primary color of the whole page
-export const primaryColor = green;
+export const primaryColor = red;
 export const secondaryColor = '#323232';
 export const tertiaryColor = '#505050';
 
@@ -18,6 +18,11 @@ export const disabledEmphasis = '#636363';
 // standard padding and margin
 export const paddingPage = '10px 20px'
 export const marginFinishedChallenges = '3px 0px 3px 30px'
+
+export const unsetLinkStyle = {
+    textDecoration: 'none',
+    color: 'unset',
+}
 
 export const pageStyle = {
     position: 'fixed',
@@ -38,6 +43,12 @@ export const title = {
     fontSize: '18px',
     fontWeight: 'bold',
     padding: '15px 0px 0px 0px',
+}
+
+export const goBackIndicator = {
+    color: primaryColor,
+    margin: '10px 0px, 50px 0px',
+    fontSize: '18px',
 }
 
 export const boldText = {
@@ -296,7 +307,18 @@ export const rankingBubbleLeaderboard = {
     position: 'relative',
     top: '-55px',
     left: '0px',
+}
 
+export const searchBar = {
+    backgroundColor: secondaryColor,
+    borderRadius: '5px',
+    padding: '5px 10px',
+    margin: '20px 0px',
+    width: '100%',
+    display: 'flex',
+    color: white,
+    border: '1px solid' + mediumEmphasis,
+    fontSize: '18px'
 }
 
 

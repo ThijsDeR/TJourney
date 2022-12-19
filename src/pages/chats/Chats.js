@@ -43,6 +43,7 @@ export function Chats({ user, isLoading, setIsLoading }) {
    * @returns list users without the currentuser
    */
 function removeOwnUserFromList(listOffAllTheUsers) {
+  console.log(listOffAllTheUsers)
 const ContactList = listOffAllTheUsers;
     for (let i = 0; i < ContactList.length; i++) {
       if (currentUser._id === ContactList[i]._id) {
@@ -56,6 +57,8 @@ const ContactList = listOffAllTheUsers;
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   }
+
+  
 
   return (
     <>

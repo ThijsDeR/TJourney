@@ -77,7 +77,7 @@ export default function ChatContainer({ currentChat, currentUser }) {
             <div className="chat-messages">
               {messages.map((message) => {
                 return (
-                  <div ref={scrollRef} key={uuidv4()}>
+                  <div key={uuidv4()}>
                     <div
                       //Puts the messages you sent to right and the messsages you get on the left
                       className={`message ${message.sender === currentUser._id ?

@@ -122,14 +122,13 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                     }
                     {screenPart > 5 &&
                         <div className="has-text-white is-size-3 has-text-centered" style={{ top: "40vh", position: "relative" }} onClick={() => updateTutorialScreenPart()}>
-                            Let's go select an avatar
+                            Let's go select an avatar by clicking on your avatar
                         </div>
                     }
                 </div>
 
                 <div className="mx-5">
                     <div className="is-size-3" style={{ position: "absolute", right: "5vw" }}>
-                        {/* TODO: make it go to currently non-existent settings page */}
                         <Link to="/home"><FontAwesomeIcon icon={faGear} /></Link>
                     </div>
                     <div className="is-size-3 has-text-centered">

@@ -1,15 +1,71 @@
-import "../../../components/navigation/navigation.css";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-import luckyBlock from "../../../assets/lg1emBK.png"
+import React, { useEffect, useState } from 'react';
+import { Link, Navigate } from "react-router-dom";
 
-const ChallengesTutorial = ({ user, updateTutorialPosition, screenPart, updateTutorialScreenPart }) => {
-    const [challenges, setChallenges] = useState(undefined);
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretDown, faCircle, faAngleRight, faSquare } from '@fortawesome/free-solid-svg-icons'
+
+import Footer from "../../../components/footer/Footer";
+import Navigation from "../../../components/navigation/Navigation";
+import 'bulma/css/bulma.min.css';
+import { checkChallenge, getAllChallenges, getAllGoals } from '../../../services/goal-service';
+import { getGameSession } from '../../../services/game-service';
+import Loading from '../../../components/loading/Loading';
+
+import '../../challenges/challenges.css';
+
+function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenPart, updateTutorialPosition }) {
+    const [unfinishedChallenges, setUnfinishedChallenges] = useState(undefined);
+    const [finishedChallenges, setFinishedChallenges] = useState(undefined)
     const [diceEyesCount, setdiceEyesCount] = useState(undefined);
     const [goals, setGoals] = useState(undefined);
     const [isSelected, setIsSelected] = useState(undefined);
+    const [days, setDays] = useState(undefined);
+    const [currentDay, setCurrentDay] = useState(undefined)
+
+    const setChallenges = async (date) => {
+        const challenges = await getAllChallenges(date);
+        const finished = [];
+        const unfinished = [];
+
+        challenges.forEach((challenge) => {
+            challenge.finished ? finished.push(challenge) : unfinished.push(challenge);
+        })
+
+        setFinishedChallenges(finished);
+        setUnfinishedChallenges(unfinished);
+    }
+    useEffect(() => {
+        setChallenges(Date.now())
+
+        getAllGoals().then((data) => {
+            setGoals(data)
+        })
+
+        const daysAround = 7
+        const days = [];
+        for (let i = daysAround; i > 0; i--) {
+            days.push(new Date(Date.now() - (1000 * 3600 * 24 * i)))
+        }
+
+        for (let i = 0; i <= daysAround; i++) {
+            days.push(new Date(Date.now() + (1000 * 3600 * 24 * i)))
+        }
+
+        setDays(days);
+        setCurrentDay(daysAround)
+    }, [])
+
+    useEffect(() => {
+        if (finishedChallenges) {
+            calculatediceEyesCountCount(finishedChallenges).then((data) => {
+                setdiceEyesCount(data)
+            })
+        }
+    }, [finishedChallenges])
+
+    useEffect(() => {
+        if (currentDay !== undefined && days !== undefined && days[currentDay]) setChallenges(days[currentDay].getTime());
+    }, [currentDay])
 
     function selectDropDown(goal_id) {
         if (isSelected === goal_id) {
@@ -19,86 +75,268 @@ const ChallengesTutorial = ({ user, updateTutorialPosition, screenPart, updateTu
         }
     }
 
+    const calculatediceEyesCountCount = async (challenges) => {
+        const gameSession = await getGameSession()
+        const total = challenges.length
+        let finished = 0
+        const msInDay = 1000 * 60 * 60 * 24
+        challenges.forEach((challenge) => {
+            const entry = gameSession.entries.find((entry) => {
+                return Date.parse(entry.date)
+                    >= (
+                        Math.floor(
+                            Date.parse(challenge.date) / msInDay
+                        ) * msInDay
+                    )
+                    &&
+                    Date.parse(entry.date)
+                    <= (
+                        Math.ceil(
+                            Date.parse(challenge.date) / msInDay
+                        ) * msInDay
+                    )
+            })
+            if (!entry) {
+                finished++
+            }
+        })
+
+        const diceEyesCountConfigs = [
+            [0, 20],
+            [0, 12, 20],
+            [0, 10, 16, 20],
+            [0, 8, 14, 18, 20],
+            [0, 6, 12, 16, 18, 20],
+            [0, 6, 10, 14, 16, 18, 20],
+        ]
+
+        return diceEyesCountConfigs[Math.max(0, total - 1)][finished]
+    }
+
+    const checkChallengeHandler = async (goalId, challengeId, finished) => {
+        await checkChallenge(goalId, challengeId, !finished)
+        setChallenges(days[currentDay].getTime())
+        getAllGoals().then((data) => {
+            setGoals(data)
+        });
+    }
+
+    const setDayHandler = async (day) => {
+        setCurrentDay(day)
+    }
+
+    if (user === undefined && !isLoading) {
+        return <Navigate to="/login" replace />;
+    }
+
+
+    // color options
+    const purple = "#BB86FC";
+    const blue = "#57ADDD";
+    const yellow = "#FFBC6F";
+    const green = "#61C688";
+    const red = "#FF686B";
+
+    // when you change this color, you will change the primary color of the whole page
+    const primaryColor = green;
+    const secondaryColor = "#323232";
+    const tertiaryColor = "#505050";
+    const paddingPage = "10px 20px"
+    const marginFinishedChallenges = "3px 0px 3px 30px"
+
+    const pageStyle = {
+        top: "0px",
+        bottom: "50px",
+        left: "0px",
+        right: "0px",
+        backgroundColor: "#121212",
+        color: "#F7F7F7",
+        overflowY: "scroll",
+        overflowX: "hidden",
+    }
+
+    const title = {
+        fontSize: "18px",
+        fontWeight: "bold",
+        padding: "15px 0px 0px 25px",
+    }
+
+    const buttonStyle = {
+        color: primaryColor,
+        height: "35px",
+    }
+
+    const tileStyle = {
+        backgroundColor: primaryColor,
+        borderRadius: "5px",
+        padding: "3px 10px",
+        margin: "10px 0px",
+        height: "70px",
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
+
+    const containerLeftRight = {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
+        justifyContent: 'space-between',
+    }
+
+    const goalsContainer = {
+        backgroundColor: secondaryColor,
+        margin: "15px 0px 0px 0px",
+        // TODO: fix height
+        padding: paddingPage
+    }
+
+    const goalItem = {
+        display: 'inline-block',
+        margin: '10px 0px 10px 10px',
+    }
+
     return (
         <>
             <div style={{ zIndex: "20", backgroundColor: "rgb(0, 0, 0, 0.5)", width: "100vw", height: "100vh", position: "absolute", left: "0px", top: "0px" }} onClick={() => updateTutorialScreenPart()} />
-            {screenPart === 0 &&
-                <div className="modal-content has-text-white is-size-4 has-text-centered" style={{ position: 'absolute', top: "5vh", zIndex: 30 }}>
-                    This is the Challenges screen
-                </div>
-            }
-            {screenPart >= 1 &&
-                <div className=" has-text-white is-size-4 has-text-centered" style={{ position: 'absolute', top: "5vh", zIndex: 30 }}>
-                    Challenges is still being redone so let's go to journey
-                </div>
-            }
 
-            <div style={{ display: "flex", justifyContent: "center" }}>
-                <h1 className="is-size-3 has-text-white">
-                    Challenges {
-                        diceEyesCount ? (
-                            <>
-                                <Link to="/game">
-                                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (diceEyesCount !== 0 ? "rgba(0, 200, 200, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px" }}>
-                                        <img src={luckyBlock} style={{ width: "50px" }} alt="Lucky block" />
-                                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? diceEyesCount : "0"}</p>
+            <div style={{ zIndex: 30, width: "100%", position: "absolute" }} onClick={() => updateTutorialScreenPart()}>
+                {screenPart === 0 &&
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "40vh", position: "relative" }}>
+                        Here are your goals and challenges
+                    </div>
+                }
+                {screenPart === 1 &&
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "9vh", position: "relative" }}>
+                        This shows what day you are on
+                    </div>
+                }
+                {screenPart === 2 &&
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "3vh", position: "relative" }}>
+                        This shows the challenges you need to complete today
+                    </div>
+                }
+                {screenPart === 3 &&
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "9vh", position: "relative" }}>
+                        and which you have finished
+                    </div>
+                }
+                {screenPart === 4 &&
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "9vh", position: "relative" }}>
+                        These are your goals
+                    </div>
+                }
+                {screenPart > 4 &&
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "9vh", position: "relative" }}>
+                        Let's make a new one
+                    </div>
+                }
+            </div>
+
+            <div style={pageStyle}>
+                <div style={{ padding: paddingPage }}>
+                    <h1 style={screenPart === 1 ?
+                        { zIndex: 30, position: 'relative', ...title, ...{ textAlign: 'center' } }
+                        :
+                        { ...title, ...{ textAlign: 'center' } }}>
+                        {currentDay !== undefined ? days[currentDay].toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" }) : ""}</h1 >
+                    {/* <div style={{ textAlign: 'center' }}> <FontAwesomeIcon icon={faCaretDown} size='2x' /> </div> */}
+                    <div id="daysScroll" style={{ textAlign: 'center', display: "flex", marginBottom: '30px', overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none", width: "100%" }}>
+                        <div style={screenPart === 1 ?
+                            { zIndex: 30, display: "flex", flex: "0 0 auto", gap: "10px" }
+                            :
+                            { display: "flex", flex: "0 0 auto", gap: "10px" }}>
+                            {
+                                days ? days.map((day, dayIndex) => (
+                                    <div onClick={() => setDayHandler(dayIndex)}>
+                                        <FontAwesomeIcon icon={faCircle} size='2x' color={dayIndex === currentDay ? primaryColor : "white"} />
                                     </div>
-                                </Link>
-                            </>
-                        ) : ""}
-                </h1>
-            </div>
-            <div className="has-text-centered">
-                <button className="button has-background-grey has-text-white mx-4"><a href="/goals/create" className="has-text-white">Make Goals</a></button>
-                <button className="button has-background-grey has-text-white mx-4"><a href="/goals/index" className="has-text-white">See Goals</a></button>
-            </div>
+                                )) : ""
+                            }
+                        </div>
+                    </div>
 
-            <div className="is-size-4 has-text-white has-text-centered box has-background-grey mx-5 mt-5 mb-0" onClick={() => selectDropDown(0)}>
-                Today's Challenges<FontAwesomeIcon className="is-pulled-right pr-5" icon={faCaretDown} />
-            </div>
-            {challenges ? challenges.map((challenge, challengeIndex) => (
-                <>
-                    {isSelected === 0 ?
-                        <div key={challengeIndex.toString() + "-c"} className="columns is-mobile mx-5 my-1">
-                            <div className="column is-3 box has-background-black has-text-white my-1">Day: {challenge.id}</div>
-                            <div className="column is-9 box has-background-grey-dark has-text-white my-1">{challenge.name}
-                                <input type="checkbox" className="is-pulled-right" style={{ width: "25px", height: "25px" }} checked={challenge.finished} />
+                    {/* Challenges */}
+                    <div>
+                        <h2 style={screenPart === 2 ?
+                            { zIndex: 30, position: "relative", fontWeight: 'bold' }
+                            :
+                            { fontWeight: 'bold' }} >Challenges</h2>
+                        <div style={screenPart === 2 ?
+                            { zIndex: 30, position: "relative", ...tileStyle, ...containerLeftRight }
+                            :
+                            { ...tileStyle, ...containerLeftRight }}>
+                            <div>Challenge for goal 'Drink more than 500mL water' on day 33</div>
+                            <div>
+                                <input type="checkbox" className="is-pulled-right" style={{ width: "25px", height: "25px" }} checked={false} />
                             </div>
                         </div>
-                        : ""
-                    }
-                </>
-            )) : ''}
 
-            {goals ? goals.map((goal, goalIndex) =>
-                <>
-                    <div key={goalIndex.toString() + "-g"} className="is-size-4 has-text-white has-text-centered box has-background-grey mx-5 mt-5 mb-0" onClick={() => selectDropDown(goal._id)}>
-                        {goal.name}<FontAwesomeIcon className="is-pulled-right pr-5" icon={faCaretDown} />
-                    </div>
-                    {goal.challenges ? goal.challenges.map((challenge, challengeIndex) => (
-                        <>
-                            {isSelected === goal._id ?
-                                <div key={challengeIndex.toString() + "-gc"} className="columns is-mobile mx-5 my-1">
-                                    <div className="column is-3 box has-background-black has-text-white my-1">Day: {challenge.id}</div>
-                                    <div className="column is-9 box has-background-grey-dark has-text-white my-1">{challenge.name}
-                                        <input type="checkbox" className="is-pulled-right" style={{ width: "25px", height: "25px" }} checked={challenge.finished} />
-                                    </div>
+                        <div style={screenPart === 3 ?
+                            { zIndex: 30, position: "relative", ...tileStyle, ...{ backgroundColor: secondaryColor, height: "unset" } }
+                            :
+                            { ...tileStyle, ...{ backgroundColor: secondaryColor, height: "unset" } }}>
+                            <h2 style={{ fontWeight: 'bold' }} >Finished</h2>
+                            <hr style={{ borderTop: `2px solid ${tertiaryColor}`, margin: 'unset', backgroundColor: tertiaryColor }}></hr>
+                            <div style={containerLeftRight}>
+                                <div style={{ margin: marginFinishedChallenges }}> Challenge for goal 'Eat more than 1200 calories' on day 22 </div>
+                                <div style={{ paddingTop: '5px' }}>
+                                    <input type="checkbox" className="is-pulled-right" style={{ width: "25px", height: "25px" }} checked={true} />
                                 </div>
-                                : ""
-                            }
-                        </>
-                    )) : ""}
-                </>
-            ) : ""}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div className="nav-bottom" style={screenPart >= 1 ? { zIndex: "30" } : {}}>
+                {/* Goals */}
+                <div style={screenPart === 4 ? { zIndex: 30, position: "relative" } : {}}>
+
+                    <div style={goalsContainer} >
+                        <div style={containerLeftRight}>
+                            <div><h2 style={{ fontWeight: 'bold' }} >Goals</h2></div>
+                            {/* TODO: link to edit goals page */}
+                            <Link><div style={{ color: primaryColor }} >Edit</div></Link>
+                        </div>
+
+                        {/* List of goals TODO: for loop db all goals */}
+                        <div style={{ ...tileStyle, ...{ backgroundColor: tertiaryColor, height: 'unset' } }}>
+                            <div style={goalItem}>
+                                <FontAwesomeIcon icon={faCircle} size='5x' />
+                            </div>
+                            <div style={goalItem}>
+                                <div style={{ fontWeight: 'bold' }}>Eat more</div>
+                                <div>12 days left</div>
+                                <div style={{ fontWeight: 'lighter', fontSize: '13px' }}>Started on 19-12-2022</div>
+                            </div>
+                        </div>
+                        <div style={{ ...tileStyle, ...{ backgroundColor: tertiaryColor, height: 'unset' } }}>
+                            <div style={goalItem}>
+                                <FontAwesomeIcon icon={faCircle} size='5x' />
+                            </div>
+                            <div style={goalItem}>
+                                <div style={{ fontWeight: 'bold' }}>Drink more</div>
+                                <div>2 days left</div>
+                                <div style={{ fontWeight: 'lighter', fontSize: '13px' }}>Started on 03-01-2023</div>
+                            </div>
+                        </div>
+                        <Link to="#">
+                            <div style={screenPart > 4 ? { zIndex: 30, position: "relative" } : {}} onClick={screenPart > 4 ? () => updateTutorialPosition() : ""}>
+                                <div style={{ ...tileStyle, ...buttonStyle, ...{ backgroundColor: tertiaryColor } }}>
+                                    Add new goal
+                                </div>
+                            </div>
+                        </Link>
+                    </div>
+
+                </div>
+            </div >
+            <div className="nav-bottom">
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
                             <Link to="#">L</Link>
                             <Link to="#">CH</Link>
                             <Link to="#">H</Link>
-                            <Link to="#" onClick={screenPart >= 1 ? () => updateTutorialPosition() : ""}>J</Link>
+                            <Link to="#">J</Link>
                             <Link>Co</Link>
                         </> :
                         <>
@@ -109,7 +347,7 @@ const ChallengesTutorial = ({ user, updateTutorialPosition, screenPart, updateTu
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default ChallengesTutorial;

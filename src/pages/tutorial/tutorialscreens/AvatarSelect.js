@@ -1,13 +1,12 @@
 import React from 'react';
-import { useState, useEffect } from "react";
 import { editAvatar } from "../../../services/auth-service";
 import { Link } from "react-router-dom";
 
 import { DefaultAvatars } from "../../../assets/DefaultAvatars/DefaultAvatarsCanvas.js"
 
-function AvatarSelect({ user, isLoading, setIsLoading, screenPart, updateTutorialScreenPart, updateTutorialPosition }) {
+function AvatarSelect({ user, screenPart, updateTutorialScreenPart, updateTutorialPosition }) {
     function selectAvatar(avatar) {
-        editAvatar(avatar).then((data) => {
+        editAvatar(avatar).then(() => {
             updateTutorialPosition();
         });
     }

@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Navigation from '../../components/navigation/Navigation.js';
 import { Navigate } from "react-router-dom";
 import Loading from '../../components/loading/Loading.js';
 import HomescreenTutorial from './tutorialscreens/homeTutorial.js';
-import ChallengesTutorial from './tutorialscreens/challengesTutorial.js';
+import ChallengesTutorial from './tutorialscreens/ChallengesTutorial.js';
 import GameScreenTutorial from './tutorialscreens/GameScreenTutorial.js';
 import AccountTutorial from './tutorialscreens/AccountTutorial.js';
 import AvatarSelectTutorial from './tutorialscreens/AvatarSelect.js';
 
 function Tutorial({ user, isLoading, setIsLoading }) {
-    const [tutorialPosition, setTutorialPosition] = useState(3);
+    const [tutorialPosition, setTutorialPosition] = useState(1);
     const [screenPart, setScreenPart] = useState(0);
 
     function updateTutorialPosition() {
@@ -35,7 +34,8 @@ function Tutorial({ user, isLoading, setIsLoading }) {
     const TutorialScreens = [
         <HomescreenTutorial {...data} />, <ChallengesTutorial {...data} />,
         <GameScreenTutorial {...data} />, <AccountTutorial {...data} />,
-        <AvatarSelectTutorial {...data} />]
+        <AvatarSelectTutorial {...data} />];
+
     return (
         <>
             {

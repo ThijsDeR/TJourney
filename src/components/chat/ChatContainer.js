@@ -9,7 +9,7 @@ let timer = 0;
 export default function ChatContainer({ currentChat, currentUser }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
-
+  updateData()
   useEffect(() => {
     const fetchData = async () => {
       if (currentChat && currentUser) {
@@ -22,21 +22,20 @@ export default function ChatContainer({ currentChat, currentUser }) {
   }, [currentChat]);
 
   function updateData() {
-    if (currentChat === undefined) {
-    } else if (timer > 2000) {
+     if (timer > 500) {
       const fetchNewData = async () => {
         const messages = await getAllMessages();
         let messagesWithTheCurrentUser = SelectChat(messages)
-        setMessages(messagesWithTheCurrentUser);
-        timer = 0;
+        setMessages(messagesWithTheCurrentUser)      
       }
       fetchNewData()
-    } else {
+      timer = 0;
+    } else if(currentChat) {
       timer = timer + 1;
     }
   }
 
-  updateData()
+
 
   function SelectChat(response) {
     let ListWithCorrespondingChatMessages = [];

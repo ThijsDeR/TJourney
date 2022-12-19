@@ -5,51 +5,54 @@ const HomescreenTutorial = ({ user, updateTutorialPosition, screenPart, updateTu
     return (
         <>
             <div style={{ zIndex: "20", backgroundColor: "rgb(0, 0, 0, 0.5)", width: "100vw", height: "100vh", position: "absolute" }} onClick={() => updateTutorialScreenPart()} />
-            {screenPart === 0 &&
-                <div className="modal-content has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "5vh", zIndex: 30 }}>
-                    This is the homescreen
-                </div>
-            }
-            {screenPart === 1 &&
-                <div className=" has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "5vh", zIndex: 30 }}>
-                    Here you can see your username and level
-                </div>
-            }
-            {screenPart === 2 &&
-                <div className=" has-text-white is-size-4 has-text-centered" style={{ position: 'absolute', bottom: "8vh", zIndex: 30 }}>
-                    This is the navbar, which has:
-                </div>
-            }
-            {screenPart === 3 &&
-                <div className=" has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "0vw", zIndex: 30 }}>
-                    Logout:
-                </div>
-            }
-            {screenPart === 4 &&
-                <div className=" has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "14vw", zIndex: 30 }}>
-                    Challenges:
-                </div>
-            }
-            {screenPart === 5 &&
-                <div className=" has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "37vw", zIndex: 30 }}>
-                    Home:
-                </div>
-            }
-            {screenPart === 6 &&
-                <div className=" has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "54vw", zIndex: 30 }}>
-                    Journey:
-                </div>
-            }
-            {screenPart === 7 &&
-                <div className=" has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "65vw", zIndex: 30 }}>
-                    Challenges:
-                </div>
-            }
-            {screenPart >= 8 &&
-                <div className=" has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "10vw", zIndex: 30 }}>
-                    Let's go to challenges
-                </div>
-            }
+
+            <div style={{ zIndex: 30, width: "100%" }}>
+                {screenPart === 0 &&
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "5vh", zIndex: 30, width: "100%" }}>
+                        This is the homescreen
+                    </div>
+                }
+                {screenPart === 1 &&
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "5vh", zIndex: 30 }}>
+                        Here you can see your username and level
+                    </div>
+                }
+                {screenPart === 2 &&
+                    <div className="has-text-white is-size-4 has-text-centered" style={{ position: 'absolute', bottom: "8vh", zIndex: 30 }}>
+                        This is the navbar, which has:
+                    </div>
+                }
+                {screenPart === 3 &&
+                    <div className="has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "0vw", zIndex: 30 }}>
+                        Logout:
+                    </div>
+                }
+                {screenPart === 4 &&
+                    <div className="has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "14vw", zIndex: 30 }}>
+                        Challenges:
+                    </div>
+                }
+                {screenPart === 5 &&
+                    <div className="has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "37vw", zIndex: 30 }}>
+                        Home:
+                    </div>
+                }
+                {screenPart === 6 &&
+                    <div className="has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "54vw", zIndex: 30 }}>
+                        Journey:
+                    </div>
+                }
+                {screenPart === 7 &&
+                    <div className="has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "65vw", zIndex: 30 }}>
+                        Challenges:
+                    </div>
+                }
+                {screenPart >= 8 &&
+                    <div className="has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "10vw", zIndex: 30 }}>
+                        Let's go to challenges
+                    </div>
+                }
+            </div>
 
             <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px" }}>
                 <section className="bg-image" style={{ height: "100%", width: "100%" }}>

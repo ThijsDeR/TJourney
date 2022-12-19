@@ -28,12 +28,10 @@ export default class Game {
         if (this.player.currentPlaceOnTheBoard !== this.lastPlaceOnBoard) {
 
             if (this.player.currentPlaceOnTheBoard === this.player.placeOnTheBoard) {
-                console.log("landed on")
                 this.world.circles[this.player.currentPlaceOnTheBoard % this.world.circles.length].playerLandedOn()
                 this.shouldUpdate = true;
             }
             else {
-                console.log("passed")
                 this.world.circles[this.player.currentPlaceOnTheBoard % this.world.circles.length].playerPassed()
             }
             this.lastPlaceOnBoard = this.player.currentPlaceOnTheBoard

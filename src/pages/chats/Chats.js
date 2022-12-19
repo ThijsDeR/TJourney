@@ -12,6 +12,7 @@ export function Chats({ user, isLoading, setIsLoading }) {
   const currentUser = user;
   const [currentChat, setCurrentChat] = useState(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
+  
 
   useEffect(() => {
     if (user) setIsLoading(false)
@@ -34,7 +35,7 @@ export function Chats({ user, isLoading, setIsLoading }) {
   }, [user, currentUser]);
 
 
-
+ 
   /**
    * Removes your own username from the contact list
    * 

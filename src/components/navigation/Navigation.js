@@ -18,6 +18,7 @@ function Navigation({ user }) {
                                 <Link to="/home">H</Link>
                                 <Link to="/game">J</Link>
                                 <Link to="/chat">Com</Link>
+                                <Link to="/community"> Co</Link>
                             </> :
                             <>
                                 <Link to="/login">Login</Link>

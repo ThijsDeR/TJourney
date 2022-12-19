@@ -49,9 +49,9 @@ export default class Dice extends Drawable {
 
     }
 
-    update(timeElapsed) {
+    update(timeElapsed, player) {
         this.diceRotation(timeElapsed)
-        this.diceAnimation(timeElapsed)
+        this.diceAnimation(timeElapsed, player)
     }
 
     /**
@@ -67,10 +67,10 @@ export default class Dice extends Drawable {
         this.count = randomCount(count)
     }
 
-    diceAnimation(timeElapsed) {
+    diceAnimation(timeElapsed, player) {
         if (!this.visible) return;
 
-        this.text.text = `${this.count}`
+        this.text.text = `${player.placeOnTheBoard - player.currentPlaceOnTheBoard}`
         this.animationTime += timeElapsed * 50
 
         if (this.animationTime >= this.maxThrowingTime) {
@@ -78,7 +78,7 @@ export default class Dice extends Drawable {
 
             this.textVisible = this.animationTime >= this.maxThrowingTime * 1.2
 
-            if (this.count === 0) this.reset();
+            if (player.placeOnTheBoard === player.currentPlaceOnTheBoard) this.reset();
         } else this.throwDiceAnimation()
 
     }

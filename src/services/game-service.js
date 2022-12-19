@@ -18,13 +18,12 @@ export const getGameSession = async () => {
     return null
 }
 
+
 export const setSteps = async (steps) => {
     const localUser = JSON.parse(localStorage.getItem("user"))
 
     const result = await getCurrentUser()
     if (result) {
-        const gameSession = await getGameSession()
-
         return axios.put("/v1/gameSessions/", {
             updateQuery: {
                 $set: {

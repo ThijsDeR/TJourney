@@ -5,9 +5,10 @@ import Loading from '../../components/loading/Loading.js';
 import HomescreenTutorial from './tutorialscreens/homeTutorial.js';
 import ChallengesTutorial from './tutorialscreens/challengesTutorial.js';
 import GameScreenTutorial from './tutorialscreens/GameScreenTutorial.js';
+import AccountTutorial from './tutorialscreens/AccountTutorial.js';
 
 function Tutorial({ user, isLoading, setIsLoading }) {
-    const [tutorialPosition, setTutorialPosition] = useState(0);
+    const [tutorialPosition, setTutorialPosition] = useState(3);
     const [screenPart, setScreenPart] = useState(0);
 
     function updateTutorialPosition() {
@@ -30,7 +31,9 @@ function Tutorial({ user, isLoading, setIsLoading }) {
     }
 
     const data = { user, updateTutorialPosition, screenPart, updateTutorialScreenPart }
-    const TutorialScreens = [<HomescreenTutorial {...data} />, <ChallengesTutorial {...data} />, <GameScreenTutorial {...data} />]
+    const TutorialScreens = [
+        <HomescreenTutorial {...data} />, <ChallengesTutorial {...data} />,
+        <GameScreenTutorial {...data} />, <AccountTutorial {...data} />]
     return (
         <>
             {

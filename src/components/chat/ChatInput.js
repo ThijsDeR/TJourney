@@ -60,7 +60,7 @@ padding-bottom: 0.3rem;
     color: white;
     gap: 1rem;
     .emoji{ 
-        position: absolute;
+        position: fixed;
         svg{
             font-size: 1.5rem;
             color: #ffff00c8;
@@ -69,8 +69,9 @@ padding-bottom: 0.3rem;
 
         // changes the position of the emoji box
         aside{
-            top:-350px;
-            left:200px;
+            top:220px;
+            position: fixed;
+            right:4 px;
         }
 
         .emoji-picker-react{

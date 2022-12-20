@@ -5,6 +5,7 @@ import Welcome from "../../components/chat/Welcome.js";
 import ChatContainer from "../../components/chat/ChatContainer.js";
 import { getAllTheUsers } from "../../services/auth-service.js";
 import Loading from '../../components/loading/Loading.js';
+import './Chat.css'
 
 
 export function Chats({ user, isLoading, setIsLoading }) {
@@ -61,7 +62,7 @@ export function Chats({ user, isLoading, setIsLoading }) {
   return (
     <>
       {isLoading ? <Loading /> :
-        <Container>
+        <div className="Chats">
 
           <div className="container">
             <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} />
@@ -71,36 +72,36 @@ export function Chats({ user, isLoading, setIsLoading }) {
               <ChatContainer currentChat={currentChat} currentUser={currentUser} />
             }
           </div>
-        </Container>
+        </div>
       }
     </>
   )
 }
 
 
-const Container = styled.div`
-max-width: 100%;
-overflow-x: hidden;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-  align-items: center;
-  position:absolute;
-  background-color: #131324;
-  .container {
-    height: 100vh;
-    width: 99vw;
-    position: absolute;
-    background-color: #00000076;
-    display: grid;
-    grid-template-columns: 25% 75%;
-    @media screen and (min-width: 720px) and (max-width: 1080px) {
-      grid-template-columns: 25% 85%;
+// const Container = styled.div`
+// max-width: 100%;
+// overflow-x: hidden;
+//   height: 100vh;
+//   width: 100vw;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   gap: 1rem;
+//   align-items: center;
+//   position:absolute;
+//   background-color: #131324;
+//   .container {
+//     height: 100vh;
+//     width: 99vw;
+//     position: absolute;
+//     background-color: #00000076;
+//     display: grid;
+//     grid-template-columns: 25% 75%;
+//     @media screen and (min-width: 720px) and (max-width: 1080px) {
+//       grid-template-columns: 25% 85%;
   
-      overflow-x: hidden;
-    }
-  }
-`;
+//       overflow-x: hidden;
+//     }
+//   }
+// `;

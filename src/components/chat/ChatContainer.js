@@ -4,6 +4,7 @@ import styled from "styled-components"
 import ChatInput from './ChatInput';
 import { v4 as uuidv4 } from "uuid";
 import { getAllMessages, createMessage } from '../../services/chat-service.js';
+import "./css/ChatContainer.css"
 
 let timer = 0;
 export default function ChatContainer({ currentChat, currentUser }) {
@@ -80,7 +81,7 @@ export default function ChatContainer({ currentChat, currentUser }) {
     <>
       {
         currentChat && (
-          <Container>
+          <div className='Chat-container'>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <div className="chat-header">
               <div className="user-details">
@@ -113,7 +114,7 @@ export default function ChatContainer({ currentChat, currentUser }) {
               })}
             </div>
             <ChatInput handleSendMsg={handleSendMsg} />
-          </Container>
+          </div>
         )
       }
     </>

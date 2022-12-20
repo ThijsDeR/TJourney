@@ -90,7 +90,6 @@ export function Chats({ user, isLoading, setIsLoading }) {
 const Container = styled.div`
 max-width: 100%;
 overflow-x: hidden;
-
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -103,7 +102,6 @@ overflow-x: hidden;
   .container {
     height: 100vh;
     width: 99vw;
-  
     position: absolute;
     background-color: #00000076;
     display: grid;
@@ -114,5 +112,4 @@ overflow-x: hidden;
       overflow-x: hidden;
     }
   }
-
 `;

@@ -6,13 +6,21 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
 
-
+  /**
+   * set current username
+   */
   useEffect(() => {
     if (currentUser) {
       setCurrentUserName(currentUser.username);
     }
   }, [currentUser]);
 
+  /**
+   * change currentchat
+   * 
+   * @param {number} index place of the contact in the array
+   * @param {*} contact the contact information
+   */
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
     changeChat(contact);
@@ -41,8 +49,6 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
                         }`}
                       key={contact._id}
                       onClick={() => changeCurrentChat(index, contact)}>
-                      {/* <div className="avatar">
-                      </div> */}
                       <div className="username">
                         <h3>{contact.username}</h3>
                       </div>
@@ -52,8 +58,6 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
               }
             </div>
             <div className="current-user">
-              {/* <div className="avatar">
-              </div> */}
               <div className="username">
                 <h2>{currentUserName}</h2>
               </div>

@@ -21,6 +21,7 @@ function Friends() {
             console.log(friends)
         });
     }, [])
+    
     return (
         <>
             {/* Suggested friends */}

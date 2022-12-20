@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { getFriends } from '../../services/friends-service.js';
+import { calculateLevel } from '../../services/level-service.js';
 
 // styling
 import 'bulma/css/bulma.min.css';
 import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, boldText, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard } from '../../styling/StylingVariables.js';
 
 function Leaderboard() {
+
+    const [friends, setFriends] = useState(undefined);
+
+    useEffect(() => {
+        getFriends().then((friends) => {
+            friends.forEach((friend) => {
+                friend.user.level = calculateLevel(friend.user.level.amount)
+            })
+            setFriends(friends)
+            console.log(friends)
+        });
+    }, [])
 
     return (
         <>
@@ -13,6 +28,16 @@ function Leaderboard() {
                 justifyContent: 'center',
                 alignItems: 'center',
             }}>
+
+                {
+                    friends && friends.map((friend) => {
+                        return (
+                            <div key={friend.id}>
+                                {friend.user.level.level}
+                            </div>
+                        )
+                    })
+                }
 
                 {/* Top three */}
                 <div style={topThreeContainer}>

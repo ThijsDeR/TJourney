@@ -141,7 +141,7 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                             {inputUserName
                                 ?
                                 <div style={{ height: "3vh" }} >
-                                    <form onSubmit={(e) => handleEditUserName(e)}>
+                                    <form>
                                         <input className="input has-text-white has-text-centered has-background-black" style={{ width: "35vw" }} type="text" placeholder="username" defaultValue={user.username} onChange={(e) => setNewUsername(e.target.value)} />
                                         <button className="is-pulled-right button ml-3 has-background-black has-text-white" onClick={() => showInputUserName(!inputUserName)}>Cancel</button>
                                         <button className="is-pulled-right button has-background-success">Submit</button>
@@ -201,7 +201,7 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                                         <button className="button mt-3 has-background-danger has-text-black" onClick={() => showInputPassword(false)}>
                                             Close
                                         </button>
-                                        <button className="is-pulled-right button mt-3 has-background-success has-text-black" onClick={() => handleNewPassword()}>
+                                        <button className="is-pulled-right button mt-3 has-background-success has-text-black">
                                             Submit
                                         </button>
                                         <div className="is-clearfix"></div>
@@ -225,12 +225,12 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                             <div className="modal is-active px-5">
                                 <div className="modal-background"></div>
                                 <div className="modal-content px-2 py-3 has-background-dark" style={{ borderRadius: "15px" }}>
-                                    <form onSubmit={(e) => handleDeleteAccount(e)}>
+                                    <div>
                                         <div className="is-size-4 mb-1 has-text-white">Confirm deletion by entering your password:</div>
                                         <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                                         <button className="button mt-3 is-pulled-right has-background-success has-text-black">Submit</button>
                                         <button className="button mt-3 has-background-danger has-text-black" onClick={() => showInputDeleteAccount(false)}>Close</button>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </>

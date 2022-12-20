@@ -7,16 +7,21 @@ import GameScreenTutorial from './tutorialscreens/GameScreenTutorial.js';
 import AccountTutorial from './tutorialscreens/AccountTutorial.js';
 import AvatarSelectTutorial from './tutorialscreens/AvatarSelect.js';
 import { GoalsCreateTutorial } from './tutorialscreens/GoalsCreateTutorial.js';
+import CommunityScreenTutorial from './tutorialscreens/CommunityScreenTutorial.js';
 
 function Tutorial({ user, isLoading, setIsLoading }) {
-    const [tutorialPosition, setTutorialPosition] = useState(2);
+    const [tutorialPosition, setTutorialPosition] = useState(6);
     const [screenPart, setScreenPart] = useState(0);
     const [showSkipModal, setShowSkipModal] = useState(false);
+    const [tutorialDone, setTutorialDone] = useState(false);
 
     function updateTutorialPosition() {
         setScreenPart(0);
         setTutorialPosition(tutorialPosition + 1);
-        console.log("next screen " + tutorialPosition)
+        console.log("next screen " + tutorialPosition);
+        if (tutorialPosition >= 6) {
+            setTutorialDone(true);
+        }
     }
 
     function updateTutorialScreenPart(amount = 1) {
@@ -32,12 +37,17 @@ function Tutorial({ user, isLoading, setIsLoading }) {
         return <Navigate to="/login" replace />;
     }
 
+    if (tutorialDone) {
+        
+        return <Navigate to="/home" replace />;
+    }
+
     const data = { user, updateTutorialPosition, screenPart, updateTutorialScreenPart }
     const TutorialScreens = [
         <HomescreenTutorial {...data} />, <ChallengesTutorial {...data} />,
-        <GoalsCreateTutorial {...data} />,
-        <GameScreenTutorial {...data} />, <AccountTutorial {...data} />,
-        <AvatarSelectTutorial {...data} />];
+        <GoalsCreateTutorial {...data} />, <GameScreenTutorial {...data} />,
+        <AccountTutorial {...data} />, <AvatarSelectTutorial {...data} />,
+        <CommunityScreenTutorial {...data} />];
 
     return (
         <>
@@ -46,7 +56,7 @@ function Tutorial({ user, isLoading, setIsLoading }) {
                     <>
                         <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto", overflowX: "hidden" }}>
                             <div className="button has-background-black has-text-white is-size-7" style={{ zIndex: 9999, position: "absolute" }} onClick={() => setShowSkipModal(true)}>Skip</div>
-                            { showSkipModal &&
+                            {showSkipModal &&
                                 <div className="modal is-active px-5" style={{ zIndex: 9999 }}>
                                     <div className="modal-background" />
                                     <div className="modal-content has-background-grey-darker has-text-centered is-size-3 has-text-white" style={{ borderRadius: 10 }}>

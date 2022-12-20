@@ -97,8 +97,7 @@ function Account({ user, isLoading, setIsLoading }) {
                         <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px", backgroundColor: "black", color: "white" }}>
                             <div className="mx-5">
                                 <div className="is-size-3" style={{ position: "absolute", right: "5vw" }}>
-                                    {/* TODO: make it go to currently non-existent settings page */}
-                                    <Link to="/home"><FontAwesomeIcon icon={faGear} /></Link>
+                                    <Link to="/avatarselect"><FontAwesomeIcon icon={faGear} /></Link>
                                 </div>
                                 <div className="is-size-3 has-text-centered">
                                     Account

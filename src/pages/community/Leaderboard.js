@@ -17,9 +17,13 @@ function Leaderboard() {
                 friend.user.level = calculateLevel(friend.user.level.amount)
             })
             setFriends(friends)
-            console.log(friends)
         });
     }, [])
+
+    // check if friend if undefined if not - sort by level
+    friends && friends.sort((a, b) => {
+        return b.user.level.level - a.user.level.level
+    })
 
     return (
         <>
@@ -32,7 +36,7 @@ function Leaderboard() {
                 {
                     friends && friends.map((friend) => {
                         return (
-                            <div key={friend.id}>
+                            <div key={friend.id} style={{ padding: '10px' }}>
                                 {friend.user.level.level}
                             </div>
                         )
@@ -45,18 +49,18 @@ function Leaderboard() {
                     <div style={topThreePfOne}></div>
                     <div style={topThreePfTwoThree}></div>
 
-                    <div style={boldText}>Name 2</div>
-                    <div style={boldText}>Name 1</div>
-                    <div style={boldText}>Name 3</div>
+                    <div style={boldText}>{friends && friends[1].user.username}</div>
+                    <div style={boldText}>{friends && friends[0].user.username}</div>
+                    <div style={boldText}>{friends && friends[2].user.username}</div>
 
-                    <div style={lightText}>Level x</div>
-                    <div style={lightText}>Level x</div>
-                    <div style={lightText}>Level x</div>
+                    <div style={lightText}>Level {friends && friends[1].user.level.level}</div>
+                    <div style={lightText}>Level {friends && friends[0].user.level.level}</div>
+                    <div style={lightText}>Level {friends && friends[2].user.level.level}</div>
                 </div>
             </div>
 
             {/* My rank */}
-            <div style={myRank}>
+            <div style={myRank} >
                 <div style={containerLeftRight}>
                     <div>Your current rank</div>
                     {/* Rank in the leaderboard */}

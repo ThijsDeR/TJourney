@@ -52,14 +52,14 @@ export default function ChatContainer({ currentChat, currentUser }) {
    */
   function SelectChat(response) {
     let ListWithCorrespondingChatMessages = [];
-    for (let i = 0; i < response.length; i++) {
-      if (currentChat._id === response[i].user[1] || currentChat._id === response[i].user[0]) {
-        if (currentUser._id === response[i].user[1] || response[i].user[0] === currentUser._id) {
-          ListWithCorrespondingChatMessages.push(response[i])
+    response.forEach((element, index) => {
+      if (currentChat._id === response[index].user[1] || currentChat._id === response[index].user[0]) {
+        if (currentUser._id === response[index].user[1] || response[index].user[0] === currentUser._id) {
+          ListWithCorrespondingChatMessages.push(response[index])
         }
       }
-
     }
+    );
     return ListWithCorrespondingChatMessages;
   }
 

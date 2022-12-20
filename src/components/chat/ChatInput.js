@@ -96,14 +96,14 @@ padding-left:0.3rem;
 
         // changes the position of the emoji box
         aside{
-            // @media screen and (min-width: 720px) and (max-width: 1080px){
-            //     position:fixed;
-            //     width:200px;
-            //     height: 100px;
+            @media screen and (min-width: 720px) and (max-width: 1080px){
+                position:fixed;
+                width:200px;
+                height: 100px;
                 
                     
         
-            //     }
+                }
             top:22%;
             position: fixed;
             width:250px !important;

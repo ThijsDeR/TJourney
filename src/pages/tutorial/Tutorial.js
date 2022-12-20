@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from "react-router-dom";
+import { editTutorial } from '../../services/auth-service.js';
 import Loading from '../../components/loading/Loading.js';
 import HomescreenTutorial from './tutorialscreens/homeTutorial.js';
 import ChallengesTutorial from './tutorialscreens/ChallengesTutorial.js';
@@ -10,7 +11,7 @@ import { GoalsCreateTutorial } from './tutorialscreens/GoalsCreateTutorial.js';
 import CommunityScreenTutorial from './tutorialscreens/CommunityScreenTutorial.js';
 
 function Tutorial({ user, isLoading, setIsLoading }) {
-    const [tutorialPosition, setTutorialPosition] = useState(6);
+    const [tutorialPosition, setTutorialPosition] = useState(0);
     const [screenPart, setScreenPart] = useState(0);
     const [showSkipModal, setShowSkipModal] = useState(false);
     const [tutorialDone, setTutorialDone] = useState(false);
@@ -38,7 +39,7 @@ function Tutorial({ user, isLoading, setIsLoading }) {
     }
 
     if (tutorialDone) {
-        
+        editTutorial(true);
         return <Navigate to="/home" replace />;
     }
 
@@ -62,7 +63,7 @@ function Tutorial({ user, isLoading, setIsLoading }) {
                                     <div className="modal-content has-background-grey-darker has-text-centered is-size-3 has-text-white" style={{ borderRadius: 10 }}>
                                         <div>Skip tutorial?</div>
                                         <button className="button has-background-danger mr-3 has-text-black" onClick={() => setShowSkipModal(false)}>Cancel</button>
-                                        <button className="button has-background-success ml-3 has-text-black">Skip</button>
+                                        <button className="button has-background-success ml-3 has-text-black" onClick={() => setTutorialDone(true)}>Skip</button>
                                     </div>
                                 </div>
                             }

@@ -27,7 +27,7 @@ export const unsetLinkStyle = {
 export const pageStyle = {
     position: 'fixed',
     top: '0px',
-    bottom: '0px',
+    bottom: '50px',
     left: '0px',
     right: '0px',
     backgroundColor: backgroundColor,
@@ -37,6 +37,9 @@ export const pageStyle = {
 export const appContainer = {
     padding: paddingPage,
     width: '100%',
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
 }
 
 export const title = {
@@ -195,7 +198,7 @@ export const notifacationBubble = {
 
 
 export const chatContainer = {
-    display: 'block'
+    display: 'block',
 }
 export const chatDivider = {
     backgroundColor: secondaryColor,

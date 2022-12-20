@@ -50,7 +50,7 @@ export const getCurrentUser = async () => {
     return null
 };
 
-export const getAllTheUsers = async () => {
+export const getAllUsers = async () => {
     const localUser = JSON.parse(localStorage.getItem("user"))
 
     if (localUser && localUser.accessToken) {

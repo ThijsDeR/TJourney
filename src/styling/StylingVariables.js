@@ -193,6 +193,9 @@ export const notifacationBubble = {
     padding: '0px 10px',
 }
 
+export const overflow = {
+    overflow: "auto"
+}
 
 export const chatContainer = {
     display: 'block'
@@ -208,6 +211,7 @@ export const suggestedBox = {
     margin: '20px 0px',
     borderCollapse: 'separate',
     borderSpacing: '5px 0',
+    overflow: "auto",
 }
 
 export const suggestedTile = {

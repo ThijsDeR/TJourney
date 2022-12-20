@@ -4,7 +4,7 @@ import { createGroups, getAllGroups } from '../../services/groups-service.js';
 
 // styling
 import 'bulma/css/bulma.min.css';
-import { title, primaryColor, containerLeftRight, friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, suggestedBox, suggestedTile, pfBox, boldText, lightText, chatDivider, bolderText } from '../../styling/StylingVariables.js';
+import { overflow, title, primaryColor, containerLeftRight, friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, suggestedBox, suggestedTile, pfBox, boldText, lightText, chatDivider, bolderText } from '../../styling/StylingVariables.js';
 
 
 function Groups() {
@@ -65,24 +65,26 @@ function Groups() {
                     <h1 style={{ ...title, ...{ padding: 'unset' } }}>Groups</h1>
                 </div>
                 {/* TODO: link to add friend page? */}
-                <Link style={{ height: '24px', border: 'unset' }}><div style={{ color: primaryColor }} onClick={() => createGroups("name", "description", "member", "admin", "image")}>New chat</div></Link>
+                <Link to={"/add-group"} style={{ height: '24px', border: 'unset' }}><div style={{ color: primaryColor }}>New chat</div></Link>
             </div>
 
-            {groups ? groups.map(group => (
-                <div style={chatContainer}>
-                    <div className='friendTile' style={friendsTile}>
-                        <div className='friendItems' style={friendItems}>
-                            <div className='friendIcon' style={fakePF}></div>
-                            <div className='friendInfo'>
-                                <div className='friendName' style={{ fontWeight: 'bold' }}> {group.name} </div>
-                                <div className='friendLevel' style={{ fontWeight: 'lighter' }}> <span style={bolderText}>Friendname</span> : Last message </div>
+            <div style={overflow}>
+                {groups ? groups.map(group => (
+                    <div style={chatContainer}>
+                        <div className='friendTile' style={friendsTile}>
+                            <div className='friendItems' style={friendItems}>
+                                <div className='friendIcon' style={fakePF}></div>
+                                <div className='friendInfo'>
+                                    <div className='friendName' style={{ fontWeight: 'bold' }}> {group.name} </div>
+                                    <div className='friendLevel' style={{ fontWeight: 'lighter' }}> <span style={bolderText}>Friendname</span> : Last message </div>
+                                </div>
                             </div>
+                            <div className='messageButton' style={notifacationBubble}>8</div>
                         </div>
-                        <div className='messageButton' style={notifacationBubble}>8</div>
+                        <hr style={chatDivider} />
                     </div>
-                    <hr style={chatDivider} />
-                </div>
-            )) : ""}
+                )) : ""}
+            </div>
         </>
     )
 }

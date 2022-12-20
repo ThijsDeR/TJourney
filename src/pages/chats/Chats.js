@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import Contacts from "../../components/chat/Contacts.js";
 import Welcome from "../../components/chat/Welcome.js";
 import ChatContainer from "../../components/chat/ChatContainer.js";
-import { getAllTheUsers } from "../../services/auth-service.js";
+import { getAllUsers } from "../../services/auth-service.js";
 import Loading from '../../components/loading/Loading.js';
 
 
@@ -31,7 +31,7 @@ export function Chats({ user, isLoading, setIsLoading }) {
   useEffect(() => {
     const getUsers = async () => {
       if (currentUser) {
-        setContacts(removeOwnUserFromList(await getAllTheUsers()));
+        setContacts(removeOwnUserFromList(await getAllUsers()));
       }
     }
     getUsers();

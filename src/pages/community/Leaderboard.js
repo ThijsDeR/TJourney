@@ -2,28 +2,39 @@ import React, { useEffect, useState } from 'react';
 
 import { getFriends } from '../../services/friends-service.js';
 import { calculateLevel } from '../../services/level-service.js';
+import { getAllUsers } from '../../services/auth-service.js';
 
 // styling
 import 'bulma/css/bulma.min.css';
 import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, boldText, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard, leaderboardPFContainer } from '../../styling/StylingVariables.js';
 
-function Leaderboard(user) {
+function Leaderboard(currentUser) {
 
-    const [friends, setFriends] = useState();
+    const [users, setUsers] = useState();
 
     useEffect(() => {
-        getFriends().then((friends) => {
-            friends.forEach((friend) => {
-                friend.user.level = calculateLevel(friend.user.level.amount)
+        getAllUsers().then((users) => {
+            users.forEach((user) => {
+                user.level.level = calculateLevel(user.level.amount)
             })
-            setFriends(friends)
+            setUsers(users)
+            console.log(users)
         })
     }, [])
 
 
     // check if friend if undefined if not - sort by level
-    friends && friends.sort((a, b) => {
-        return b.user.level.level - a.user.level.level
+    users && users.sort((a, b) => {
+        return b.level.amount - a.level.amount
+    })
+
+    let rankOfCurrentUser = 0;
+
+    // find index of current user in user array
+    users && users.forEach((user, index) => {
+        if (user._id === currentUser.user._id) {
+            rankOfCurrentUser = index + 1;
+        }
     })
 
     return (
@@ -40,13 +51,13 @@ function Leaderboard(user) {
                     <div style={topThreePfOne}></div>
                     <div style={topThreePfTwoThree}></div>
 
-                    <div style={boldText}>{friends && friends[1].user.username}</div>
-                    <div style={boldText}>{friends && friends[0].user.username}</div>
-                    <div style={boldText}>{friends && friends[2].user.username}</div>
+                    <div style={boldText}>{users && users[1].username}</div>
+                    <div style={boldText}>{users && users[0].username}</div>
+                    <div style={boldText}>{users && users[2].username}</div>
 
-                    <div style={lightText}>Level {friends && friends[1].user.level.level}</div>
-                    <div style={lightText}>Level {friends && friends[0].user.level.level}</div>
-                    <div style={lightText}>Level {friends && friends[2].user.level.level}</div>
+                    <div style={lightText}>Level {users && users[1].level.amount}</div>
+                    <div style={lightText}>Level {users && users[0].level.amount}</div>
+                    <div style={lightText}>Level {users && users[2].level.amount}</div>
                 </div>
             </div>
 
@@ -56,7 +67,7 @@ function Leaderboard(user) {
                     {/* TODO: current rank */}
                     <div>Your current level</div>
                     {/* Rank in the leaderboard */}
-                    <div style={boldText}> {calculateLevel(user.user.level.amount).level} </div>
+                    <div style={boldText}> {rankOfCurrentUser} </div>
                 </div>
             </div>
 
@@ -64,14 +75,14 @@ function Leaderboard(user) {
             <h1 style={title}>Leaderboard</h1>
 
             {
-                friends && friends.map((friend, index) => {
+                users && users.map((user, index) => {
                     return <div style={leaderboardContainer} key={index} >
                         <div style={leaderboardPFContainer}>
                             <div style={fakePfLeaderboard}></div>
                             <div style={rankingBubbleLeaderboard}>{index + 1}</div>
                         </div>
-                        <div>{friend.user.username}</div>
-                        <div style={{ ...leaderboardLevel, ...boldText }}>{friend.user.level.level}</div>
+                        <div>{user.username}</div>
+                        <div style={{ ...leaderboardLevel, ...boldText }}>{user.level.amount}</div>
                     </div>
                 })
             }

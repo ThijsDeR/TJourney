@@ -58,7 +58,7 @@ const HomescreenTutorial = ({ user, updateTutorialPosition, screenPart, updateTu
                 <section className="bg-image" style={{ height: "100%", width: "100%" }}>
                     <div className="is-flex is-justify-content-center" />
                 </section>
-            </div >
+            </div>
 
             <div className="is-flex is-justify-content-center" style={screenPart === 1 ? { position: "relative", zIndex: "30", color: "white" } : { position: "relative" }}>
                 <h2 className="is-size-3 has-text-weight-bold">{user ? user.username : ""} (27 (1200/2800))</h2>

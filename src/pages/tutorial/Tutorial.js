@@ -6,19 +6,21 @@ import ChallengesTutorial from './tutorialscreens/ChallengesTutorial.js';
 import GameScreenTutorial from './tutorialscreens/GameScreenTutorial.js';
 import AccountTutorial from './tutorialscreens/AccountTutorial.js';
 import AvatarSelectTutorial from './tutorialscreens/AvatarSelect.js';
+import { GoalsCreateTutorial } from './tutorialscreens/GoalsCreateTutorial.js';
 
 function Tutorial({ user, isLoading, setIsLoading }) {
-    const [tutorialPosition, setTutorialPosition] = useState(1);
+    const [tutorialPosition, setTutorialPosition] = useState(2);
     const [screenPart, setScreenPart] = useState(0);
+    const [showSkipModal, setShowSkipModal] = useState(false);
 
     function updateTutorialPosition() {
-        console.log("next screen")
         setScreenPart(0);
         setTutorialPosition(tutorialPosition + 1);
+        console.log("next screen " + tutorialPosition)
     }
 
-    function updateTutorialScreenPart() {
-        setScreenPart(screenPart + 1);
+    function updateTutorialScreenPart(amount = 1) {
+        setScreenPart(screenPart + amount);
         console.log(screenPart);
     }
 
@@ -33,6 +35,7 @@ function Tutorial({ user, isLoading, setIsLoading }) {
     const data = { user, updateTutorialPosition, screenPart, updateTutorialScreenPart }
     const TutorialScreens = [
         <HomescreenTutorial {...data} />, <ChallengesTutorial {...data} />,
+        <GoalsCreateTutorial {...data} />,
         <GameScreenTutorial {...data} />, <AccountTutorial {...data} />,
         <AvatarSelectTutorial {...data} />];
 
@@ -42,6 +45,17 @@ function Tutorial({ user, isLoading, setIsLoading }) {
                 isLoading ? <Loading /> :
                     <>
                         <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto", overflowX: "hidden" }}>
+                            <div className="button has-background-black has-text-white is-size-7" style={{ zIndex: 9999, position: "absolute" }} onClick={() => setShowSkipModal(true)}>Skip</div>
+                            { showSkipModal &&
+                                <div className="modal is-active px-5" style={{ zIndex: 9999 }}>
+                                    <div className="modal-background" />
+                                    <div className="modal-content has-background-grey-darker has-text-centered is-size-3 has-text-white" style={{ borderRadius: 10 }}>
+                                        <div>Skip tutorial?</div>
+                                        <button className="button has-background-danger mr-3 has-text-black" onClick={() => setShowSkipModal(false)}>Cancel</button>
+                                        <button className="button has-background-success ml-3 has-text-black">Skip</button>
+                                    </div>
+                                </div>
+                            }
                             {TutorialScreens[tutorialPosition]}
                         </div>
                     </>

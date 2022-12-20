@@ -53,14 +53,14 @@ export default function ChatContainer({ currentChat, currentUser }) {
    */
   function SelectChat(response) {
     let ListWithCorrespondingChatMessages = [];
-    for (let i = 0; i < response.length; i++) {
-      if (currentChat._id === response[i].user[1] || currentChat._id === response[i].user[0]) {
-        if (currentUser._id === response[i].user[1] || response[i].user[0] === currentUser._id) {
-          ListWithCorrespondingChatMessages.push(response[i])
+    response.forEach((element, index) => {
+      if (currentChat._id === response[index].user[1] || currentChat._id === response[index].user[0]) {
+        if (currentUser._id === response[index].user[1] || response[index].user[0] === currentUser._id) {
+          ListWithCorrespondingChatMessages.push(response[index])
         }
       }
-
     }
+    );
     return ListWithCorrespondingChatMessages;
   }
 
@@ -123,7 +123,6 @@ export default function ChatContainer({ currentChat, currentUser }) {
 const Container = styled.div`
   display: grid;
   overflow-x: hidden;
-
   grid-template-rows: 10% 80% 10%;
   gap: 0.1rem;
   overflow: hidden;

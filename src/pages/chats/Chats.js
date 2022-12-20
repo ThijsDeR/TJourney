@@ -11,19 +11,11 @@ export function Chats({ user, isLoading, setIsLoading }) {
   const [contacts, setContacts] = useState([]);
   const currentUser = user;
   const [currentChat, setCurrentChat] = useState(undefined);
-  const [isLoaded, setIsLoaded] = useState(false);
 
 
   useEffect(() => {
     if (user) setIsLoading(false)
   }, [user, setIsLoading])
-  useEffect(() => {
-
-    const navigationTo = async () => {
-      setIsLoaded(true);
-    }
-    navigationTo();
-  });
 
   /**
    * set the users
@@ -47,12 +39,11 @@ export function Chats({ user, isLoading, setIsLoading }) {
    */
   function removeOwnUserFromList(listOffAllTheUsers) {
     const ContactList = listOffAllTheUsers;
-    for (let i = 0; i < ContactList.length; i++) {
-      if (currentUser._id === ContactList[i]._id) {
-        ContactList.splice(i, 1)
+    ContactList.forEach((element, index) => {
+      if (currentUser._id === ContactList[index]._id) {
+        ContactList.splice(index, 1)
       }
-
-    }
+    });
     return ContactList
   }
 
@@ -74,7 +65,7 @@ export function Chats({ user, isLoading, setIsLoading }) {
 
           <div className="container">
             <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} />
-            {isLoaded &&
+            {
               currentChat === undefined ?
               <Welcome currentUser={currentUser} /> :
               <ChatContainer currentChat={currentChat} currentUser={currentUser} />
@@ -90,7 +81,6 @@ export function Chats({ user, isLoading, setIsLoading }) {
 const Container = styled.div`
 max-width: 100%;
 overflow-x: hidden;
-
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -103,7 +93,6 @@ overflow-x: hidden;
   .container {
     height: 100vh;
     width: 99vw;
-  
     position: absolute;
     background-color: #00000076;
     display: grid;
@@ -114,5 +103,4 @@ overflow-x: hidden;
       overflow-x: hidden;
     }
   }
-
 `;

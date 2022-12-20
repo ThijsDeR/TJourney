@@ -191,7 +191,6 @@ export function Challenges({ user, isLoading, setIsLoading }) {
     const goalsContainer = {
         backgroundColor: secondaryColor,
         margin: "15px 0px 0px 0px",
-        // TODO: fix height
         padding: paddingPage
     }
 
@@ -272,8 +271,6 @@ export function Challenges({ user, isLoading, setIsLoading }) {
                                     {/* TODO: link to edit goals page */}
                                     <Link><div style={{ color: primaryColor }} >Edit</div></Link>
                                 </div>
-
-                                {/* List of goals TODO: for loop db all goals */}
 
                                 {goals ? goals.map((goal, goalIndex) =>
                                     <>

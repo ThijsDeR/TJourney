@@ -32,6 +32,25 @@ export const getFriends = async () => {
     return null
 }
 
+export const getNonFriends = async () => {
+    const localUser = JSON.parse(localStorage.getItem("user"))
+
+    const result = await getCurrentUser()
+    if (result) {
+        const usersResponse = await axios.get("/v1/users", {
+            headers: { Authorization: `Bearer ${localUser.accessToken}` }
+        })
+
+        const users = usersResponse.data.data.filter((user) => !result.friends.includes(user._id))
+
+        return users;
+
+        // users = users.filter((user) => user)
+    }
+
+    return null
+}
+
 export const addFriend = async (userId) => {
     const localUser = JSON.parse(localStorage.getItem("user"))
 

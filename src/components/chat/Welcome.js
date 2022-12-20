@@ -16,3 +16,19 @@ export default function Welcome({ currentUser }) {
     </div>
   )
 }
+
+// const Container = styled.div`
+// display: flex;
+// overflow-x: hidden;
+// justify-content: center;
+// align-items: center;
+// flex-direction: column;
+// color: white;
+// img{
+//     height: 20rem;
+// }
+// span{
+//     color: #4e00ff;
+//     text-transform: capitalize;
+// }
+// `;

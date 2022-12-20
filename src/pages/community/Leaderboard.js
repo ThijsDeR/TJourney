@@ -9,7 +9,7 @@ import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThr
 
 function Leaderboard(user) {
 
-    const [friends, setFriends] = useState(undefined);
+    const [friends, setFriends] = useState();
 
     useEffect(() => {
         getFriends().then((friends) => {
@@ -17,8 +17,9 @@ function Leaderboard(user) {
                 friend.user.level = calculateLevel(friend.user.level.amount)
             })
             setFriends(friends)
-        });
+        })
     }, [])
+
 
     // check if friend if undefined if not - sort by level
     friends && friends.sort((a, b) => {
@@ -52,9 +53,10 @@ function Leaderboard(user) {
             {/* My rank */}
             <div style={myRank} >
                 <div style={containerLeftRight}>
-                    <div>Your current rank</div>
+                    {/* TODO: current rank */}
+                    <div>Your current level</div>
                     {/* Rank in the leaderboard */}
-                    <div style={boldText}> # {calculateLevel(user.user.level.amount).level} </div>
+                    <div style={boldText}> {calculateLevel(user.user.level.amount).level} </div>
                 </div>
             </div>
 
@@ -69,7 +71,7 @@ function Leaderboard(user) {
                             <div style={rankingBubbleLeaderboard}>{index + 1}</div>
                         </div>
                         <div>{friend.user.username}</div>
-                        <div style={{ ...leaderboardLevel, ...boldText }}># {friend.user.level.level}</div>
+                        <div style={{ ...leaderboardLevel, ...boldText }}>{friend.user.level.level}</div>
                     </div>
                 })
             }

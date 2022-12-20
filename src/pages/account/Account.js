@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import Loading from '../../components/loading/Loading.js';
 import { calculateLevel } from '../../services/level-service.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faSliders } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { DefaultAvatars } from '../../assets/DefaultAvatars/DefaultAvatarsCanvas';
 import { login, deleteAccount, editUsername, editPassword } from "../../services/auth-service";
@@ -96,6 +96,9 @@ function Account({ user, isLoading, setIsLoading }) {
                     <>
                         <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px", backgroundColor: "black", color: "white" }}>
                             <div className="mx-5">
+                                <div className="is-size-3" style={{ position: "absolute", left: "5vw" }}>
+                                    <Link to="/preferences"><FontAwesomeIcon icon={faSliders} /></Link>
+                                </div>
                                 <div className="is-size-3" style={{ position: "absolute", right: "5vw" }}>
                                     <Link to="/avatarselect"><FontAwesomeIcon icon={faGear} /></Link>
                                 </div>

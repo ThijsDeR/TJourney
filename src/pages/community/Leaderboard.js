@@ -5,7 +5,7 @@ import { calculateLevel } from '../../services/level-service.js';
 
 // styling
 import 'bulma/css/bulma.min.css';
-import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, boldText, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard } from '../../styling/StylingVariables.js';
+import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, boldText, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard, leaderboardPFContainer } from '../../styling/StylingVariables.js';
 
 function Leaderboard(user) {
 
@@ -64,7 +64,7 @@ function Leaderboard(user) {
             {
                 friends && friends.map((friend, index) => {
                     return <div style={leaderboardContainer} key={index} >
-                        <div>
+                        <div style={leaderboardPFContainer}>
                             <div style={fakePfLeaderboard}></div>
                             <div style={rankingBubbleLeaderboard}>{index + 1}</div>
                         </div>

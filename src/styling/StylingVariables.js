@@ -262,31 +262,22 @@ export const topThreePfTwoThree = {
     alignSelf: 'flex-end'
 }
 
-export const topThreeInfo = {
-}
-
-export const topThreeTileOne = {
-}
-
-export const topThreeTileTwo = {
-}
-
-export const topThreeTileThree = {
-}
-
 export const leaderboardContainer = {
     backgroundColor: secondaryColor,
     padding: '10px 10px',
     borderRadius: '5px',
     margin: '10px 0px',
     width: '100%',
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr',
+    display: 'flex',
+    // gridTemplateColumns: '1fr 1fr 1fr',
     alignItems: 'center',
+    height: '70px',
+    alignItems: 'center'
 }
 
 export const leaderboardLevel = {
-    gridColumn: 'end'
+    marginLeft: 'auto'
+
 }
 
 export const fakePfLeaderboard = {
@@ -311,6 +302,10 @@ export const rankingBubbleLeaderboard = {
     position: 'relative',
     top: '-55px',
     left: '0px',
+}
+
+export const leaderboardPFContainer = {
+    transform: 'translateY(18%)',
 }
 
 export const searchBar = {

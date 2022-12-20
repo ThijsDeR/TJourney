@@ -27,7 +27,7 @@ function CommunityScreen({ user }) {
                             <Groups />
                         </div>
                         <div label="Leaderboard">
-                            <Leaderboard />
+                            <Leaderboard user={user} />
                         </div>
                     </Tabs>
                 </div>

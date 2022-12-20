@@ -7,7 +7,7 @@ import { calculateLevel } from '../../services/level-service.js';
 import 'bulma/css/bulma.min.css';
 import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, boldText, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard } from '../../styling/StylingVariables.js';
 
-function Leaderboard() {
+function Leaderboard(user) {
 
     const [friends, setFriends] = useState(undefined);
 
@@ -33,16 +33,6 @@ function Leaderboard() {
                 alignItems: 'center',
             }}>
 
-                {
-                    friends && friends.map((friend) => {
-                        return (
-                            <div key={friend.id} style={{ padding: '10px' }}>
-                                {friend.user.level.level}
-                            </div>
-                        )
-                    })
-                }
-
                 {/* Top three */}
                 <div style={topThreeContainer}>
                     <div style={topThreePfTwoThree}></div>
@@ -64,27 +54,26 @@ function Leaderboard() {
                 <div style={containerLeftRight}>
                     <div>Your current rank</div>
                     {/* Rank in the leaderboard */}
-                    <div style={boldText}> #7 </div>
+                    <div style={boldText}> # {calculateLevel(user.user.level.amount).level} </div>
                 </div>
             </div>
 
             {/* Leaderboard */}
             <h1 style={title}>Leaderboard</h1>
-            <div style={leaderboardContainer}>
-                <div>
-                    <div style={fakePfLeaderboard}></div>
-                    <div style={rankingBubbleLeaderboard}>4</div>
-                </div>
-                <div>Geert de Winter</div>
-                <div style={leaderboardLevel}>40</div>
 
-                <div>
-                    <div style={fakePfLeaderboard}></div>
-                    <div style={rankingBubbleLeaderboard}>5</div>
-                </div>
-                <div>Rosa de jong</div>
-                <div style={leaderboardLevel}>35</div>
-            </div>
+            {
+                friends && friends.map((friend, index) => {
+                    return <div style={leaderboardContainer} key={index} >
+                        <div>
+                            <div style={fakePfLeaderboard}></div>
+                            <div style={rankingBubbleLeaderboard}>{index + 1}</div>
+                        </div>
+                        <div>{friend.user.username}</div>
+                        <div style={{ ...leaderboardLevel, ...boldText }}># {friend.user.level.level}</div>
+                    </div>
+                })
+            }
+
 
         </>
     )

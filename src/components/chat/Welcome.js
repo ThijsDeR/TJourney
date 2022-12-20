@@ -18,7 +18,6 @@ export default function Welcome({ currentUser }) {
 const Container = styled.div`
 display: flex;
 overflow-x: hidden;
-
 justify-content: center;
 align-items: center;
 flex-direction: column;

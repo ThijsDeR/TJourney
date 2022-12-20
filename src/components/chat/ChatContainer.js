@@ -122,7 +122,6 @@ export default function ChatContainer({ currentChat, currentUser }) {
 const Container = styled.div`
   display: grid;
   overflow-x: hidden;
-
   grid-template-rows: 10% 80% 10%;
   gap: 0.1rem;
   overflow: hidden;

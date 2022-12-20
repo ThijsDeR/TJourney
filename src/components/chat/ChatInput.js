@@ -18,6 +18,11 @@ export default function ChatInput({ handleSendMsg }) {
         setMsg(message);
     }
 
+   /**
+    * send the chat messages to the database
+    * @param {*} msg
+    * 
+    */
     const sendChat = (e) => {
         e.preventDefault();
         if (msg.length > 0) {
@@ -28,7 +33,8 @@ export default function ChatInput({ handleSendMsg }) {
     return (
         <Container>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+        {//Makes the chatInput and the emoji button
+        }
             <div className="button-container">
                 <div className="emoji" >
                     <BsEmojiSmileFill onClick={handleEmojiPickerHideShow} />
@@ -46,10 +52,15 @@ export default function ChatInput({ handleSendMsg }) {
 }
 
 const Container = styled.div`
+// the css of the chat input
+
+//prevent you scrolling horizontally
 display: grid;
 overflow-x: hidden;
 
+
 grid-template-columns: 5% 95%;
+
 align-items: center;
 background-color: #080420;
 padding-bottom: 0.2rem;

@@ -30,26 +30,26 @@ export default function ChatContainer({ currentChat, currentUser }) {
    * update the messages
    */
   function updateData() {
-     if (timer > 500) {
+    if (timer > 500) {
       const fetchNewData = async () => {
         const messages = await getAllMessages();
         let messagesWithTheCurrentUser = SelectChat(messages)
-        setMessages(messagesWithTheCurrentUser)      
+        setMessages(messagesWithTheCurrentUser)
       }
       fetchNewData()
       timer = 0;
-    } else if(currentChat) {
+    } else if (currentChat) {
       timer = timer + 1;
     }
   }
 
 
-/**
- * select the messages from the corresponding chat
- * 
- * @param {*} response List witg all the messages
- * @returns selected messages from the correct chat
- */
+  /**
+   * select the messages from the corresponding chat
+   * 
+   * @param {*} response List witg all the messages
+   * @returns selected messages from the correct chat
+   */
   function SelectChat(response) {
     let ListWithCorrespondingChatMessages = [];
     for (let i = 0; i < response.length; i++) {
@@ -81,7 +81,7 @@ export default function ChatContainer({ currentChat, currentUser }) {
       {
         currentChat && (
           <Container>
-               <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
             <div className="chat-header">
               <div className="user-details">
                 <div className="username">

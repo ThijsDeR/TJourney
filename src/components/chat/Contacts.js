@@ -22,10 +22,10 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
       {
         currentUserName && (
           <Container>
-               <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
             <div className="brand">
-              
-            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
               <img src={Logo} alt="logo" />
               <h3>TChat</h3>
             </div>

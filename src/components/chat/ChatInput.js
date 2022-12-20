@@ -27,7 +27,7 @@ export default function ChatInput({ handleSendMsg }) {
     }
     return (
         <Container>
-            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
 
             <div className="button-container">
                 <div className="emoji" >

@@ -12,7 +12,7 @@ export function Chats({ user, isLoading, setIsLoading }) {
   const currentUser = user;
   const [currentChat, setCurrentChat] = useState(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
 
   useEffect(() => {
     if (user) setIsLoading(false)
@@ -38,15 +38,15 @@ export function Chats({ user, isLoading, setIsLoading }) {
   }, [user, currentUser]);
 
 
- 
+
   /**
    * Removes your own username from the contact list
    * 
    * @param {*} listOffAllTheUsers all the users 
    * @returns list users without the currentuser
    */
-function removeOwnUserFromList(listOffAllTheUsers) {
-const ContactList = listOffAllTheUsers;
+  function removeOwnUserFromList(listOffAllTheUsers) {
+    const ContactList = listOffAllTheUsers;
     for (let i = 0; i < ContactList.length; i++) {
       if (currentUser._id === ContactList[i]._id) {
         ContactList.splice(i, 1)
@@ -65,13 +65,13 @@ const ContactList = listOffAllTheUsers;
     setCurrentChat(chat);
   }
 
-  
+
 
   return (
     <>
       {isLoading ? <Loading /> :
         <Container>
-          
+
           <div className="container">
             <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} />
             {isLoaded &&

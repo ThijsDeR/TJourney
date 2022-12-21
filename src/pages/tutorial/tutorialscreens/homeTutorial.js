@@ -68,8 +68,8 @@ const HomescreenTutorial = ({ user, updateTutorialPosition, screenPart, updateTu
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
-                            <Link to="#" onClick={screenPart >= 8 ? () => updateTutorialPosition() : () => {}}>L</Link>
-                            <Link to="#">A</Link>
+                            <Link to="#" onClick={screenPart >= 8 ? () => updateTutorialPosition() : () => {}}>A</Link>
+                            <Link to="#">CH</Link>
                             <Link to="#">H</Link>
                             <Link to="#">J</Link>
                             <Link>Co</Link>

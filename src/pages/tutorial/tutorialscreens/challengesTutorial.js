@@ -2,14 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, Navigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCircle, faAngleRight, faSquare } from '@fortawesome/free-solid-svg-icons'
+import { faCircle } from '@fortawesome/free-solid-svg-icons'
 
-import Footer from "../../../components/footer/Footer";
-import Navigation from "../../../components/navigation/Navigation";
 import 'bulma/css/bulma.min.css';
 import { checkChallenge, getAllChallenges, getAllGoals } from '../../../services/goal-service';
 import { getGameSession } from '../../../services/game-service';
-import Loading from '../../../components/loading/Loading';
 
 import '../../challenges/challenges.css';
 
@@ -186,7 +183,6 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
     const goalsContainer = {
         backgroundColor: secondaryColor,
         margin: "15px 0px 0px 0px",
-        // TODO: fix height
         padding: paddingPage
     }
 
@@ -201,32 +197,32 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
 
             <div style={{ zIndex: 30, width: "100%", position: "absolute" }} onClick={() => updateTutorialScreenPart()}>
                 {screenPart === 0 &&
-                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "40vh", position: "relative" }}>
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "80vh", position: "relative" }}>
                         Here are your goals and challenges
                     </div>
                 }
                 {screenPart === 1 &&
-                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "9vh", position: "relative" }}>
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "80vh", position: "relative" }}>
                         This shows what day you are on
                     </div>
                 }
                 {screenPart === 2 &&
-                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "3vh", position: "relative" }}>
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "80vh", position: "relative" }}>
                         This shows the challenges you need to complete today
                     </div>
                 }
                 {screenPart === 3 &&
-                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "9vh", position: "relative" }}>
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "80vh", position: "relative" }}>
                         and which you have finished
                     </div>
                 }
                 {screenPart === 4 &&
-                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "9vh", position: "relative" }}>
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "80vh", position: "relative" }}>
                         These are your goals
                     </div>
                 }
                 {screenPart > 4 &&
-                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "9vh", position: "relative" }}>
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "80vh", position: "relative" }}>
                         Let's make a new one
                     </div>
                 }

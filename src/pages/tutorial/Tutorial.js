@@ -38,9 +38,11 @@ function Tutorial({ user, isLoading, setIsLoading }) {
         return <Navigate to="/login" replace />;
     }
 
+
     if (tutorialDone) {
         editTutorial(true);
-        return <Navigate to="/home" replace />;
+        // Tried using Navigate, could not get it to work so I gave up and used href
+        window.location.href = "/home";
     }
 
     const data = { user, updateTutorialPosition, screenPart, updateTutorialScreenPart }
@@ -56,7 +58,7 @@ function Tutorial({ user, isLoading, setIsLoading }) {
                 isLoading ? <Loading /> :
                     <>
                         <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto", overflowX: "hidden" }}>
-                            <div className="button has-background-black has-text-white is-size-7" style={{ zIndex: 9999, position: "absolute" }} onClick={() => setShowSkipModal(true)}>Skip</div>
+                            <div className="button has-background-black has-text-white is-size-7" style={{ zIndex: 9999, position: "absolute", opacity: 0.6 }} onClick={() => setShowSkipModal(true)}>Skip</div>
                             {showSkipModal &&
                                 <div className="modal is-active px-5" style={{ zIndex: 9999 }}>
                                     <div className="modal-background" />

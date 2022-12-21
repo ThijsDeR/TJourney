@@ -9,9 +9,10 @@ import AccountTutorial from './tutorialscreens/AccountTutorial.js';
 import AvatarSelectTutorial from './tutorialscreens/AvatarSelect.js';
 import { GoalsCreateTutorial } from './tutorialscreens/GoalsCreateTutorial.js';
 import CommunityScreenTutorial from './tutorialscreens/CommunityScreenTutorial.js';
+import FinalScreenTutorial from './tutorialscreens/FinalScreenTutorial.js';
 
 function Tutorial({ user, isLoading, setIsLoading }) {
-    const [tutorialPosition, setTutorialPosition] = useState(0);
+    const [tutorialPosition, setTutorialPosition] = useState(6);
     const [screenPart, setScreenPart] = useState(0);
     const [showSkipModal, setShowSkipModal] = useState(false);
     const [tutorialDone, setTutorialDone] = useState(false);
@@ -20,7 +21,7 @@ function Tutorial({ user, isLoading, setIsLoading }) {
         setScreenPart(0);
         setTutorialPosition(tutorialPosition + 1);
         console.log("next screen " + tutorialPosition);
-        if (tutorialPosition >= 6) {
+        if (tutorialPosition >= 7) {
             setTutorialDone(true);
         }
     }
@@ -41,7 +42,7 @@ function Tutorial({ user, isLoading, setIsLoading }) {
 
     if (tutorialDone) {
         editTutorial(true).then(
-            // Tried using Navigate, could not get it to work so I gave up and used href
+            // Tried using Navigate (outside the then), could not get it to work so I gave up and used href. 
            () => {window.location.href = "/home"}
         );
     }
@@ -51,7 +52,7 @@ function Tutorial({ user, isLoading, setIsLoading }) {
         <HomescreenTutorial {...data} />, <AccountTutorial {...data} />, 
         <AvatarSelectTutorial {...data} />, <ChallengesTutorial {...data} />, 
         <GoalsCreateTutorial {...data} />, <GameScreenTutorial {...data} />,
-        <CommunityScreenTutorial {...data} />];
+        <CommunityScreenTutorial {...data} />, <FinalScreenTutorial {...data} />];
 
     return (
         <>

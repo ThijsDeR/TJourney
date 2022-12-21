@@ -115,7 +115,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading, updat
                     </div>
                 }
                 {screenPart === 6 &&
-                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "15vh", position: "relative" }}>
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "75vh", left: "25vw", maxWidth: "75vw", position: "relative" }}>
                         Go to community when you're ready to continue
                     </div>
                 }
@@ -130,7 +130,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading, updat
             <div className="canvasContainer">
                 <div className="App">
                     <Canvas camera={{ position: [game.player.position.x - 3, game.player.position.y + 2, game.player.position.z] }} style={{ backgroundColor: "#17E7E7" }}>
-                        <OrbitControls position={[game.player.position.x, game.player.position.y + 5, game.player.position.z]} target={[game.player.position.x + 1.5, game.player.position.y + 1, game.player.position.z]} /* maxPolarAngle={Math.PI / 1.9} minDistance={5} maxDistance={15} */ />
+                        <OrbitControls position={[game.player.position.x, game.player.position.y + 5, game.player.position.z]} target={[game.player.position.x + 1.5, game.player.position.y + 1, game.player.position.z]} maxPolarAngle={Math.PI / 1.9} minDistance={5} maxDistance={15} />
 
                         {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
                         <Stars />

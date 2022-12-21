@@ -7,9 +7,10 @@ const HomescreenTutorial = ({ user, updateTutorialPosition, screenPart, updateTu
             <div style={{ zIndex: "20", backgroundColor: "rgb(0, 0, 0, 0.5)", width: "100vw", height: "100vh", position: "absolute" }} onClick={() => updateTutorialScreenPart()} />
 
             <div style={{ zIndex: 30, width: "100%" }}>
-            {screenPart === 0 &&
+                {screenPart === 0 &&
                     <div className="has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "5vh", zIndex: 30, width: "100%" }}>
-                        Welcome to the tutorial, tap to continue
+                        Welcome to the tutorial
+                        <div> Tap to continue </div>
                     </div>
                 }
                 {screenPart === 1 &&
@@ -73,7 +74,7 @@ const HomescreenTutorial = ({ user, updateTutorialPosition, screenPart, updateTu
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
-                            <Link to="#" onClick={screenPart >= 9 ? () => updateTutorialPosition() : () => {}}>A</Link>
+                            <Link to="#" onClick={screenPart >= 9 ? () => updateTutorialPosition() : () => { }}>A</Link>
                             <Link to="#">CH</Link>
                             <Link to="#">H</Link>
                             <Link to="#">J</Link>

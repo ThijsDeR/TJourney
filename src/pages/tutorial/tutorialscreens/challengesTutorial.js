@@ -206,7 +206,7 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
             </div>
 
             <div style={pageStyle}>
-                <div style={{ padding: paddingPage }}>
+                <div onClick={() => { updateTutorialScreenPart() }} style={{ padding: paddingPage }}>
                     <h1 style={screenPart === 1 ?
                         { zIndex: 30, position: 'relative', ...title, ...{ textAlign: 'center' } }
                         :
@@ -263,13 +263,12 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
                 <div style={screenPart === 4 ? { zIndex: 30, position: "relative" } : {}}>
 
                     <div style={goalsContainer} >
-                        <div style={containerLeftRight}>
+                        <div onClick={() => { updateTutorialScreenPart() }} style={containerLeftRight}>
                             <div><h2 style={{ fontWeight: 'bold' }} >Goals</h2></div>
                             <Link><div style={{ color: primaryColor }} >Edit</div></Link>
                         </div>
 
-                        {/* List of goals TODO: for loop db all goals */}
-                        <div style={{ ...tileStyle, ...{ backgroundColor: tertiaryColor, height: 'unset' } }}>
+                        <div onClick={() => { updateTutorialScreenPart() }} style={{ ...tileStyle, ...{ backgroundColor: tertiaryColor, height: 'unset' } }}>
                             <div style={goalItem}>
                                 <FontAwesomeIcon icon={faCircle} size='5x' />
                             </div>
@@ -279,7 +278,7 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
                                 <div style={{ fontWeight: 'lighter', fontSize: '13px' }}>Started on 19-12-2022</div>
                             </div>
                         </div>
-                        <div style={{ ...tileStyle, ...{ backgroundColor: tertiaryColor, height: 'unset' } }}>
+                        <div onClick={() => { updateTutorialScreenPart() }} style={{ ...tileStyle, ...{ backgroundColor: tertiaryColor, height: 'unset' } }}>
                             <div style={goalItem}>
                                 <FontAwesomeIcon icon={faCircle} size='5x' />
                             </div>

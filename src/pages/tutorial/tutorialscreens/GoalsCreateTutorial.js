@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { SelectGoalPlan } from "../../../components/goals/SelectGoalPlan.js";
 import { SelectPremadePlan } from "../../../components/goals/SelectPremadePlan.js";
 import { SelectGoalOverzicht } from "../../../components/goals/SelectGoalOverzicht.js";
-import { createGoal } from "../../../services/goal-service.js";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -27,8 +26,7 @@ export function GoalsCreateTutorial({ user, isLoading, screenPart, updateTutoria
 
     useEffect(() => {
         if (done) {
-            setDone(false)
-            createGoal(name, description, startValue, endValue, startDate, endDate, category)
+            setDone(false);
             updateTutorialScreenPart(10);
         }
     }, [done, name, description, startValue, endValue, startDate, endDate, category, updateTutorialScreenPart])

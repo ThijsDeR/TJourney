@@ -40,9 +40,10 @@ function Tutorial({ user, isLoading, setIsLoading }) {
 
 
     if (tutorialDone) {
-        editTutorial(true);
-        // Tried using Navigate, could not get it to work so I gave up and used href
-        window.location.href = "/home";
+        editTutorial(true).then(
+            // Tried using Navigate, could not get it to work so I gave up and used href
+           () => {window.location.href = "/home"}
+        );
     }
 
     const data = { user, updateTutorialPosition, screenPart, updateTutorialScreenPart }

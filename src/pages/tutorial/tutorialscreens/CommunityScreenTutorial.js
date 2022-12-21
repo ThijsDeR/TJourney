@@ -137,7 +137,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                     <Tabs>
                         {/* FRIENDS */}
                         <div label="Friends">
-                            <div style={screenPart === 1 ?
+                            <div onClick={screenPart === 1 ? () => { updateTutorialScreenPart() } : {}} style={screenPart === 1 ?
                                 { ...containerLeftRight, zIndex: 30, position: "relative" }
                                 :
                                 containerLeftRight}>
@@ -147,7 +147,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                                 <Link style={{ height: '24px', border: 'unset' }}><div style={{ color: primaryColor }} >See more</div></Link>
                             </div>
 
-                            <div style={screenPart === 1 ?
+                            <div onClick={screenPart === 1 ? () => { updateTutorialScreenPart() } : {}} style={screenPart === 1 ?
                                 { ...suggestedBox, zIndex: 30, position: "relative" }
                                 :
                                 suggestedBox
@@ -178,13 +178,12 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                                 </div>
                             </div>
 
-                            <div style={screenPart === 2 ? { zIndex: 30, position: 'relative' } : {}}>
+                            <div onClick={screenPart === 2 ? () => { updateTutorialScreenPart() } : {}} style={screenPart === 2 ? { zIndex: 30, position: 'relative' } : {}}>
                                 <div className='friendTile' style={friendsTile}>
                                     <div className='friendItems' style={friendItems}>
                                         <div className='friendIcon' style={fakePF}></div>
                                         <div className='friendInfo'>
                                             <div className='friendName' style={{ fontWeight: 'bold' }}> TeaEyes <em style={lightText}>level 9823</em> </div>
-                                            {/* TODO: Get last message */}
                                             <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Last message About that program</div>
                                         </div>
                                     </div>
@@ -218,7 +217,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
 
                         {/* GROUPS */}
                         <div label="Groups">
-                            <div style={screenPart === 4 ? { ...containerLeftRight, zIndex: 30, position: "relative" } : containerLeftRight}>
+                            <div onClick={screenPart === 4 ? () => { updateTutorialScreenPart() } : {}} style={screenPart === 4 ? { ...containerLeftRight, zIndex: 30, position: "relative" } : containerLeftRight}>
                                 <div style={{ verticalAlign: 'middle' }}>
                                     <h1 style={{ ...title, ...{ padding: 'unset' } }}>Suggested groups</h1>
                                 </div>
@@ -226,7 +225,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                                 <Link style={{ height: '24px', border: 'unset' }}><div style={{ color: primaryColor }} >See more</div></Link>
                             </div>
 
-                            <div style={screenPart === 4 ? { zIndex: 30, position: 'relative' } : {}}>
+                            <div onClick={screenPart === 4 ? () => { updateTutorialScreenPart() } : {}} style={screenPart === 4 ? { zIndex: 30, position: 'relative' } : {}}>
                                 <div style={suggestedBox}>
                                     {/* TODO: four suggested groups form db */}
                                     {/* Suggested group block */}
@@ -260,7 +259,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                             </div>
 
                             {/* your groups */}
-                            <div style={screenPart === 5 ? { ...containerLeftRight, zIndex: 30, position: "relative" } : containerLeftRight}>
+                            <div onClick={screenPart === 5 ? () => { updateTutorialScreenPart() } : {}} style={screenPart === 5 ? { ...containerLeftRight, zIndex: 30, position: "relative" } : containerLeftRight}>
                                 <div style={{ verticalAlign: 'middle' }}>
                                     <h1 style={{ ...title, ...{ padding: 'unset' } }}>Groups</h1>
                                 </div>
@@ -268,7 +267,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                             </div>
 
                             {/* Group block */}
-                            <div style={screenPart === 5 ? { zIndex: 30, position: 'relative' } : {}}>
+                            <div onClick={screenPart === 5 ? () => { updateTutorialScreenPart() } : {}} style={screenPart === 5 ? { zIndex: 30, position: 'relative' } : {}}>
                                 <div style={chatContainer}>
                                     <div className='groupTile' style={friendsTile}>
                                         <div className='groupItems' style={friendItems}>
@@ -308,7 +307,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                             }}>
 
                                 {/* Top three */}
-                                <div style={screenPart === 8 ? { ...topThreeContainer, zIndex: 30, position: 'relative' } : topThreeContainer}>
+                                <div onClick={screenPart === 8 ? () => { updateTutorialScreenPart() } : {}} style={screenPart === 8 ? { ...topThreeContainer, zIndex: 30, position: 'relative' } : topThreeContainer}>
                                     <div style={topThreePfTwoThree}></div>
                                     <div style={topThreePfOne}></div>
                                     <div style={topThreePfTwoThree}></div>
@@ -324,7 +323,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                             </div>
 
                             {/* My rank */}
-                            <div style={screenPart === 9 ? { ...myRank, zIndex: 30, position: "relative" } : myRank}>
+                            <div onClick={screenPart === 9 ? () => { updateTutorialScreenPart() } : {}} style={screenPart === 9 ? { ...myRank, zIndex: 30, position: "relative" } : myRank}>
                                 <div style={containerLeftRight}>
                                     <div>Your current rank</div>
                                     {/* Rank in the leaderboard */}
@@ -333,7 +332,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                             </div>
 
                             {/* Leaderboard */}
-                            <div style={screenPart === 10 ? { zIndex: 30, position: "relative" } : {}}>
+                            <div onClick={screenPart === 10 ? () => { updateTutorialScreenPart() } : {}} style={screenPart === 10 ? { zIndex: 30, position: "relative" } : {}}>
                                 <h1 style={title}>Leaderboard</h1>
                                 <div style={leaderboardContainer}>
                                     <div>

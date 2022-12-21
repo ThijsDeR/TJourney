@@ -7,16 +7,34 @@ import { Link, Navigate } from "react-router-dom";
 import 'bulma/css/bulma.min.css';
 import { pageStyle, appContainer, searchBar, chatContainer, friendItems, friendsTile, fakePF, lightText, chatDivider, primaryColor, goBackIndicator, smallButton, unsetLinkStyle } from '../../styling/StylingVariables.js';
 
+// tabs
+import Tabs from '../../components/tabs/Tabs';
+
+// tab content
+import Friends from './Friends.js';
+import Groups from './Groups.js';
+import Leaderboard from './Leaderboard.js';
+
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { addFriend, getNonFriends } from '../../services/friends-service';
 import { calculateLevel } from '../../services/level-service';
-import Loading from '../../components/loading/Loading';
 
-function AddFriends({ user, isLoading, setIsLoading }) {
+function AddFriends({ user }) {
     const [searchInput, setSearchInput] = useState("");
     const [nonFriends, setNonFriends] = useState(undefined)
+
+    //  test data
+    // const users = [
+    //     { name: "John", level: 1, id: 1 },
+    //     { name: "Jane", level: 2, id: 2 },
+    //     { name: "Jack", level: 3, id: 3 },
+    //     { name: "Jill", level: 4, id: 4 },
+    //     { name: "Jenny", level: 5, id: 5 },
+    //     { name: "Jen", level: 6, id: 6 },
+    //     { name: "Jenna", level: 7, id: 7 },
+    // ];
 
     useEffect(() => {
         getNonFriends().then((nonFriends) => {
@@ -24,13 +42,9 @@ function AddFriends({ user, isLoading, setIsLoading }) {
                 nonFriend.level = calculateLevel(nonFriend.level.amount)
             })
             setNonFriends(nonFriends)
+            console.log(nonFriends)
         })
     }, [])
-
-    useEffect(() => {
-        if (user && nonFriends) setIsLoading(false)
-        
-    }, [user, nonFriends, setIsLoading])
 
     const handleSearchInput = (e) => {
         //  prevent page refresh
@@ -41,63 +55,58 @@ function AddFriends({ user, isLoading, setIsLoading }) {
 
     return (
         <>
-            {
-                isLoading ? <Loading /> :
-                    <>
-                        <div style={pageStyle(user.preferences.style)}>
-                            <div style={appContainer(user.preferences.style)}>
+            <div style={pageStyle}>
+                <div style={appContainer}>
 
-                                <Link to='/community' style={{ textDecoration: 'none' }}>
-                                    <div style={goBackIndicator(user.preferences.style)}>
-                                        <FontAwesomeIcon icon={faAngleLeft} size='lg' />
-                                        <span style={{ paddingLeft: '10px' }}>Friends</span>
-                                    </div>
-                                </Link>
+                    <Link to='/community' style={{ textDecoration: 'none' }}>
+                        <div style={goBackIndicator}>
+                            <FontAwesomeIcon icon={faAngleLeft} size='lg' />
+                            <span style={{ paddingLeft: '10px' }}>Friends</span>
+                        </div>
+                    </Link>
 
-                                <input
-                                    style={searchBar(user.preferences.style)}
-                                    type="text"
-                                    placeholder="Search"
-                                    onChange={handleSearchInput}
-                                    value={searchInput} />
-                                <div style={{ overflowY: "auto", maxHeight: "100%" }}>
-                                    {nonFriends ? nonFriends.map(nonFriend => (
-                                        <div className='userDiv' key={nonFriend._id}>
-                                            <div style={chatContainer(user.preferences.style)}>
-                                                <div className='friendTile' style={{ ...friendsTile(user.preferences.style), ...{ margin: 'unset' } }}>
-                                                    <div className='friendItems' style={friendItems(user.preferences.style)}>
-                                                        <div className='friendIcon' style={fakePF(user.preferences.style)}></div>
-                                                        <div className='friendInfo'>
-                                                            <div className='friendName' style={{ fontWeight: 'bold' }}> {nonFriend.username} </div>
-                                                            <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Level {nonFriend.level.level} </div>
-                                                        </div>
-                                                    </div>
-
-                                                    {/* TODO: add friend when button is clicked */}
-                                                    <div style={{
-                                                        justifySelf: 'flex-end',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                    }}>
-                                                        <a href style={unsetLinkStyle(user.preferences.style)} onClick={(e) => {
-                                                            addFriend(nonFriend._id)
-                                                            e.target.closest(".userDiv").remove()
-                                                        }}>
-                                                            <div style={{ ...smallButton(user.preferences.style), ...{ width: '70px' } }}>Add</div>
-                                                        </a>
-                                                    </div>
-
-                                                </div>
-
+                    <input
+                        style={searchBar}
+                        type="text"
+                        placeholder="Search"
+                        onChange={handleSearchInput}
+                        value={searchInput} />
+                    <div style={{overflowY: "auto", maxHeight: "100%"}}>
+                        {nonFriends ? nonFriends.map(user => (
+                            <div className='userDiv' key={user._id}>
+                                <div style={chatContainer}>
+                                    <div className='friendTile' style={{ ...friendsTile, ...{ margin: 'unset' } }}>
+                                        <div className='friendItems' style={friendItems}>
+                                            <div className='friendIcon' style={fakePF}></div>
+                                            <div className='friendInfo'>
+                                                <div className='friendName' style={{ fontWeight: 'bold' }}> {user.username} </div>
+                                                <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Level {user.level.level} </div>
                                             </div>
                                         </div>
-                                    )) : ""}
+
+                                        {/* TODO: add friend when button is clicked */}
+                                        <div style={{
+                                            justifySelf: 'flex-end',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                        }}>
+                                            <a href style={unsetLinkStyle} onClick={(e) => {
+                                                addFriend(user._id)
+                                                e.target.closest(".userDiv").remove()
+                                            }}>
+                                                <div style={{ ...smallButton, ...{ width: '70px' } }}>Add</div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                            </div >
-                        </div >
-                        <Navigation user={user} />
-                    </>
-            }
+                            </div>
+                        )) : ""}
+                    </div>
+                </div >
+            </div >
+            <Navigation user={user} />
         </>
     )
 }

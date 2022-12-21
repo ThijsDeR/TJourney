@@ -11,10 +11,10 @@ function Tabs(props) {
     };
 
     return (
-        <div className="tabs" style={tabListItemContainer(props.style)}>
-            <div className="item" style={tabList(props.style)}>
-                <div style={centerDiv(props.style)}>
-                    <ol className="tab-list" style={tabListItem(props.style)}>
+        <div className="tabs" style={tabListItemContainer}>
+            <div className="item" style={tabList}>
+                <div style={centerDiv}>
+                    <ol className="tab-list" style={tabListItem}>
                         {/* returns all the tab items as a li */}
                         {props.children.map((child) => {
                             const { label } = child.props;
@@ -25,14 +25,13 @@ function Tabs(props) {
                                     key={label}
                                     label={label}
                                     onClick={onClickTabItem}
-                                    style={props.style}
                                 />
                             );
                         })}
                     </ol>
                 </div>
             </div>
-            <div className="tab-content" style={tabContent(props.style)}>
+            <div className="tab-content" style={tabContent}>
                 {props.children.map((child) => {
                     if (child.props.label !== activeTab) return undefined;
                     return child.props.children;

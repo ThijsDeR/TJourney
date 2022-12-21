@@ -4,7 +4,7 @@ import React from 'react';
 import 'bulma/css/bulma.min.css';
 import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, boldText, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard } from '../../styling/StylingVariables.js';
 
-function Leaderboard(props) {
+function Leaderboard() {
 
     return (
         <>
@@ -15,46 +15,46 @@ function Leaderboard(props) {
             }}>
 
                 {/* Top three */}
-                <div style={topThreeContainer(props.style)}>
-                    <div style={topThreePfTwoThree(props.style)}></div>
-                    <div style={topThreePfOne(props.style)}></div>
-                    <div style={topThreePfTwoThree(props.style)}></div>
+                <div style={topThreeContainer}>
+                    <div style={topThreePfTwoThree}></div>
+                    <div style={topThreePfOne}></div>
+                    <div style={topThreePfTwoThree}></div>
 
-                    <div style={boldText(props.style)}>Name 2</div>
-                    <div style={boldText(props.style)}>Name 1</div>
-                    <div style={boldText(props.style)}>Name 3</div>
+                    <div style={boldText}>Name 2</div>
+                    <div style={boldText}>Name 1</div>
+                    <div style={boldText}>Name 3</div>
 
-                    <div style={lightText(props.style)}>Level x</div>
-                    <div style={lightText(props.style)}>Level x</div>
-                    <div style={lightText(props.style)}>Level x</div>
+                    <div style={lightText}>Level x</div>
+                    <div style={lightText}>Level x</div>
+                    <div style={lightText}>Level x</div>
                 </div>
             </div>
 
             {/* My rank */}
-            <div style={myRank(props.style)}>
-                <div style={containerLeftRight(props.style)}>
+            <div style={myRank}>
+                <div style={containerLeftRight}>
                     <div>Your current rank</div>
                     {/* Rank in the leaderboard */}
-                    <div style={boldText(props.style)}> #7 </div>
+                    <div style={boldText}> #7 </div>
                 </div>
             </div>
 
             {/* Leaderboard */}
-            <h1 style={title(props.style)}>Leaderboard</h1>
-            <div style={leaderboardContainer(props.style)}>
+            <h1 style={title}>Leaderboard</h1>
+            <div style={leaderboardContainer}>
                 <div>
-                    <div style={fakePfLeaderboard(props.style)}></div>
-                    <div style={rankingBubbleLeaderboard(props.style)}>4</div>
+                    <div style={fakePfLeaderboard}></div>
+                    <div style={rankingBubbleLeaderboard}>4</div>
                 </div>
                 <div>Geert de Winter</div>
-                <div style={leaderboardLevel(props.style)}>40</div>
+                <div style={leaderboardLevel}>40</div>
 
                 <div>
-                    <div style={fakePfLeaderboard(props.style)}></div>
-                    <div style={rankingBubbleLeaderboard(props.style)}>5</div>
+                    <div style={fakePfLeaderboard}></div>
+                    <div style={rankingBubbleLeaderboard}>5</div>
                 </div>
                 <div>Rosa de jong</div>
-                <div style={leaderboardLevel(props.style)}>35</div>
+                <div style={leaderboardLevel}>35</div>
             </div>
 
         </>

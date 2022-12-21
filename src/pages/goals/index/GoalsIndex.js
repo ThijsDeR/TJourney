@@ -2,7 +2,7 @@ import Navigation from "../../../components/navigation/Navigation";
 import Loading from "../../../components/loading/Loading";
 import { useEffect, useState } from "react";
 import { getAllGoals } from "../../../services/goal-service";
-import { Navigate, useRouteError } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export function GoalsIndex({ user, isLoading, setIsLoading }) {
     const [goals, setGoals] = useState(undefined)
@@ -23,12 +23,12 @@ export function GoalsIndex({ user, isLoading, setIsLoading }) {
             {
                 isLoading ? <Loading /> :
                     <>
-                        <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: user.preferences.style.backgroundColor, color: user.preferences.style.textColor, overflowY: "auto" }}>
+                        <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto" }}>
                             {
                                 goals
                                     ? <>
                                         <div style={{ display: "flex", justifyContent: "center" }}>
-                                            <h1 className="is-size-1">Goal list</h1>
+                                            <h1 className="is-size-1 has-text-white">Goal list</h1>
                                         </div>
                                         {goals.map((goal) => (
                                             <>
@@ -48,7 +48,7 @@ export function GoalsIndex({ user, isLoading, setIsLoading }) {
                                                                     </ul>
                                                                     <div className="field is-grouped">
                                                                         <div className="control">
-                                                                            <button className="button" style={{ backgroundColor: user.preferences.style.primaryColor }}>Edit</button>
+                                                                            <button className="button is-link">Edit</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>

@@ -31,8 +31,8 @@ export function GoalsCreate({ user, isLoading, setIsLoading }) {
     }, [done, name, description, startValue, endValue, startDate, endDate, category])
 
     useEffect(() => {
-        if (user) setIsLoading(false)
-    }, [user, setIsLoading])
+        setIsLoading(false)
+    }, [setIsLoading])
 
 
     if (user === undefined && !isLoading) {
@@ -43,13 +43,13 @@ export function GoalsCreate({ user, isLoading, setIsLoading }) {
         return <Navigate to="/goals/index" replace />;
     }
 
-    const data = { user, name, setName, description, setDescription, startValue, setStartValue, endValue, setEndValue, startDate, setStartDate, endDate, setEndDate, category, setCategory, setStepHandler, done, setDone }
+    const data = { name, setName, description, setDescription, startValue, setStartValue, endValue, setEndValue, startDate, setStartDate, endDate, setEndDate, category, setCategory, setStepHandler, done, setDone }
     return (
         <>
             {
                 isLoading ? <Loading /> :
                     <>
-                        <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: user?.preferences?.style?.backgroundColor ? user.preferences.style.backgroundColor : "121212" , color:  user?.preferences?.style?.textColor ? user.preferences.style.textColor : "#F7F7F7" }}>
+                        <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black" }}>
                             {step === 1 ? <SelectGoalCategory {...data} /> : ""}
                             {step === 2 ? <SelectPremadePlan {...data} /> : ""}
                             {step === 3 ? <SelectGoalPlan {...data} /> : ""}

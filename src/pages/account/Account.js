@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import Loading from '../../components/loading/Loading.js';
 import { calculateLevel } from '../../services/level-service.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faSliders } from '@fortawesome/free-solid-svg-icons';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { DefaultAvatars } from '../../assets/DefaultAvatars/DefaultAvatarsCanvas';
 import { login, deleteAccount, editUsername, editPassword } from "../../services/auth-service";
@@ -94,13 +94,10 @@ function Account({ user, isLoading, setIsLoading }) {
             {
                 isLoading ? <Loading /> :
                     <>
-                        <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px", backgroundColor: user.preferences.style.backgroundColor, color: user.preferences.style.textColor }}>
+                        <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px", backgroundColor: "black", color: "white" }}>
                             <div className="mx-5">
-                                <div className="is-size-3" style={{ position: "absolute", left: "5vw" }}>
-                                    <Link to="/preferences" style={{color: user.preferences.style.primaryColor}}><FontAwesomeIcon icon={faSliders} /></Link>
-                                </div>
                                 <div className="is-size-3" style={{ position: "absolute", right: "5vw" }}>
-                                    <Link to="/avatarselect" style={{color: user.preferences.style.primaryColor}}><FontAwesomeIcon icon={faGear} /></Link>
+                                    <Link to="/avatarselect"><FontAwesomeIcon icon={faGear} /></Link>
                                 </div>
                                 <div className="is-size-3 has-text-centered">
                                     Account
@@ -113,15 +110,15 @@ function Account({ user, isLoading, setIsLoading }) {
                                             ?
                                             <div style={{ height: "3vh" }} >
                                                 <form onSubmit={(e) => handleEditUserName(e)}>
-                                                    <input className="input has-text-centered" style={{ width: "35vw", backgroundColor: user.preferences.style.backgroundColor, color: user.preferences.style.textColor }} type="text" placeholder="username" defaultValue={user.username} onChange={(e) => setNewUsername(e.target.value)} />
-                                                    <button className="is-pulled-right button ml-3" style={{backgroundColor: user.preferences.style.secondaryColor }} onClick={() => showInputUserName(!inputUserName)}>Cancel</button>
-                                                    <button className="is-pulled-right button" style={{backgroundColor: user.preferences.style.primaryColor }}>Submit</button>
+                                                    <input className="input has-text-white has-text-centered has-background-black" style={{ width: "35vw" }} type="text" placeholder="username" defaultValue={user.username} onChange={(e) => setNewUsername(e.target.value)} />
+                                                    <button className="is-pulled-right button ml-3 has-background-black has-text-white" onClick={() => showInputUserName(!inputUserName)}>Cancel</button>
+                                                    <button className="is-pulled-right button has-background-success">Submit</button>
                                                 </form>
                                             </div>
                                             :
                                             <div style={{ height: "3vh" }} >
                                                 {user.username}
-                                                <button className="is-pulled-right button" style={{backgroundColor: user.preferences.style.secondaryColor}} onClick={() => showInputUserName(!inputUserName)}>Edit</button>
+                                                <button className="is-pulled-right button has-background-black has-text-white" onClick={() => showInputUserName(!inputUserName)}>Edit</button>
                                             </div>
                                         }
                                     </div>
@@ -132,13 +129,13 @@ function Account({ user, isLoading, setIsLoading }) {
                                     </div>
 
                                     {/* Avatar canvas */}
-                                    <div className="box" style={{backgroundColor: user.preferences.style.tertiaryColor}} onClick={() => { window.location.href = "/avatarselect" }}>
+                                    <div className="has-background-black-ter box" onClick={() => { window.location.href = "/avatarselect" }}>
                                         {getAvatar()}
                                     </div>
 
                                     {/* Edit password */}
                                     <div style={{ position: "absolute", bottom: "10vh", right: "5vw" }}>
-                                        <button className="button has-text-white" style={{backgroundColor: user.preferences.style.primaryColor}} onClick={() => [showInputPassword(!inputPassword), showInputDeleteAccount(false)]}>
+                                        <button className="button has-background-info has-text-white" onClick={() => [showInputPassword(!inputPassword), showInputDeleteAccount(false)]}>
                                             Edit password
                                         </button>
                                     </div>
@@ -146,10 +143,10 @@ function Account({ user, isLoading, setIsLoading }) {
                                         <>
                                             <div className="modal is-active px-5">
                                                 <div className="modal-background"></div>
-                                                <div className="modal-content p-4" style={{ borderRadius: "15px", backgroundColor: user.preferences.style.backgroundColor }}>
+                                                <div className="modal-content px-2 py-3 has-background-dark" style={{ borderRadius: "15px" }}>
                                                     <div>
                                                         Old password
-                                                        <input className="input has-text-white" style={{backgroundColor: user.preferences.style.backgroundColor}} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                                        <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                                                     </div>
                                                     <div className="mt-3">
                                                         {passwordNotSame ?
@@ -160,16 +157,16 @@ function Account({ user, isLoading, setIsLoading }) {
                                                             ""
                                                         }
                                                         New password
-                                                        <input className="input has-text-white" style={{backgroundColor: user.preferences.style.backgroundColor}} type="password" placeholder="Password" onChange={(e) => setNewPassword(e.target.value)} />
+                                                        <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setNewPassword(e.target.value)} />
                                                     </div>
                                                     <div className="mt-3">
                                                         Confirm new password
-                                                        <input className="input has-text-white" style={{backgroundColor: user.preferences.style.backgroundColor}} type="password" placeholder="Password" onChange={(e) => setNewPasswordConfirm(e.target.value)} />
+                                                        <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setNewPasswordConfirm(e.target.value)} />
                                                     </div>
-                                                    <button className="button mt-3" style={{backgroundColor: user.preferences.style.secondaryColor}} onClick={() => showInputPassword(false)}>
+                                                    <button className="button mt-3 has-background-danger has-text-black" onClick={() => showInputPassword(false)}>
                                                         Close
                                                     </button>
-                                                    <button className="is-pulled-right button mt-3" style={{backgroundColor: user.preferences.style.primaryColor, color: user.preferences.style.textColor }} onClick={() => handleNewPassword()}>
+                                                    <button className="is-pulled-right button mt-3 has-background-success has-text-black" onClick={() => handleNewPassword()}>
                                                         Submit
                                                     </button>
                                                     <div className="is-clearfix"></div>
@@ -189,12 +186,12 @@ function Account({ user, isLoading, setIsLoading }) {
                                     <>
                                         <div className="modal is-active px-5">
                                             <div className="modal-background"></div>
-                                            <div className="modal-content px-2 py-3"  style={{ borderRadius: "15px", backgroundColor: user.preferences.style.backgroundColor }}>
+                                            <div className="modal-content px-2 py-3 has-background-dark" style={{ borderRadius: "15px" }}>
                                                 <form onSubmit={(e) => handleDeleteAccount(e)}>
-                                                    <div className="is-size-4 mb-1" style={{color: user.preferences.style.textColor}}>Confirm deletion by entering your password:</div>
-                                                    <input className="input" style={{color: user.preferences.style.textColor, backgroundColor: user.preferences.backgroundColor}} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-                                                    <button className="button mt-3 is-pulled-right" style={{color: user.preferences.style.textColor, backgroundColor: user.preferences.style.primaryColor}}>Submit</button>
-                                                    <button className="button mt-3" style={{color: user.preferences.style.textColor, backgroundColor: user.preferences.backgroundColor}} onClick={() => showInputDeleteAccount(false)}>Close</button>
+                                                    <div className="is-size-4 mb-1 has-text-white">Confirm deletion by entering your password:</div>
+                                                    <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                                    <button className="button mt-3 is-pulled-right has-background-success has-text-black">Submit</button>
+                                                    <button className="button mt-3 has-background-danger has-text-black" onClick={() => showInputDeleteAccount(false)}>Close</button>
                                                 </form>
                                             </div>
                                         </div>

@@ -12,9 +12,6 @@ import { Physics } from "@react-three/cannon";
 import luckyBlock from '../../../assets/lg1emBK.png'
 import { getAllChallenges } from "../../../services/goal-service.js";
 import { getGameSession, setSteps } from "../../../services/game-service.js";
-import { Navigate } from 'react-router-dom';
-import Loading from '../../../components/loading/Loading';
-import Navigation from '../../../components/navigation/Navigation';
 import Game from '../../../scripts/game.js';
 import FantasyBook from '../../../scripts/fantasyBook';
 import { calculateLevel } from '../../../services/level-service';
@@ -35,31 +32,17 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading, updat
     const [gameSession, setGameSesion] = useState(undefined)
     const [friends, setFriends] = useState(undefined)
 
-    const reloadData = () => {
-        getCurrentUser().then((user) => {
-            setUser(user)
-            setUserLevel(user.level.amount)
-            setLevel(calculateLevel(user.level.amount))
-        })
-    }
-
     const getFriendsData = () => {
         getFriends().then((friends) => {
             setFriends(friends)
             friends.forEach((friend) => {
-                console.log(friends, game.friends)
                 const gameFriend = game.friends.find((gameFriend) => gameFriend.userName === friend.user.username)
-
-                console.log(gameFriend)
-
                 if (gameFriend) gameFriend.placeOnTheBoard = friend.gameSession.steps;
                 else {
                     const newLength = game.friends.push(new Friend(new Position(0, 0, 0), new Rotation(0, 0, 0), 0.5, 0, friend.user.username))
                     game.friends[newLength - 1].setPosition(friend.gameSession.steps, game.world.circles)
                 }
-
             })
-
         })
     }
 
@@ -91,71 +74,9 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading, updat
         })
     }, [])
 
-    // useEffect(() => {
-    //     if (challenges) {
-    //         calculateDiceEyesCount(challenges).then((data) => {
-    //             setDiceEyesCount(data)
-    //         })
-    //     }
-    // }, [challenges])
-
     useEffect(() => {
         if (challenges && diceEyesCount !== undefined && userLevel !== undefined && gameSession !== undefined) setIsLoading(false)
     }, [challenges, diceEyesCount, gameSession, setIsLoading, userLevel])
-
-    // const calculateDiceEyesCount = async (challenges) => {
-    //     const gameSession = await getGameSession()
-    //     const total = challenges.length
-    //     let finished = 0
-    //     const msInDay = 1000 * 60 * 60 * 24
-    //     challenges.forEach((challenge) => {
-    //         if (challenge.finished) {
-    //             const entry = gameSession.entries.find((entry) => {
-
-    //                 return Date.parse(entry.date)
-    //                     >= (
-    //                         Math.floor(
-    //                             Date.parse(challenge.date) / msInDay
-    //                         ) * msInDay
-    //                     )
-    //                     &&
-    //                     Date.parse(entry.date)
-    //                     <= (
-    //                         Math.ceil(
-    //                             Date.parse(challenge.date) / msInDay
-    //                         ) * msInDay
-    //                     )
-    //             })
-    //             if (!entry) {
-    //                 finished++
-    //             }
-    //         }
-    //     })
-
-    //     const diceEyesCountConfigs = [
-    //         [0, 20],
-    //         [0, 12, 20],
-    //         [0, 10, 16, 20],
-    //         [0, 8, 14, 18, 20],
-    //         [0, 6, 12, 16, 18, 20],
-    //         [0, 6, 10, 14, 16, 18, 20],
-    //     ]
-
-    //     return diceEyesCountConfigs[Math.max(0, total - 1)][finished]
-    // }
-
-    // if (user === undefined && !isLoading) {
-    //     return <Navigate to="/login" replace />;
-    // }
-
-    // game.update(timeElapsed)
-
-    // if (game.shouldUpdate) {
-    //     game.shouldUpdate = false
-    //     getFriendsData()
-    //     setSteps(game.player.placeOnTheBoard)
-    //     reloadData()
-    // }
 
     return (
         <>

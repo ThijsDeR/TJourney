@@ -15,10 +15,6 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
     const [inputPassword, showInputPassword] = useState(false);
     const [inputUserName, showInputUserName] = useState(false);
 
-    const [newUserName, setNewUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
-    const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
     const [passwordNotSame, setPasswordNotSame] = useState(false);
 
     function getAvatar() {
@@ -35,37 +31,6 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
             // Defaults to chopper if no avatar in db
             return DefaultAvatars.Chopper
         }
-    }
-
-    async function handleNewPassword() {
-        if (newPassword !== newPasswordConfirm) {
-            setPasswordNotSame(true);
-            return;
-        }
-        setPasswordNotSame(false);
-
-        await login(user.email, password);
-        await editPassword(newPassword);
-        localStorage.removeItem("user");
-        window.location.href = "/login";
-    }
-
-    function handleEditUserName(e) {
-        e.preventDefault();
-
-        editUsername(newUserName).then(() => {
-            window.location.reload();
-        });
-    }
-
-    async function handleDeleteAccount(e) {
-        e.preventDefault();
-
-        await login(user.email, password);
-        if (!window.confirm("Are you certain you wish to delete your account?")) {
-            return;
-        }
-        deleteAccount();
     }
 
     useEffect(() => {
@@ -142,7 +107,7 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                                 ?
                                 <div style={{ height: "3vh" }} >
                                     <form>
-                                        <input className="input has-text-white has-text-centered has-background-black" style={{ width: "35vw" }} type="text" placeholder="username" defaultValue={user.username} onChange={(e) => setNewUsername(e.target.value)} />
+                                        <input className="input has-text-white has-text-centered has-background-black" style={{ width: "35vw" }} type="text" placeholder="username" defaultValue={user.username} />
                                         <button className="is-pulled-right button ml-3 has-background-black has-text-white" onClick={() => showInputUserName(!inputUserName)}>Cancel</button>
                                         <button className="is-pulled-right button has-background-success">Submit</button>
                                     </form>
@@ -181,7 +146,7 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                                     <div className="modal-content px-2 py-3 has-background-dark" style={{ borderRadius: "15px" }}>
                                         <div>
                                             Old password
-                                            <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                            <input className="input has-text-white has-background-black" type="password" placeholder="Password" />
                                         </div>
                                         <div className="mt-3">
                                             {passwordNotSame ?
@@ -192,11 +157,11 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                                                 ""
                                             }
                                             New password
-                                            <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setNewPassword(e.target.value)} />
+                                            <input className="input has-text-white has-background-black" type="password" placeholder="Password" />
                                         </div>
                                         <div className="mt-3">
                                             Confirm new password
-                                            <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setNewPasswordConfirm(e.target.value)} />
+                                            <input className="input has-text-white has-background-black" type="password" placeholder="Password" />
                                         </div>
                                         <button className="button mt-3 has-background-danger has-text-black" onClick={() => showInputPassword(false)}>
                                             Close
@@ -227,7 +192,7 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                                 <div className="modal-content px-2 py-3 has-background-dark" style={{ borderRadius: "15px" }}>
                                     <div>
                                         <div className="is-size-4 mb-1 has-text-white">Confirm deletion by entering your password:</div>
-                                        <input className="input has-text-white has-background-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                        <input className="input has-text-white has-background-black" type="password" placeholder="Password" />
                                         <button className="button mt-3 is-pulled-right has-background-success has-text-black">Submit</button>
                                         <button className="button mt-3 has-background-danger has-text-black" onClick={() => showInputDeleteAccount(false)}>Close</button>
                                     </div>

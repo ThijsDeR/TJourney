@@ -4,9 +4,6 @@ import 'bulma/css/bulma.min.css';
 // tabs
 import Tabs from '../../../components/tabs/Tabs';
 // tab content
-import Friends from '../../community/Friends.js';
-import Groups from '../../community/Groups.js';
-import Leaderboard from '../../community/Leaderboard.js';
 import { Link } from "react-router-dom";
 import { myRank, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard, pageStyle, appContainer, title, primaryColor, containerCenteredBetween, containerLeftRight, goals, tileStyle, containerCenteredLeftItem, smallButton, white, friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, suggestedBox, suggestedTile, pfBox, boldText, lightText, chatDivider, bolderText } from '../../../styling/StylingVariables.js';
 import { useEffect, useState } from "react";
@@ -15,6 +12,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
     const [group, setGroup] = useState(undefined);
     const [leaderboard, setLeaderboard] = useState(undefined);
 
+    // Had to do it this way due to how the labels work, which I can't give a z-index without editing other code
     function updateGroupZIndex() {
         if (group === undefined) {
             return;

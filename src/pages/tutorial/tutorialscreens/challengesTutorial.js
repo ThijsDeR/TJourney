@@ -15,7 +15,6 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
     const [finishedChallenges, setFinishedChallenges] = useState(undefined)
     const [diceEyesCount, setdiceEyesCount] = useState(undefined);
     const [goals, setGoals] = useState(undefined);
-    const [isSelected, setIsSelected] = useState(undefined);
     const [days, setDays] = useState(undefined);
     const [currentDay, setCurrentDay] = useState(undefined)
 
@@ -64,14 +63,6 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
         if (currentDay !== undefined && days !== undefined && days[currentDay]) setChallenges(days[currentDay].getTime());
     }, [currentDay])
 
-    function selectDropDown(goal_id) {
-        if (isSelected === goal_id) {
-            setIsSelected(undefined);
-        } else {
-            setIsSelected(goal_id);
-        }
-    }
-
     const calculatediceEyesCountCount = async (challenges) => {
         const gameSession = await getGameSession()
         const total = challenges.length
@@ -110,14 +101,6 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
         return diceEyesCountConfigs[Math.max(0, total - 1)][finished]
     }
 
-    const checkChallengeHandler = async (goalId, challengeId, finished) => {
-        await checkChallenge(goalId, challengeId, !finished)
-        setChallenges(days[currentDay].getTime())
-        getAllGoals().then((data) => {
-            setGoals(data)
-        });
-    }
-
     const setDayHandler = async (day) => {
         setCurrentDay(day)
     }
@@ -126,13 +109,7 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
         return <Navigate to="/login" replace />;
     }
 
-
-    // color options
-    const purple = "#BB86FC";
-    const blue = "#57ADDD";
-    const yellow = "#FFBC6F";
     const green = "#61C688";
-    const red = "#FF686B";
 
     // when you change this color, you will change the primary color of the whole page
     const primaryColor = green;
@@ -235,7 +212,6 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
                         :
                         { ...title, ...{ textAlign: 'center' } }}>
                         {currentDay !== undefined ? days[currentDay].toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" }) : ""}</h1 >
-                    {/* <div style={{ textAlign: 'center' }}> <FontAwesomeIcon icon={faCaretDown} size='2x' /> </div> */}
                     <div id="daysScroll" style={{ textAlign: 'center', display: "flex", marginBottom: '30px', overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none", width: "100%" }}>
                         <div style={screenPart === 1 ?
                             { zIndex: 30, display: "flex", flex: "0 0 auto", gap: "10px" }
@@ -289,7 +265,6 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
                     <div style={goalsContainer} >
                         <div style={containerLeftRight}>
                             <div><h2 style={{ fontWeight: 'bold' }} >Goals</h2></div>
-                            {/* TODO: link to edit goals page */}
                             <Link><div style={{ color: primaryColor }} >Edit</div></Link>
                         </div>
 

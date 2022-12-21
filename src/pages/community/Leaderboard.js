@@ -55,9 +55,9 @@ function Leaderboard(currentUser) {
                     <div style={boldText}>{users && users[0].username}</div>
                     <div style={boldText}>{users && users[2].username}</div>
 
-                    <div style={lightText}>Level {users && users[1].level.amount}</div>
-                    <div style={lightText}>Level {users && users[0].level.amount}</div>
-                    <div style={lightText}>Level {users && users[2].level.amount}</div>
+                    <div style={lightText}>Level {users && users[1].level.level.level}</div>
+                    <div style={lightText}>Level {users && users[0].level.level.level}</div>
+                    <div style={lightText}>Level {users && users[2].level.level.level}</div>
                 </div>
             </div>
 
@@ -83,8 +83,7 @@ function Leaderboard(currentUser) {
                             </div>
                         </div>
                         <div>{user.username}</div>
-                        {/* TODO: change to level when all accounts have level */}
-                        <div style={{ ...leaderboardLevel, ...boldText }}>{user.level.amount}</div>
+                        <div style={{ ...leaderboardLevel, ...boldText }}>{user.level.level.level}</div>
                     </div>
                 })
             }

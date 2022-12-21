@@ -64,7 +64,7 @@ export function Chats({ user, isLoading, setIsLoading }) {
       {isLoading ? <Loading /> :
         <div className="Chats">
 
-          <div className="container">
+          <div className="containerChat">
             <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} />
             {
               currentChat === undefined ?

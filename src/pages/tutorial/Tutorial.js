@@ -47,9 +47,9 @@ function Tutorial({ user, isLoading, setIsLoading }) {
 
     const data = { user, updateTutorialPosition, screenPart, updateTutorialScreenPart }
     const TutorialScreens = [
-        <HomescreenTutorial {...data} />, <ChallengesTutorial {...data} />,
+        <HomescreenTutorial {...data} />, <AccountTutorial {...data} />, 
+        <AvatarSelectTutorial {...data} />, <ChallengesTutorial {...data} />, 
         <GoalsCreateTutorial {...data} />, <GameScreenTutorial {...data} />,
-        <AccountTutorial {...data} />, <AvatarSelectTutorial {...data} />,
         <CommunityScreenTutorial {...data} />];
 
     return (

@@ -128,8 +128,8 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                 </div>
 
                 <div className="mx-5">
-                    <div className="is-size-3" style={{ position: "absolute", right: "5vw" }}>
-                        <Link to="/home"><FontAwesomeIcon icon={faGear} /></Link>
+                    <div className="is-size-3 has-text-info" style={screenPart > 5 ? { zIndex: 300, position: "absolute", right: "5vw" } : { position: "absolute", right: "5vw" }}>
+                        <div onClick={() => updateTutorialPosition()}><FontAwesomeIcon icon={faGear} /></div>
                     </div>
                     <div className="is-size-3 has-text-centered">
                         Account

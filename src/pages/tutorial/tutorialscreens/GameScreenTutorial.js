@@ -195,7 +195,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading, updat
                 }
                 {screenPart === 6 &&
                     <div className="has-text-white is-size-3 has-text-centered" style={{ top: "15vh", position: "relative" }}>
-                        Go to account when you're ready to continue
+                        Go to community when you're ready to continue
                     </div>
                 }
             </div>
@@ -240,7 +240,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading, updat
             </div>
 
 
-            <div className="nav-bottom" style={screenPart > 6 ? { zIndex: "30" } : {}} onClick={screenPart > 6 ? () => updateTutorialPosition() : ""}>
+            <div className="nav-bottom" style={screenPart > 6 ? { zIndex: "30" } : {}}>
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
@@ -248,7 +248,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading, updat
                             <Link to="#">CH</Link>
                             <Link to="#">H</Link>
                             <Link to="#" >J</Link>
-                            <Link>Co</Link>
+                            <Link onClick={screenPart > 6 ? () => updateTutorialPosition() : ""}>Co</Link>
                         </> :
                         <>
                             <Link to="#">Login</Link>

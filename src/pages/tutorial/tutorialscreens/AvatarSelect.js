@@ -19,7 +19,7 @@ function AvatarSelect({ user, screenPart, updateTutorialScreenPart, updateTutori
 
             <div style={{ zIndex: 30, width: "100%", position: "absolute", }}>
                 {screenPart === 0 &&
-                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "40vh", position: "relative" }}>
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "50vh", position: "relative" }}>
                         Select an avatar you like, you can change this whenever you want
                     </div>
                 }

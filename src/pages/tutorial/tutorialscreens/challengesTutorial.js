@@ -304,7 +304,7 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
-                            <Link to="#">L</Link>
+                            <Link to="#">A</Link>
                             <Link to="#">CH</Link>
                             <Link to="#">H</Link>
                             <Link to="#">J</Link>

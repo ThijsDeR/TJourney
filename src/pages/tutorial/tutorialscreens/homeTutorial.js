@@ -69,7 +69,7 @@ const HomescreenTutorial = ({ user, updateTutorialPosition, screenPart, updateTu
                     {user ?
                         <>
                             <Link to="#" onClick={screenPart >= 8 ? () => updateTutorialPosition() : () => {}}>L</Link>
-                            <Link to="#">CH</Link>
+                            <Link to="#">A</Link>
                             <Link to="#">H</Link>
                             <Link to="#">J</Link>
                             <Link>Co</Link>

@@ -264,7 +264,6 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                                 <div style={{ verticalAlign: 'middle' }}>
                                     <h1 style={{ ...title, ...{ padding: 'unset' } }}>Groups</h1>
                                 </div>
-                                {/* TODO: link to add group page? */}
                                 <Link style={{ height: '24px', border: 'unset' }}><div style={{ color: primaryColor }} >Create group</div></Link>
                             </div>
 
@@ -374,7 +373,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
-                            <Link to="#">L</Link>
+                            <Link to="#">A</Link>
                             <Link to="#">CH</Link>
                             <Link to="#">H</Link>
                             <Link to="#">J</Link>

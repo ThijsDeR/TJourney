@@ -37,7 +37,7 @@ export function GoalsCreateTutorial({ user, isLoading, screenPart, updateTutoria
     if (user === undefined && !isLoading) {
         return <Navigate to="/login" replace />;
     }
-    
+
     const data = { name, setName, description, setDescription, startValue, setStartValue, endValue, setEndValue, startDate, setStartDate, endDate, setEndDate, category, setCategory, setStepHandler, done, setDone }
     return (
         <>
@@ -84,7 +84,7 @@ export function GoalsCreateTutorial({ user, isLoading, screenPart, updateTutoria
                     <div className="nav-buttons is-flex" >
                         {user ?
                             <>
-                                <Link to="#">L</Link>
+                                <Link to="#">A</Link>
                                 <Link to="#">CH</Link>
                                 <Link to="#">H</Link>
                                 <Link to="#" onClick={screenPart >= 10 || screenPart >= 3 ? () => { updateTutorialPosition() } : ""}>J</Link>

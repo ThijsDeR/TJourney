@@ -295,8 +295,9 @@ export const rankingBubbleLeaderboard = {
     borderRadius: '50%',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '0px 7px',
     fontWeight: 'bold',
+    display: 'flex',
+
     // put div above the pf
     zIndex: '1',
     position: 'relative',

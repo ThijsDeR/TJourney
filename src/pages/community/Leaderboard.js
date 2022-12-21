@@ -64,8 +64,7 @@ function Leaderboard(currentUser) {
             {/* My rank */}
             <div style={myRank} >
                 <div style={containerLeftRight}>
-                    {/* TODO: current rank */}
-                    <div>Your current level</div>
+                    <div>Your current rank</div>
                     {/* Rank in the leaderboard */}
                     <div style={boldText}> {rankOfCurrentUser} </div>
                 </div>
@@ -75,13 +74,16 @@ function Leaderboard(currentUser) {
             <h1 style={title}>Leaderboard</h1>
 
             {
-                users && users.map((user, index) => {
+                users && users.slice(3).map((user, index) => {
                     return <div style={leaderboardContainer} key={index} >
                         <div style={leaderboardPFContainer}>
                             <div style={fakePfLeaderboard}></div>
-                            <div style={rankingBubbleLeaderboard}>{index + 1}</div>
+                            <div style={rankingBubbleLeaderboard}>
+                                <span style={{ padding: 'auto' }}>{index + 4}</span>
+                            </div>
                         </div>
                         <div>{user.username}</div>
+                        {/* TODO: change to level when all accounts have level */}
                         <div style={{ ...leaderboardLevel, ...boldText }}>{user.level.amount}</div>
                     </div>
                 })

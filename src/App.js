@@ -48,7 +48,7 @@ function App({ timeElapsed }) {
 
     return (
         <>
-            <div style={{position: "absolute", top: "0", left: "0", right: "0", bottom: "0", backgroundColor: "#121212"}}>
+            <div style={{position: "absolute", top: "0", left: "0", right: "0", bottom: "0", backgroundColor: user?.preferences?.style?.backgroundColor ? user.preferences.style.backgroundColor : "#121212"}}>
                 <Routes>
                     <Route path="/" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/login" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
@@ -63,7 +63,7 @@ function App({ timeElapsed }) {
                     <Route path="/preferences" element={<Preferences user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/avatarselect" element={<AvatarSelect user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/community" element={<CommunityScreen user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/add-friend" element={<AddFriends user={user} />} />
+                    <Route path="/add-friend" element={<AddFriends user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 </Routes>
             </div>
         </>

@@ -1,3 +1,4 @@
+import { userInfo } from "os";
 import { useState } from "react";
 
 
@@ -85,8 +86,8 @@ export function SelectPremadePlan(props) {
         <>
             <div style={{ position: "fixed", top: "0", bottom: "100px", right: "0", left: "0", overflowY: "auto" }}>
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 20 }}>
-                    <a href className="is-small is-size-1 has-text-white" onClick={stepBackHandler}>&lt;</a>
-                    <h1 className="is-size-1 has-text-white">Premade Plans</h1>
+                    <a href className="is-small is-size-1" style={{ color: props.user.preferences.style.primaryColor }} onClick={stepBackHandler}>&lt;</a>
+                    <h1 className="is-size-1">Premade Plans</h1>
                 </div>
 
                 <div className="box mx-3 is-size-4 has-text-black" onClick={() => submitHandler(3)}>Make your own plan</div>
@@ -99,12 +100,12 @@ export function SelectPremadePlan(props) {
                             <div>Start value: {goal.Startvalue}</div>
                             <div>End value: {goal.Endvalue}</div>
                             <div className="mt-2">
-                                <button className={time === 3 ? "has-background-info button" : "button"} onClick={() => selectTime(3)}>3 days</button>
-                                <button className={time === 7 ? "has-background-info button" : "button"} onClick={() => selectTime(7)}>7 days</button>
-                                <button className={time === 14 ? "has-background-info button" : "button"} onClick={() => selectTime(14)}>14 days</button>
-                                <button className={time === 30 ? "has-background-info button" : "button"} onClick={() => selectTime(30)}>30 days</button>
+                                <button className={"button"} onClick={() => selectTime(3)} style={{ backgroundColor: time === 3 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>3 days</button>
+                                <button className={"button"} onClick={() => selectTime(7)} style={{ backgroundColor: time === 7 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>7 days</button>
+                                <button className={"button"} onClick={() => selectTime(14)} style={{ backgroundColor: time === 14 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>14 days</button>
+                                <button className={"button"} onClick={() => selectTime(30)} style={{ backgroundColor: time === 30 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>30 days</button>
                             </div>
-                            <button className="button mt-3" onClick={() => submitHandler(4, goal)}>Select</button>
+                            <button className="button mt-3" onClick={() => submitHandler(4, goal)} style={{ backgroundColor: props.user.preferences.style.primaryColor }}>Select</button>
                         </div>
                     ))
                     :
@@ -118,10 +119,10 @@ export function SelectPremadePlan(props) {
                             <div>Start value: {goal.Startvalue}</div>
                             <div>End value: {goal.Endvalue}</div>
                             <div className="mt-2">
-                                <button className={time === 3 ? "has-background-info button" : "button"} onClick={() => selectTime(3)}>3 days</button>
-                                <button className={time === 7 ? "has-background-info button" : "button"} onClick={() => selectTime(7)}>7 days</button>
-                                <button className={time === 14 ? "has-background-info button" : "button"} onClick={() => selectTime(14)}>14 days</button>
-                                <button className={time === 30 ? "has-background-info button" : "button"} onClick={() => selectTime(30)}>30 days</button>
+                                <button className={"button"} onClick={() => selectTime(3)} style={{ backgroundColor: time === 3 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>3 days</button>
+                                <button className={"button"} onClick={() => selectTime(7)} style={{ backgroundColor: time === 7 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>7 days</button>
+                                <button className={"button"} onClick={() => selectTime(14)} style={{ backgroundColor: time === 14 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>14 days</button>
+                                <button className={"button"} onClick={() => selectTime(30)} style={{ backgroundColor: time === 30 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>30 days</button>
                                 <button className="button mt-3" onClick={() => submitHandler(4, goal)}>Select</button>
                             </div>
                         </div>
@@ -137,10 +138,10 @@ export function SelectPremadePlan(props) {
                             <div>Start value: {goal.Startvalue}</div>
                             <div>End value: {goal.Endvalue}</div>
                             <div className="mt-2">
-                                <button className={time === 3 ? "has-background-info button" : "button"} onClick={() => selectTime(3)}>3 days</button>
-                                <button className={time === 7 ? "has-background-info button" : "button"} onClick={() => selectTime(7)}>7 days</button>
-                                <button className={time === 14 ? "has-background-info button" : "button"} onClick={() => selectTime(14)}>14 days</button>
-                                <button className={time === 30 ? "has-background-info button" : "button"} onClick={() => selectTime(30)}>30 days</button>
+                                <button className={"button"} onClick={() => selectTime(3)} style={{ backgroundColor: time === 3 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>3 days</button>
+                                <button className={"button"} onClick={() => selectTime(7)} style={{ backgroundColor: time === 7 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>7 days</button>
+                                <button className={"button"} onClick={() => selectTime(14)} style={{ backgroundColor: time === 14 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>14 days</button>
+                                <button className={"button"} onClick={() => selectTime(30)} style={{ backgroundColor: time === 30 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>30 days</button>
                                 <button className="button mt-3" onClick={() => submitHandler(4, goal)}>Select</button>
                             </div>
                         </div>

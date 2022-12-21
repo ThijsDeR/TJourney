@@ -26,31 +26,31 @@ function AvatarSelect({ user, isLoading, setIsLoading }) {
             {
                 isLoading ? <Loading /> :
                     <>
-                        <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto", overflowX: "hidden" }}>
+                        <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: user.preferences.style.backgroundColor, color: user.preferences.style.textColor, overflowY: "auto", overflowX: "hidden" }}>
                             <div className="is-size-3" style={{ position: "absolute", left: "5vw" }}>
-                                <Link to="/account" style={{ color: "white" }}><FontAwesomeIcon icon={faChevronLeft} /></Link>
+                                <Link to="/account" style={{ color: user.preferences.style.primaryColor }}><FontAwesomeIcon icon={faChevronLeft} /></Link>
                             </div>
-                            <div className="title text-center has-text-centered has-text-white">
+                            <div className="title text-center has-text-centered" style={{color: user.preferences.style.textColor}}>
                                 Avatar Select
                             </div>
                             {/* Contains two columns */}
                             <div className="columns is-mobile is-centered">
                                 {/* Default column */}
-                                <div className="box my-3 mr-2 column is-5 has-background-dark" onClick={() => selectAvatar("Chopper")}>
+                                <div className="box my-3 mr-2 column is-5" style={{backgroundColor: user.preferences.style.backgroundColor}} onClick={() => selectAvatar("Chopper")}>
                                     {DefaultAvatars.Chopper}
                                 </div>
                                 {/* End of first column */}
-                                <div className="box my-3 ml-2 column is-5 has-background-dark" onClick={() => selectAvatar("Shiba")}>
+                                <div className="box my-3 ml-2 column is-5" style={{backgroundColor: user.preferences.style.backgroundColor}} onClick={() => selectAvatar("Shiba")}>
                                     {DefaultAvatars.Shiba}
                                 </div>
                             </div>
                             {/* End of first set of columns */}
 
                             <div className="columns is-mobile is-centered">
-                                <div className="box my-3 mr-2 column is-5 has-background-dark" onClick={() => selectAvatar("Randomguy")}>
+                                <div className="box my-3 mr-2 column is-5" style={{backgroundColor: user.preferences.style.backgroundColor}} onClick={() => selectAvatar("Randomguy")}>
                                     {DefaultAvatars.Randomguy}
                                 </div>
-                                <div className="box my-3 ml-2 column is-5 has-background-dark" onClick={() => selectAvatar("MichelleIdle")}>
+                                <div className="box my-3 ml-2 column is-5" style={{backgroundColor: user.preferences.style.backgroundColor}} onClick={() => selectAvatar("MichelleIdle")}>
                                     {DefaultAvatars.MichelleIdle}
                                 </div>
                             </div>

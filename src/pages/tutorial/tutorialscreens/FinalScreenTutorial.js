@@ -4,24 +4,24 @@ import { Link } from "react-router-dom";
 const FinalScreenTutorial = ({ user, updateTutorialPosition, screenPart, updateTutorialScreenPart }) => {
     return (
         <>
-            <div style={{ zIndex: "20", backgroundColor: "rgb(0, 0, 0, 0.5)", width: "100vw", height: "100vh", position: "absolute" }} 
-            onClick={ screenPart >= 2 ? () => updateTutorialPosition() : () => updateTutorialScreenPart()} />
+            <div style={{ zIndex: "20", backgroundColor: "rgb(0, 0, 0, 0.5)", width: "100vw", height: "100vh", position: "absolute" }}
+                onClick={screenPart >= 2 ? () => updateTutorialPosition() : () => updateTutorialScreenPart()} />
 
             <div style={{ zIndex: 30, width: "100%" }}>
                 {screenPart === 0 &&
                     <div className="has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "5vh", zIndex: 30, width: "100%" }}>
                         That's it for the tutorial
-                    </div> 
+                    </div>
                 }
                 {screenPart === 1 &&
                     <div className="has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "5vh", zIndex: 30, width: "100%" }}>
                         You can redo this tutorial any time from the account page
-                    </div> 
+                    </div>
                 }
                 {screenPart === 2 &&
                     <div className="has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "5vh", zIndex: 30, width: "100%" }}>
                         We hope you enjoy our app!
-                    </div> 
+                    </div>
                 }
             </div>
 
@@ -52,8 +52,8 @@ const FinalScreenTutorial = ({ user, updateTutorialPosition, screenPart, updateT
                     }
                 </div>
             </div>
-                </>
+        </>
     )
 }
-            
+
 export default FinalScreenTutorial;

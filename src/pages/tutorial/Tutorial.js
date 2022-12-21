@@ -12,7 +12,7 @@ import CommunityScreenTutorial from './tutorialscreens/CommunityScreenTutorial.j
 import FinalScreenTutorial from './tutorialscreens/FinalScreenTutorial.js';
 
 function Tutorial({ user, isLoading, setIsLoading }) {
-    const [tutorialPosition, setTutorialPosition] = useState(6);
+    const [tutorialPosition, setTutorialPosition] = useState(0);
     const [screenPart, setScreenPart] = useState(0);
     const [showSkipModal, setShowSkipModal] = useState(false);
     const [tutorialDone, setTutorialDone] = useState(false);

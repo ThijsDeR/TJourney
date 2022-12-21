@@ -1,4 +1,6 @@
-export function SelectGoalCategory({ category, setCategory, setStepHandler }) {
+import userEvent from "@testing-library/user-event";
+
+export function SelectGoalCategory({ user, category, setCategory, setStepHandler }) {
     const handleCategorySelect = (name) => {
         setCategory(name)
         setStepHandler(2)
@@ -6,10 +8,10 @@ export function SelectGoalCategory({ category, setCategory, setStepHandler }) {
     return (
         <>
             <div style={{ display: "flex", justifyContent: "center" }}>
-                <h1 className="is-size-1 has-text-white">Category</h1>
+                <h1 className="is-size-1">Category</h1>
             </div>
             <div className="container mx-3">
-                <div className={"box"} onClick={() => handleCategorySelect("excercise")}>
+                <div className={"box"} style={{ backgroundColor: user.preferences.style.primaryColor }} onClick={() => handleCategorySelect("excercise")}>
                     <article className="media">
                         <div className="media-content" style={{overflow: "hidden"}}>
                             <div className="content">
@@ -23,7 +25,7 @@ export function SelectGoalCategory({ category, setCategory, setStepHandler }) {
                     </article>
                 </div>
 
-                <div className={"box"} onClick={() => handleCategorySelect("sleep")}>
+                <div className={"box"} style={{ backgroundColor: user.preferences.style.primaryColor }} onClick={() => handleCategorySelect("sleep")}>
                     <article className="media">
                         <div className="media-content" style={{overflow: "hidden"}}>
                             <div className="content">
@@ -37,7 +39,7 @@ export function SelectGoalCategory({ category, setCategory, setStepHandler }) {
                     </article>
                 </div>
 
-                <div className={"box"} onClick={() => handleCategorySelect("food")}>
+                <div className={"box"} style={{ backgroundColor: user.preferences.style.primaryColor }} onClick={() => handleCategorySelect("food")}>
                     <article className="media">
                         <div className="media-content" style={{overflow: "hidden"}}>
                             <div className="content">

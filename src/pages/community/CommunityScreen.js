@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Navigation from "../../components/navigation/Navigation";
 
@@ -13,26 +13,39 @@ import Tabs from '../../components/tabs/Tabs';
 import Friends from './Friends.js';
 import Groups from './Groups.js';
 import Leaderboard from './Leaderboard.js';
+import Loading from '../../components/loading/Loading';
 
-function CommunityScreen({ user }) {
+function CommunityScreen({ user, isLoading, setIsLoading }) {
+
+    useEffect(() => {
+        if (user) setIsLoading(false)
+        console.log("user", user)
+    }, [user, setIsLoading])
+
     return (
         <>
-            <div style={pageStyle}>
-                <div style={appContainer}>
-                    <Tabs>
-                        <div label="Friends">
-                            <Friends />
+            {
+                isLoading ? <Loading /> :
+                    <>
+                        <div style={pageStyle(user.preferences.style)}>
+                            <div style={appContainer(user.preferences.style)}>
+                                <Tabs style={user.preferences.style}>
+                                    <div label="Friends">
+                                        <Friends style={user.preferences.style} />
+                                    </div>
+                                    <div label="Groups">
+                                        <Groups style={user.preferences.style} />
+                                    </div>
+                                    <div label="Leaderboard">
+                                        <Leaderboard style={user.preferences.style} />
+                                    </div>
+                                </Tabs>
+                            </div>
                         </div>
-                        <div label="Groups">
-                            <Groups />
-                        </div>
-                        <div label="Leaderboard">
-                            <Leaderboard />
-                        </div>
-                    </Tabs>
-                </div>
-            </div>
-            <Navigation user={user} />
+                        <Navigation user={user} />
+                    </>
+            }
+
         </>
     )
 }

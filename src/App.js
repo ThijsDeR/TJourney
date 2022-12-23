@@ -24,6 +24,7 @@ import AvatarSelect from "./pages/chooseAvatar/AvatarSelect";
 import CommunityScreen from "./pages/community/CommunityScreen.js";
 import AddFriends from "./pages/community/AddFriends.js";
 import { GroupCreate } from "./pages/groups/createGroup.js";
+import { GroupChats } from "./pages/chats/GroupChat.js";
 
 
 
@@ -52,9 +53,10 @@ function App({ timeElapsed }) {
                 <Route path="/chat" element={<Chats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/account" element={<Account user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/avatarselect" element={<AvatarSelect user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                <Route path="/community" element={<CommunityScreen user={user} />} />
+                <Route path="/community" element={<CommunityScreen user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
                 <Route path="/add-friend" element={<AddFriends user={user} />} />
                 <Route path="/add-group" element={<GroupCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
+                <Route path="/groupChat" element={<GroupChats user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
             </Routes>
         </>
     )

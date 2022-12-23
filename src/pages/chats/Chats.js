@@ -5,25 +5,39 @@ import Welcome from "../../components/chat/Welcome.js";
 import ChatContainer from "../../components/chat/ChatContainer.js";
 import { getAllUsers } from "../../services/auth-service.js";
 import Loading from '../../components/loading/Loading.js';
+import { getAllGroups } from "../../services/groups-service.js";
+// tabs
+import Tabs from '../../components/tabs/Tabs';
+import { useLocation } from "react-router-dom";
+
+const getGroups = async () => {
+  getAllGroups()
+}
+
 
 
 export function Chats({ user, isLoading, setIsLoading }) {
   const [contacts, setContacts] = useState([]);
+  const [groups, setGroups] = useState([]);
   const currentUser = user;
   const [currentChat, setCurrentChat] = useState(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
-  
+  const location = useLocation();
+  console.log(location.state)
+
 
   useEffect(() => {
     if (user) setIsLoading(false)
   }, [user, setIsLoading])
+
+
   useEffect(() => {
 
     const navigationTo = async () => {
       setIsLoaded(true);
     }
     navigationTo();
-  });
+  }, []);
 
   /**
    * set the users
@@ -37,16 +51,20 @@ export function Chats({ user, isLoading, setIsLoading }) {
     getUsers();
   }, [user, currentUser]);
 
+  useEffect(() => {
+    getAllGroups().then((data) => {
+      setGroups(data)
+    })
+  }, []);
 
- 
   /**
    * Removes your own username from the contact list
    * 
    * @param {*} listOffAllTheUsers all the users 
    * @returns list users without the currentuser
    */
-function removeOwnUserFromList(listOffAllTheUsers) {
-const ContactList = listOffAllTheUsers;
+  function removeOwnUserFromList(listOffAllTheUsers) {
+    const ContactList = listOffAllTheUsers;
     for (let i = 0; i < ContactList.length; i++) {
       if (currentUser._id === ContactList[i]._id) {
         ContactList.splice(i, 1)
@@ -65,21 +83,11 @@ const ContactList = listOffAllTheUsers;
     setCurrentChat(chat);
   }
 
-  
-
   return (
     <>
       {isLoading ? <Loading /> :
         <Container>
-          
-          <div className="container">
-            <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} />
-            {isLoaded &&
-              currentChat === undefined ?
-              <Welcome currentUser={currentUser} /> :
-              <ChatContainer currentChat={currentChat} currentUser={currentUser} />
-            }
-          </div>
+          <ChatContainer currentChat={location.state.clickedFriend} currentUser={currentUser} />
         </Container>
       }
     </>

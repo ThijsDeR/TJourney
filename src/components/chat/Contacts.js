@@ -6,29 +6,29 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
 
-
   useEffect(() => {
     if (currentUser) {
       setCurrentUserName(currentUser.username);
     }
-  }, [currentUser]);
+  }, []);
 
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
-    changeChat(contact);
+    changeChat(contact._id);
   };
+
   return (
     <>
       {
         currentUserName && (
           <Container>
-               <meta name="viewport" content="width=device-width, initial-scale=1"/>
+               {/* <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <div className="brand">
               
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
               <img src={Logo} alt="logo" />
               <h3>TChat</h3>
-            </div>
+            </div> */}
             <div className="contacts">
 
               {
@@ -54,9 +54,9 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
             <div className="current-user">
               {/* <div className="avatar">
               </div> */}
-              <div className="username">
+              {/* <div className="username">
                 <h2>{currentUserName}</h2>
-              </div>
+              </div> */}
             </div>
           </Container>
         )

@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { getAllMessages, createMessage } from '../../services/chat-service.js';
 
 let timer = 0;
-export default function ChatContainer({ currentChat, currentUser }) {
+export default function GroupChatContainer({ currentChat, currentUser }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   updateData()
@@ -124,8 +124,6 @@ export default function ChatContainer({ currentChat, currentUser }) {
 const Container = styled.div`
   display: grid;
   overflow-x: hidden;
-  height: 80vh;
-  width: 100vh;
 
   grid-template-rows: 10% 80% 10%;
   gap: 0.1rem;

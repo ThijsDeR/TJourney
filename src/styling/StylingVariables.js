@@ -32,6 +32,7 @@ export const pageStyle = {
     right: '0px',
     backgroundColor: backgroundColor,
     color: white,
+    overflow: 'auto'
 }
 
 export const appContainer = {

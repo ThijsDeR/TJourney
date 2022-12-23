@@ -14,17 +14,17 @@ import Friends from './Friends.js';
 import Groups from './Groups.js';
 import Leaderboard from './Leaderboard.js';
 
-function CommunityScreen({ user }) {
+function CommunityScreen({ user, isLoading, setIsLoading }) {
     return (
         <>
             <div style={pageStyle}>
                 <div style={appContainer}>
                     <Tabs>
                         <div label="Friends">
-                            <Friends />
+                            <Friends user={user}/>
                         </div>
                         <div label="Groups">
-                            <Groups />
+                            <Groups user={user} isLoading={isLoading} setIsLoading={setIsLoading} />
                         </div>
                         <div label="Leaderboard">
                             <Leaderboard />

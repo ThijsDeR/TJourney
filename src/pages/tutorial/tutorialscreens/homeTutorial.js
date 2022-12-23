@@ -29,34 +29,64 @@ const HomescreenTutorial = ({ user, updateTutorialPosition, screenPart, updateTu
                     </div>
                 }
                 {screenPart === 4 &&
-                    <div className="has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "0vw", zIndex: 30 }}>
-                        Account:
-                    </div>
+                    <>
+                        <div className="has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "80vh", zIndex: 30, width: "100%" }}>
+                            Account:
+                        </div>
+                        <div className="has-text-white is-size-2" style={{ position: 'absolute', bottom: "8vh", left: "10vw", zIndex: 30 }}>
+                            ↓
+                        </div>
+                    </>
                 }
                 {screenPart === 5 &&
-                    <div className="has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "14vw", zIndex: 30 }}>
-                        Challenges:
-                    </div>
+                    <>
+                        <div className="has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "80vh", zIndex: 30, width: "100%" }}>
+                            Challenges:
+                        </div>
+                        <div className="has-text-white is-size-2" style={{ position: 'absolute', bottom: "8vh", left: "29vw", zIndex: 30 }}>
+                            ↓
+                        </div>
+                    </>
                 }
                 {screenPart === 6 &&
-                    <div className="has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "37vw", zIndex: 30 }}>
-                        Home:
-                    </div>
+                    <>
+                        <div className="has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "80vh", zIndex: 30, width: "100%" }}>
+                            Home:
+                        </div>
+                        <div className="has-text-white is-size-2" style={{ position: 'absolute', bottom: "8vh", left: "48vw", zIndex: 30 }}>
+                            ↓
+                        </div>
+                    </>
                 }
                 {screenPart === 7 &&
-                    <div className="has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "54vw", zIndex: 30 }}>
-                        Journey:
-                    </div>
+                    <>
+                        <div className="has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "80vh", zIndex: 30, width: "100%" }}>
+                            Journey:
+                        </div>
+                        <div className="has-text-white is-size-2" style={{ position: 'absolute', bottom: "8vh", left: "68vw", zIndex: 30 }}>
+                            ↓
+                        </div>
+                    </>
                 }
                 {screenPart === 8 &&
-                    <div className="has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "65vw", zIndex: 30 }}>
-                        Challenges:
-                    </div>
+                    <>
+                        <div className="has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "80vh", zIndex: 30, width: "100%" }}>
+                            Challenges:
+                        </div>
+                        <div className="has-text-white is-size-2" style={{ position: 'absolute', bottom: "8vh", left: "86vw", zIndex: 30 }}>
+                            ↓
+                        </div>
+                    </>
                 }
                 {screenPart >= 9 &&
-                    <div className="has-text-white is-size-4" style={{ position: 'absolute', bottom: "8vh", left: "0vw", zIndex: 30 }}>
-                        Let's go to account
-                    </div>
+                    <>
+                        <div className="has-text-white is-size-3 has-text-centered" style={{ position: 'absolute', top: "80vh", zIndex: 30, width: "100%" }}>
+                            Let's go to account
+                        </div>
+                        <div className="has-text-white is-size-2" style={{ position: 'absolute', bottom: "8vh", left: "10vw", zIndex: 30 }}>
+                            ↓
+                        </div>
+                    </>
                 }
             </div>
 

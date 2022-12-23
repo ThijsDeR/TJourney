@@ -126,7 +126,7 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                         </div>
 
                         {/* Avatar canvas */}
-                        <div style={(screenPart === 3 || screenPart > 5) ? { zIndex: 300, position: 'relative' } : {}} className="has-background-black-ter box" onClick={screenPart > 5 ? () => updateTutorialPosition() : ""}>
+                        <div style={(screenPart === 3 || screenPart > 5) ? { zIndex: 300, position: 'relative' } : {}} className="has-background-black-ter box" onClick={screenPart > 5 ? () => updateTutorialPosition() : () => {}}>
                             {getAvatar()}
                         </div>
 

@@ -169,7 +169,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading, updat
                             <Link to="#">CH</Link>
                             <Link to="#">H</Link>
                             <Link to="#" >J</Link>
-                            <Link onClick={screenPart > 6 ? () => updateTutorialPosition() : ""}>Co</Link>
+                            <Link onClick={screenPart > 6 ? () => updateTutorialPosition() : () => {}}>Co</Link>
                         </> :
                         <>
                             <Link to="#">Login</Link>

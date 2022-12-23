@@ -57,7 +57,7 @@ function AvatarSelect({ user, screenPart, updateTutorialScreenPart, updateTutori
                     {user ?
                         <>
                             <Link to="#">A</Link>
-                            <Link to="#" onClick={screenPart >= 8 ? () => updateTutorialPosition() : ""}>CH</Link>
+                            <Link to="#" onClick={screenPart >= 8 ? () => updateTutorialPosition() : () => {}}>CH</Link>
                             <Link to="#">H</Link>
                             <Link to="#">J</Link>
                             <Link>Co</Link>

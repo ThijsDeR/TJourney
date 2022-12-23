@@ -85,7 +85,7 @@ export function GoalsCreateTutorial({ user, isLoading, screenPart, updateTutoria
                                 <Link to="#">A</Link>
                                 <Link to="#">CH</Link>
                                 <Link to="#">H</Link>
-                                <Link to="#" onClick={screenPart >= 10 || screenPart >= 3 ? () => { updateTutorialPosition() } : ""}>J</Link>
+                                <Link to="#" onClick={screenPart >= 10 || screenPart >= 3 ? () => { updateTutorialPosition() } : () => {}}>J</Link>
                                 <Link>Co</Link>
                             </> :
                             <>

@@ -289,7 +289,7 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
                             </div>
                         </div>
                         <Link to="#">
-                            <div style={screenPart > 4 ? { zIndex: 30, position: "relative" } : {}} onClick={screenPart > 4 ? () => updateTutorialPosition() : ""}>
+                            <div style={screenPart > 4 ? { zIndex: 30, position: "relative" } : {}} onClick={screenPart > 4 ? () => updateTutorialPosition() : () => {}}>
                                 <div style={{ ...tileStyle, ...buttonStyle, ...{ backgroundColor: tertiaryColor } }}>
                                     Add new goal
                                 </div>

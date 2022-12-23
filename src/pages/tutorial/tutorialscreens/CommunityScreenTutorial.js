@@ -55,9 +55,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
     return (
         <>
             <div style={{ zIndex: "20", backgroundColor: "rgb(0, 0, 0, 0.5)", width: "100vw", height: "100vh", position: "absolute", left: "0px", top: "0px" }}
-                onClick={screenPart !== 3 && screenPart !== 6 ? () =>
-                    (screenPart >= 9 ? updateTutorialPosition() : updateTutorialScreenPart())
-                    : () => {}} />
+                onClick={screenPart !== 3 && screenPart !== 6 ? () => updateTutorialScreenPart() : () => {}} />
 
             <div style={{ zIndex: 30, width: "100%", position: "absolute" }}>
                 {screenPart === 0 &&
@@ -113,6 +111,11 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                 {screenPart === 10 &&
                     <div className="has-text-white is-size-3 has-text-centered" style={{ top: "80vh", position: "relative" }}>
                         And the rest of the leaderboard
+                    </div>
+                }
+                {screenPart > 10 &&
+                    <div className="has-text-white is-size-3 has-text-centered" style={{ top: "80vh", position: "relative" }}>
+                        Let's go back to home
                     </div>
                 }
             </div>
@@ -206,13 +209,11 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                                 <div style={{ verticalAlign: 'middle' }}>
                                     <h1 style={{ ...title, ...{ padding: 'unset' } }}>Suggested groups</h1>
                                 </div>
-                                {/* TODO: link to see more suggested players */}
                                 <Link style={{ height: '24px', border: 'unset' }}><div style={{ color: primaryColor }} >See more</div></Link>
                             </div>
 
                             <div onClick={screenPart === 4 ? () => { updateTutorialScreenPart() } : () => {}} style={screenPart === 4 ? { zIndex: 30, position: 'relative' } : {}}>
                                 <div style={suggestedBox}>
-                                    {/* TODO: four suggested groups form db */}
                                     {/* Suggested group block */}
                                     <div style={suggestedTile}>
                                         <div style={pfBox}><div style={fakePF}></div></div>
@@ -353,13 +354,13 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                     </Tabs>
                 </div>
             </div >
-            <div className="nav-bottom">
+            <div className="nav-bottom" style={screenPart > 10 ? {zIndex: 30} : {}}>
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
                             <Link to="#">A</Link>
                             <Link to="#">CH</Link>
-                            <Link to="#">H</Link>
+                            <Link to="#" onClick={screenPart > 10 ? () => updateTutorialPosition() : () => {}} >H</Link>
                             <Link to="#">J</Link>
                             <Link>Co</Link>
                         </> :

@@ -85,6 +85,15 @@ export const tileStyle = {
     width: '100%',
 }
 
+export const communityTileStyle = {
+    backgroundColor: primaryColor,
+    borderRadius: '5px',
+    margin: '0px 0px 0px 10px',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+}
+
 // content to the left and right side of the page
 export const containerLeftRight = {
     display: 'flex',
@@ -130,6 +139,7 @@ export const tabList = {
 
 export const tabListItem = {
     color: mediumEmphasis,
+    display: 'inline',
 }
 
 export const tabListItemActive = {

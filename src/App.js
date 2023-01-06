@@ -21,10 +21,11 @@ import { Challenges } from "./pages/challenges/ChallengesScreen.js";
 import GameScreen from "./pages/game/GameScreen.js";
 import {Chats} from "./pages/chats/Chats.js";
 import AvatarSelect from "./pages/chooseAvatar/AvatarSelect";
-import CommunityScreen from "./pages/community/CommunityScreen.js";
+// import CommunityScreen from "./pages/community/CommunityScreen.js";
 import AddFriends from "./pages/community/AddFriends.js";
 import { GroupCreate } from "./pages/groups/createGroup.js";
-import { GroupChats } from "./pages/chats/GroupChat.js";
+import {GroupChats} from "./pages/chats/GroupChat.js"
+import Leaderboard from "./pages/community/Leaderboard.js";
 
 
 
@@ -50,13 +51,15 @@ function App({ timeElapsed }) {
                 <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                <Route path="/chat" element={<Chats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                <Route path="/chatFriends" element={<Chats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                <Route path="/chatGroups" element={<GroupChats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/account" element={<Account user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/avatarselect" element={<AvatarSelect user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                <Route path="/community" element={<CommunityScreen user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
+                {/* <Route path="/community" element={<CommunityScreen user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} /> */}
                 <Route path="/add-friend" element={<AddFriends user={user} />} />
                 <Route path="/add-group" element={<GroupCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
                 <Route path="/groupChat" element={<GroupChats user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
+                <Route path="/leaderboard" element={<Leaderboard user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
             </Routes>
         </>
     )

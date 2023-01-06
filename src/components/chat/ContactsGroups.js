@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import Logo from "../../assets/teaScreech.png";
 import "./css/Contacts.css"
-import { friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, lightText, tabListItem, centerDiv, tabListItemContainer, tabList, linup, communityTileStyle, tabContent } from '../../styling/StylingVariables.js';
-import { Chats } from '../../pages/chats/Chats';
-import Leaderboard from '../../pages/community/Leaderboard.js';
-
-// tabs
-import Tabs from '../../components/tabs/Tabs';
-import { GroupChats } from '../../pages/chats/GroupChat';
+import { friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, lightText, tabListItem, centerDiv, tabListItemContainer, tabList, communityTileStyle, tabContent } from '../../styling/StylingVariables.js';
 import { Link } from 'react-router-dom';
 
 
-export default function Contacts({ contacts, currentUser, changeChat }) {
+export default function ContactsGroups({ contacts, currentUser, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
 
@@ -34,7 +28,6 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
     setCurrentSelected(index);
     changeChat(contact);
   };
-
   return (
     <>
       {
@@ -45,8 +38,8 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
               <div className="item" style={tabList}>
                 <div style={centerDiv}>
                   <ol className="tab-list" style={{display: 'flex'}}>
-                    <li style={communityTileStyle}><Link style={{textDecoration: 'none'}} to={'/chatFriends'}>Friends</Link></li>
-                    <li style={tabContent}><Link style={{textDecoration: 'none'}} to={'/chatGroups'}>Groups</Link></li>
+                    <li style={tabContent}><Link style={{textDecoration: 'none'}} to={'/chatFriends'}>Friends</Link></li>
+                    <li style={communityTileStyle}><Link style={{textDecoration: 'none'}} to={'/chatGroups'}>Groups</Link></li>
                     <li style={tabContent}><Link style={{textDecoration: 'none'}} to={'/leaderboard'}>Leaderboard</Link></li>
                   </ol>
                 </div>
@@ -65,16 +58,16 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
                       key={contact._id}
                       onClick={() => changeCurrentChat(index, contact)}>
                       <div className="username">
-                        <div className='friendTile' style={friendsTile}>
-                          <div className='friendItems' style={friendItems}>
-                            <div className='friendIcon' style={fakePF}></div>
-                            <div className='friendInfo'>
-                              <div className='friendName' style={{ fontWeight: 'bold' }}> {contact.username} <em style={lightText}>level {contact.level.amount}</em> </div>
-                              <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Last message </div>
-                            </div>
-                          </div>
-                          <div className='messageButton' style={notifacationBubble}>8</div>
+                      <div className='friendTile' style={friendsTile}>
+                      <div className='friendItems' style={friendItems}>
+                        <div className='friendIcon' style={fakePF}></div>
+                        <div className='friendInfo'>
+                          <div className='friendName' style={{ fontWeight: 'bold' }}> {contact.name} </div>
+                          <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Last message </div>
                         </div>
+                      </div>
+                      <div className='messageButton' style={notifacationBubble}>8</div>
+                    </div>
                       </div>
                     </div>
                   )

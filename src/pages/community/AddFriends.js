@@ -11,8 +11,8 @@ import { pageStyle, appContainer, searchBar, chatContainer, friendItems, friends
 import Tabs from '../../components/tabs/Tabs';
 
 // tab content
-import Friends from './Friends.js';
-import Groups from './Groups.js';
+// import Friends from './Friends.js';
+// import Groups from './Groups.js';
 import Leaderboard from './Leaderboard.js';
 
 // icons

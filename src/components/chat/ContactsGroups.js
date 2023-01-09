@@ -5,7 +5,7 @@ import { friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, li
 import { Link } from 'react-router-dom';
 
 
-export default function ContactsGroups({ contacts, currentUser, changeChat }) {
+export default function ContactsGroups({ contacts, currentUser, changeChat, style }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
 
@@ -34,13 +34,14 @@ export default function ContactsGroups({ contacts, currentUser, changeChat }) {
         currentUserName && (
           <div className="Contacts">
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <div className="tabs" style={tabListItemContainer}>
-              <div className="item" style={tabList}>
-                <div style={centerDiv}>
+            <div className="tabs" style={tabListItemContainer(style)}>
+              <div className="item" style={tabList(style)}>
+                <div style={centerDiv(style)}>
                   <ol className="tab-list" style={{display: 'flex'}}>
-                    <li style={tabContent}><Link style={{textDecoration: 'none'}} to={'/chatFriends'}>Friends</Link></li>
-                    <li style={communityTileStyle}><Link style={{textDecoration: 'none'}} to={'/chatGroups'}>Groups</Link></li>
-                    <li style={tabContent}><Link style={{textDecoration: 'none'}} to={'/leaderboard'}>Leaderboard</Link></li>
+                    <li style={tabContent(style)}><Link style={{textDecoration: 'none'}} to={'/chatFriends'}>Friends</Link></li>
+                    <li style={communityTileStyle(style)}><Link style={{textDecoration: 'none'}} to={'/chatGroups'}>Groups</Link></li>
+                    {/* for some reason this page does not work */}
+                    {/* <li style={tabContent(style)}><Link style={{textDecoration: 'none'}} to={'/leaderboard'}>Leaderboard</Link></li> */}
                   </ol>
                 </div>
               </div>
@@ -58,15 +59,15 @@ export default function ContactsGroups({ contacts, currentUser, changeChat }) {
                       key={contact._id}
                       onClick={() => changeCurrentChat(index, contact)}>
                       <div className="username">
-                      <div className='friendTile' style={friendsTile}>
-                      <div className='friendItems' style={friendItems}>
-                        <div className='friendIcon' style={fakePF}></div>
+                      <div className='friendTile' style={friendsTile(style)}>
+                      <div className='friendItems' style={friendItems(style)}>
+                        <div className='friendIcon' style={fakePF(style)}></div>
                         <div className='friendInfo'>
                           <div className='friendName' style={{ fontWeight: 'bold' }}> {contact.name} </div>
                           <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Last message </div>
                         </div>
                       </div>
-                      <div className='messageButton' style={notifacationBubble}>8</div>
+                      <div className='messageButton' style={notifacationBubble(style)}>8</div>
                     </div>
                       </div>
                     </div>

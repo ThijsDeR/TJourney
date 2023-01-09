@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, Navigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCircle, faAngleRight, faSquare } from '@fortawesome/free-solid-svg-icons'
+import { faCircle } from '@fortawesome/free-solid-svg-icons'
 
-import Footer from "../../components/footer/Footer";
 import Navigation from "../../components/navigation/Navigation";
 import 'bulma/css/bulma.min.css';
 import { checkChallenge, getAllChallenges, getAllGoals } from '../../services/goal-service';
@@ -18,7 +17,6 @@ export function Challenges({ user, isLoading, setIsLoading }) {
     const [finishedChallenges, setFinishedChallenges] = useState(undefined)
     const [diceEyesCount, setdiceEyesCount] = useState(undefined);
     const [goals, setGoals] = useState(undefined);
-    const [isSelected, setIsSelected] = useState(undefined);
     const [days, setDays] = useState(undefined);
     const [currentDay, setCurrentDay] = useState(undefined)
 
@@ -70,14 +68,6 @@ export function Challenges({ user, isLoading, setIsLoading }) {
     useEffect(() => {
         if (currentDay !== undefined && days !== undefined && days[currentDay]) setChallenges(days[currentDay].getTime());
     }, [currentDay])
-
-    function selectDropDown(goal_id) {
-        if (isSelected === goal_id) {
-            setIsSelected(undefined);
-        } else {
-            setIsSelected(goal_id);
-        }
-    }
 
     const calculatediceEyesCountCount = async (challenges) => {
         const gameSession = await getGameSession()
@@ -133,71 +123,72 @@ export function Challenges({ user, isLoading, setIsLoading }) {
         return <Navigate to="/login" replace />;
     }
 
-
-    // color options
-    const purple = "#BB86FC";
-    const blue = "#57ADDD";
-    const yellow = "#FFBC6F";
-    const green = "#61C688";
-    const red = "#FF686B";
-
-    // when you change this color, you will change the primary color of the whole page
-    const primaryColor = green;
-    const secondaryColor = "#323232";
-    const tertiaryColor = "#505050";
     const paddingPage = "10px 20px"
     const marginFinishedChallenges = "3px 0px 3px 30px"
 
-    const pageStyle = {
-        position: "fixed",
-        top: "0px",
-        bottom: "50px",
-        left: "0px",
-        right: "0px",
-        backgroundColor: "#121212",
-        color: "#F7F7F7",
-        overflowY: "scroll",
-        overflowX: "hidden",
+    const pageStyle = (style) => {
+        return {
+            position: "fixed",
+            top: "0px",
+            bottom: "50px",
+            left: "0px",
+            right: "0px",
+            backgroundColor: style.backgroundColor,
+            color: style.textColor,
+            overflowY: "scroll",
+            overflowX: "hidden",
+        }
     }
 
-    const title = {
-        fontSize: "18px",
-        fontWeight: "bold",
-        padding: "15px 0px 0px 25px",
+    const title = (style) => {
+        return {
+            fontSize: "18px",
+            fontWeight: "bold",
+            padding: "15px 0px 0px 25px",
+        }
     }
 
-    const buttonStyle = {
-        color: primaryColor,
-        height: "35px",
+    const buttonStyle = (style) => {
+        return {
+            color: style.textColor,
+            height: "35px",
+        }
     }
 
-    const tileStyle = {
-        backgroundColor: primaryColor,
-        borderRadius: "5px",
-        padding: "3px 10px",
-        margin: "10px 0px",
-        height: "70px",
-        alignItems: 'center',
-        justifyContent: 'center',
+    const tileStyle = (style) => {
+        return {
+            backgroundColor: style.primaryColor,
+            borderRadius: "5px",
+            padding: "3px 10px",
+            margin: "10px 0px",
+            height: "70px",
+            alignItems: 'center',
+            justifyContent: 'center',
+        }
     }
 
-    const containerLeftRight = {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'nowrap',
-        justifyContent: 'space-between',
+    const containerLeftRight = (style) => {
+        return {
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'nowrap',
+            justifyContent: 'space-between',
+        }
     }
 
-    const goalsContainer = {
-        backgroundColor: secondaryColor,
-        margin: "15px 0px 0px 0px",
-        // TODO: fix height
-        padding: paddingPage
+    const goalsContainer = (style) => {
+        return {
+            backgroundColor: style.secondaryColor,
+            margin: "15px 0px 0px 0px",
+            padding: paddingPage
+        }
     }
 
-    const goalItem = {
-        display: 'inline-block',
-        margin: '10px 0px 10px 10px',
+    const goalItem = (style) => {
+        return {
+            display: 'inline-block',
+            margin: '10px 0px 10px 10px',
+        }
     }
 
     return (
@@ -205,16 +196,16 @@ export function Challenges({ user, isLoading, setIsLoading }) {
             {
                 isLoading ? <Loading /> :
                     <>
-                        <div style={pageStyle}>
+                        <div style={pageStyle(user.preferences.style)}>
                             <div style={{ padding: paddingPage }}>
-                                <h1 style={{ ...title, ...{ textAlign: 'center' } }}>{currentDay !== undefined ? days[currentDay].toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" }) : ""}</h1 >
+                                <h1 style={{ ...title(user.preferences.style), ...{ textAlign: 'center' } }}>{currentDay !== undefined ? days[currentDay].toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" }) : ""}</h1 >
                                 {/* <div style={{ textAlign: 'center' }}> <FontAwesomeIcon icon={faCaretDown} size='2x' /> </div> */}
                                 <div id="daysScroll" style={{ textAlign: 'center', display: "flex", marginBottom: '30px', overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none", width: "100%" }}>
                                     <div style={{ display: "flex", flex: "0 0 auto", gap: "10px" }}>
                                         {
                                             days ? days.map((day, dayIndex) => (
                                                 <div onClick={() => setDayHandler(dayIndex)}>
-                                                    <FontAwesomeIcon icon={faCircle} size='2x' color={dayIndex === currentDay ? primaryColor : "white"} />
+                                                    <FontAwesomeIcon icon={faCircle} size='2x' color={dayIndex === currentDay ? user.preferences.style.primaryColor : "white"} />
                                                 </div>
                                             )) : ""
                                         }
@@ -227,7 +218,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
 
                                     {unfinishedChallenges ? unfinishedChallenges.map((challenge, challengeIndex) => (
                                         <>
-                                            <div style={{ ...tileStyle, ...containerLeftRight }}>
+                                            <div style={{ ...tileStyle(user.preferences.style), ...containerLeftRight(user.preferences.style) }}>
                                                 <div>{challenge.description}</div>
                                                 <div>
                                                     <input type="checkbox" className="is-pulled-right" style={{ width: "25px", height: "25px" }} checked={challenge.finished} onClick={() => checkChallengeHandler(challenge.goal_id, challenge.id, challenge.finished)} />
@@ -236,14 +227,14 @@ export function Challenges({ user, isLoading, setIsLoading }) {
                                         </>
                                     )) : ""}
 
-                                    <div style={{ ...tileStyle, ...{ backgroundColor: secondaryColor, height: "unset" } }}>
+                                    <div style={{ ...tileStyle(user.preferences.style), ...{ backgroundColor: user.preferences.style.secondaryColor, height: "unset" } }}>
                                         <h2 style={{ fontWeight: 'bold' }} >Finished</h2>
-                                        <hr style={{ borderTop: `2px solid ${tertiaryColor}`, margin: 'unset', backgroundColor: tertiaryColor }}></hr>
+                                        <hr style={{ borderTop: `2px solid ${user.preferences.style.tertiaryColor}`, margin: 'unset', backgroundColor: user.preferences.style.tertiaryColor }}></hr>
 
                                         {finishedChallenges ? finishedChallenges.map((challenge, challengeIndex) => (
                                             <>
                                                 {
-                                                    challenge.finished ? <div style={containerLeftRight}>
+                                                    challenge.finished ? <div style={containerLeftRight(user.preferences.style)}>
                                                         <div style={{ margin: marginFinishedChallenges }}> {challenge.description} </div>
                                                         <div style={{ paddingTop: '5px' }}>
                                                             <input type="checkbox" className="is-pulled-right" style={{ width: "25px", height: "25px" }} checked={challenge.finished} onClick={() => checkChallengeHandler(challenge.goal_id, challenge.id, challenge.finished)} />
@@ -266,22 +257,20 @@ export function Challenges({ user, isLoading, setIsLoading }) {
 
                             {/* Goals */}
 
-                            <div style={goalsContainer} >
-                                <div style={containerLeftRight}>
+                            <div style={goalsContainer(user.preferences.style)} >
+                                <div style={containerLeftRight(user.preferences.style)}>
                                     <div><h2 style={{ fontWeight: 'bold' }} >Goals</h2></div>
                                     {/* TODO: link to edit goals page */}
-                                    <Link><div style={{ color: primaryColor }} >Edit</div></Link>
+                                    <Link><div style={{ color: user.preferences.style.primaryColor }} >Edit</div></Link>
                                 </div>
-
-                                {/* List of goals TODO: for loop db all goals */}
 
                                 {goals ? goals.map((goal, goalIndex) =>
                                     <>
-                                        <div style={{ ...tileStyle, ...{ backgroundColor: tertiaryColor, height: 'unset' } }}>
-                                            <div style={goalItem}>
+                                        <div style={{ ...tileStyle(user.preferences.style), ...{ backgroundColor: user.preferences.style.tertiaryColor, height: 'unset' } }}>
+                                            <div style={goalItem(user.preferences.style)}>
                                                 <FontAwesomeIcon icon={faCircle} size='5x' />
                                             </div>
-                                            <div style={goalItem}>
+                                            <div style={goalItem(user.preferences.style)}>
                                                 <div style={{ fontWeight: 'bold' }}>{goal.name}</div>
                                                 <div>{Math.floor((Date.parse(goal.endDate) - Date.now()) / (1000 * 3600 * 24))} days left</div>
                                                 <div style={{ fontWeight: 'lighter', fontSize: '13px' }}>Started on {new Date(Date.parse(goal.startDate)).toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}</div>
@@ -290,7 +279,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
                                     </>
                                 ) : ""}
                                 <Link to="/goals/create">
-                                    <div style={{ ...tileStyle, ...buttonStyle, ...{ backgroundColor: tertiaryColor } }}>
+                                    <div style={{ ...tileStyle(user.preferences.style), ...buttonStyle(user.preferences.style), ...{ backgroundColor: user.preferences.style.primaryColor } }}>
                                         Add new goal
                                     </div>
                                 </Link>

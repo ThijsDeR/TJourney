@@ -66,7 +66,7 @@ export function GroupChats({ user, isLoading, setIsLoading }) {
         <div className="Chats">
 
           <div className="containerChat">
-            <ContactsGroups contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} />
+            <ContactsGroups contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} style={user.preferences.style}/>
             {
               currentChat === undefined ?
               "":

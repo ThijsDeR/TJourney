@@ -179,7 +179,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
                             if (diceEyesCount !== 0 && game.player.dice.count === 0) game.throwDice(diceEyesCount)
                         }}
                     >
-                        <img src={luckyBlock} style={{ width: "50px" }} alt="lucky block"/>
+                        <img src={luckyBlock} style={{ width: "50px", height: "50px" }} alt="lucky block"/>
                         <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? diceEyesCount : "0"}</p>
                     </div>
                 </div>

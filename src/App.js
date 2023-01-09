@@ -26,6 +26,8 @@ import AddFriends from "./pages/community/AddFriends.js";
 import { GroupCreate } from "./pages/groups/createGroup.js";
 import {GroupChats} from "./pages/chats/GroupChat.js"
 import Leaderboard from "./pages/community/Leaderboard.js";
+import { Preferences } from "./pages/account/Preferences.js";
+import { getPreferencesColor } from "./services/user-service.js";
 
 
 
@@ -36,16 +38,24 @@ function App({ timeElapsed }) {
 
     useEffect(() => {
         getCurrentUser().then((data) => {
+            const style = getPreferencesColor(data.preferences.style)
+            data.preferences.style = style ? style : {
+                backgroundColor: "#121212",
+                primaryColor: "#FF686B",
+                secondaryColor: "#323232",
+                tertiaryColor: "#505050",
+                textColor: "#F7F7F7"
+            } 
             setUser(data)
         });
     }, [currentUser]);
     return (
         <>
             <Routes>
-                <Route path="/" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                <Route path="/login" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                <Route path="/" element={<Login user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                <Route path="/login" element={<Login user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} setIsLoading={setIsLoading} />} />
-                <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                <Route path="/register" element={<Register user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/home" element={<Home user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 <Route path="/game" element={<GameScreen user={user} setUser={setUser} isLoading={isLoading} timeElapsed={timeElapsed} setIsLoading={setIsLoading} />} />
                 <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
@@ -60,6 +70,7 @@ function App({ timeElapsed }) {
                 <Route path="/add-group" element={<GroupCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
                 <Route path="/groupChat" element={<GroupChats user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
                 <Route path="/leaderboard" element={<Leaderboard user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
+                <Route path="/preferences" element={<Preferences user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
             </Routes>
         </>
     )

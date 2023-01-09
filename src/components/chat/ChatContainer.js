@@ -4,6 +4,7 @@ import styled from "styled-components"
 import ChatInput from './ChatInput';
 import { v4 as uuidv4 } from "uuid";
 import { getAllMessages, createMessage } from '../../services/chat-service.js';
+import "./css/ChatContainer.css"
 
 let timer = 0;
 export default function ChatContainer({ currentChat, currentUser }) {
@@ -30,38 +31,36 @@ export default function ChatContainer({ currentChat, currentUser }) {
    * update the messages
    */
   function updateData() {
-     if (timer > 500) {
+    if (timer > 500) {
       const fetchNewData = async () => {
         const messages = await getAllMessages();
         let messagesWithTheCurrentUser = SelectChat(messages)
-        setMessages(messagesWithTheCurrentUser)      
+        setMessages(messagesWithTheCurrentUser)
       }
       fetchNewData()
       timer = 0;
-    } else if(currentChat) {
+    } else if (currentChat) {
       timer = timer + 1;
     }
   }
 
 
-/**
- * select the messages from the corresponding chat
- * 
- * @param {*} response List witg all the messages
- * @returns selected messages from the correct chat
- */
+  /**
+   * select the messages from the corresponding chat
+   * 
+   * @param {*} response List witg all the messages
+   * @returns selected messages from the correct chat
+   */
   function SelectChat(response) {
     let ListWithCorrespondingChatMessages = [];
-    for (let i = 0; i < response.length; i++) {
-      response[i].user.forEach(userWhoSendMessage => {
-        response[i].user.forEach(user => {
-          if (currentUser._id === user && currentChat._id === userWhoSendMessage) {
-            ListWithCorrespondingChatMessages.push(response[i])
-          }
-        });
-      })
-
+    response.forEach((element, index) => {
+      if (currentChat._id === response[index].user[1] || currentChat._id === response[index].user[0]) {
+        if (currentUser._id === response[index].user[1] || response[index].user[0] === currentUser._id) {
+          ListWithCorrespondingChatMessages.push(response[index])
+        }
+      }
     }
+    );
     return ListWithCorrespondingChatMessages;
   }
 
@@ -82,8 +81,8 @@ export default function ChatContainer({ currentChat, currentUser }) {
     <>
       {
         currentChat && (
-          <Container>
-               <meta name="viewport" content="width=device-width, initial-scale=1"/>
+          <div className='Chat-container'>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
             <div className="chat-header">
               <div className="user-details">
                 <div className="username">
@@ -115,7 +114,7 @@ export default function ChatContainer({ currentChat, currentUser }) {
               })}
             </div>
             <ChatInput handleSendMsg={handleSendMsg} />
-          </Container>
+          </div>
         )
       }
     </>

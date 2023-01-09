@@ -10,7 +10,7 @@ import 'bulma/css/bulma.min.css';
 import { checkChallenge, getAllChallenges, getAllGoals } from '../../services/goal-service';
 import { getGameSession } from '../../services/game-service';
 import Loading from '../../components/loading/Loading';
-import { editStreak } from '../../services/auth-service';
+import { editStreak } from './../../services/auth-service';
 import './challenges.css';
 
 export function Challenges({ user, isLoading, setIsLoading }) {
@@ -33,12 +33,16 @@ export function Challenges({ user, isLoading, setIsLoading }) {
         })
         setFinishedChallenges(finished);
         setUnfinishedChallenges(unfinished);
-        console.log(unfinished)
+        console.log(localStorage.getItem('streakapplied'))
 
-        if (!unfinished.length && !isLoading) {
+        if (!unfinished.length && !isLoading && !localStorage.getItem('streakapplied')) {
             console.log('het werkt')
-            if (user.streak = undefined) {
+            if (user.streak === undefined) {
                 editStreak(1)
+                localStorage.setItem('streakapplied', true);
+            } else if (user.streak >= 0) {
+                editStreak.streak(user.streak + 1)
+                localStorage.setItem('streakapplied', true);
             }
 
         }

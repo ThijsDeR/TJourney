@@ -34,7 +34,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
         setFinishedChallenges(finished);
         setUnfinishedChallenges(unfinished);
         console.log(localStorage.getItem('streakapplied'))
-        console.log(user.streak)
+        // console.log(user.streak)
 
         if (!unfinished.length && !isLoading && (!localStorage.getItem('streakapplied') || localStorage.getItem('streakapplied') === null)) {
             console.log('het werkt')
@@ -49,7 +49,25 @@ export function Challenges({ user, isLoading, setIsLoading }) {
 
         }
     }
+    const CheckstreakContinue = async (date) => {
+        const challenges = await getAllChallenges(date);
+        // selectTasks()
+        const finished = [];
+        const unfinished = [];
+
+        challenges.forEach((challenge) => {
+            challenge.finished ? finished.push(challenge) : unfinished.push(challenge);
+        })
+
+
+
+        if (unfinished.length && !isLoading && date < Date.now) {
+            editStreak(0)
+        }
+    }
+
     useEffect(() => {
+        CheckstreakContinue(new Date(Date.now() - (1000 * 3600 * 24 * 1)))
         setChallenges(Date.now())
 
         getAllGoals().then((data) => {

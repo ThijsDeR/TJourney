@@ -34,14 +34,16 @@ export function Challenges({ user, isLoading, setIsLoading }) {
         setFinishedChallenges(finished);
         setUnfinishedChallenges(unfinished);
         console.log(localStorage.getItem('streakapplied'))
+        console.log(user.streak)
 
-        if (!unfinished.length && !isLoading && !localStorage.getItem('streakapplied')) {
+        if (!unfinished.length && !isLoading && (!localStorage.getItem('streakapplied') || localStorage.getItem('streakapplied') === null)) {
             console.log('het werkt')
             if (user.streak === undefined) {
                 editStreak(1)
                 localStorage.setItem('streakapplied', true);
-            } else if (user.streak >= 0) {
-                editStreak.streak(user.streak + 1)
+            } else {
+                console.log("Het werkt electric boogaloo");
+                editStreak(user.streak + 1);
                 localStorage.setItem('streakapplied', true);
             }
 

@@ -57,7 +57,7 @@ export const getAllTheUsers = async () => {
         const data = await axios.get("/v1/users/", {
             headers: { Authorization: `Bearer ${localUser.accessToken}` }
         })
-    
+
         return data.data.data;
     }
 
@@ -103,6 +103,7 @@ export const editUsername = async (newUsername) => {
     }
 }
 
+
 export const editPassword = async (newPassword) => {
     const localUser = JSON.parse(localStorage.getItem("user"));
 
@@ -131,6 +132,26 @@ export const editAvatar = async (avatar) => {
             updateQuery: {
                 $set: {
                     "avatar": avatar
+                }
+            }
+        }, {
+            headers: { Authorization: `Bearer ${localUser.accessToken}` }
+        }).then((response) => {
+            if (response.data.error) throw response.data.error
+
+            return response.data.data;
+        });
+    }
+}
+export const editStreak = async (streakNumber) => {
+    console.log("🚀 ~ file: auth-service.js:147 ~ editStreak ~ streakNumber", streakNumber)
+    const localUser = JSON.parse(localStorage.getItem("user"));
+
+    if (localUser && localUser.accessToken) {
+        return axios.put("/v1/users/", {
+            updateQuery: {
+                $set: {
+                    "streak": streakNumber
                 }
             }
         }, {

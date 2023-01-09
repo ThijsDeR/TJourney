@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Navigate } from "react-router-dom";
+// import { lol, selectTasks } from '../../components/streak/streak';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
@@ -9,7 +10,7 @@ import 'bulma/css/bulma.min.css';
 import { checkChallenge, getAllChallenges, getAllGoals } from '../../services/goal-service';
 import { getGameSession } from '../../services/game-service';
 import Loading from '../../components/loading/Loading';
-
+import { editStreak } from '../../services/auth-service';
 import './challenges.css';
 
 export function Challenges({ user, isLoading, setIsLoading }) {
@@ -20,23 +21,34 @@ export function Challenges({ user, isLoading, setIsLoading }) {
     const [days, setDays] = useState(undefined);
     const [currentDay, setCurrentDay] = useState(undefined)
 
+
     const setChallenges = async (date) => {
         const challenges = await getAllChallenges(date);
+        // selectTasks()
         const finished = [];
         const unfinished = [];
 
         challenges.forEach((challenge) => {
             challenge.finished ? finished.push(challenge) : unfinished.push(challenge);
         })
-
         setFinishedChallenges(finished);
         setUnfinishedChallenges(unfinished);
+        console.log(unfinished)
+
+        if (!unfinished.length && !isLoading) {
+            console.log('het werkt')
+            if (user.streak = undefined) {
+                editStreak(1)
+            }
+
+        }
     }
     useEffect(() => {
         setChallenges(Date.now())
 
         getAllGoals().then((data) => {
             setGoals(data)
+
         })
 
         const daysAround = 7
@@ -113,6 +125,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
         getAllGoals().then((data) => {
             setGoals(data)
         });
+
     }
 
     const setDayHandler = async (day) => {
@@ -286,6 +299,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
                             </div>
                         </div >
                         <Navigation user={user} />
+                        {/* <streaks></streaks> */}
                     </>
             }
         </>

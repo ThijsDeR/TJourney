@@ -65,4 +65,5 @@ export const checkChallenge = async (goalId, challengeId, finished) => {
 
         return response.data.data;
     });
+  
 }

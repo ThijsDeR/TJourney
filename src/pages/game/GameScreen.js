@@ -174,7 +174,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
                             {/* </PresentationControls> */}
                         </Canvas>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (diceEyesCount !== 0 ? "rgba(0, 0, 0, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px" }}
+                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (diceEyesCount !== 0 ? "rgba(0, 0, 0, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px", height: "100px" }}
                         onClick={() => {
                             if (diceEyesCount !== 0 && game.player.dice.count === 0) game.throwDice(diceEyesCount)
                         }}

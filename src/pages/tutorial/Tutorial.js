@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { editTutorial } from '../../services/auth-service.js';
 import Loading from '../../components/loading/Loading.js';
 import HomescreenTutorial from './tutorialscreens/homeTutorial.js';
-import ChallengesTutorial from './tutorialscreens/ChallengesTutorial.js';
+import ChallengesTutorial from './tutorialscreens/challengesTutorial.js';
 import GameScreenTutorial from './tutorialscreens/GameScreenTutorial.js';
 import AccountTutorial from './tutorialscreens/AccountTutorial.js';
 import AvatarSelectTutorial from './tutorialscreens/AvatarSelect.js';

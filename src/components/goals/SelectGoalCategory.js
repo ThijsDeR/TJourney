@@ -6,7 +6,7 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 
 // styling
 import 'bulma/css/bulma.min.css';
-import { pageStyle, appContainer, goBackIndicator, title } from '../../styling/StylingVariables.js';
+import { pageStyle, appContainer, goBackIndicator, title, tileGoalsCreate } from '../../styling/StylingVariables.js';
 
 export function SelectGoalCategory({ user, category, setCategory, setStepHandler }) {
     const handleCategorySelect = (name) => {

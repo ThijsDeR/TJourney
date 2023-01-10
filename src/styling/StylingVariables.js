@@ -414,3 +414,15 @@ export const searchBar = (style) => {
         fontSize: '18px'
     }
 }
+
+export const tileGoalsCreate = (style) => {
+    return {
+        backgroundColor: style.primaryColor,
+        borderRadius: '5px',
+        padding: '3px 10px',
+        margin: '10px 0px',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+    }
+}

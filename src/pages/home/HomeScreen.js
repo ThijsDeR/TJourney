@@ -53,19 +53,21 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                             <section className="bg-image" style={{ height: "100%" }}>
 
                                 <div style={{ display: "grid", gap: "5%", gridTemplateColumns: "15% 85%" }}>
-                                    <Link to="/account" style={{ color: "black", marginTop: "10px", width: "2rem", height: "2rem", display: "flex", justifyContent: "center", flexDirection: "column" }}>
+                                    <Link to="/account" style={{ color: "#121212", marginTop: "10px", width: "2rem", height: "2rem", display: "flex", justifyContent: "center", flexDirection: "column" }}>
                                         <FontAwesomeIcon icon={faUser} style={{ marginLeft: "50%", width: "100%", height: "100%" }} />
                                     </Link>
 
                                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                        <h2 className="is-size-3 has-text-weight-bold" style={{ marginRight: "30%" }}>{user ? user.username : ""} ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )</h2>
+                                        <h2 className="is-size-3 has-text-weight-bold" style={{ marginRight: "30%", color: "#121212" }}>{user ? user.username : ""} ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )</h2>
                                     </div>
                                 </div>
 
+                                {/* TODO: delete test */}
                                 <div className="is-flex is-justify-content-center">
                                     <button onClick={() => saveLevel(userLevel + 100)}>Increase</button>
                                     <button onClick={() => saveLevel(userLevel - 100)}>Decrease</button>
                                 </div>
+
                             </section>
                         </div >
                         <Navigation user={user} />

@@ -31,6 +31,11 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
         return <Navigate to="/login" replace />;
     }
 
+    if(!isLoading) {
+        if(user.tutorialFinished === undefined || user.tutorialFinished === false) {
+            return <Navigate to="/tutorial" replace />;
+        }
+    }
 
     const saveLevel = async (amount) => {
         setUserLevel(amount)

@@ -26,7 +26,7 @@ export default class Friend extends Walkable {
 
     update = (timeElapsed, circles) => {
         if (this.placeOnTheBoard === this.currentPlaceOnTheBoard) return
-        
+
         this.walkTimer(timeElapsed, circles)
     }
 }

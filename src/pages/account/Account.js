@@ -8,6 +8,7 @@ import { faGear, faSliders } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { DefaultAvatars } from '../../assets/DefaultAvatars/DefaultAvatarsCanvas';
 import { login, deleteAccount, editUsername, editPassword } from "../../services/auth-service";
+import { getActiveCharacter, getAllCharacters } from '../../services/playerCharacter-service.js';
 
 function Account({ user, isLoading, setIsLoading }) {
     const [userLevel, setUserLevel] = useState(undefined);
@@ -23,20 +24,20 @@ function Account({ user, isLoading, setIsLoading }) {
     const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
     const [passwordNotSame, setPasswordNotSame] = useState(false);
 
+    /**
+     * I think this funciton is unneccesary
+     * @returns 
+     */
     function getAvatar() {
-        let avatar = undefined;
-        Object.keys(DefaultAvatars).forEach(function (key, index) {
-            if (key === user.avatar) {
-                avatar = DefaultAvatars[key];
-                return;
-            }
-        });
-        if (avatar !== undefined) {
-            return avatar;
-        } else {
+        if (getActiveCharacter()[0] === getAllCharacters().idle[0]) {
+            console.log('michelle')
+            return DefaultAvatars.MichelleIdle;
+        } else if (getActiveCharacter()[0] === getAllCharacters().idle[1]) {
+            console.log('Leonard')
             // Defaults to chopper if no avatar in db
-            return DefaultAvatars.Chopper
+            return DefaultAvatars.leonardDancingCanvas
         }
+        console.log('nothing')
     }
 
     async function handleNewPassword() {

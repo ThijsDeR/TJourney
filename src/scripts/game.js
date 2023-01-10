@@ -13,7 +13,8 @@ export default class Game {
         this.player = new Player(this.world.circles[0].position, new Rotation(0, 0, 0), 1.5, 0)
         this.lastPlaceOnBoard = 0;
         this.shouldUpdate = false;
-        this.friends = []
+        this.friends = [];
+        
     }
 
     getWorldElement = (timeElapsed) => {

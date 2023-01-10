@@ -8,18 +8,27 @@ import { DefaultAvatars } from "../../assets/DefaultAvatars/DefaultAvatarsCanvas
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { getActiveCharacter, getAllCharacters, loadCharacter } from '../../services/playerCharacter-service';
 
 function AvatarSelect({ user, isLoading, setIsLoading }) {
     useEffect(() => {
-        if (user) setIsLoading(false)
+        if (user) {
+            setIsLoading(false)
+            loadCharacter(user.avatar)
+        }
     }, [user, setIsLoading])
 
-    function selectAvatar(avatar) {
-        editAvatar(avatar).then((data) => {
-            // Needs to fully reload so canvas updates correctly, tried using Navigate but it shows the avatar wrong until reload
-            window.location.href = "/account";
-        });
-    }
+    /**
+     * This function does not work yet, i set avater select directly via onclick in avatar select menu
+     */
+    // function selectAvatar(avatar) {
+    //     setActiveCharacter(avatar);
+    //     console.log("avatar = " + avatar)
+    //     editAvatar(avatar).then((data) => {
+    //         // Needs to fully reload so canvas updates correctly, tried using Navigate but it shows the avatar wrong until reload
+    //         window.location.href = "/account";
+    //     });
+    // }
 
     return (
         <>
@@ -36,24 +45,24 @@ function AvatarSelect({ user, isLoading, setIsLoading }) {
                             {/* Contains two columns */}
                             <div className="columns is-mobile is-centered">
                                 {/* Default column */}
-                                <div className="box my-3 mr-2 column is-5" style={{backgroundColor: user.preferences.style.backgroundColor}} onClick={() => selectAvatar("Chopper")}>
-                                    {DefaultAvatars.Chopper}
+                                <div className="box my-3 mr-2 column is-5" style={(getActiveCharacter()[0] === getAllCharacters().idle[1]) ? {backgroundColor: user.preferences.style.primaryColor} : {backgroundColor: user.preferences.style.backgroundColor}} onClick={() => {editAvatar(1); console.log(user)}}>
+                                    {DefaultAvatars.leonardDancingCanvas}
                                 </div>
                                 {/* End of first column */}
-                                <div className="box my-3 ml-2 column is-5" style={{backgroundColor: user.preferences.style.backgroundColor}} onClick={() => selectAvatar("Shiba")}>
-                                    {DefaultAvatars.Shiba}
+                                <div className="box my-3 ml-2 column is-5" style={(getActiveCharacter()[0] === getAllCharacters().idle[0]) ? {backgroundColor: user.preferences.style.primaryColor} : {backgroundColor: user.preferences.style.backgroundColor}} onClick={() => {editAvatar(0); console.log(user)}}>
+                                    {DefaultAvatars.MichelleIdle}
                                 </div>
                             </div>
                             {/* End of first set of columns */}
 
-                            <div className="columns is-mobile is-centered">
+                            {/* <div className="columns is-mobile is-centered">
                                 <div className="box my-3 mr-2 column is-5" style={{backgroundColor: user.preferences.style.backgroundColor}} onClick={() => selectAvatar("Randomguy")}>
                                     {DefaultAvatars.Randomguy}
                                 </div>
                                 <div className="box my-3 ml-2 column is-5" style={{backgroundColor: user.preferences.style.backgroundColor}} onClick={() => selectAvatar("MichelleIdle")}>
                                     {DefaultAvatars.MichelleIdle}
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <Navigation user={user} />
                     </>

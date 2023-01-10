@@ -1,4 +1,5 @@
 import "./navigation.css";
+import {loadCharacter} from "../../services/playerCharacter-service"
 
 import {
     Link
@@ -16,7 +17,7 @@ function Navigation({ user }) {
                                 <Link to="/logout">L</Link>
                                 <Link to="/challenges">CH</Link>
                                 <Link to="/home">H</Link>
-                                <Link to="/game">J</Link>
+                                <Link to="/game" onClick={() => {loadCharacter(user.avatar)}}>J</Link>
                                 <Link to="/chatFriends">Com</Link>
                                 {/* <Link to="/community"> Co</Link> */}
                             </> :

@@ -1,15 +1,15 @@
 import Dice from "./dice.js";
 import Drawable from "./drawable.js";
-import MichelleWalking from '../assets/Michelle/Walking.js'
-import MichelleIdle from '../assets/Michelle/Idle.js'
 import Position from "./position.js";
 import Rotation from "./rotation.js";
 import Walkable from "./walkable.js";
 import { randomCount } from "../services/math-service.js";
+import { getActiveCharacter } from "../services/playerCharacter-service.js";
 
 
 export default class Player extends Walkable {
     dice;
+    character;
 
     constructor(position, rotation, scale, placeOnTheBoard) {
         super(position, rotation, scale, placeOnTheBoard)
@@ -19,7 +19,7 @@ export default class Player extends Walkable {
     getElement() {
         return (
             <mesh position={this.position.getPositionArray()} rotation={[this.rotation.x, this.rotation.y, this.rotation.z]} scale={this.scale}>
-                {this.placeOnTheBoard === this.currentPlaceOnTheBoard || this.dice.isThrowing() ? <MichelleIdle /> : <MichelleWalking />}
+                {this.placeOnTheBoard === this.currentPlaceOnTheBoard || this.dice.isThrowing() ? getActiveCharacter()[0] : getActiveCharacter()[1]}
 
                 {this.dice.getElement()}
             </mesh>

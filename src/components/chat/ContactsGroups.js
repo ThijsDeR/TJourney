@@ -40,8 +40,7 @@ export default function ContactsGroups({ contacts, currentUser, changeChat, styl
                   <ol className="tab-list" style={{display: 'flex'}}>
                     <li style={tabContent(style)}><Link style={{textDecoration: 'none'}} to={'/chatFriends'}>Friends</Link></li>
                     <li style={communityTileStyle(style)}><Link style={{textDecoration: 'none'}} to={'/chatGroups'}>Groups</Link></li>
-                    {/* for some reason this page does not work */}
-                    {/* <li style={tabContent(style)}><Link style={{textDecoration: 'none'}} to={'/leaderboard'}>Leaderboard</Link></li> */}
+                    <li style={tabContent(style)}><Link style={{textDecoration: 'none'}} to={'/leaderboard'}>Leaderboard</Link></li>
                   </ol>
                 </div>
               </div>

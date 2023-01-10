@@ -102,8 +102,10 @@ export const buttonStyle = (style) => {
     }
 }
 
-export const overflow = {
-    overflow: "auto"
+export const overflow = (style) => {
+    return {
+        overflow: "auto"
+    }
 }
 
 export const tileStyle = (style) => {
@@ -178,7 +180,7 @@ export const tabListItem = (style) => {
 export const tabListItemActive = (style) => {
     return {
         backgroundColor: style.primaryColor,
-        color: white,
+        color: style.textColor,
         borderRadius: '5px',
     }
 }
@@ -344,7 +346,7 @@ export const topThreePfTwoThree = (style) => {
 
 export const leaderboardContainer = (style) => {
     return {
-        backgroundColor: secondaryColor,
+        backgroundColor: style.secondaryColor,
         padding: '10px 10px',
         borderRadius: '5px',
         margin: '10px 0px',
@@ -376,7 +378,7 @@ export const fakePfLeaderboard = (style) => {
 
 export const rankingBubbleLeaderboard = (style) => {
     return {
-        backgroundColor: primaryColor,
+        backgroundColor: style.primaryColor,
         height: '25px',
         width: '25px',
         borderRadius: '50%',
@@ -401,13 +403,13 @@ export const leaderboardPFContainer = (style) => {
 
 export const searchBar = (style) => {
     return {
-        backgroundColor: secondaryColor,
+        backgroundColor: style.secondaryColor,
         borderRadius: '5px',
         padding: '5px 10px',
         margin: '20px 0px',
         width: '100%',
         display: 'flex',
-        color: white,
+        color: style.textColor,
         border: '1px solid' + mediumEmphasis,
         fontSize: '18px'
     }

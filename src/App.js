@@ -48,6 +48,7 @@ function App({ timeElapsed }) {
                 textColor: "#F7F7F7"
             }
             setUser(data)
+            console.log(data.preferences)
         });
     }, [currentUser]);
     return (

@@ -50,14 +50,13 @@ export const getCurrentUser = async () => {
     return null
 };
 
-export const getAllUsers = async () => {
+export const getAllTheUsers = async () => {
     const localUser = JSON.parse(localStorage.getItem("user"))
 
     if (localUser && localUser.accessToken) {
         const data = await axios.get("/v1/users/", {
             headers: { Authorization: `Bearer ${localUser.accessToken}` }
         })
-
         return data.data.data;
     }
 
@@ -143,3 +142,24 @@ export const editAvatar = async (avatar) => {
         });
     }
 }
+
+export const editTutorial = async (done) => {
+    const localUser = JSON.parse(localStorage.getItem("user"));
+
+    if (localUser && localUser.accessToken) {
+        return axios.put("/v1/users/", {
+            updateQuery: {
+                $set: {
+                    "tutorialFinished": done
+                }
+            }
+        }, {
+            headers: { Authorization: `Bearer ${localUser.accessToken}` }
+        }).then((response) => {
+            if (response.data.error) throw response.data.error
+
+            return response.data.data;
+        });
+    }
+}
+

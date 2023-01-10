@@ -42,7 +42,8 @@ function Tab(props) {
         <li className={className}
             onClick={onClick}
             // if the tab is active, change the color to red
-            style={{ ...tabList, ...isActive ? { ...tabListItemActive } : {} }
+            style={
+                { ...tabList(props.style), ...isActive ? tabListItemActive(props.style) : {} }
             } >
             {label}
         </li >

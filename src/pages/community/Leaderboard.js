@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 
 import { getFriends } from '../../services/friends-service.js';
 import { calculateLevel } from '../../services/level-service.js';
-import { getAllUsers } from '../../services/auth-service.js';
+import { getAllTheUsers } from '../../services/auth-service.js';
 
 // styling
 import 'bulma/css/bulma.min.css';
 import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, boldText, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard, leaderboardPFContainer } from '../../styling/StylingVariables.js';
 
-function Leaderboard(currentUser) {
+function Leaderboard(currentUser, props) {
 
     const [users, setUsers] = useState();
 
     useEffect(() => {
-        getAllUsers().then((users) => {
+        getAllTheUsers().then((users) => {
             users.forEach((user) => {
                 user.level.level = calculateLevel(user.level.amount)
             })
@@ -46,10 +46,10 @@ function Leaderboard(currentUser) {
             }}>
 
                 {/* Top three */}
-                <div style={topThreeContainer}>
-                    <div style={topThreePfTwoThree}></div>
-                    <div style={topThreePfOne}></div>
-                    <div style={topThreePfTwoThree}></div>
+                <div style={topThreeContainer(props.style)}>
+                    <div style={topThreePfTwoThree(props.style)}></div>
+                    <div style={topThreePfOne(props.style)}></div>
+                    <div style={topThreePfTwoThree(props.style)}></div>
 
                     <div style={boldText}>{users && users[1].username}</div>
                     <div style={boldText}>{users && users[0].username}</div>

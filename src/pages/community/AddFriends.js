@@ -7,6 +7,14 @@ import { Link, Navigate } from "react-router-dom";
 import 'bulma/css/bulma.min.css';
 import { pageStyle, appContainer, searchBar, chatContainer, friendItems, friendsTile, fakePF, lightText, chatDivider, primaryColor, goBackIndicator, smallButton, unsetLinkStyle } from '../../styling/StylingVariables.js';
 
+// tabs
+import Tabs from '../../components/tabs/Tabs';
+
+// tab content
+// import Friends from './Friends.js';
+// import Groups from './Groups.js';
+import Leaderboard from './Leaderboard.js';
+
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'

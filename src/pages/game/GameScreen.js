@@ -16,10 +16,10 @@ import Game from '../../scripts/game.js';
 import FantasyBook from '../../scripts/fantasyBook';
 import { calculateLevel } from '../../services/level-service';
 import { getCurrentUser } from '../../services/auth-service';
-import Friend from '../../scripts/friend';
-import Position from '../../scripts/position';
-import Rotation from '../../scripts/rotation';
-import { getFriends } from '../../services/friends-service.js';
+import { getFriends } from '../../services/friends-service';
+import Friend from '../../scripts/friend.js'
+import Position from '../../scripts/position.js'
+import Rotation from '../../scripts/rotation.js'
 
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
@@ -30,10 +30,10 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
     const [userLevel, setUserLevel] = useState(undefined)
     const [level, setLevel] = useState(undefined)
     const [gameSession, setGameSesion] = useState(undefined)
-    const [friends, setFriends] = useState(undefined)
 
     const reloadData = () => {
         getCurrentUser().then((user) => {
+            console.log(user)
             setUser(user)
             setUserLevel(user.level.amount)
             setLevel(calculateLevel(user.level.amount))
@@ -42,7 +42,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
 
     const getFriendsData = () => {
         getFriends().then((friends) => {
-            setFriends(friends)
+            // setFriends(friends)
             friends.forEach((friend) => {
                 const gameFriend = game.friends.find((gameFriend) => gameFriend.userName === friend.user.username)
 
@@ -64,11 +64,6 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
         }
     }, [user, userLevel])
 
-    useEffect(() => {
-        if (user) {
-            getFriendsData()
-        }
-    }, [user])
 
     useEffect(() => {
         if (userLevel) setLevel(calculateLevel(userLevel))    
@@ -80,7 +75,6 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
         })
         getGameSession().then((data) => {
             setGameSesion(data)
-            game.lastPlaceOnBoard = data.steps
             game.player.setPosition(data.steps, game.world.circles)
         })
     }, [])
@@ -96,6 +90,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
     useEffect(() => {
         if (challenges && diceEyesCount !== undefined && userLevel !== undefined && gameSession !== undefined) setIsLoading(false)
     }, [challenges, diceEyesCount, gameSession, setIsLoading, userLevel])
+
 
     const calculateDiceEyesCount = async (challenges) => {
         const gameSession = await getGameSession()
@@ -146,7 +141,6 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
 
     if (game.shouldUpdate) {
         game.shouldUpdate = false
-        getFriendsData()
         setSteps(game.player.placeOnTheBoard)
         reloadData()
     }
@@ -162,7 +156,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
                 <div className="canvasContainer">
                     <div className="App">
                         <Canvas camera={{ position: [game.player.position.x - 3, game.player.position.y + 2, game.player.position.z] }} style={{ backgroundColor: "#17E7E7" }}>
-                            <OrbitControls position={[game.player.position.x, game.player.position.y + 5, game.player.position.z]} target={[game.player.position.x + 1.5, game.player.position.y + 1, game.player.position.z]} /* maxPolarAngle={Math.PI / 1.9} minDistance={5} maxDistance={15} */ />
+                            <OrbitControls position={[game.player.position.x, game.player.position.y + 5, game.player.position.z]} target={[game.player.position.x + 1.5, game.player.position.y + 1, game.player.position.z]} maxPolarAngle={Math.PI / 1.9} minDistance={5} maxDistance={15} />
 
                             {/* <PresentationControls global zoom={4} rotation={[0, -Math.PI / 4, 0]} polar={[0, Math.PI / 4]}> */}
                             <Stars />
@@ -185,7 +179,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
                             if (diceEyesCount !== 0 && game.player.dice.count === 0) game.throwDice(diceEyesCount)
                         }}
                     >
-                        <img src={luckyBlock} style={{ width: "50px" }} alt="lucky block"/>
+                        <img src={luckyBlock} style={{ width: "50px", height: "50px" }} alt="lucky block"/>
                         <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? diceEyesCount : "0"}</p>
                     </div>
                 </div>

@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
+import Navigation from "../../components/navigation/Navigation";
 
-import { getFriends } from '../../services/friends-service.js';
-import { calculateLevel } from '../../services/level-service.js';
-import { getAllTheUsers } from '../../services/auth-service.js';
 
 // styling
 import 'bulma/css/bulma.min.css';
-import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, boldText, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard, leaderboardPFContainer } from '../../styling/StylingVariables.js';
+import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, tabList, centerDiv, boldText, tabListItemContainer, communityTileStyle, tabContent, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard } from '../../styling/StylingVariables.js';
+import Loading from '../../components/loading/Loading';
 
-function Leaderboard(currentUser, props) {
-
+export default function Leaderboard({ user, isLoading, setIsLoading }) {
     const [users, setUsers] = useState();
-
+    
+    useEffect(() => {
+        if (user) {
+            setIsLoading(false)
+            console.log(user)
+        }
+    }, [user, setIsLoading])
+    
     useEffect(() => {
         getAllTheUsers().then((users) => {
             users.forEach((user) => {
@@ -37,29 +43,32 @@ function Leaderboard(currentUser, props) {
         }
     })
 
+
     return (
         <>
-            <div style={{
-                width: '100%', display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}>
+            {isLoading ? <Loading /> :
+                <>
+                    <div style={{
+                        width: '100%', display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}>
 
-                {/* Top three */}
-                <div style={topThreeContainer(props.style)}>
-                    <div style={topThreePfTwoThree(props.style)}></div>
-                    <div style={topThreePfOne(props.style)}></div>
-                    <div style={topThreePfTwoThree(props.style)}></div>
+                        {/* Top three */}
+                        <div style={topThreeContainer(props.style)}>
+                            <div style={topThreePfTwoThree(props.style)}></div>
+                            <div style={topThreePfOne(props.style)}></div>
+                            <div style={topThreePfTwoThree(props.style)}></div>
 
-                    <div style={boldText}>{users && users[1].username}</div>
-                    <div style={boldText}>{users && users[0].username}</div>
-                    <div style={boldText}>{users && users[2].username}</div>
+                            <div style={boldText}>{users && users[1].username}</div>
+                            <div style={boldText}>{users && users[0].username}</div>
+                            <div style={boldText}>{users && users[2].username}</div>
 
-                    <div style={lightText}>Level {users && users[1].level.level.level}</div>
-                    <div style={lightText}>Level {users && users[0].level.level.level}</div>
-                    <div style={lightText}>Level {users && users[2].level.level.level}</div>
-                </div>
-            </div>
+                            <div style={lightText}>Level {users && users[1].level.level.level}</div>
+                            <div style={lightText}>Level {users && users[0].level.level.level}</div>
+                            <div style={lightText}>Level {users && users[2].level.level.level}</div>
+                        </div>
+                  </div>
 
             {/* My rank */}
             <div style={myRank} >
@@ -87,9 +96,9 @@ function Leaderboard(currentUser, props) {
                     </div>
                 })
             }
-
-
+                    <Navigation user={user.preferences.user} />
+                </>
+            }
         </>
     )
 }
-export default Leaderboard;

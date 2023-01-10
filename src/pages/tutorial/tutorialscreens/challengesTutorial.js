@@ -10,7 +10,7 @@ import { getGameSession } from '../../../services/game-service';
 
 import '../../challenges/challenges.css';
 
-function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenPart, updateTutorialPosition }) {
+export function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenPart, updateTutorialPosition }) {
     const [unfinishedChallenges, setUnfinishedChallenges] = useState(undefined);
     const [finishedChallenges, setFinishedChallenges] = useState(undefined)
     const [diceEyesCount, setdiceEyesCount] = useState(undefined);

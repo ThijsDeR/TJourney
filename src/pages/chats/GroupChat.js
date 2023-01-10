@@ -4,12 +4,13 @@ import Welcome from "../../components/chat/Welcome.js";
 import ChatContainer from "../../components/chat/ChatContainer.js";
 import { getAllUsers } from "../../services/auth-service.js";
 import Loading from '../../components/loading/Loading.js';
-import './Chat.css';
+import './Chat.css'
+import { getAllGroups } from '../../services/groups-service.js';
+import ContactsGroups from '../../components/chat/ContactsGroups.js';
 import Navigation from "../../components/navigation/Navigation";
 
-let leaderboard = false;
 
-export function Chats({ user, isLoading, setIsLoading }) {
+export function GroupChats({ user, isLoading, setIsLoading }) {
   const [contacts, setContacts] = useState([]);
   const currentUser = user;
   const [currentChat, setCurrentChat] = useState(undefined);
@@ -24,7 +25,7 @@ export function Chats({ user, isLoading, setIsLoading }) {
   useEffect(() => {
     const getUsers = async () => {
       if (currentUser) {
-        setContacts(removeOwnUserFromList(await getAllUsers()));
+        setContacts(removeOwnUserFromList(await getAllGroups()));
       }
     }
     getUsers();
@@ -57,13 +58,15 @@ export function Chats({ user, isLoading, setIsLoading }) {
     setCurrentChat(chat);
   }
 
+
+
   return (
     <>
       {isLoading ? <Loading /> :
         <div className="Chats">
 
           <div className="containerChat">
-          <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} style={user.preferences.style}/>
+            <ContactsGroups contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} style={user.preferences.style}/>
             {
               currentChat === undefined ?
               "":

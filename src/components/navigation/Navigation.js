@@ -17,8 +17,8 @@ function Navigation({ user }) {
                                 <Link to="/challenges">CH</Link>
                                 <Link to="/home">H</Link>
                                 <Link to="/game">J</Link>
-                                {/* <Link to="/chat">Com</Link> */}
-                                <Link to="/community"> Co</Link>
+                                <Link to="/chatFriends">Com</Link>
+                                {/* <Link to="/community"> Co</Link> */}
                             </> :
                             <>
                                 <Link to="/login">Login</Link>

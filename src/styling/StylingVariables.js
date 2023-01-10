@@ -1,11 +1,6 @@
 // color options
-const purple = '#BB86FC';
-const blue = '#57ADDD';
-const yellow = '#FFBC6F';
-const green = '#61C688';
 const red = '#FF686B';
 export const white = '#F7F7F7'; // high emphasis
-const backgroundColor = '#121212';
 
 // when you change this color, you will change the primary color of the whole page
 export const primaryColor = red;
@@ -35,8 +30,8 @@ export const pageStyle = (style) => {
         right: '0px',
         backgroundColor: style.backgroundColor,
         color: style.textColor,
+        overflow: 'auto'
     }
-
 }
 
 export const appContainer = (style) => {
@@ -62,6 +57,17 @@ export const goBackIndicator = (style) => {
         color: style.primaryColor,
         margin: '10px 0px, 50px 0px',
         fontSize: '18px',
+    }
+}
+
+export const communityTileStyle = (style) => {
+    return {
+        // backgroundColor: style.primaryColor,
+        borderRadius: '5px',
+        margin: '0px 0px 0px 10px',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
     }
 }
 
@@ -94,6 +100,10 @@ export const buttonStyle = (style) => {
         color: style.primaryColor,
         height: '35px',
     }
+}
+
+export const overflow = {
+    overflow: "auto"
 }
 
 export const tileStyle = (style) => {
@@ -290,7 +300,7 @@ export const pfBox = (style) => {
 }
 export const myRank = (style) => {
     return {
-        backgroundColor: style.primaryColor,
+        // backgroundColor: style.primaryColor,
         padding: '5px 10px',
         borderRadius: '5px',
     }

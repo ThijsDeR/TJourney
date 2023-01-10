@@ -20,12 +20,12 @@ export function SelectGoalCategory({ user, category, setCategory, setStepHandler
 
                     <div style={goBackIndicator(user.preferences.style)}>
                         <FontAwesomeIcon icon={faAngleLeft} size='lg' />
-                        <span style={{ paddingLeft: '10px' }}>Friends</span>
+                        <span style={{ paddingLeft: '10px' }}>Go back</span>
                     </div>
 
-                    <span style={{ ...title(user.preferences.style), ...{ paddingBottom: '16px' } }} >Choose a category</span>
+                    <span style={{ ...title(user.preferences.style), ...{ paddingBottom: '20px' } }} >Choose a category</span>
 
-                    <div className={"box"} style={{ backgroundColor: user.preferences.style.primaryColor, marginBottom: '8px' }} onClick={() => handleCategorySelect("excercise")}>
+                    <div className={"box"} style={{ backgroundColor: user.preferences.style.primaryColor, marginBottom: '10px' }} onClick={() => handleCategorySelect("excercise")}>
                         <article className="media">
                             <div className="media-content" style={{ overflow: "hidden" }}>
                                 <div className="content">
@@ -40,7 +40,7 @@ export function SelectGoalCategory({ user, category, setCategory, setStepHandler
                     </ div>
 
                     <div>
-                        <div className={"box"} style={{ backgroundColor: user.preferences.style.primaryColor, marginBottom: '8px' }} onClick={() => handleCategorySelect("sleep")}>
+                        <div className={"box"} style={{ backgroundColor: user.preferences.style.primaryColor, marginBottom: '10px' }} onClick={() => handleCategorySelect("sleep")}>
                             <article className="media">
                                 <div className="media-content" style={{ overflow: "hidden" }}>
                                     <div className="content">
@@ -56,7 +56,7 @@ export function SelectGoalCategory({ user, category, setCategory, setStepHandler
                     </div>
 
                     <div>
-                        <div className={"box"} style={{ backgroundColor: user.preferences.style.primaryColor, marginBottom: '8px' }} onClick={() => handleCategorySelect("food")}>
+                        <div className={"box"} style={{ backgroundColor: user.preferences.style.primaryColor, marginBottom: '10px' }} onClick={() => handleCategorySelect("food")}>
                             <article className="media">
                                 <div className="media-content" style={{ overflow: "hidden" }}>
                                     <div className="content">

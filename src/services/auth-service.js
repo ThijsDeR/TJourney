@@ -57,12 +57,12 @@ export const getAllUsers = async () => {
         const data = await axios.get("/v1/users/", {
             headers: { Authorization: `Bearer ${localUser.accessToken}` }
         })
-    
         return data.data.data;
     }
 
     return null
 };
+
 export const deleteAccount = async () => {
     const localUser = JSON.parse(localStorage.getItem("user"));
 
@@ -73,7 +73,7 @@ export const deleteAccount = async () => {
         })
         localStorage.removeItem("user");
         // If this isn't here you can access the app in a broken state for a bit
-        // until it fully breaks and the pages either brake or load endlessly, 
+        // until it fully breaks and the pages either brake or load endlessly,
         // it doesn't automatically send you to login otherwise
         window.location.href = "/login";
 

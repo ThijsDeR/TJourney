@@ -9,105 +9,93 @@ import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThr
 import Loading from '../../components/loading/Loading';
 
 export default function Leaderboard({ user, isLoading, setIsLoading }) {
-
+    const [users, setUsers] = useState();
+    
     useEffect(() => {
         if (user) {
             setIsLoading(false)
             console.log(user)
         }
     }, [user, setIsLoading])
+    
+    useEffect(() => {
+        getAllTheUsers().then((users) => {
+            users.forEach((user) => {
+                user.level.level = calculateLevel(user.level.amount)
+            })
+            setUsers(users)
+            console.log(users)
+        })
+    }, [])
+
+
+    // check if friend if undefined if not - sort by level
+    users && users.sort((a, b) => {
+        return b.level.amount - a.level.amount
+    })
+
+    let rankOfCurrentUser = 0;
+
+    // find index of current user in user array
+    users && users.forEach((user, index) => {
+        if (user._id === currentUser.user._id) {
+            rankOfCurrentUser = index + 1;
+        }
+    })
 
 
     return (
         <>
             {isLoading ? <Loading /> :
                 <>
-                    <div className="Chats">
+                    <div style={{
+                        width: '100%', display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}>
 
-                        <div className="containerChat">
-                            <div className="Contacts">
-                                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                                <div className="tabs" style={tabListItemContainer(user.preferences.style)}>
-                                    <div className="item" style={tabList(user.preferences.style)}>
-                                        <div style={centerDiv(user.preferences.style)}>
-                                            <ol className="tab-list" style={{ display: 'flex' }}>
-                                                <li style={tabContent(user.preferences.style)}><Link style={{ textDecoration: 'none' }} to={'/chatFriends'}>Friends</Link></li>
-                                                <li style={tabContent(user.preferences.style)}><Link style={{ textDecoration: 'none' }} to={'/chatGroups'}>Groups</Link></li>
-                                                <li style={communityTileStyle(user.preferences.style)}><Link style={{ textDecoration: 'none' }} to={'/leaderboard'}>Leaderboard</Link></li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="contacts">
+                        {/* Top three */}
+                        <div style={topThreeContainer(props.style)}>
+                            <div style={topThreePfTwoThree(props.style)}></div>
+                            <div style={topThreePfOne(props.style)}></div>
+                            <div style={topThreePfTwoThree(props.style)}></div>
 
-                                    {/* My rank */}
-                                    <div style={myRank(user.preferences.style)}>
-                                        <div style={containerLeftRight(user.preferences.style)}>
-                                            <div>Your current rank</div>
-                                            {/* Rank in the leaderboard */}
-                                            <div style={boldText(user.preferences.style)}> #7 </div>
-                                        </div>
-                                    </div>
-                                    <div className="current-user">
-                                        <div className="username">
-                                            <h2>{user.username}</h2>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='Chat-container' style={{margin: "100px 0px 0px 0px"}}>
-                                    <div style={{
-                                        width: '100%', display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                    }}>
+                            <div style={boldText}>{users && users[1].username}</div>
+                            <div style={boldText}>{users && users[0].username}</div>
+                            <div style={boldText}>{users && users[2].username}</div>
 
-                                        {/* Top three */}
-                                        <div style={topThreeContainer(user.preferences.style)}>
-                                            <div style={topThreePfTwoThree(user.preferences.style)}></div>
-                                            <div style={topThreePfOne(user.preferences.style)}></div>
-                                            <div style={topThreePfTwoThree(user.preferences.style)}></div>
-
-                                            <div style={boldText(user.preferences.style)}>Name 2</div>
-                                            <div style={boldText(user.preferences.style)}>Name 1</div>
-                                            <div style={boldText(user.preferences.style)}>Name 3</div>
-
-                                            <div style={lightText(user.preferences.style)}>Level x</div>
-                                            <div style={lightText(user.preferences.style)}>Level x</div>
-                                            <div style={lightText(user.preferences.style)}>Level x</div>
-                                        </div>
-                                    </div>
-
-                                    {/* My rank */}
-                                    <div style={myRank(user.preferences.style)}>
-                                        <div style={containerLeftRight(user.preferences.style)}>
-                                            <div>Your current rank</div>
-                                            {/* Rank in the leaderboard */}
-                                            <div style={boldText(user.preferences.style)}> #7 </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Leaderboard */}
-                                    <h1 style={title(user.preferences.style)}>Leaderboard</h1>
-                                    <div style={leaderboardContainer(user.preferences.style)}>
-                                        <div>
-                                            <div style={fakePfLeaderboard(user.preferences.style)}></div>
-                                            <div style={rankingBubbleLeaderboard(user.preferences.style)}>4</div>
-                                        </div>
-                                        <div>Geert de Winter</div>
-                                        <div style={leaderboardLevel(user.preferences.style)}>40</div>
-
-                                        <div>
-                                            <div style={fakePfLeaderboard(user.preferences.style)}></div>
-                                            <div style={rankingBubbleLeaderboard(user.preferences.style)}>5</div>
-                                        </div>
-                                        <div>Rosa de jong</div>
-                                        <div style={leaderboardLevel(user.preferences.style)}>35</div>
-                                    </div>
-                                </div>
+                            <div style={lightText}>Level {users && users[1].level.level.level}</div>
+                            <div style={lightText}>Level {users && users[0].level.level.level}</div>
+                            <div style={lightText}>Level {users && users[2].level.level.level}</div>
                         </div>
-                    </div>
+                  </div>
 
+            {/* My rank */}
+            <div style={myRank} >
+                <div style={containerLeftRight}>
+                    <div>Your current rank</div>
+                    {/* Rank in the leaderboard */}
+                    <div style={boldText}> {rankOfCurrentUser} </div>
+                </div>
+            </div>
+
+            {/* Leaderboard */}
+            <h1 style={title}>Leaderboard</h1>
+
+            {
+                users && users.slice(3).map((user, index) => {
+                    return <div style={leaderboardContainer} key={index} >
+                        <div style={leaderboardPFContainer}>
+                            <div style={fakePfLeaderboard}></div>
+                            <div style={rankingBubbleLeaderboard}>
+                                <span style={{ padding: 'auto' }}>{index + 4}</span>
+                            </div>
+                        </div>
+                        <div>{user.username}</div>
+                        <div style={{ ...leaderboardLevel, ...boldText }}>{user.level.level.level}</div>
+                    </div>
+                })
+            }
                     <Navigation user={user.preferences.user} />
                 </>
             }

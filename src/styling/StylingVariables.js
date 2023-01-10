@@ -342,36 +342,26 @@ export const topThreePfTwoThree = (style) => {
 }
 
 
-export const topThreeInfo = {
-}
-
-export const topThreeTileOne = {
-}
-
-export const topThreeTileTwo = {
-}
-
-export const topThreeTileThree = {
-}
-
 export const leaderboardContainer = (style) => {
     return {
-        backgroundColor: style.secondaryColor,
+        backgroundColor: secondaryColor,
         padding: '10px 10px',
         borderRadius: '5px',
         margin: '10px 0px',
         width: '100%',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr',
+        display: 'flex',
+        // gridTemplateColumns: '1fr 1fr 1fr',
         alignItems: 'center',
+        height: '70px',
+        alignItems: 'center'
     }
 }
 
-
 export const leaderboardLevel = (style) => {
     return {
-        gridColumn: 'end'
+        marginLeft: 'auto'
     }
+
 }
 
 export const fakePfLeaderboard = (style) => {
@@ -384,17 +374,17 @@ export const fakePfLeaderboard = (style) => {
     }
 }
 
-
 export const rankingBubbleLeaderboard = (style) => {
     return {
-        backgroundColor: style.primaryColor,
+        backgroundColor: primaryColor,
         height: '25px',
         width: '25px',
         borderRadius: '50%',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '0px 7px',
         fontWeight: 'bold',
+        display: 'flex',
+
         // put div above the pf
         zIndex: '1',
         position: 'relative',
@@ -403,10 +393,15 @@ export const rankingBubbleLeaderboard = (style) => {
     }
 }
 
+export const leaderboardPFContainer = (style) => {
+    return {
+        transform: 'translateY(18%)',
+    }
+}
 
 export const searchBar = (style) => {
     return {
-        backgroundColor: style.secondaryColor,
+        backgroundColor: secondaryColor,
         borderRadius: '5px',
         padding: '5px 10px',
         margin: '20px 0px',
@@ -417,8 +412,3 @@ export const searchBar = (style) => {
         fontSize: '18px'
     }
 }
-
-
-
-
-

@@ -21,6 +21,7 @@ function Friends(props) {
             console.log(friends)
         });
     }, [])
+    
     return (
         <>
             {/* Suggested friends */}

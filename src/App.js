@@ -26,6 +26,7 @@ import AddFriends from "./pages/community/AddFriends.js";
 import { Preferences } from "./pages/account/Preferences.js";
 import { getPreferencesColor } from "./services/user-service.js";
 
+import Tutorial from "./pages/tutorial/Tutorial.js";
 
 
 function App({ timeElapsed }) {
@@ -59,6 +60,7 @@ function App({ timeElapsed }) {
                     <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                    <Route path="/tutorial" element={<Tutorial user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/chat" element={<Chats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/account" element={<Account user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/preferences" element={<Preferences user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />

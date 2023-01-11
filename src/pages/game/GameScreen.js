@@ -20,6 +20,7 @@ import { getFriends } from '../../services/friends-service';
 import Friend from '../../scripts/friend.js'
 import Position from '../../scripts/position.js'
 import Rotation from '../../scripts/rotation.js'
+import { loadCharacter } from '../../services/playerCharacter-service';
 
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
@@ -33,10 +34,10 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
 
     const reloadData = () => {
         getCurrentUser().then((user) => {
-            console.log(user)
             setUser(user)
             setUserLevel(user.level.amount)
             setLevel(calculateLevel(user.level.amount))
+            
         })
     }
 
@@ -61,6 +62,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
         if (user && !userLevel) {
             setUserLevel(user.level.amount)
             setLevel(calculateLevel(user.level.amount))
+            game.setPlayerCharacter(user.avatar)
         }
     }, [user, userLevel])
 

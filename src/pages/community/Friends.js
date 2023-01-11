@@ -18,7 +18,6 @@ function Friends(props) {
                 friend.user.level = calculateLevel(friend.user.level.amount)
             })
             setFriends(friends)
-            console.log(friends)
         });
     }, [])
     

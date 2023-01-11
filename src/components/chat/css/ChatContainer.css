@@ -1,7 +1,7 @@
   .Chat-container{
+    margin-bottom: 6%;
     display: grid;
     overflow-x: hidden;
-  
     grid-template-rows: 10% 80% 10%;
     gap: 0.1rem;
     overflow: hidden;
@@ -11,6 +11,18 @@
   }
 
 
+  .Chat-container-leaderboard{
+    display: grid;
+    margin-bottom: 6%;
+    overflow-x: hidden;
+  
+    grid-template-rows: 20% 5% 5% 10%;
+    gap: 0.1rem;
+    /* overflow: hidden; */
+    @media screen and (min-width: 720px) and (max-width: 1080px) {
+        grid-template-rows: 15% 70% 15%;
+     } 
+  }
 
 
   .chat-header {

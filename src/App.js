@@ -30,7 +30,7 @@ import { Preferences } from "./pages/account/Preferences.js";
 import { getPreferencesColor } from "./services/user-service.js";
 
 import Tutorial from "./pages/tutorial/Tutorial.js";
-
+import { setActiveCharacter } from "./services/playerCharacter-service.js";
 
 function App({ timeElapsed }) {
     const [currentUser, setCurrentUser] = useState(null);
@@ -48,7 +48,6 @@ function App({ timeElapsed }) {
                 textColor: "#F7F7F7"
             }
             setUser(data)
-            console.log(data.preferences)
         });
     }, [currentUser]);
     return (

@@ -5,12 +5,9 @@ import { getCurrentUser } from "./auth-service";
 //     const localUser = JSON.parse(localStorage.getItem("user"))
 
 //     const result = await getCurrentUser()
-//     console.log(result);
 //     if (result) {
 //         const promises = [];
-//         console.log(result._id);
 //         result.groups.forEach((group) => {
-//             console.log(group)
 //             promises.push(axios.get("/v1/groups"+ result.group.groupName, {
 //                 headers: { Authorization: `Bearer ${localUser.accessToken}` }
 //             }).then(async (response) => {

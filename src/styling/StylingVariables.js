@@ -224,7 +224,7 @@ export const fakePF = (style) => {
 
 export const friendsTile = (style) => {
     return {
-        color: style.textColor,
+        color: style.primary,
         borderRadius: '5px',
         padding: '3px 10px',
         margin: '10px 0px',
@@ -246,8 +246,9 @@ export const friendItems = (style) => {
 }
 
 export const notifacationBubble = (style) => {
+    // console.log("🚀 ~ file: StylingVariables.js:249 ~ notifacationBubble ~ style", style)
     return {
-        backgroundColor: style.primaryColor,
+        backgroundColor: style.textColor,
         justifySelf: 'flex-end',
         display: 'flex',
         alignItems: 'center',
@@ -321,7 +322,7 @@ export const topThreeContainer = (style) => {
 
 export const topThreePfOne = (style) => {
     return {
-        backgroundColor: style.textColor,
+        backgroundColor: style.primaryColor,
         height: '120px',
         width: '120px',
         borderRadius: '50%',
@@ -332,8 +333,9 @@ export const topThreePfOne = (style) => {
 
 
 export const topThreePfTwoThree = (style) => {
+    // console.log(style)
     return {
-        backgroundColor: style.textColor,
+        backgroundColor: style.primaryColor,
         height: '70px',
         width: '70px',
         borderRadius: '50%',

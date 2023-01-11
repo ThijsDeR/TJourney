@@ -13,7 +13,7 @@ import { getAllUsers } from '../../services/auth-service';
 export default function Leaderboard({ user, isLoading, setIsLoading }) {
     const [users, setUsers] = useState();
     const [rankOfCurrentUser, setRankOfCurrentUser] = useState();
-    
+
     useEffect(() => {
         if (user) {
             getAllUsers().then((users) => {
@@ -72,7 +72,7 @@ export default function Leaderboard({ user, isLoading, setIsLoading }) {
                                     {/* My rank */}
                                     <div style={myRank(user.preferences.style)}>
                                         <div style={containerLeftRight(user.preferences.style)}>
-                                            <div style={{margin: "0px 10px 0px 0px"}}>Your current rank</div>
+                                            <div style={{ margin: "0px 10px 0px 0px" }}>Your current rank</div>
                                             {/* Rank in the leaderboard */}
                                             <div style={boldText(user.preferences.style)}> #{rankOfCurrentUser} </div>
                                         </div>

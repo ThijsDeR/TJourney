@@ -63,11 +63,11 @@ export function Chats({ user, isLoading, setIsLoading }) {
         <div className="Chats">
 
           <div className="containerChat">
-          <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} style={user.preferences.style}/>
+            <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} style={user.preferences.style} />
             {
               currentChat === undefined ?
-              "":
-              <ChatContainer currentChat={currentChat} currentUser={currentUser} />
+                "" :
+                <ChatContainer currentChat={currentChat} currentUser={currentUser} />
             }
           </div>
         </div>

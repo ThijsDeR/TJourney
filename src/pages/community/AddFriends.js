@@ -37,7 +37,7 @@ function AddFriends({ user, isLoading, setIsLoading }) {
 
     useEffect(() => {
         if (user && nonFriends) setIsLoading(false)
-        
+
     }, [user, nonFriends, setIsLoading])
 
     const handleSearchInput = (e) => {

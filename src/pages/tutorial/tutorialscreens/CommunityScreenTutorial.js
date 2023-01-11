@@ -1,8 +1,7 @@
 import React from 'react';
 // styling
 import 'bulma/css/bulma.min.css';
-// tabs
-import Tabs from '../../../components/tabs/Tabs';
+
 // tab content
 import { Link } from "react-router-dom";
 import { myRank, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard, pageStyle, appContainer, title, primaryColor, containerCenteredBetween, containerLeftRight, goals, tileStyle, containerCenteredLeftItem, smallButton, white, friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, suggestedBox, suggestedTile, pfBox, boldText, lightText, chatDivider, bolderText } from '../../../styling/StylingVariables.js';
@@ -122,7 +121,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
 
             <div style={{ ...pageStyle, position: "static" }}>
                 <div style={appContainer}>
-                    <Tabs>
+                    {/* <Tabs> */}
                         {/* FRIENDS */}
                         <div label="Friends">
                             <div onClick={screenPart === 1 ? () => { updateTutorialScreenPart() } : () => {}} style={screenPart === 1 ?
@@ -351,7 +350,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                                 </div>
                             </div>
                         </div>
-                    </Tabs>
+                    {/* </Tabs> */}
                 </div>
             </div >
             <div className="nav-bottom" style={screenPart > 10 ? {zIndex: 30} : {}}>

@@ -4,6 +4,8 @@ import { useState } from "react";
 
 export function SelectPremadePlan(props) {
     const [time, setTime] = useState(undefined);
+    const [indexSelect, setIndexSelect] = useState(undefined);
+
     const stepBackHandler = () => {
         props.setStepHandler(1)
     }
@@ -93,17 +95,17 @@ export function SelectPremadePlan(props) {
                 <div className="box mx-3 is-size-4 has-text-black" onClick={() => submitHandler(3)}>Make your own plan</div>
 
                 {props.category === "excercise" ?
-                    goalsExercise.map((goal) => (
+                    goalsExercise.map((goal, index) => (
                         <div className="box mx-3 has-text-black">
                             <div className="is-size-4">Goal: {goal.Name}</div>
                             <div>Description: {goal.Description}</div>
                             <div>Start value: {goal.Startvalue}</div>
                             <div>End value: {goal.Endvalue}</div>
                             <div className="mt-2">
-                                <button className={"button"} onClick={() => selectTime(3)} style={{ backgroundColor: time === 3 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>3 days</button>
-                                <button className={"button"} onClick={() => selectTime(7)} style={{ backgroundColor: time === 7 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>7 days</button>
-                                <button className={"button"} onClick={() => selectTime(14)} style={{ backgroundColor: time === 14 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>14 days</button>
-                                <button className={"button"} onClick={() => selectTime(30)} style={{ backgroundColor: time === 30 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>30 days</button>
+                                <button className={"button"} onClick={() => [selectTime(3), setIndexSelect(index)]} style={{ backgroundColor: time === 3 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>3 days</button>
+                                <button className={"button"} onClick={() => [selectTime(7), setIndexSelect(index)]} style={{ backgroundColor: time === 7 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>7 days</button>
+                                <button className={"button"} onClick={() => [selectTime(14), setIndexSelect(index)]} style={{ backgroundColor: time === 14 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>14 days</button>
+                                <button className={"button"} onClick={() => [selectTime(30), setIndexSelect(index)]} style={{ backgroundColor: time === 30 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>30 days</button>
                             </div>
                             <button className="button mt-3" onClick={() => submitHandler(4, goal)} style={{ backgroundColor: props.user.preferences.style.primaryColor }}>Select</button>
                         </div>
@@ -112,17 +114,17 @@ export function SelectPremadePlan(props) {
                     ""}
 
                 {props.category === "sleep" ?
-                    goalsSleep.map((goal) => (
+                    goalsSleep.map((goal, index) => (
                         <div className="box mx-3 has-text-black">
                             <div className="is-size-4">Goal: {goal.Name}</div>
                             <div>Description: {goal.Description}</div>
                             <div>Start value: {goal.Startvalue}</div>
                             <div>End value: {goal.Endvalue}</div>
                             <div className="mt-2">
-                                <button className={"button"} onClick={() => selectTime(3)} style={{ backgroundColor: time === 3 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>3 days</button>
-                                <button className={"button"} onClick={() => selectTime(7)} style={{ backgroundColor: time === 7 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>7 days</button>
-                                <button className={"button"} onClick={() => selectTime(14)} style={{ backgroundColor: time === 14 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>14 days</button>
-                                <button className={"button"} onClick={() => selectTime(30)} style={{ backgroundColor: time === 30 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>30 days</button>
+                                <button className={"button"} onClick={() => [selectTime(3), setIndexSelect(index)]} style={{ backgroundColor: time === 3 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>3 days</button>
+                                <button className={"button"} onClick={() => [selectTime(7), setIndexSelect(index)]} style={{ backgroundColor: time === 7 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>7 days</button>
+                                <button className={"button"} onClick={() => [selectTime(14), setIndexSelect(index)]} style={{ backgroundColor: time === 14 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>14 days</button>
+                                <button className={"button"} onClick={() => [selectTime(30), setIndexSelect(index)]} style={{ backgroundColor: time === 30 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>30 days</button>
                                 <button className="button mt-3" onClick={() => submitHandler(4, goal)}>Select</button>
                             </div>
                         </div>
@@ -131,17 +133,17 @@ export function SelectPremadePlan(props) {
                     ""}
 
                 {props.category === "food" ?
-                    goalsFood.map((goal) => (
+                    goalsFood.map((goal, index) => (
                         <div className="box mx-3 has-text-black">
                             <div className="is-size-4">Goal: {goal.Name}</div>
                             <div>Description: {goal.Description}</div>
                             <div>Start value: {goal.Startvalue}</div>
                             <div>End value: {goal.Endvalue}</div>
                             <div className="mt-2">
-                                <button className={"button"} onClick={() => selectTime(3)} style={{ backgroundColor: time === 3 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>3 days</button>
-                                <button className={"button"} onClick={() => selectTime(7)} style={{ backgroundColor: time === 7 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>7 days</button>
-                                <button className={"button"} onClick={() => selectTime(14)} style={{ backgroundColor: time === 14 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>14 days</button>
-                                <button className={"button"} onClick={() => selectTime(30)} style={{ backgroundColor: time === 30 ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>30 days</button>
+                                <button className={"button"} onClick={() => [selectTime(3), setIndexSelect(index)]} style={{ backgroundColor: time === 3 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>3 days</button>
+                                <button className={"button"} onClick={() => [selectTime(7), setIndexSelect(index)]} style={{ backgroundColor: time === 7 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>7 days</button>
+                                <button className={"button"} onClick={() => [selectTime(14), setIndexSelect(index)]} style={{ backgroundColor: time === 14 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>14 days</button>
+                                <button className={"button"} onClick={() => [selectTime(30), setIndexSelect(index)]} style={{ backgroundColor: time === 30 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>30 days</button>
                                 <button className="button mt-3" onClick={() => submitHandler(4, goal)}>Select</button>
                             </div>
                         </div>

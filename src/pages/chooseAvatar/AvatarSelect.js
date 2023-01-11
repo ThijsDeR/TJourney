@@ -7,10 +7,12 @@ import Loading from '../../components/loading/Loading.js';
 import { DefaultAvatars } from "../../assets/DefaultAvatars/DefaultAvatarsCanvas.js"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { getActiveCharacter, getAllCharacters, loadCharacter } from '../../services/playerCharacter-service';
 
 function AvatarSelect({ user, isLoading, setIsLoading }) {
+    const [pickedNew, setPickedNew] = useState(false);
+
     useEffect(() => {
         if (user) {
             setIsLoading(false)
@@ -28,6 +30,17 @@ function AvatarSelect({ user, isLoading, setIsLoading }) {
     //     });
     // }
 
+    const avatarChangeHandler = (avatar) => {
+        editAvatar(avatar).then((data) => {
+            console.log(data)
+            setPickedNew(true)
+        })
+    }
+
+    if (pickedNew) {
+        return <Navigate to={"/account"} />
+    }
+
     return (
         <>
             {
@@ -43,11 +56,11 @@ function AvatarSelect({ user, isLoading, setIsLoading }) {
                             {/* Contains two columns */}
                             <div className="columns is-mobile is-centered">
                                 {/* Default column */}
-                                <div className="box my-3 mr-2 column is-5" style={user.avatar === 1 ? {backgroundColor: user.preferences.style.primaryColor} : {backgroundColor: user.preferences.style.backgroundColor}} onClick={() => {editAvatar(1)}}>
+                                <div className="box my-3 mr-2 column is-5" style={user.avatar === 1 ? {backgroundColor: user.preferences.style.primaryColor} : {backgroundColor: user.preferences.style.backgroundColor}} onClick={() => {avatarChangeHandler(1)}}>
                                     {DefaultAvatars.leonardDancingCanvas}
                                 </div>
                                 {/* End of first column */}
-                                <div className="box my-3 ml-2 column is-5" style={user.avatar === 0 ? {backgroundColor: user.preferences.style.primaryColor} : {backgroundColor: user.preferences.style.backgroundColor}} onClick={() => {editAvatar(0)}}>
+                                <div className="box my-3 ml-2 column is-5" style={user.avatar === 0 ? {backgroundColor: user.preferences.style.primaryColor} : {backgroundColor: user.preferences.style.backgroundColor}} onClick={() => {avatarChangeHandler(0)}}>
                                     {DefaultAvatars.MichelleIdle}
                                 </div>
                             </div>

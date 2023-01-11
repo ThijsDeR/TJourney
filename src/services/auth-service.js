@@ -127,7 +127,7 @@ export const editAvatar = async (avatar) => {
     const localUser = JSON.parse(localStorage.getItem("user"));
 
     if (localUser && localUser.accessToken) {
-        return axios.put("/v1/users/", {
+        const data = await axios.put("/v1/users/", {
             updateQuery: {
                 $set: {
                     "avatar": avatar
@@ -140,6 +140,8 @@ export const editAvatar = async (avatar) => {
 
             return response.data.data;
         });
+
+        return data;
     }
 }
 

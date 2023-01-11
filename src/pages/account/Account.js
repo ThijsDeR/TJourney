@@ -10,7 +10,7 @@ import { DefaultAvatars } from '../../assets/DefaultAvatars/DefaultAvatarsCanvas
 import { login, deleteAccount, editUsername, editPassword } from "../../services/auth-service";
 import { getActiveCharacter, getAllCharacters } from '../../services/playerCharacter-service.js';
 
-function Account({ user, isLoading, setIsLoading }) {
+function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
     const [userLevel, setUserLevel] = useState(undefined);
     const [level, setLevel] = useState(undefined);
 
@@ -86,6 +86,10 @@ function Account({ user, isLoading, setIsLoading }) {
     useEffect(() => {
         if (user && userLevel !== undefined) setIsLoading(false)
     }, [user, userLevel, setIsLoading])
+
+    useEffect(() => {
+        reloadUserHandler()
+    }, [])
 
     if (user === undefined && !isLoading) {
         return <Navigate to="/login" replace />;

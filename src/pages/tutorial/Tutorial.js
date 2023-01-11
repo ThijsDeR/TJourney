@@ -20,7 +20,6 @@ function Tutorial({ user, isLoading, setIsLoading }) {
     function updateTutorialPosition() {
         setScreenPart(0);
         setTutorialPosition(tutorialPosition + 1);
-        console.log("next screen " + tutorialPosition);
         if (tutorialPosition >= 7) {
             setTutorialDone(true);
         }
@@ -28,7 +27,6 @@ function Tutorial({ user, isLoading, setIsLoading }) {
 
     function updateTutorialScreenPart(amount = 1) {
         setScreenPart(screenPart + amount);
-        console.log(screenPart);
     }
 
     useEffect(() => {

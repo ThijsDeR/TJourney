@@ -34,11 +34,10 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
 
     const reloadData = () => {
         getCurrentUser().then((user) => {
-            console.log(user)
             setUser(user)
             setUserLevel(user.level.amount)
             setLevel(calculateLevel(user.level.amount))
-            loadCharacter(user.avatar)
+            
         })
     }
 
@@ -63,6 +62,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
         if (user && !userLevel) {
             setUserLevel(user.level.amount)
             setLevel(calculateLevel(user.level.amount))
+            game.setPlayerCharacter(user.avatar)
         }
     }, [user, userLevel])
 

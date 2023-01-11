@@ -5,10 +5,21 @@ import WalkingLeonard from "../assets/Leonard/WalkingLeonard.jsx";
 import { getCurrentUser } from "./auth-service";
 import axios from "../api/axios.js";
 
-const allCharacters = {
-    idle: [<MichelleIdle />, <DancingLeonard />],
-    walking: [<MichelleWalking />, <WalkingLeonard />]
-}
+// const allCharacters = {
+//     idle: [<MichelleIdle />, <DancingLeonard />],
+//     walking: [<MichelleWalking />, <WalkingLeonard />]
+// }
+
+const allCharacters = [
+    {
+        idle: <MichelleIdle />,
+        walking: <MichelleWalking />
+    },
+    {
+        idle: <DancingLeonard />,
+        walking: <WalkingLeonard />
+    }
+]
 
 export class activeCharacter {
     character;

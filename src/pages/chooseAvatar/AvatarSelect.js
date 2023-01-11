@@ -14,7 +14,6 @@ function AvatarSelect({ user, isLoading, setIsLoading }) {
     useEffect(() => {
         if (user) {
             setIsLoading(false)
-            loadCharacter(user.avatar)
         }
     }, [user, setIsLoading])
 
@@ -23,7 +22,6 @@ function AvatarSelect({ user, isLoading, setIsLoading }) {
      */
     // function selectAvatar(avatar) {
     //     setActiveCharacter(avatar);
-    //     console.log("avatar = " + avatar)
     //     editAvatar(avatar).then((data) => {
     //         // Needs to fully reload so canvas updates correctly, tried using Navigate but it shows the avatar wrong until reload
     //         window.location.href = "/account";
@@ -45,11 +43,11 @@ function AvatarSelect({ user, isLoading, setIsLoading }) {
                             {/* Contains two columns */}
                             <div className="columns is-mobile is-centered">
                                 {/* Default column */}
-                                <div className="box my-3 mr-2 column is-5" style={(getActiveCharacter()[0] === getAllCharacters().idle[1]) ? {backgroundColor: user.preferences.style.primaryColor} : {backgroundColor: user.preferences.style.backgroundColor}} onClick={() => {editAvatar(1)}}>
+                                <div className="box my-3 mr-2 column is-5" style={user.avatar === 1 ? {backgroundColor: user.preferences.style.primaryColor} : {backgroundColor: user.preferences.style.backgroundColor}} onClick={() => {editAvatar(1)}}>
                                     {DefaultAvatars.leonardDancingCanvas}
                                 </div>
                                 {/* End of first column */}
-                                <div className="box my-3 ml-2 column is-5" style={(getActiveCharacter()[0] === getAllCharacters().idle[0]) ? {backgroundColor: user.preferences.style.primaryColor} : {backgroundColor: user.preferences.style.backgroundColor}} onClick={() => {editAvatar(0)}}>
+                                <div className="box my-3 ml-2 column is-5" style={user.avatar === 0 ? {backgroundColor: user.preferences.style.primaryColor} : {backgroundColor: user.preferences.style.backgroundColor}} onClick={() => {editAvatar(0)}}>
                                     {DefaultAvatars.MichelleIdle}
                                 </div>
                             </div>

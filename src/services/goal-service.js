@@ -41,7 +41,6 @@ export const getStreak = async () => {
         let streak = challenges[0].finished ? 1 : 0;
         for(let i = 1; i < challenges.length; i++) {
             const challenge = challenges[i]
-            console.log(challenge)
             if (challenge.finished) streak++
             else break;
         }

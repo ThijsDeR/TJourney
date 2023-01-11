@@ -8,7 +8,7 @@ export default class Game {
     lastPlaceOnBoard;
     shouldUpdate;
 
-    constructor(world) {
+    constructor(world, user) {
         this.world = world;
         this.player = new Player(this.world.circles[0].position, new Rotation(0, 0, 0), 1.5, 0)
         this.lastPlaceOnBoard = 0;
@@ -41,5 +41,9 @@ export default class Game {
 
     throwDice(count) {
         this.player.spawnDiceAnimation(count)
+    }
+
+    setPlayerCharacter(character) {
+        this.player.setCharacter(character)
     }
 }

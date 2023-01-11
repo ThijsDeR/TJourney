@@ -29,6 +29,10 @@ function Account({ user, isLoading, setIsLoading }) {
      * @returns 
      */
     function getAvatar() {
+        if (user.avatar === 0) return DefaultAvatars.MichelleIdle;
+        if (user.avatar === 1) return DefaultAvatars.leonardDancingCanvas;
+
+
         if (getActiveCharacter()[0] === getAllCharacters().idle[0]) {
             return DefaultAvatars.MichelleIdle;
         } else if (getActiveCharacter()[0] === getAllCharacters().idle[1]) {

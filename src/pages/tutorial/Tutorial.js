@@ -71,6 +71,8 @@ function Tutorial({ user, isLoading, setIsLoading }) {
                                             <div className="mb-2">Here we will help you track your habits!</div>
                                             <div className="mb-2">This app helps with the problems of bad habits using a bit of gamification and by doing it together with your friends.</div>
                                             <div className="mb-2">Our app makes improving your habits more fun by playing a game with your friends.</div>
+                                            <div className="mb-2">You can send motivational messages to your friends and compete with them for the highest score or streak.</div>
+                                        
                                         </div>
                                         <div className="mt-5 is-size-4">Do you wish to do a tutorial?</div>
                                         <div>

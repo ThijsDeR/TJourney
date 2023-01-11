@@ -3,6 +3,7 @@
     /* prevent you scrolling horizontally */
     display: grid;
     overflow-x: hidden;
+  
 
 
     grid-template-columns: 5% 95%;

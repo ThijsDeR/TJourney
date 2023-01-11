@@ -105,9 +105,7 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
                                 <div className="is-size-3" style={{ position: "absolute", left: "5vw" }}>
                                     <Link to="/preferences" style={{ color: user.preferences.style.primaryColor }}><FontAwesomeIcon icon={faSliders} /></Link>
                                 </div>
-                                <div className="is-size-3" style={{ position: "absolute", right: "5vw" }}>
-                                    <Link to="/avatarselect" style={{ color: user.preferences.style.primaryColor }}><FontAwesomeIcon icon={faPencil} /></Link>
-                                </div>
+
                                 <div className="is-size-3 has-text-centered">
                                     Account
                                 </div>
@@ -135,6 +133,11 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
                                     {/* Level */}
                                     <div>
                                         Level: ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )
+                                    </div>
+
+                                    {/*change avatar*/}
+                                    <div className="is-size-3" style={{ position: "absolute", right: "3vw" }}>
+                                        <Link to="/avatarselect" style={{ color: user.preferences.style.primaryColor }}><FontAwesomeIcon icon={faPencil} /></Link>
                                     </div>
 
                                     {/*Logout*/}

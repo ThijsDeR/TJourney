@@ -1,5 +1,7 @@
 import "./navigation.css";
 import {loadCharacter} from "../../services/playerCharacter-service"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMap, faHome, faListCheck, faUserGear, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 import {
     Link
@@ -14,11 +16,16 @@ function Navigation({ user }) {
                     {
                         user ?
                             <>
-                                <Link to="/logout">L</Link>
-                                <Link to="/challenges">CH</Link>
-                                <Link to="/home">H</Link>
-                                <Link to="/game" onClick={() => {loadCharacter(user.avatar)}}>J</Link>
-                                <Link to="/chatFriends">Com</Link>
+                                <Link to="/account" className={window.location.pathname === '/account' ? 'selected' : window.location.pathname === '/avatarselect' ? 'selected' : undefined}><FontAwesomeIcon icon={faUserGear} /></Link>
+                                <Link to="/challenges" className={window.location.pathname === '/challenges' ? 'selected' : undefined}><FontAwesomeIcon icon={faListCheck} /></Link>
+                                <Link to="/home" className={window.location.pathname === '/home' ? 'selected' : undefined}><FontAwesomeIcon icon={faHome} /></Link>
+                                <Link to="/game" className={window.location.pathname === '/game' ? 'selected' : undefined}><FontAwesomeIcon icon={faMap} /></Link>
+                                <Link to="/chatFriends" className={window.location.pathname === '/chatFriends' ? 'selected' :
+                                     window.location.pathname === '/chatGroups' ? 'selected' :
+                                     window.location.pathname === '/leaderboard' ? 'selected' :
+                                     undefined}>
+                                        <FontAwesomeIcon icon={faUsers} />
+                                </Link>
                                 {/* <Link to="/community"> Co</Link> */}
                             </> :
                             <>

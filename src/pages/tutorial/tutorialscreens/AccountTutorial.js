@@ -6,6 +6,8 @@ import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { DefaultAvatars } from '../../../assets/DefaultAvatars/DefaultAvatarsCanvas';
 import { login, deleteAccount, editUsername, editPassword } from "../../../services/auth-service";
+import { getActiveCharacter, getAllCharacters } from '../../../services/playerCharacter-service.js';
+
 
 function Account({ user, isLoading, screenPart, updateTutorialScreenPart, updateTutorialPosition }) {
     const [userLevel, setUserLevel] = useState(undefined);
@@ -18,18 +20,14 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
     const [passwordNotSame, setPasswordNotSame] = useState(false);
 
     function getAvatar() {
-        let avatar = undefined;
-        Object.keys(DefaultAvatars).forEach(function (key, index) {
-            if (key === user.avatar) {
-                avatar = DefaultAvatars[key];
-                return;
-            }
-        });
-        if (avatar !== undefined) {
-            return avatar;
-        } else {
-            // Defaults to chopper if no avatar in db
-            return DefaultAvatars.Chopper
+        if (user.avatar === 0) return DefaultAvatars.MichelleIdle;
+        if (user.avatar === 1) return DefaultAvatars.leonardDancingCanvas;
+
+
+        if (getActiveCharacter()[0] === getAllCharacters().idle[0]) {
+            return DefaultAvatars.MichelleIdle;
+        } else if (getActiveCharacter()[0] === getAllCharacters().idle[1]) {
+            return DefaultAvatars.leonardDancingCanvas
         }
     }
 

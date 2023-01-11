@@ -36,7 +36,6 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
         if (getActiveCharacter()[0] === getAllCharacters().idle[0]) {
             return DefaultAvatars.MichelleIdle;
         } else if (getActiveCharacter()[0] === getAllCharacters().idle[1]) {
-            // Defaults to chopper if no avatar in db
             return DefaultAvatars.leonardDancingCanvas
         }
     }

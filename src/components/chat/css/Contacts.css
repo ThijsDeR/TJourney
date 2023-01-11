@@ -6,7 +6,7 @@ grid-template-rows: 10% 75% 15%;
 max-width: 100%;
 overflow-x: hidden;
 overflow: hidden;
-background-color: #080420;
+background-color: #080420; 
 }
 .brand {
   display: flex;

@@ -30,14 +30,11 @@ function Account({ user, isLoading, setIsLoading }) {
      */
     function getAvatar() {
         if (getActiveCharacter()[0] === getAllCharacters().idle[0]) {
-            console.log('michelle')
             return DefaultAvatars.MichelleIdle;
         } else if (getActiveCharacter()[0] === getAllCharacters().idle[1]) {
-            console.log('Leonard')
             // Defaults to chopper if no avatar in db
             return DefaultAvatars.leonardDancingCanvas
         }
-        console.log('nothing')
     }
 
     async function handleNewPassword() {

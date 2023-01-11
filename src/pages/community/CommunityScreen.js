@@ -19,7 +19,6 @@ function CommunityScreen({ user, isLoading, setIsLoading }) {
 
     useEffect(() => {
         if (user) setIsLoading(false)
-        console.log("user", user)
     }, [user, setIsLoading])
 
     return (

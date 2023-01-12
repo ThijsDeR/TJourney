@@ -12,8 +12,6 @@ import Birds from '../Birds/Fly'
 import { FlyClass } from '../Birds/FlyClass.js'
 import Shark from '../Shark/Shark'
 import Cloud from '../Cloud/Cloud'
-import MichelleIdle from '../Michelle/Idle'
-import Chopper from '../Chopper/Chopper'
 const flyClass = new FlyClass();
 
 

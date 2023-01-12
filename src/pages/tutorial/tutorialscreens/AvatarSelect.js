@@ -2,7 +2,8 @@ import React from 'react';
 import { editAvatar } from "../../../services/auth-service";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMap, faHome, faListCheck, faUserGear, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faMap, faHome, faListCheck, faUserGear, faUsers, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+
 import { DefaultAvatars } from "../../../assets/DefaultAvatars/DefaultAvatarsCanvas.js"
 
 function AvatarSelect({ user, screenPart, updateTutorialScreenPart, updateTutorialPosition }) {
@@ -26,8 +27,11 @@ function AvatarSelect({ user, screenPart, updateTutorialScreenPart, updateTutori
                 }
             </div>
 
-            <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto", overflowX: "hidden" }}>
-                <div className="title text-center has-text-centered has-text-white">
+            <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: user.preferences.style.backgroundColor, color: user.preferences.style.textColor, overflowY: "auto", overflowX: "hidden" }}>
+                <div className="is-size-3" style={{ position: "absolute", left: "5vw" }}>
+                    <Link to="" style={{ color: user.preferences.style.primaryColor }}><FontAwesomeIcon icon={faChevronLeft} /></Link>
+                </div>
+                <div className="title text-center has-text-centered" style={{ color: user.preferences.style.textColor }}>
                     Avatar Select
                 </div>
                 {/* Contains two columns */}
@@ -52,6 +56,7 @@ function AvatarSelect({ user, screenPart, updateTutorialScreenPart, updateTutori
                             <Link to="#"><FontAwesomeIcon icon={faHome} /></Link>
                             <Link to="#"><FontAwesomeIcon icon={faMap} /></Link>
                             <Link to="#"><FontAwesomeIcon icon={faUsers} /></Link>
+
                         </> :
                         <>
                             <Link to="#">Login</Link>

@@ -1,0 +1,36 @@
+.tabListItemContainer {
+    display: table;
+    width: 100%;
+}
+
+.tabList {
+    display: inline block;
+    display: inline;
+    padding: 6px 10px;
+    width: 100%;
+    margin: 10px auto;
+}
+
+.tabListItem {
+    color: mediumEmphasis;
+}
+
+.tabListItemActive {
+
+    border-radius: 5px;
+}
+
+.tabContent {
+    padding: 0px 0px 0px 10px
+}
+
+.centerdiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabListItemContainer {
+    display: table;
+    width: 100%;
+}

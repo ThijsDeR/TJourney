@@ -4,9 +4,11 @@ import ChatInput from './ChatInput';
 import { v4 as uuidv4 } from "uuid";
 import { getAllMessages, createMessage } from '../../services/chat-service.js';
 import "./css/ChatContainer.css"
+// import { friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, lightText, tabListItem, centerDiv, tabListItemContainer, tabList, communityTileStyle, tabContent } from '../../styling/StylingVariables.js';
+import { Link } from 'react-router-dom';
 
 let timer = 0;
-export default function ChatContainer({ currentChat, currentUser }) {
+export default function ChatContainer({ currentChat, currentUser, style }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   updateData()
@@ -54,7 +56,7 @@ export default function ChatContainer({ currentChat, currentUser }) {
     let ListWithCorrespondingChatMessages = [];
     response.forEach(element => {
       if (currentChat._id === element.user[1] || currentChat._id === element.user[0]) {
-        if (currentUser._id ===element.user[1] || element.user[0] === currentUser._id) {
+        if (currentUser._id === element.user[1] || element.user[0] === currentUser._id) {
           ListWithCorrespondingChatMessages.push(element)
         }
       }
@@ -80,40 +82,44 @@ export default function ChatContainer({ currentChat, currentUser }) {
     <>
       {
         currentChat && (
-          <div className='Chat-container'>
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <div className="chat-header">
-              <div className="user-details">
-                <div className="username">
-                  {//shows the username of the person you sent a message to
-                  }
-                  <h3>{currentChat.username}</h3>
-                </div>
-              </div>
+          <>
 
-            </div>
-            <div className="chat-messages">
-              {messages.map((message) => {
-                return (
-                  <div key={uuidv4()}>
-                    <div
-                      //Puts the messages you sent to right and the messsages you get on the left
-                      className={`message ${message.sender === currentUser._id ?
-                        "sended" :
-                        "recieved"
-                        }`
-                      }
-                    >
-                      <div className="content ">
-                        <p>{message.message}</p>
+            <div className='Chat-container'>
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <div className="chat-header">
+                <div className="user-details">
+                  <div className="username">
+                    {//shows the username of the person you sent a message to
+                    }
+                    <h3>{currentChat.username}</h3>
+                  </div>
+                </div>
+
+              </div>
+              <div className="chat-messages">
+                {messages.map((message) => {
+                  return (
+
+                    <div key={uuidv4()}>
+                      <div
+                        //Puts the messages you sent to right and the messsages you get on the left
+                        className={`message ${message.sender === currentUser._id ?
+                          "sended" :
+                          "recieved"
+                          }`
+                        }
+                      >
+                        <div className="content ">
+                          <p>{message.message}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
+              <ChatInput handleSendMsg={handleSendMsg} />
             </div>
-            <ChatInput handleSendMsg={handleSendMsg} />
-          </div>
+          </>
         )
       }
     </>

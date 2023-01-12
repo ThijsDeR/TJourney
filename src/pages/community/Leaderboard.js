@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, Navigate } from 'react-router-dom';
 import Navigation from "../../components/navigation/Navigation";
 import { calculateLevel } from '../../services/level-service.js';
-
+import "./../../components/tabs/tab.css"
 
 // styling
 import 'bulma/css/bulma.min.css';

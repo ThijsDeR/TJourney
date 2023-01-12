@@ -32,6 +32,7 @@ export default function ContactsGroups({ contacts, currentUser, changeChat, styl
     <>
       {
         currentUserName && (
+
           <div className="Contacts">
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <div className="tabs" style={tabListItemContainer(style)}>

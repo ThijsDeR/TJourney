@@ -1,4 +1,67 @@
+ .communityTileStyle{
+     border-radius: 5px;
+        margin: 0px 0px 0px 10px;
+        align-items: center;
+        justify-Content: center;
+        width: 100%;
+        text-decoration: none; 
+ }
+ .tabContent{
+  padding: '0px 0px 0px 10px',
+ }
+ .tab-list {
+   display: flex
+ }
+.lastMessages{
+display: flex;
+}
+.levelUser{
+    display: flex;
+    font-weight: lighter
+}
+
+.notificationPopup{
+    justify-self: flex-end;
+    
+        display: flex;
+        align-items: center;
+        border-radius: 50px;
+        height: 30px;
+        width: 30px;
+        padding: 0px 10px;
+}
+.friendName{
+    display: flex;
+  font-weight: bold;
+}
+.fakePF{
+  display: flex;
+    border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        margin: 5px 10px 5px 5px;
+}
+.friendItems{
+  display: flex;
+    flex-direction: row;
+  /* align-items: right; */
+}
+
+
+.friendTile{
+    border-radius: 5px;
+      padding: 3px 10px;
+      margin: 10px 0px;
+      height: 70px;
+      width: 100%;
+        flex-direction: row;
+      /* display: inline-grid; */
+      grid-template-columns: 1fr 1f;
+      justify-content: start;
+      align-items: center;
+}
 .Contacts{
+  color:white;
 display: grid;
 overflow-x: hidden;
 
@@ -7,6 +70,9 @@ max-width: 100%;
 overflow-x: hidden;
 overflow: hidden;
 background-color: #080420; 
+
+  
+ 
 }
 .brand {
   display: flex;
@@ -29,6 +95,7 @@ background-color: #080420;
   overflow-x: hidden;
   overflow: auto;
   gap: 0.8rem;
+  
 }
 .contacts ::-webkit-scrollbar {
     width: 0.2rem;
@@ -51,6 +118,9 @@ background-color: #080420;
     gap: 1rem;
     align-items: center;
     transition: 0.5s ease-in-out;
+        @media screen and (min-width: 720px) and (max-width: 1080px) {
+            text-color: red;
+          }
   }
    
     .username h3 {
@@ -89,3 +159,5 @@ background-color: #080420;
       text-align: center
     
   }
+@media only screen and (max-width: 600px) {}
+ 

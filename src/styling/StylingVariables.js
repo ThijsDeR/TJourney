@@ -181,7 +181,7 @@ export const tabListItemActive = (style) => {
     return {
         backgroundColor: style.primaryColor,
         color: style.textColor,
-        borderRadius: '5px',
+        // borderRadius: '5px',
     }
 }
 
@@ -198,6 +198,7 @@ export const centerDiv = (style) => {
         alignItems: 'center',
     }
 }
+
 export const smallButton = (style) => {
     return {
         borderRadius: '5px',
@@ -214,10 +215,6 @@ export const smallButton = (style) => {
 export const fakePF = (style) => {
     return {
         backgroundColor: style.textColor,
-        borderRadius: '50%',
-        height: '50px',
-        width: '50px',
-        margin: '5px 10px 5px 5px',
     }
 }
 
@@ -225,37 +222,21 @@ export const fakePF = (style) => {
 export const friendsTile = (style) => {
     return {
         color: style.primary,
-        borderRadius: '5px',
-        padding: '3px 10px',
-        margin: '10px 0px',
-        height: '70px',
-        width: '100%',
-        display: 'inline-grid',
-        gridTemplateColumns: '1fr 1fr',
-        justifyContent: 'start',
-        alignItems: 'center',
     }
 
 }
 
 export const friendItems = (style) => {
     return {
-        display: 'flex',
-        alignItems: 'center',
+        // display: 'flex',
+        // alignItems: 'right',
     }
 }
 
 export const notifacationBubble = (style) => {
-    // console.log("🚀 ~ file: StylingVariables.js:249 ~ notifacationBubble ~ style", style)
     return {
         backgroundColor: style.textColor,
-        justifySelf: 'flex-end',
-        display: 'flex',
-        alignItems: 'center',
-        borderRadius: '50px',
-        height: '30px',
-        width: '30px',
-        padding: '0px 10px',
+
     }
 }
 

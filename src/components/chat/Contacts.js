@@ -41,12 +41,12 @@ export default function Contacts({ contacts, currentUser, changeChat, style }) {
           <div className="Contacts">
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <div className="tabs" style={tabListItemContainer(style)}>
-              <div className="item" style={tabList(style)}>
+              <div className="item" >
                 <div style={centerDiv(style)}>
-                  <ol className="tab-list" style={{display: 'flex'}}>
-                    <li style={communityTileStyle(style)}><Link style={{textDecoration: 'none'}} to={'/chatFriends'}>Friends</Link></li>
-                    <li style={tabContent(style)}><Link style={{textDecoration: 'none'}} to={'/chatGroups'}>Groups</Link></li>
-                    <li style={tabContent(style)}><Link style={{textDecoration: 'none'}} to={'/leaderboard'}>Leaderboard</Link></li>
+                  <ol className="tab-list" style={{ display: 'flex' }}>
+                    <li style={communityTileStyle(style)}><Link style={{ textDecoration: 'none' }} to={'/chatFriends'}>Friends</Link></li>
+                    <li style={tabContent(style)}><Link style={{ textDecoration: 'none' }} to={'/chatGroups'}>Groups</Link></li>
+                    <li style={tabContent(style)}><Link style={{ textDecoration: 'none' }} to={'/leaderboard'}>Leaderboard</Link></li>
                   </ol>
                 </div>
               </div>
@@ -57,7 +57,6 @@ export default function Contacts({ contacts, currentUser, changeChat, style }) {
 
                 contacts.map((contact, index) => {
                   return (
-
                     <div
                       className={`contact ${index === currentSelected ? "selected" : ""
                         }`}
@@ -65,14 +64,13 @@ export default function Contacts({ contacts, currentUser, changeChat, style }) {
                       onClick={() => changeCurrentChat(index, contact)}>
                       <div className="username">
                         <div className='friendTile' style={friendsTile(style)}>
-                          <div className='friendItems' style={friendItems(style)}>
-                            <div className='friendIcon' style={fakePF(style)}></div>
-                            <div className='friendInfo'>
-                              <div className='friendName' style={{ fontWeight: 'bold' }}> {contact.username} <em style={lightText(style)}>level {contact.level.amount}</em> </div>
-                              <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Last message </div>
-                            </div>
+                          <div className='friendItems' >
+                            <div className='fakePF' style={fakePF(style)}></div>
+                            <div className='friendName'> {contact.username} </div>
+                            <em className='levelUser'>level {contact.level.amount}</em>
+                            <div className='lastMessages' > Last message </div>
+                            <div className='notificationPopup' style={notifacationBubble(style)}>8</div>
                           </div>
-                          <div className='messageButton' style={notifacationBubble(style)}>8</div>
                         </div>
                       </div>
                     </div>

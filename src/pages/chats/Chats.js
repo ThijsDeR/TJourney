@@ -67,7 +67,7 @@ export function Chats({ user, isLoading, setIsLoading }) {
             {
               currentChat === undefined ?
                 "" :
-                <ChatContainer currentChat={currentChat} currentUser={currentUser} />
+                <ChatContainer currentChat={currentChat} currentUser={currentUser} style={user.preferences.style} />
             }
           </div>
         </div>

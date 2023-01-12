@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Tab from "./Tab";
+import "./tab.css"
 import { tabListItemContainer, tabList, tabContent, tabListItem, centerDiv } from "../../styling/StylingVariables.js"
 
 function Tabs(props) {
@@ -11,10 +12,10 @@ function Tabs(props) {
     };
 
     return (
-        <div className="tabs" style={tabListItemContainer(props.style)}>
-            <div className="item" style={tabList(props.style)}>
-                <div style={centerDiv(props.style)}>
-                    <ol className="tab-list" style={tabListItem(props.style)}>
+        <div className="tabs tabListItemContainer" >
+            <div className="item tablist">
+                <div className="centerDiv">
+                    <ol className="tab-list tabListItem">
                         {/* returns all the tab items as a li */}
                         {props.children.map((child) => {
                             const { label } = child.props;
@@ -32,7 +33,7 @@ function Tabs(props) {
                     </ol>
                 </div>
             </div>
-            <div className="tab-content" style={tabContent(props.style)}>
+            <div className="tab-content tabContent">
                 {props.children.map((child) => {
                     if (child.props.label !== activeTab) return undefined;
                     return child.props.children;

@@ -143,7 +143,9 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
 
             {/* <div style={{ ...pageStyle, position: "static" }}>
                 <div style={appContainer}>
-                    <Tabs>
+                    {/* <Tabs> */}
+                        {/* FRIENDS */}
+
                         <div label="Friends">
                             <div onClick={screenPart === 1 ? () => { updateTutorialScreenPart() } : () => {}} style={screenPart === 1 ?
                                 { ...containerLeftRight, zIndex: 30, position: "relative" }
@@ -359,7 +361,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                                 </div>
                             </div>
                         </div>
-                    </Tabs>
+                    {/* </Tabs> */}
                 </div>
             </div > */}
 

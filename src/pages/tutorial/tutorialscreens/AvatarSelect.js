@@ -2,7 +2,7 @@ import React from 'react';
 import { editAvatar } from "../../../services/auth-service";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faMap, faHome, faListCheck, faUserGear, faUsers, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { DefaultAvatars } from "../../../assets/DefaultAvatars/DefaultAvatarsCanvas.js"
 
@@ -51,11 +51,12 @@ function AvatarSelect({ user, screenPart, updateTutorialScreenPart, updateTutori
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
-                            <Link to="#">A</Link>
-                            <Link to="#" onClick={screenPart >= 8 ? () => updateTutorialPosition() : () => { }}>CH</Link>
-                            <Link to="#">H</Link>
-                            <Link to="#">J</Link>
-                            <Link>Co</Link>
+                            <Link to="#" style={{backgroundColor: 'rgb(198, 30, 156)', padding: "0 5% 0 5%"}}><FontAwesomeIcon icon={faUserGear} /></Link>
+                            <Link to="#" onClick={screenPart >= 8 ? () => updateTutorialPosition() : () => { }}><FontAwesomeIcon icon={faListCheck} /></Link>
+                            <Link to="#"><FontAwesomeIcon icon={faHome} /></Link>
+                            <Link to="#"><FontAwesomeIcon icon={faMap} /></Link>
+                            <Link to="#"><FontAwesomeIcon icon={faUsers} /></Link>
+
                         </> :
                         <>
                             <Link to="#">Login</Link>

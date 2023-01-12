@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Logo from "../../assets/teaScreech.png";
 import "./css/Contacts.css"
 import { friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, lightText, tabListItem, centerDiv, tabListItemContainer, tabList, linup, communityTileStyle, tabContent } from '../../styling/StylingVariables.js';
-import { Chats } from '../../pages/chats/Chats';
 
-// tabs
-import Tabs from '../../components/tabs/Tabs';
-import { GroupChats } from '../../pages/chats/GroupChat';
 import { Link } from 'react-router-dom';
 
 

@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import Loading from '../../components/loading/Loading.js';
 import { calculateLevel } from '../../services/level-service.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faSliders, faPencil } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faSliders, faPencil, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { DefaultAvatars } from '../../assets/DefaultAvatars/DefaultAvatarsCanvas';
 import { login, deleteAccount, editUsername, editPassword } from "../../services/auth-service";
@@ -105,6 +105,10 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
                                     <Link to="/preferences" style={{ color: user.preferences.style.primaryColor }}><FontAwesomeIcon icon={faSliders} /></Link>
                                 </div>
 
+                                <div className="is-size-3" style={{ position: "absolute", right: "5vw" }}>
+                                    <Link to="/logout" style={{ color: user.preferences.style.primaryColor }}><FontAwesomeIcon icon={faArrowRightFromBracket} /></Link>
+                                </div>
+
                                 <div className="is-size-3 has-text-centered">
                                     Account
                                 </div>
@@ -124,7 +128,7 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
                                             :
                                             <div style={{ height: "3vh" }} >
                                                 {user.username}
-                                                <button className="is-pulled-right button" style={{ backgroundColor: user.preferences.style.secondaryColor }} onClick={() => showInputUserName(!inputUserName)}>Edit</button>
+                                                <button className="is-pulled-right button" style={{ backgroundColor: user.preferences.style.secondaryColor, color: user.preferences.style.textColor }} onClick={() => showInputUserName(!inputUserName)}>Edit</button>
                                             </div>
                                         }
                                     </div>
@@ -134,25 +138,17 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
                                         Level: ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )
                                     </div>
 
-                                    {/*change avatar*/}
-                                    <div className="is-size-3" style={{ position: "absolute", right: "3vw" }}>
-                                        <Link to="/avatarselect" style={{ color: user.preferences.style.primaryColor }}><FontAwesomeIcon icon={faPencil} /></Link>
-                                    </div>
-
-                                    {/*Logout*/}
-                                    <div style={{ position: "absolute", bottom: "10vh", right: "50vw" }}>
-                                        <button className="button has-text-white" style={{ backgroundColor: user.preferences.style.primaryColor }} onClick={(e) => {
-                                            e.preventDefault();
-                                            window.location.href = '/logout';
-                                        }}>
-                                            Logout
-                                        </button>
-                                    </div>
 
                                     {/* Avatar canvas */}
-                                    <div className="box" style={{ backgroundColor: user.preferences.style.tertiaryColor }} onClick={() => { window.location.href = "/avatarselect" }}>
-                                        {getAvatar()}
-                                    </div>
+                                    <Link to="/avatarselect" >
+                                        <div className="box" style={{ backgroundColor: user.preferences.style.tertiaryColor, position: "relative" }} onClick={() => { window.location.href = "/avatarselect" }}>
+                                            {/*change avatar*/}
+                                            <div className="is-size-3" style={{position: "absolute", right: "10px", top: "-3px"}}>
+                                                <FontAwesomeIcon icon={faPencil} style={{ color: user.preferences.style.primaryColor }}/>
+                                            </div>
+                                            {getAvatar()}
+                                        </div>
+                                    </Link>
 
                                     {/* Edit password */}
                                     <div style={{ position: "absolute", bottom: "10vh", right: "5vw" }}>

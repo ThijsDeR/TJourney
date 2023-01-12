@@ -46,11 +46,11 @@ export function GoalsIndex({ user, isLoading, setIsLoading }) {
                                                                         <li>endDate: {goal.endDate}</li>
                                                                         <li>category: {goal.category}</li>
                                                                     </ul>
-                                                                    <div className="field is-grouped">
+                                                                    {/* <div className="field is-grouped">
                                                                         <div className="control">
                                                                             <button className="button" style={{ backgroundColor: user.preferences.style.primaryColor }}>Edit</button>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> */}
                                                                 </div>
                                                             </div>
                                                         </article>

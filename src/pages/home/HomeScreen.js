@@ -46,7 +46,7 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                             <section className="bg-image" style={{ height: "100%" }}>
                                 <div style={{ display: "grid", gap: "5%", gridTemplateColumns: "10% 85%" }}>
                                     <Link to="/account" style={{ color: "black", width: "100%", height: "100%", display: "flex", justifyContent: "center", flexDirection: "column" }}><FontAwesomeIcon icon={faUser} style={{ marginLeft: "10%", width: "80%", height: "80%" }} /></Link>
-                                    <h2 className="is-size-3 has-text-weight-bold">{user ? user.username : ""} ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )</h2>
+                                    <h2 className="is-size-3 has-text-weight-bold" style={{textAlign: "center"}}>{user ? user.username : ""} ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )</h2>
                                 </div>
                             </section>
                         </div >

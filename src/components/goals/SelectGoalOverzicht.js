@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function SelectGoalOverzicht(props) {
     const stepBackHandler = () => {
         props.setStepHandler(2)
@@ -14,11 +16,11 @@ export function SelectGoalOverzicht(props) {
                     <h1 className="is-size-1">Overview</h1>
                 </div>
                 <div className="container mx-3 " >
-                    <div className="box" style={{ color: props.user.preferences.style.textColor }}>
+                    <div className="box" style={{ color: props.user.preferences.style.secondaryColor }}>
                         <article className="media">
                             <div className="media-content">
                                 <div className="content">
-                                    <ul>
+                                    <ul style={{listStyle: "none"}}>
                                         <li>Name: {props.name}</li>
                                         <li>Description: {props.description}</li>
                                         <li>startValue: {props.startValue}</li>
@@ -29,10 +31,10 @@ export function SelectGoalOverzicht(props) {
                                     </ul>
                                     <div className="field is-grouped">
                                         <div className="control">
-                                            <button className="button is-link" style={{ backgroundColor: "rgb(247, 105, 255)" }} onClick={submitHandler}>Submit</button>
+                                            <button className="button is-link" style={{ backgroundColor: props.user.preferences.style.primaryColor }} onClick={submitHandler}>Submit</button>
                                         </div>
                                         <div className="control">
-                                            <button className="button is-link is-light">Cancel</button>
+                                            <button onClick={stepBackHandler} className="button is-link is-light">Cancel</button>
                                         </div>
                                     </div>
                                 </div>

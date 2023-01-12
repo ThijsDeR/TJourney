@@ -14,7 +14,7 @@ export function SelectGoalPlan(props) {
                     <h1 className="is-size-1">Plan</h1>
                 </div>
                 <div className="container mx-3" >
-                    <div className="box" style={{ backgroundColor: props.user.preferences.style.secondaryColor }}>
+                    <div className="box" style={{ backgroundColor: props.user.preferences.style.textColor, color: props.user.preferences.style.secondaryColor }}>
                         <article className="media">
                             <div className="media-content">
                                 <div className="content">
@@ -70,7 +70,7 @@ export function SelectGoalPlan(props) {
                                             <button className="button is-link" style={{ backgroundColor: props.user.preferences.style.primaryColor }} onClick={submitHandler}>Submit</button>
                                         </div>
                                         <div className="control">
-                                            <button className="button is-link is-light">Cancel</button>
+                                            <button onClick={stepBackHandler} className="button is-link is-light">Cancel</button>
                                         </div>
                                     </div>
                                 </div>

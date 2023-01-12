@@ -6,6 +6,8 @@ import { getAllUsers } from "../../services/auth-service.js";
 import Loading from '../../components/loading/Loading.js';
 import './Chat.css';
 import Navigation from "../../components/navigation/Navigation";
+import { Link } from 'react-router-dom';
+import { friendsTile, notifacationBubble, fakePF, centerDiv, tabListItemContainer, communityTileStyle, tabContent } from '../../styling/StylingVariables.js';
 
 let leaderboard = false;
 
@@ -63,12 +65,20 @@ export function Chats({ user, isLoading, setIsLoading }) {
         <div className="Chats">
 
           <div className="containerChat">
+
             <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} style={user.preferences.style} />
             {
               currentChat === undefined ?
                 "" :
                 <ChatContainer currentChat={currentChat} currentUser={currentUser} style={user.preferences.style} />
             }
+            <div style={centerDiv(user.preferences.style)}>
+              <ol className="tab-list" style={{ display: 'flex' }}>
+                <li style={communityTileStyle(user.preferences.style)}><Link style={{ textDecoration: 'none' }} to={'/chatFriends'}>Friends</Link></li>
+                <li style={tabContent(user.preferences.style)}><Link style={{ textDecoration: 'none' }} to={'/chatGroups'}>Groups</Link></li>
+                <li style={tabContent(user.preferences.style)}><Link style={{ textDecoration: 'none' }} to={'/leaderboard'}>Leaderboard</Link></li>
+              </ol>
+            </div>
           </div>
         </div>
       }

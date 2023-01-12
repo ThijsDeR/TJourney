@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import "./css/Contacts.css"
-import { friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, lightText, tabListItem, centerDiv, tabListItemContainer, tabList, linup, communityTileStyle, tabContent } from '../../styling/StylingVariables.js';
+import { friendsTile, notifacationBubble, fakePF, centerDiv, tabListItemContainer, communityTileStyle, tabContent } from '../../styling/StylingVariables.js';
 
 import { Link } from 'react-router-dom';
 
@@ -37,13 +37,7 @@ export default function Contacts({ contacts, currentUser, changeChat, style }) {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <div className="tabs" style={tabListItemContainer(style)}>
               <div className="item" >
-                <div style={centerDiv(style)}>
-                  <ol className="tab-list" style={{ display: 'flex' }}>
-                    <li style={communityTileStyle(style)}><Link style={{ textDecoration: 'none' }} to={'/chatFriends'}>Friends</Link></li>
-                    <li style={tabContent(style)}><Link style={{ textDecoration: 'none' }} to={'/chatGroups'}>Groups</Link></li>
-                    <li style={tabContent(style)}><Link style={{ textDecoration: 'none' }} to={'/leaderboard'}>Leaderboard</Link></li>
-                  </ol>
-                </div>
+                
               </div>
             </div>
             <div className="contacts">

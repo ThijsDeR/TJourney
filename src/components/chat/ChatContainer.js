@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 import { getAllMessages, createMessage } from '../../services/chat-service.js';
 import "./css/ChatContainer.css"
 // import { friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, lightText, tabListItem, centerDiv, tabListItemContainer, tabList, communityTileStyle, tabContent } from '../../styling/StylingVariables.js';
-import { Link } from 'react-router-dom';
 
 let timer = 0;
 export default function ChatContainer({ currentChat, currentUser, style }) {
@@ -84,9 +83,10 @@ export default function ChatContainer({ currentChat, currentUser, style }) {
         currentChat && (
           <>
 
-            <div className='Chat-container'>
-              <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <div className="chat-header">
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+            <div className="chat-header">
+              <div className='Chat-container'>
                 <div className="user-details">
                   <div className="username">
                     {//shows the username of the person you sent a message to

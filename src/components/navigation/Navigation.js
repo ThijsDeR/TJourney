@@ -7,49 +7,16 @@ import {
     Link
 } from "react-router-dom";
 
-function setAccountClass(linkNumber) {
-    let answer;
+function setAccountClass(name) {
     const pathObjectArray = {
-        accountButton: ['/account', '/avatarselect', '/preferences'],
-        challengesButton: ['/challenges'],
-        homeButton: ['/home'],
-        gameButton: ['/game'],
-        communityButton: ['/chatFriends', '/chatGroups', '/leaderboard'],
-    };
-    if (linkNumber === 0) {
-        pathObjectArray.accountButton.forEach((element) => {
-            if (window.location.pathname === element) {
-                answer = 'selected';
-            }
-        })
-    } else if (linkNumber === 1) {
-        pathObjectArray.challengesButton.forEach((element) => {
-            if (window.location.pathname === element) {
-                answer = 'selected';
-            }
-        })
-    } else if (linkNumber === 2) {
-        pathObjectArray.homeButton.forEach((element) => {
-            if (window.location.pathname === element) {
-                answer = 'selected';
-            }
-        })
-    } else if (linkNumber === 3) {
-        pathObjectArray.gameButton.forEach((element) => {
-            if (window.location.pathname === element) {
-                answer = 'selected';
-            }
-        })
-    } else if (linkNumber === 4) {
-        pathObjectArray.communityButton.forEach((element) => {
-            if (window.location.pathname === element) {
-                answer = 'selected';
-            }
-        })
-    } else {
-        answer = undefined;
+        account: ['/account', '/avatarselect', '/preferences'],
+        challenges: ['/challenges'],
+        home: ['/home'],
+        game: ['/game'],
+        community: ['/chatFriends', '/chatGroups', '/leaderboard'],
     }
-    return answer;
+
+    return pathObjectArray[name].includes(window.location.pathname) ? 'selected' : '';
 }
 
 function Navigation({ user }) {
@@ -60,11 +27,11 @@ function Navigation({ user }) {
                     {
                         user ?
                             <>
-                                <Link to="/account" className={setAccountClass(0)}><FontAwesomeIcon icon={faUserGear} /></Link>
-                                <Link to="/challenges" className={setAccountClass(1)}><FontAwesomeIcon icon={faListCheck} /></Link>
-                                <Link to="/home" className={setAccountClass(2)}><FontAwesomeIcon icon={faHome} /></Link>
-                                <Link to="/game" className={setAccountClass(3)}><FontAwesomeIcon icon={faMap} /></Link>
-                                <Link to="/chatFriends" className={setAccountClass(4)}><FontAwesomeIcon icon={faUsers} /></Link>
+                                <Link to="/account" className={setAccountClass("account")}><FontAwesomeIcon icon={faUserGear} /></Link>
+                                <Link to="/challenges" className={setAccountClass("challenges")}><FontAwesomeIcon icon={faListCheck} /></Link>
+                                <Link to="/home" className={setAccountClass("home")}><FontAwesomeIcon icon={faHome} /></Link>
+                                <Link to="/game" className={setAccountClass("game")}><FontAwesomeIcon icon={faMap} /></Link>
+                                <Link to="/chatFriends" className={setAccountClass("community")}><FontAwesomeIcon icon={faUsers} /></Link>
                             </> :
                             <>
                                 <Link to="/login">Login</Link>

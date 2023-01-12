@@ -1,6 +1,8 @@
 import React from 'react';
 import { editAvatar } from "../../../services/auth-service";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { DefaultAvatars } from "../../../assets/DefaultAvatars/DefaultAvatarsCanvas.js"
 
@@ -25,28 +27,21 @@ function AvatarSelect({ user, screenPart, updateTutorialScreenPart, updateTutori
                 }
             </div>
 
-            <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflowY: "auto", overflowX: "hidden" }}>
-                <div className="title text-center has-text-centered has-text-white">
+            <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: user.preferences.style.backgroundColor, color: user.preferences.style.textColor, overflowY: "auto", overflowX: "hidden" }}>
+                <div className="is-size-3" style={{ position: "absolute", left: "5vw" }}>
+                    <Link to="" style={{ color: user.preferences.style.primaryColor }}><FontAwesomeIcon icon={faChevronLeft} /></Link>
+                </div>
+                <div className="title text-center has-text-centered" style={{ color: user.preferences.style.textColor }}>
                     Avatar Select
                 </div>
                 {/* Contains two columns */}
                 <div className="columns is-mobile is-centered">
                     {/* Default column */}
-                    <div className="box my-3 mr-2 column is-5 has-background-dark" onClick={() => selectAvatar("Chopper")}>
-                        {DefaultAvatars.Chopper}
+                    <div className="box my-3 mr-2 column is-5" style={user.avatar === 1 ? { backgroundColor: user.preferences.style.primaryColor } : { backgroundColor: user.preferences.style.backgroundColor }} onClick={() => { selectAvatar(1) }}>
+                        {DefaultAvatars.leonardDancingCanvas}
                     </div>
                     {/* End of first column */}
-                    <div className="box my-3 ml-2 column is-5 has-background-dark" onClick={() => selectAvatar("Shiba")}>
-                        {DefaultAvatars.Shiba}
-                    </div>
-                </div>
-                {/* End of first set of columns */}
-
-                <div className="columns is-mobile is-centered">
-                    <div className="box my-3 mr-2 column is-5 has-background-dark" onClick={() => selectAvatar("Randomguy")}>
-                        {DefaultAvatars.Randomguy}
-                    </div>
-                    <div className="box my-3 ml-2 column is-5 has-background-dark" onClick={() => selectAvatar("MichelleIdle")}>
+                    <div className="box my-3 ml-2 column is-5" style={user.avatar === 0 ? { backgroundColor: user.preferences.style.primaryColor } : { backgroundColor: user.preferences.style.backgroundColor }} onClick={() => { selectAvatar(0) }}>
                         {DefaultAvatars.MichelleIdle}
                     </div>
                 </div>
@@ -57,7 +52,7 @@ function AvatarSelect({ user, screenPart, updateTutorialScreenPart, updateTutori
                     {user ?
                         <>
                             <Link to="#">A</Link>
-                            <Link to="#" onClick={screenPart >= 8 ? () => updateTutorialPosition() : () => {}}>CH</Link>
+                            <Link to="#" onClick={screenPart >= 8 ? () => updateTutorialPosition() : () => { }}>CH</Link>
                             <Link to="#">H</Link>
                             <Link to="#">J</Link>
                             <Link>Co</Link>

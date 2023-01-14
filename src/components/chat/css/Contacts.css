@@ -1,163 +1,179 @@
- .communityTileStyle{
-     border-radius: 5px;
-        margin: 0px 0px 0px 10px;
-        align-items: center;
-        justify-Content: center;
-        width: 100%;
-        text-decoration: none; 
+ .communityTileStyle {
+   border-radius: 5px;
+   margin: 0px 0px 0px 10px;
+   align-items: center;
+   justify-Content: center;
+   width: 100%;
+   text-decoration: none;
  }
- .tabContent{
-  padding: '0px 0px 0px 10px',
+
+ .tabContent {
+   padding: '0px 0px 0px 10px',
  }
+
  .tab-list {
    display: flex
  }
-.lastMessages{
-display: flex;
-}
-.levelUser{
-    display: flex;
-    font-weight: lighter
-}
 
-.notificationPopup{
-    justify-self: flex-end;
-    
-        display: flex;
-        align-items: center;
-        border-radius: 50px;
-        height: 30px;
-        width: 30px;
-        padding: 0px 10px;
-}
-.friendName{
-    display: flex;
-  font-weight: bold;
-}
-.fakePF{
-  display: flex;
-    border-radius: 50%;
-        height: 50px;
-        width: 50px;
-        margin: 5px 10px 5px 5px;
-}
-.friendItems{
-  display: flex;
-    flex-direction: row;
-  /* align-items: right; */
-}
+ .lastMessages {
+   display: flex;
+ }
+
+ .levelUser {
+   display: flex;
+   font-weight: lighter
+ }
+
+ .notificationPopup {
+   justify-self: flex-end;
+
+   display: flex;
+   align-items: center;
+   border-radius: 50px;
+   height: 30px;
+   width: 30px;
+   padding: 0px 10px;
+ }
+
+ .friendName {
+   display: flex;
+   font-weight: bold;
+ }
+
+ .fakePF {
+   display: flex;
+   border-radius: 50%;
+   height: 50px;
+   width: 50px;
+   margin: 5px 10px 5px 5px;
+ }
+
+ .friendItems {
+   display: flex;
+   flex-direction: row;
+   /* align-items: right; */
+ }
 
 
-.friendTile{
-    border-radius: 5px;
-      padding: 3px 10px;
-      margin: 10px 0px;
-      height: 70px;
-      width: 100%;
-        flex-direction: row;
-      /* display: inline-grid; */
-      grid-template-columns: 1fr 1f;
-      justify-content: start;
-      align-items: center;
-}
-.Contacts{
-  color:white;
-display: grid;
-overflow-x: hidden;
+ .friendTile {
+   border-radius: 5px;
+   padding: 3px 10px;
+   margin: 10px 0px;
+   height: 70px;
+   width: 100vw;
+   flex-direction: row;
+   /* display: inline-grid; */
+   grid-template-columns: 1fr 1f;
+   justify-content: start;
+   align-items: center;
+ }
 
-grid-template-rows: 10% 75% 15%;
-max-width: 100%;
-overflow-x: hidden;
-overflow: hidden;
-background-color: #080420; 
+ .Contacts {
+   color: white;
+   display: grid;
+   overflow-x: hidden;
 
-  
- 
-}
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  justify-content: center;
-}
-.brand img {
-    height: 2rem;
-  }
-  .brand h3 {
-    color: white;
-    text-transform: uppercase;
-  }
+   grid-template-rows: 10% 75% 15%;
+   max-width: 100%;
+   overflow-x: hidden;
+   overflow: hidden;
+   background-color: #080420;
+   /* align-items: end; */
 
-.contacts {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-x: hidden;
-  overflow: auto;
-  gap: 0.8rem;
-  
-}
-.contacts ::-webkit-scrollbar {
-    width: 0.2rem;
-}
-.contacts-thumb {
-      background-color: #ffffff39;
-      width: 0.1rem;
-      border-radius: 1rem;
-    }
-  
-  .contact {
-    background-color: #ffffff34;
-    min-height: 5rem;
-    cursor: pointer;
-    width: 90%;
-    border-radius: 0.2rem;
-    padding: 0.4rem;
-    overflow-x: hidden;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    transition: 0.5s ease-in-out;
-        @media screen and (min-width: 720px) and (max-width: 1080px) {
-            text-color: red;
-          }
-  }
-   
-    .username h3 {
-        color: white;
-        text-transform: capitalize;
-        align-items:center;
-       
-      }
-    
-  
-  .selected {
-    background-color: #9a86f3;
-  }
 
-.current-user {
-  margin-bottom: 14%;
-  background-color: #0d0d30;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  @media screen and (min-width: 720px) and (max-width: 1080px) {
-    gap: 0.5rem;
-    .username h2{
-     
-        font-size: 1rem;   
-      
-    }
-  }
+ }
 
-}
-.current-user  .username h2{
-     
-      color: white;
-      text-transform: capitalize;
-      text-align: center
-    
-  }
-@media only screen and (max-width: 600px) {}
- 
+ .brand {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+   justify-content: center;
+ }
+
+ .brand img {
+   height: 2rem;
+ }
+
+ .brand h3 {
+   color: white;
+   text-transform: uppercase;
+ }
+
+ .contacts {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   overflow-x: hidden;
+   overflow: auto;
+   gap: 0.8rem;
+
+ }
+
+ .contacts ::-webkit-scrollbar {
+   width: 0.2rem;
+ }
+
+ .contacts-thumb {
+   background-color: #ffffff39;
+   width: 0.1rem;
+   border-radius: 1rem;
+ }
+
+ .contact {
+   background-color: #ffffff34;
+   min-height: 5rem;
+   cursor: pointer;
+   width: 90%;
+   border-radius: 0.2rem;
+   padding: 0.4rem;
+   overflow-x: hidden;
+   display: flex;
+   gap: 1rem;
+   align-items: center;
+   transition: 0.5s ease-in-out;
+
+   @media screen and (min-width: 720px) and (max-width: 1080px) {
+     text-color: red;
+   }
+ }
+
+ .username h3 {
+   color: white;
+   text-transform: capitalize;
+   align-items: center;
+
+ }
+
+
+ .selected {
+   background-color: #9a86f3;
+ }
+
+ .current-user {
+   margin-bottom: 14%;
+   background-color: #0d0d30;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 2rem;
+
+   @media screen and (min-width: 720px) and (max-width: 1080px) {
+     gap: 0.5rem;
+
+     .username h2 {
+
+       font-size: 1rem;
+
+     }
+   }
+
+ }
+
+ .current-user .username h2 {
+
+   color: white;
+   text-transform: capitalize;
+   text-align: center
+ }
+
+ @media only screen and (max-width: 600px) {}

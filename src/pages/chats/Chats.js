@@ -63,26 +63,34 @@ export function Chats({ user, isLoading, setIsLoading }) {
     <>
       {isLoading ? <Loading /> :
         <div className="Chats">
-
+          <div className="navbar-chat" style={centerDiv(user.preferences.style)} >
+            <ol  >
+              <li style={communityTileStyle(user.preferences.style)} ><Link style={{ textDecoration: 'none' }} to={'/chatFriends'}>Friends</Link></li>
+              <li style={tabContent(user.preferences.style)}><Link style={{ textDecoration: 'none' }} to={'/chatGroups'}>Groups</Link></li>
+              <li style={tabContent(user.preferences.style)}><Link style={{ textDecoration: 'none' }} to={'/leaderboard'}>Leaderboard</Link></li>
+            </ol>
+          </div>
           <div className="containerChat">
 
+
             <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} style={user.preferences.style} />
+
             {
               currentChat === undefined ?
                 "" :
                 <ChatContainer currentChat={currentChat} currentUser={currentUser} style={user.preferences.style} />
             }
-            <div style={centerDiv(user.preferences.style)}>
-              <ol className="tab-list" style={{ display: 'flex' }}>
-                <li style={communityTileStyle(user.preferences.style)}><Link style={{ textDecoration: 'none' }} to={'/chatFriends'}>Friends</Link></li>
-                <li style={tabContent(user.preferences.style)}><Link style={{ textDecoration: 'none' }} to={'/chatGroups'}>Groups</Link></li>
-                <li style={tabContent(user.preferences.style)}><Link style={{ textDecoration: 'none' }} to={'/leaderboard'}>Leaderboard</Link></li>
-              </ol>
-            </div>
           </div>
+
         </div>
       }
+
       <Navigation user={user} />
+
+
+
+
+
     </>
   )
 }

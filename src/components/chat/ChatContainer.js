@@ -82,11 +82,11 @@ export default function ChatContainer({ currentChat, currentUser, style }) {
       {
         currentChat && (
           <>
+            <div className='Chat-container'>
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <div className="chat-header">
 
-            <div className="chat-header">
-              <div className='Chat-container'>
                 <div className="user-details">
                   <div className="username">
                     {//shows the username of the person you sent a message to

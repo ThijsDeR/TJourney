@@ -35,11 +35,15 @@ export default function Contacts({ contacts, currentUser, changeChat, style }) {
         currentUserName && (
           <div className="Contacts">
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <div className="tabs" style={tabListItemContainer(style)}>
-              <div className="item" >
-                
+            {/* <div className="tabs" style={tabListItemContainer(style)}> */}
+            {/* <div className="item" > */}
+            <div className="current-user">
+              <div className="username">
+                <h2>{currentUserName}</h2>
               </div>
             </div>
+            {/* </div> */}
+            {/* </div> */}
             <div className="contacts">
 
               {
@@ -54,8 +58,9 @@ export default function Contacts({ contacts, currentUser, changeChat, style }) {
                       <div className="username">
                         <div className='friendTile' style={friendsTile(style)}>
                           <div className='friendItems' >
-                            <div className='fakePF' style={fakePF(style)}></div>
                             <div className='friendName'> {contact.username} </div>
+                            {/* <div className='fakePF' style={fakePF(style)}></div> */}
+
                             <em className='levelUser'>level {contact.level.amount}</em>
                             <div className='lastMessages' > Last message </div>
                             <div className='notificationPopup' style={notifacationBubble(style)}>8</div>
@@ -67,11 +72,7 @@ export default function Contacts({ contacts, currentUser, changeChat, style }) {
                 })
               }
             </div>
-            <div className="current-user">
-              <div className="username">
-                <h2>{currentUserName}</h2>
-              </div>
-            </div>
+
           </div>
         )
       }

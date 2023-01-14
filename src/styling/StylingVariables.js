@@ -193,9 +193,10 @@ export const tabContent = (style) => {
 }
 export const centerDiv = (style) => {
     return {
-        display: 'flex',
+        display: 'grid',
         justifyContent: 'center',
         alignItems: 'center',
+
     }
 }
 

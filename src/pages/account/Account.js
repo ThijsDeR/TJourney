@@ -208,9 +208,9 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
                                             <div className="modal-content px-2 py-3" style={{ borderRadius: "15px", backgroundColor: user.preferences.style.backgroundColor }}>
                                                 <form onSubmit={(e) => handleDeleteAccount(e)}>
                                                     <div className="is-size-4 mb-1" style={{ color: user.preferences.style.textColor }}>Confirm deletion by entering your password:</div>
-                                                    <input className="input" style={{ color: user.preferences.style.textColor, backgroundColor: user.preferences.backgroundColor }} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                                    <input className="input" style={{ color: user.preferences.style.secondaryColor, backgroundColor: user.preferences.backgroundColor }} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                                                     <button className="button mt-3 is-pulled-right" style={{ color: user.preferences.style.textColor, backgroundColor: user.preferences.style.primaryColor }}>Submit</button>
-                                                    <button className="button mt-3" style={{ color: user.preferences.style.textColor, backgroundColor: user.preferences.backgroundColor }} onClick={() => showInputDeleteAccount(false)}>Close</button>
+                                                    <button className="button mt-3" style={{ color: user.preferences.style.secondaryColor, backgroundColor: user.preferences.backgroundColor }} onClick={() => showInputDeleteAccount(false)}>Close</button>
                                                 </form>
                                             </div>
                                         </div>

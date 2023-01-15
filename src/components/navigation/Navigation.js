@@ -10,10 +10,10 @@ import {
 function setAccountClass(name) {
     const pathObjectArray = {
         account: ['/account', '/avatarselect', '/preferences'],
-        challenges: ['/challenges'],
+        challenges: ['/challenges', '/goals/create', '/goals/index'],
         home: ['/home'],
         game: ['/game'],
-        community: ['/chatFriends', '/chatGroups', '/leaderboard'],
+        community: ['/chatFriends', '/chatGroups', '/leaderboard', '/add-group'],
     }
 
     return pathObjectArray[name].includes(window.location.pathname) ? 'selected' : '';

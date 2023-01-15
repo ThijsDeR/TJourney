@@ -21,6 +21,7 @@ import Friend from '../../scripts/friend.js'
 import Position from '../../scripts/position.js'
 import Rotation from '../../scripts/rotation.js'
 import { loadCharacter } from '../../services/playerCharacter-service';
+import { calculateDiceEyesCount, calculateThrowCount, getdiceAmount, removeOneThrow } from '../../services/dice-service';
 
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
@@ -28,6 +29,7 @@ const game = new Game(fantasyBook);
 function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
     const [challenges, setChallenges] = useState(undefined);
     const [diceEyesCount, setDiceEyesCount] = useState(undefined);
+    const [throwAmount, setThrowAmount] = useState(undefined);
     const [userLevel, setUserLevel] = useState(undefined)
     const [level, setLevel] = useState(undefined)
     const [gameSession, setGameSesion] = useState(undefined)
@@ -90,50 +92,16 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
     }, [challenges])
 
     useEffect(() => {
+        if (challenges) {
+            calculateThrowCount(challenges).then((data) => {
+                setThrowAmount(data)
+            })
+        }
+    }, [challenges])
+
+    useEffect(() => {
         if (challenges && diceEyesCount !== undefined && userLevel !== undefined && gameSession !== undefined) setIsLoading(false)
     }, [challenges, diceEyesCount, gameSession, setIsLoading, userLevel])
-
-
-    const calculateDiceEyesCount = async (challenges) => {
-        const gameSession = await getGameSession()
-        const total = challenges.length
-        let finished = 0
-        const msInDay = 1000 * 60 * 60 * 24
-        challenges.forEach((challenge) => {
-            if (challenge.finished) {
-                const entry = gameSession.entries.find((entry) => {
-
-                    return Date.parse(entry.date)
-                        >= (
-                            Math.floor(
-                                Date.parse(challenge.date) / msInDay
-                            ) * msInDay
-                        )
-                        &&
-                        Date.parse(entry.date)
-                        <= (
-                            Math.ceil(
-                                Date.parse(challenge.date) / msInDay
-                            ) * msInDay
-                        )
-                })
-                if (!entry) {
-                    finished++
-                }
-            }
-        })
-
-        const diceEyesCountConfigs = [
-            [0, 20],
-            [0, 12, 20],
-            [0, 10, 16, 20],
-            [0, 8, 14, 18, 20],
-            [0, 6, 12, 16, 18, 20],
-            [0, 6, 10, 14, 16, 18, 20],
-        ]
-
-        return diceEyesCountConfigs[Math.max(0, total - 1)][finished]
-    }
 
     if (user === undefined && !isLoading) {
         return <Navigate to="/login" replace />;
@@ -176,13 +144,13 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
                             {/* </PresentationControls> */}
                         </Canvas>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (diceEyesCount !== 0 ? "rgba(0, 0, 0, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px", height: "100px" }}
+                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (getdiceAmount() !== 0 ? "rgba(0, 0, 0, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px", height: "100px" }}
                         onClick={() => {
-                            if (diceEyesCount !== 0 && game.player.dice.count === 0) game.throwDice(diceEyesCount)
+                            if (getdiceAmount() !== 0 && game.player.dice.count === 0) {game.throwDice(diceEyesCount); removeOneThrow()}
                         }}
                     >
                         <img src={luckyBlock} style={{ width: "50px", height: "50px" }} alt="lucky block"/>
-                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? diceEyesCount : "0"}</p>
+                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{getdiceAmount() ? getdiceAmount() : "0"}</p>
                     </div>
                 </div>
                 <Navigation user={user} />

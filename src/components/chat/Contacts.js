@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import "./css/Contacts.css"
-import { friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, lightText, tabListItem, centerDiv, tabListItemContainer, tabList, linup, communityTileStyle, tabContent } from '../../styling/StylingVariables.js';
+import { friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, title, containerLeftRight, lightText, tabListItem, centerDiv, tabListItemContainer, tabList, linup, communityTileStyle, tabContent } from '../../styling/StylingVariables.js';
 
 import { Link } from 'react-router-dom';
 
@@ -38,15 +38,24 @@ export default function Contacts({ contacts, currentUser, changeChat, style }) {
             <div className="tabs" style={tabListItemContainer(style)}>
               <div className="item" style={tabList(style)}>
                 <div style={centerDiv(style)}>
-                  <ol className="tab-list" style={{display: 'flex'}}>
-                    <li style={communityTileStyle(style)}><Link style={{textDecoration: 'none'}} to={'/chatFriends'}>Friends</Link></li>
-                    <li style={tabContent(style)}><Link style={{textDecoration: 'none'}} to={'/chatGroups'}>Groups</Link></li>
-                    <li style={tabContent(style)}><Link style={{textDecoration: 'none'}} to={'/leaderboard'}>Leaderboard</Link></li>
+                  <ol className="tab-list" style={{ display: 'flex' }}>
+                    <li style={communityTileStyle(style)}><Link style={{ textDecoration: 'none' }} to={'/chatFriends'}>Friends</Link></li>
+                    <li style={tabContent(style)}><Link style={{ textDecoration: 'none' }} to={'/chatGroups'}>Groups</Link></li>
+                    <li style={tabContent(style)}><Link style={{ textDecoration: 'none' }} to={'/leaderboard'}>Leaderboard</Link></li>
                   </ol>
                 </div>
               </div>
             </div>
             <div className="contacts">
+
+              {/* your friends */}
+              <div style={containerLeftRight(style)}>
+                <div style={{ verticalAlign: 'middle' }}>
+                  <h1 style={{ ...title(style), ...{ padding: 'unset' } }}>Friends</h1>
+                </div>
+                {/* TODO: link to add friend page? */}
+                <Link to={'/add-friend'} style={{ height: '24px', border: 'unset' }}><div style={{ color: style.primaryColor, border: '1px solid', padding: '1px 5px 1px 5px' }} >Add friend</div></Link>
+              </div>
 
               {
 

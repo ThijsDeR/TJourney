@@ -24,7 +24,8 @@ export function Chats({ user, isLoading, setIsLoading }) {
   useEffect(() => {
     const getUsers = async () => {
       if (currentUser) {
-        setContacts(removeOwnUserFromList(await getAllUsers()));
+        // setContacts(removeOwnUserFromList(await getAllUsers()));
+        setContacts(currentUser.friends);
       }
     }
     getUsers();

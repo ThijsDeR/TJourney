@@ -46,9 +46,7 @@ export const appContainer = (style) => {
 
 export const title = (style) => {
     return {
-        fontSize: '18px',
-        fontWeight: 'bold',
-        padding: '15px 0px 0px 0px',
+       
     }
 }
 
@@ -193,7 +191,7 @@ export const tabContent = (style) => {
 }
 export const centerDiv = (style) => {
     return {
-        display: 'grid',
+        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
 
@@ -331,15 +329,6 @@ export const topThreePfTwoThree = (style) => {
 export const leaderboardContainer = (style) => {
     return {
         backgroundColor: style.secondaryColor,
-        padding: '10px 10px',
-        borderRadius: '5px',
-        margin: '10px 0px',
-        width: '100%',
-        display: 'flex',
-        // gridTemplateColumns: '1fr 1fr 1fr',
-        alignItems: 'center',
-        height: '70px',
-        alignItems: 'center'
     }
 }
 

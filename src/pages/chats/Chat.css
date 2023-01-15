@@ -33,7 +33,7 @@
 }
 
 .navbar-chat {
-  display: flexbox;
+  display: flex;
   /* color: red; */
   /* position: sticky;
   top: 0; */

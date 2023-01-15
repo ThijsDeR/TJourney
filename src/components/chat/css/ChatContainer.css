@@ -9,14 +9,14 @@
 
 
   .Chat-container-leaderboard {
-    display: grid;
-    margin-bottom: 6%;
+    /* display: grid; */
+    margin-bottom: 23%;
     overflow-x: hidden;
-
+    padding-bottom: 5%;
     grid-template-rows: 20% 5% 5% 10%;
     gap: 0.1rem;
 
-    overflow: hidden;
+    /* overflow: hidden; */
 
     @media screen and (min-width: 720px) and (max-width: 1080px) {
       grid-template-rows: 15% 70% 15%;

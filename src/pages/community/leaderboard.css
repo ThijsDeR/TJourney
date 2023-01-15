@@ -1,0 +1,42 @@
+.first-container {
+    display: grid;
+    overflow: hidden;
+}
+
+.second-container {
+    padding-bottom: 10%;
+    width: 100%;
+    align-items: center;
+    padding-top: 5%;
+    display: grid;
+    overflow: scroll;
+}
+
+.leaderboard {
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 0px 0px 0px;
+}
+
+.leaderboardlist {
+    padding: 10px 10px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    width: 100%;
+    display: flex;
+    /* // gridTemplateColumns: '1fr 1fr 1fr', */
+    align-items: center;
+    height: 70px;
+}
+
+::-webkit-scrollbar {
+    width: 0.2rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ffffff39;
+    width: 0.1rem;
+    border-radius: 1rem;
+
+}

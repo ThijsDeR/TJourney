@@ -10,7 +10,8 @@
 
   .Chat-container-leaderboard {
     /* display: grid; */
-    margin-bottom: 23%;
+    width: 100%;
+    margin-bottom: 10vh;
     overflow-x: hidden;
     padding-bottom: 5%;
     grid-template-rows: 20% 5% 5% 10%;

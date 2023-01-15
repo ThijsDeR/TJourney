@@ -46,7 +46,7 @@ export const appContainer = (style) => {
 
 export const title = (style) => {
     return {
-       
+
     }
 }
 
@@ -329,6 +329,7 @@ export const topThreePfTwoThree = (style) => {
 export const leaderboardContainer = (style) => {
     return {
         backgroundColor: style.secondaryColor,
+
     }
 }
 

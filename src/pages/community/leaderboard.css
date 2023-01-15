@@ -1,6 +1,8 @@
 .first-container {
     display: grid;
     overflow: hidden;
+    /* position: fixed; */
+
 }
 
 .second-container {
@@ -39,4 +41,29 @@
     width: 0.1rem;
     border-radius: 1rem;
 
+}
+
+.username {
+    border-radius: 15%;
+}
+
+.navbar-leaderboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 800px) {
+    .navbar-leaderboard {
+        font-size: x-small;
+        display: flex;
+        justify-content: start;
+        text-align: left;
+        /* align-items: center; */
+
+    }
+
+    .small {
+        font-size: 0.5em;
+    }
 }

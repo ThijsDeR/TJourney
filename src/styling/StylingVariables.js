@@ -304,7 +304,7 @@ export const pfBox = (style) => {
 }
 export const myRank = (style) => {
     return {
-        // backgroundColor: style.primaryColor,
+        backgroundColor: style.primaryColor,
         padding: '5px 10px',
         borderRadius: '5px',
     }

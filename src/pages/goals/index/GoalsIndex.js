@@ -4,6 +4,14 @@ import { useEffect, useState } from "react";
 import { getAllGoals } from "../../../services/goal-service";
 import { Navigate, useRouteError } from "react-router-dom";
 
+// icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
+
+// styling
+import 'bulma/css/bulma.min.css';
+import { pageStyle, appContainer, goBackIndicator, title, tileGoalsCreate } from '../../../styling/StylingVariables.js';
+
 export function GoalsIndex({ user, isLoading, setIsLoading }) {
     const [goals, setGoals] = useState(undefined)
 
@@ -23,28 +31,32 @@ export function GoalsIndex({ user, isLoading, setIsLoading }) {
             {
                 isLoading ? <Loading /> :
                     <>
-                        <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: user.preferences.style.backgroundColor, color: user.preferences.style.textColor, overflowY: "auto" }}>
-                            {
-                                goals
-                                    ? <>
-                                        <div style={{ display: "flex", justifyContent: "center" }}>
-                                            <h1 className="is-size-1">Goal list</h1>
-                                        </div>
-                                        {goals.map((goal) => (
-                                            <>
-                                                <div className="container m-3">
-                                                    <div className="box">
+                        <div style={pageStyle(user.preferences.style)}>
+                            <div style={appContainer(user.preferences.style)}>
+                                {
+                                    goals
+                                        ? <>
+                                            <div style={goBackIndicator(user.preferences.style)}>
+                                                <FontAwesomeIcon icon={faAngleLeft} size='lg' />
+                                                <span style={{ paddingLeft: '10px' }}>Go back</span>
+                                            </div>
+
+                                            <span style={{ ...title(user.preferences.style), ...{ paddingBottom: '20px' } }} >Choose a category</span>
+                                            {goals.map((goal) => (
+                                                <>
+
+                                                    <div className="box" style={{ backgroundColor: user.preferences.style.secondaryColor, marginBottom: '10px', color: user.preferences.style.textColor, }}>
                                                         <article className="media">
                                                             <div className="media-content" style={{ overflow: "hidden" }}>
                                                                 <div className="content">
-                                                                    <ul style={{ listStyle: "none" }}>
-                                                                        <li>Name: {goal.name}</li>
-                                                                        <li>description: {goal.description}</li>
-                                                                        <li>startValue: {goal.startValue}</li>
-                                                                        <li>endValue: {goal.endValue}</li>
-                                                                        <li>startDate: {goal.startDate}</li>
-                                                                        <li>endDate: {goal.endDate}</li>
-                                                                        <li>category: {goal.category}</li>
+                                                                    <ul style={{ listStyle: 'none', margin: 'unset', marginBottom: '20px' }}>
+                                                                        <li><b>Name</b>: {goal.name}</li>
+                                                                        <li><b>description</b>: {goal.description}</li>
+                                                                        <li><b>startValue</b>: {goal.startValue}</li>
+                                                                        <li><b>endValue</b>: {goal.endValue}</li>
+                                                                        <li><b>startDate</b>: {goal.startDate}</li>
+                                                                        <li><b>endDate</b>: {goal.endDate}</li>
+                                                                        <li><b>category</b>: {goal.category}</li>
                                                                     </ul>
                                                                     <div className="field is-grouped">
                                                                         <div className="control">
@@ -55,13 +67,13 @@ export function GoalsIndex({ user, isLoading, setIsLoading }) {
                                                             </div>
                                                         </article>
                                                     </div>
-                                                </div>
-                                            </>
-                                        ))}
-                                    </> : ""
-                            }
+                                                </>
+                                            ))}
+                                        </> : ""
+                                }
+                            </div>
+                            <Navigation user={user} />
                         </div>
-                        <Navigation user={user} />
                     </>
             }
         </>

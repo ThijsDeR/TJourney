@@ -6,7 +6,8 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import 'bulma/css/bulma.min.css';
 import { pageStyle, appContainer, goBackIndicator, title, tileGoalsCreate } from '../../styling/StylingVariables.js';
 
-export function SelectGoalPlan(props) {
+export function
+    SelectGoalPlan(props) {
     const stepBackHandler = () => {
         props.setStepHandler(2)
     }
@@ -24,14 +25,15 @@ export function SelectGoalPlan(props) {
                         <span style={{ paddingLeft: '10px' }}>Go back</span>
                     </div>
 
-                    <span style={{ ...title(props.user.preferences.style), ...{ paddingBottom: '20px' } }} >Select psre-made plan</span>
+                    <span style={{ ...title(props.user.preferences.style), ...{ paddingBottom: '20px' } }} >Select pre-made plan</span>
 
                     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 20 }}>
                         <a href className="is-small is-size-1" style={{ color: props.user.preferences.style.primaryColor }} onClick={stepBackHandler}>&lt;</a>
                         <h1 className="is-size-1">Plan</h1>
                     </div>
+
                     <div className="container mx-3" >
-                        <div className="box" style={{ backgroundColor: props.user.preferences.style.secondaryColor }}>
+                        <div className="box" style={{ backgroundColor: props.user.preferences.style.secondaryColor, color: 'red' }}>
                             <article className="media">
                                 <div className="media-content">
                                     <div className="content">

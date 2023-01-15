@@ -136,7 +136,7 @@
    align-items: center;
    transition: 0.5s ease-in-out;
 
-   @media screen and (min-width: 720px) and (max-width: 1080px) {
+   @media screen and (min-width: 350px) and (max-width: 1080px) {
      text-color: red;
    }
  }
@@ -180,4 +180,27 @@
    text-align: center
  }
 
- @media only screen and (max-width: 600px) {}
+ @media only screen and (max-width: 800px) {
+   .Contacts {
+     font-size: 0.6em;
+     overflow-y: hidden;
+     grid-template-rows: 10% 75% 15%;
+     max-width: 100%;
+     /* overflow-x: hidden; */
+     overflow: hidden;
+     background-color: #080420;
+     /* align-items: end; */
+   }
+
+   .friendItems {
+     display: grid;
+   }
+
+   /* .friendTile {
+     display: grid;
+   }
+
+   .username {
+     display: grid;
+   } */
+ }

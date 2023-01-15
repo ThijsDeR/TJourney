@@ -6,7 +6,7 @@ import { calculateLevel } from '../../services/level-service.js';
 
 // styling
 import 'bulma/css/bulma.min.css';
-import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, leaderboardPFContainer, tabList, centerDiv, boldText, tabListItemContainer, communityTileStyle, tabContent, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard, pageStyle, appContainer } from '../../styling/StylingVariables.js';
+import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboardContainer, leaderboardPFContainer, tabList, centerDiv, boldText, tabListItemContainer, communityTileStyle, tabContent, leaderboardLevel, fakePfLeaderboard, rankingBubbleLeaderboard, pageStyle, appContainer, rankingBubbleLeaderboardOneTwoThree } from '../../styling/StylingVariables.js';
 import Loading from '../../components/loading/Loading';
 import { getAllUsers } from '../../services/auth-service';
 
@@ -53,10 +53,16 @@ export default function Leaderboard({ user, isLoading, setIsLoading }) {
                         <div style={appContainer(user.preferences.style)}>
 
                             {/* Top three */}
-                            <div style={topThreeContainer(user.preferences.style)}>
-                                <div style={topThreePfTwoThree(user.preferences.style)}></div>
-                                <div style={topThreePfOne(user.preferences.style)}></div>
-                                <div style={topThreePfTwoThree(user.preferences.style)}></div>
+                            <div style={topThreeContainer(user.preferences.style)} className="a">
+                                <div style={topThreePfTwoThree(user.preferences.style)} className="b">
+                                    <div style={rankingBubbleLeaderboardOneTwoThree(user.preferences.style)}>2</div>
+                                </div>
+                                <div style={topThreePfOne(user.preferences.style)} className="c">
+                                    <div style={{ ...rankingBubbleLeaderboardOneTwoThree(user.preferences.style), ...{ marginLeft: '45px', width: '45px', height: '45px', marginLeft: '37.5px', } }}>1</div>
+                                </div>
+                                <div style={topThreePfTwoThree(user.preferences.style)} className="d">
+                                    <div style={rankingBubbleLeaderboardOneTwoThree(user.preferences.style)}>3</div>
+                                </div>
 
                                 <div style={boldText(user.preferences.style)}>{users && users[1].username}</div>
                                 <div style={boldText(user.preferences.style)}>{users && users[0].username}</div>

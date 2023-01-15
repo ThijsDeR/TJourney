@@ -341,7 +341,8 @@ export const topThreePfTwoThree = (style) => {
         borderRadius: '50%',
         bottom: '0',
         display: 'inline-block',
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
+        alignItems: 'center',
     }
 }
 
@@ -394,6 +395,21 @@ export const rankingBubbleLeaderboard = (style) => {
         position: 'relative',
         top: '-55px',
         left: '0px',
+    }
+}
+
+export const rankingBubbleLeaderboardOneTwoThree = (style) => {
+    return {
+        backgroundColor: style.primaryColor,
+        height: '30px',
+        width: '30px',
+        borderRadius: '50%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold',
+        display: 'flex',
+        marginLeft: '20px',
+        transform: 'translateY(-45%)',
     }
 }
 

@@ -62,12 +62,6 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
                                     </div>
                                 </div>
 
-                                {/* TODO: delete test */}
-                                <div className="is-flex is-justify-content-center">
-                                    <button onClick={() => saveLevel(userLevel + 100)}>Increase</button>
-                                    <button onClick={() => saveLevel(userLevel - 100)}>Decrease</button>
-                                </div>
-
                             </section>
                         </div >
                         <Navigation user={user} />

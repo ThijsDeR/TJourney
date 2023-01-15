@@ -86,7 +86,7 @@ export default function Leaderboard({ user, isLoading, setIsLoading }) {
                                         <div style={leaderboardPFContainer(user.preferences.style)}>
                                             <div style={fakePfLeaderboard(user.preferences.style)}></div>
                                             <div style={rankingBubbleLeaderboard(user.preferences.style)}>
-                                                <span style={{ padding: 'auto' }}>{index + 4}</span>
+                                                <span style={{ padding: 'auto', color: user.preferences.style.textColor }}>{index + 4}</span>
                                             </div>
                                         </div>
                                         <div>{otherUser.username}</div>

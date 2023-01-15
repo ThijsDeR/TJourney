@@ -35,15 +35,11 @@ export default function Contacts({ contacts, currentUser, changeChat, style }) {
         currentUserName && (
           <div className="Contacts">
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            {/* <div className="tabs" style={tabListItemContainer(style)}> */}
-            {/* <div className="item" > */}
             <div className="current-user">
               <div className="username">
                 <h2>{currentUserName}</h2>
               </div>
             </div>
-            {/* </div> */}
-            {/* </div> */}
             <div className="contacts">
 
               {

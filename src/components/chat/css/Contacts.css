@@ -16,10 +16,12 @@
  }
 
  .lastMessages {
+   margin-right: 1%;
    display: flex;
  }
 
  .levelUser {
+   margin-right: 1%;
    display: flex;
    font-weight: lighter
  }
@@ -36,6 +38,7 @@
  }
 
  .friendName {
+   margin-right: 1%;
    display: flex;
    font-weight: bold;
  }
@@ -71,11 +74,11 @@
  .Contacts {
    color: white;
    display: grid;
-   overflow-x: hidden;
+   /* overflow-x: hidden; */
 
    grid-template-rows: 10% 75% 15%;
    max-width: 100%;
-   overflow-x: hidden;
+   /* overflow-x: hidden; */
    overflow: hidden;
    background-color: #080420;
    /* align-items: end; */
@@ -102,8 +105,9 @@
  .contacts {
    display: flex;
    flex-direction: column;
-   align-items: center;
+   /* align-items: center; */
    overflow-x: hidden;
+   /* overflow-y: hidden; */
    overflow: auto;
    gap: 0.8rem;
 

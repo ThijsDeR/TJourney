@@ -5,6 +5,7 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 // styling
 import 'bulma/css/bulma.min.css';
 import { pageStyle, appContainer, goBackIndicator, title, tileGoalsCreate } from '../../styling/StylingVariables.js';
+import { Link } from "react-router-dom";
 
 export function SelectGoalOverzicht(props) {
     const stepBackHandler = () => {

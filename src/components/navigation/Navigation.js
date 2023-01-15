@@ -1,9 +1,23 @@
 import "./navigation.css";
+import {loadCharacter} from "../../services/playerCharacter-service"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMap, faHome, faListCheck, faUserGear, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 import {
     Link
 } from "react-router-dom";
 
+function setAccountClass(name) {
+    const pathObjectArray = {
+        account: ['/account', '/avatarselect', '/preferences'],
+        challenges: ['/challenges'],
+        home: ['/home'],
+        game: ['/game'],
+        community: ['/chatFriends', '/chatGroups', '/leaderboard'],
+    }
+
+    return pathObjectArray[name].includes(window.location.pathname) ? 'selected' : '';
+}
 
 function Navigation({ user }) {
     return (
@@ -13,12 +27,11 @@ function Navigation({ user }) {
                     {
                         user ?
                             <>
-                                <Link to="/logout">L</Link>
-                                <Link to="/challenges">CH</Link>
-                                <Link to="/home">H</Link>
-                                <Link to="/game">J</Link>
-                                <Link to="/chatFriends">Com</Link>
-                                {/* <Link to="/community"> Co</Link> */}
+                                <Link to="/account" className={setAccountClass("account")}><FontAwesomeIcon icon={faUserGear} /></Link>
+                                <Link to="/challenges" className={setAccountClass("challenges")}><FontAwesomeIcon icon={faListCheck} /></Link>
+                                <Link to="/home" className={setAccountClass("home")}><FontAwesomeIcon icon={faHome} /></Link>
+                                <Link to="/game" className={setAccountClass("game")}><FontAwesomeIcon icon={faMap} /></Link>
+                                <Link to="/chatFriends" className={setAccountClass("community")}><FontAwesomeIcon icon={faUsers} /></Link>
                             </> :
                             <>
                                 <Link to="/login">Login</Link>

@@ -37,13 +37,6 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
         }
     }
 
-    const saveLevel = async (amount) => {
-        setUserLevel(amount)
-        updateLevel(amount).then((data) => {
-            setCurrentUser(data.userData)
-        })
-    }
-
     return (
         <>
             {

@@ -12,6 +12,8 @@ import { pageStyle, appContainer, goBackIndicator, title, buttonStyle } from '..
 
 export function SelectPremadePlan(props) {
     const [time, setTime] = useState(undefined);
+    const [indexSelect, setIndexSelect] = useState(undefined);
+
     const stepBackHandler = () => {
         props.setStepHandler(1)
     }

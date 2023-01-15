@@ -30,14 +30,14 @@ import { Preferences } from "./pages/account/Preferences.js";
 import { getPreferencesColor } from "./services/user-service.js";
 
 import Tutorial from "./pages/tutorial/Tutorial.js";
-
+import { setActiveCharacter } from "./services/playerCharacter-service.js";
 
 function App({ timeElapsed }) {
     const [currentUser, setCurrentUser] = useState(null);
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(() => {
+    const reloadUserHandler = () => {
         getCurrentUser().then((data) => {
             const style = getPreferencesColor(data.preferences.style)
             data.preferences.style = style ? style : {
@@ -48,8 +48,11 @@ function App({ timeElapsed }) {
                 textColor: "#F7F7F7"
             }
             setUser(data)
-            console.log(data.preferences)
         });
+    }
+
+    useEffect(() => {
+        reloadUserHandler()
     }, [currentUser]);
     return (
         <>
@@ -66,7 +69,7 @@ function App({ timeElapsed }) {
                     <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/tutorial" element={<Tutorial user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/chat" element={<Chats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/account" element={<Account user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                    <Route path="/account" element={<Account user={user} isLoading={isLoading} setIsLoading={setIsLoading} reloadUserHandler={reloadUserHandler} />} />
                     <Route path="/preferences" element={<Preferences user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/chatFriends" element={<Chats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/chatGroups" element={<GroupChats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />

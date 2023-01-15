@@ -63,7 +63,7 @@ export const goBackIndicator = (style) => {
 
 export const communityTileStyle = (style) => {
     return {
-        // backgroundColor: style.primaryColor,
+        backgroundColor: style.primaryColor,
         borderRadius: '5px',
         margin: '0px 0px 0px 10px',
         alignItems: 'center',

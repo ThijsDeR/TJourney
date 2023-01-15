@@ -24,7 +24,7 @@ function VariationSelect() {
 }
 
 function selectVariation(id) {
-    console.log(id);
+    
 }
 
 function mapAvatarVariation() {

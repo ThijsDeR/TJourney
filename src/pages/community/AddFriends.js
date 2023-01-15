@@ -47,7 +47,7 @@ function AddFriends({ user, isLoading, setIsLoading }) {
                         <div style={pageStyle(user.preferences.style)}>
                             <div style={appContainer(user.preferences.style)}>
 
-                                <Link to='/community' style={{ textDecoration: 'none' }}>
+                                <Link to='/friends' style={{ textDecoration: 'none' }}>
                                     <div style={goBackIndicator(user.preferences.style)}>
                                         <FontAwesomeIcon icon={faAngleLeft} size='lg' />
                                         <span style={{ paddingLeft: '10px' }}>Friends</span>

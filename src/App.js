@@ -31,6 +31,10 @@ import { getPreferencesColor } from "./services/user-service.js";
 
 import Tutorial from "./pages/tutorial/Tutorial.js";
 import { setActiveCharacter } from "./services/playerCharacter-service.js";
+import Friends from "./pages/community/Friends.js";
+import Loading from "./components/loading/Loading.js";
+import CommunityScreen from "./pages/community/Community.js";
+import FriendChat from "./pages/community/FriendChat.js";
 
 function App({ timeElapsed }) {
     const [currentUser, setCurrentUser] = useState(null);
@@ -76,9 +80,11 @@ function App({ timeElapsed }) {
                     {/* <Route path="/community" element={<CommunityScreen user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} /> */}
                     <Route path="/add-group" element={<GroupCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/groupChat" element={<GroupChats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/leaderboard" element={<Leaderboard user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                    {/* <Route path="/leaderboard" element={<Leaderboard user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} /> */}
                     <Route path="/avatarselect" element={<AvatarSelect user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                     <Route path="/add-friend" element={<AddFriends user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                    <Route path="/community" element={<CommunityScreen user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                    <Route path="/friendChat" element={<FriendChat user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 </Routes>
             </div>
         </>

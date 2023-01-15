@@ -59,6 +59,7 @@
 
 
  .friendTile {
+   overflow: hidden;
    border-radius: 5px;
    padding: 3px 10px;
    margin: 10px 0px;
@@ -74,8 +75,7 @@
  .Contacts {
    color: white;
    display: grid;
-   /* overflow-x: hidden; */
-
+   overflow-y: hidden;
    grid-template-rows: 10% 75% 15%;
    max-width: 100%;
    /* overflow-x: hidden; */
@@ -106,8 +106,7 @@
    display: flex;
    flex-direction: column;
    /* align-items: center; */
-   overflow-x: hidden;
-   /* overflow-y: hidden; */
+
    overflow: auto;
    gap: 0.8rem;
 
@@ -124,13 +123,14 @@
  }
 
  .contact {
+   overflow: hidden;
    background-color: #ffffff34;
    min-height: 5rem;
    cursor: pointer;
    width: 90%;
    border-radius: 0.2rem;
    padding: 0.4rem;
-   overflow-x: hidden;
+   /* overflow-x: hidden; */
    display: flex;
    gap: 1rem;
    align-items: center;
@@ -166,7 +166,7 @@
 
      .username h2 {
 
-       font-size: 1rem;
+       font-size: 0.5rem;
 
      }
    }

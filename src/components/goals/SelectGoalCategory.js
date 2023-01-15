@@ -20,7 +20,7 @@ export function SelectGoalCategory({ user, category, setCategory, setStepHandler
 
                     <div style={goBackIndicator(user.preferences.style)}>
                         <FontAwesomeIcon icon={faAngleLeft} size='lg' />
-                        <span style={{ paddingLeft: '10px' }}>Go back</span>
+                        <span style={{ paddingLeft: '10px', color: user.preferences.style.primaryColor }}>Go back</span>
                     </div>
 
                     <span style={{ ...title(user.preferences.style), ...{ paddingBottom: '20px' } }} >Choose a category</span>

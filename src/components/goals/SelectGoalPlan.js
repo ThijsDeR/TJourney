@@ -22,7 +22,7 @@ export function
 
                     <div style={goBackIndicator(props.user.preferences.style)}>
                         <FontAwesomeIcon icon={faAngleLeft} size='lg' />
-                        <span style={{ paddingLeft: '10px' }}>Go back</span>
+                        <span style={{ paddingLeft: '10px', color: props.user.preferences.style.primaryColor }}>Go back</span>
                     </div>
 
                     <span style={{ ...title(props.user.preferences.style), ...{ paddingBottom: '20px' } }} >Select pre-made plan</span>

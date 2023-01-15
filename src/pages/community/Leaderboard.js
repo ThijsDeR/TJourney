@@ -58,7 +58,7 @@ export default function Leaderboard({ user, isLoading, setIsLoading }) {
                                     <div style={rankingBubbleLeaderboardOneTwoThree(user.preferences.style)}>2</div>
                                 </div>
                                 <div style={topThreePfOne(user.preferences.style)} className="c">
-                                    <div style={{ ...rankingBubbleLeaderboardOneTwoThree(user.preferences.style), ...{ marginLeft: '45px', width: '45px', height: '45px', marginLeft: '37.5px', } }}>1</div>
+                                    <div style={{ ...rankingBubbleLeaderboardOneTwoThree(user.preferences.style), ...{  width: '45px', height: '45px', marginLeft: '37.5px', } }}>1</div>
                                 </div>
                                 <div style={topThreePfTwoThree(user.preferences.style)} className="d">
                                     <div style={rankingBubbleLeaderboardOneTwoThree(user.preferences.style)}>3</div>

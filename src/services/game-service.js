@@ -28,6 +28,11 @@ export const setSteps = async (steps) => {
             updateQuery: {
                 $set: {
                     steps: steps
+                },
+                $push: {
+                    entries: {
+                        date: Date.now()
+                    }
                 }
             },
         }, {
@@ -45,30 +50,19 @@ export const setSteps = async (steps) => {
 export const calculateDiceEyesCount = async (challenges) => {
     const gameSession = await getGameSession()
     const total = challenges.length
+    console.log(gameSession)
     let finished = 0
     const msInDay = 1000 * 60 * 60 * 24
-    challenges.forEach((challenge) => {
-        if (challenge.finished) {
-            const entry = gameSession.entries.find((entry) => {
+    const gameEntriesOnToday = gameSession.entries.filter(
+        (entry) => {
+            return entry.date / msInDay > (Math.floor(Date.now() / msInDay)) 
+            && entry.date / msInDay < (Math.ceil(Date.now() / msInDay))
+        })
 
-                return Date.parse(entry.date)
-                    >= (
-                        Math.floor(
-                            Date.parse(challenge.date) / msInDay
-                        ) * msInDay
-                    )
-                    &&
-                    Date.parse(entry.date)
-                    <= (
-                        Math.ceil(
-                            Date.parse(challenge.date) / msInDay
-                        ) * msInDay
-                    )
-            })
-            if (!entry) {
-                finished++
-            }
-        }
+    if (gameEntriesOnToday.length > 0) return 0
+
+    challenges.forEach((challenge) => {
+        if (challenge.finished) finished++
     })
 
     const diceEyesCountConfigs = [

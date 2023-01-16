@@ -41,17 +41,16 @@ import GameWrapper from "./pages/game/GameWrapper.js";
 import ProtectedRoute from "./components/ProtectedRoute.js";
 
 function App() {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(undefined)
     const [isLoading, setIsLoading] = useState(true)
 
-    const reloadUserHandler = () => {
-        getCurrentUser().then((data) => {
-            if (data) {
-                const style = getPreferencesColor(data.preferences?.style ? data.preferences.style : "default")
-                data.preferences.style = style;
-            }
-            setUser(data)
-        });
+    const reloadUserHandler = async () => {
+        const data = await getCurrentUser()
+        if (data) {
+            const style = getPreferencesColor(data.preferences?.style ? data.preferences.style : "default")
+            data.preferences.style = style;
+        }
+        setUser(data)
     }
 
     useEffect(() => {

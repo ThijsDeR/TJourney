@@ -9,7 +9,7 @@ const diceEyesCountConfigs = [
     [0, 6, 10, 14, 16, 18, 20],
 ]
 
-let amountOfThrows; 
+let amountOfThrows
 
 export const calculateDiceEyesCount = async (challenges) => {
     const gameSession = await getGameSession()
@@ -68,9 +68,10 @@ export const calculateThrowCount = async (challenges) => {
         }
     })
 
-    setThrowAmount(diceEyesCountConfigs[Math.max(0, total - 1)].length - 1)
+    const amount = diceEyesCountConfigs[Math.max(0, total - 1)].length - 1
 
-    return diceEyesCountConfigs[Math.max(0, total - 1)].length - 1;
+    setThrowAmount(amount)
+    return amount;
 }
 
 export function getdiceAmount() {

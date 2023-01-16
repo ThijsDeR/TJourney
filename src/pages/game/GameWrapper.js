@@ -11,7 +11,7 @@ function GameWrapper(props) {
     
     const animate = (time) => {
       if (previousTimeRef.current != undefined) {
-        const deltaTime = time - previousTimeRef.current;
+        const deltaTime = (time - previousTimeRef.current) / 1000;
 
         setTimeElapsed(deltaTime);
       }

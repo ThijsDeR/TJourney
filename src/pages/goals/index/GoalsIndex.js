@@ -69,8 +69,8 @@ export function GoalsIndex({ user }) {
                                         </> : ""
                                 }
                             </div>
-                             <Navigation style={user.preferences.style} />
                         </div>
+                        <Navigation style={user.preferences.style} />
                     </>
             }
         </>

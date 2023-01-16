@@ -34,13 +34,13 @@ function Home({ user }) {
                         <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px" }}>
                             <section className="bg-image" style={{ height: "100%" }}>
 
-                                <div style={{ display: "grid", gap: "5%", gridTemplateColumns: "15% 85%" }}>
-                                    <Link to="/account" style={{ color: "#121212", marginTop: "10px", width: "2rem", height: "2rem", display: "flex", justifyContent: "center", flexDirection: "column" }}>
-                                        <FontAwesomeIcon icon={faUser} style={{ marginLeft: "50%", width: "100%", height: "100%" }} />
+                                <div style={{ display: "flex", flex: "1 1 auto", justifyContent: "center", alignItems: "center", height: "50px" }}>
+                                    <Link to="/account" style={{ color: user.preferences.style.textColor, width: "2rem", height: "2rem", display: "flex", alignItems: "center", }}>
+                                        <FontAwesomeIcon icon={faUser} style={{ width: "100%", height: "100%" }} />
                                     </Link>
 
                                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                        <h2 className="is-size-3 has-text-weight-bold" style={{ marginRight: "30%", color: "#121212" }}>{user ? user.username : ""} ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )</h2>
+                                        <h2 className="has-text-weight-bold" style={{ paddingLeft: "10px", color: "#121212", fontSize: "1.5rem" }}>{user ? user.username : ""} ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )</h2>
                                     </div>
                                 </div>
 

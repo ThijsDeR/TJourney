@@ -9,24 +9,21 @@ import { Physics } from "@react-three/cannon";
 import luckyBlock from '../../assets/lg1emBK.png'
 import { getAllChallenges} from "../../services/goal-service.js";
 import { calculateDiceEyesCount, getGameSession, setSteps } from "../../services/game-service.js";
-import { Navigate } from 'react-router-dom';
 import Loading from '../../components/loading/Loading';
 import Navigation from '../../components/navigation/Navigation';
 import Game from '../../scripts/game.js';
 import FantasyBook from '../../scripts/fantasyBook';
 import { calculateLevel } from '../../services/level-service';
-import { getCurrentUser } from '../../services/auth-service';
 import { getFriends } from '../../services/friends-service';
 import Friend from '../../scripts/friend.js'
 import Position from '../../scripts/position.js'
 import Rotation from '../../scripts/rotation.js'
-import { loadCharacter } from '../../services/playerCharacter-service';
-import { calculateDiceEyesCount, calculateThrowCount, getdiceAmount, removeOneThrow } from '../../services/dice-service';
 
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
 
-function GameScreen({ user, timeElapsed }) {
+function GameScreen({ user, timeElapsed, reloadUserHandler }) {
+    const [diceEyesCount, setDiceEyesCount] = useState(undefined);
     const [throwAmount, setThrowAmount] = useState(undefined);
     const [level, setLevel] = useState(undefined)
     const [isLoading, setIsLoading] = useState(true);
@@ -58,10 +55,7 @@ function GameScreen({ user, timeElapsed }) {
 
         getAllChallenges(Date.now()).then((challenges) => {
             calculateDiceEyesCount(challenges).then((data) => {
-                setThrowAmount(data)
-            })
-            calculateThrowCount(challenges).then((data) => {
-                setThrowAmount(data)
+                setDiceEyesCount(data)
             })
         })
         getGameSession().then((data) => {
@@ -78,8 +72,12 @@ function GameScreen({ user, timeElapsed }) {
 
     if (game.shouldUpdate) {
         game.shouldUpdate = false
-        setSteps(game.player.placeOnTheBoard)
-        reloadData()
+        if (game.hasThrown) {
+            setSteps(game.player.placeOnTheBoard)
+        }
+        reloadUserHandler().then(() => {
+            reloadData()
+        })
     }
 
     return (
@@ -111,13 +109,13 @@ function GameScreen({ user, timeElapsed }) {
                             {/* </PresentationControls> */}
                         </Canvas>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (getdiceAmount() !== 0 ? "rgba(0, 0, 0, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px", height: "100px" }}
+                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (game.canThrow(diceEyesCount) ? "rgba(0, 0, 0, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px", height: "100px" }}
                         onClick={() => {
-                            if (getdiceAmount() !== 0 && game.player.dice.count === 0) {game.throwDice(diceEyesCount); removeOneThrow()}
+                            if (game.canThrow(diceEyesCount) && game.player.dice.count === 0) game.throwDice(diceEyesCount)
                         }}
                     >
                         <img src={luckyBlock} style={{ width: "50px", height: "50px" }} alt="lucky block"/>
-                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{getdiceAmount() ? getdiceAmount() : "0"}</p>
+                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{game.canThrow(diceEyesCount) ? diceEyesCount : "0"}</p>
                     </div>
                 </div>
                 <Navigation style={user.preferences.style} />

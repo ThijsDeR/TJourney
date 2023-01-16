@@ -25,7 +25,7 @@ export const pageStyle = (style) => {
     return {
         position: 'fixed',
         top: '0px',
-        bottom: '50px',
+        bottom: '65px',
         left: '0px',
         right: '0px',
         backgroundColor: style.backgroundColor,

@@ -33,6 +33,7 @@ export function CreateGroupForm({ user, isLoading, setIsLoading, props }) {
     useEffect(() => {
         getCurrentUser().then((data) => {
             setUser(data)
+            friendsInGroup.push(data)
         })
     }, [])
 
@@ -59,7 +60,7 @@ export function CreateGroupForm({ user, isLoading, setIsLoading, props }) {
                         alignItems: 'center',
                     }}>
                         <div style={containerLeftRight(user.preferences.style)}>
-                            <Link to="/chatGroups" style={unsetLinkStyle(user.preferences.style)}>
+                            <Link to="/community" style={unsetLinkStyle(user.preferences.style)}>
                                 <div style={{ ...smallButton(user.preferences.style), ...{ width: '70px' } }}>Cancel</div>
                             </Link>
                             <div style={{ ...{ width: '80%' } }}>   
@@ -69,7 +70,7 @@ export function CreateGroupForm({ user, isLoading, setIsLoading, props }) {
                                 </div>
 
                             </div>
-                            <Link to="/chatGroups" style={unsetLinkStyle(user.preferences.style)}>
+                            <Link to="/community" style={unsetLinkStyle(user.preferences.style)}>
                                 <div style={{ ...smallButton(user.preferences.style), ...{ width: '70px' } }} onClick={() => createGroups(props.name, props.description, friendsInGroup, localUser.id, "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg")}>Create Group</div>
                             </Link>
                         </div>

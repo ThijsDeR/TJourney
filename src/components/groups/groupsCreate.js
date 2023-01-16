@@ -10,7 +10,7 @@ import { getAllUsers, getCurrentUser } from '../../services/auth-service.js';
 import Loading from '../loading/Loading.js';
 
 let friendsInGroup = [];
-export function CreateGroupForm({ user, isLoading, setIsLoading, props }) {
+export function CreateGroupForm({ user, props }) {
     const localUser = JSON.parse(localStorage.getItem("user"))
     const [users, setUsers] = useState(undefined)
     const [CurrentUser, setUser] = useState(undefined)

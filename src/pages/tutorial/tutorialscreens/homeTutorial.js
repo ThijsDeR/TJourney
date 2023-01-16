@@ -1,5 +1,8 @@
 import "../../../components/navigation/navigation.css";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMap, faHome, faListCheck, faUserGear, faUsers } from '@fortawesome/free-solid-svg-icons';
+
 
 const HomescreenTutorial = ({ user, updateTutorialPosition, screenPart, updateTutorialScreenPart }) => {
     return (
@@ -104,11 +107,11 @@ const HomescreenTutorial = ({ user, updateTutorialPosition, screenPart, updateTu
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
-                            <Link to="#" onClick={screenPart >= 9 ? () => updateTutorialPosition() : () => { }}>A</Link>
-                            <Link to="#">CH</Link>
-                            <Link to="#">H</Link>
-                            <Link to="#">J</Link>
-                            <Link>Co</Link>
+                            <Link to="" onClick={screenPart >= 9 ? () => updateTutorialPosition() : () => { }}><FontAwesomeIcon icon={faUserGear} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faListCheck} /></Link>
+                            <Link to="" className="selected"><FontAwesomeIcon icon={faHome} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faMap} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faUsers} /></Link>
                         </> :
                         <>
                             <Link to="#">Login</Link>

@@ -141,7 +141,7 @@ function App() {
                         } />
                         <Route path="/groupChat" element={
                             <ProtectedRoute user={user}>
-                                <GroupChats user={user} />
+                                <GroupChat user={user} />
                             </ProtectedRoute>
                         } />
                         <Route path="/avatarselect" element={

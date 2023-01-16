@@ -63,6 +63,14 @@ export default function Leaderboard({ user, isLoading, setIsLoading }) {
                                             <h2>{user.username}</h2>
                                         </div>
                                     </div>
+                                    {/* My rank */}
+                                    <div style={myRank(user.preferences.style)}>
+                                        <div class="small" >
+                                            <div style={{ margin: "0px 10px 0px 0px" }}>Your current rank</div>
+                                            {/* Rank in the leaderboard */}
+                                            <div style={boldText(user.preferences.style)}> #{rankOfCurrentUser} </div>
+                                        </div>
+                                    </div>
                                     <div className="item" style={tabList(user.preferences.style)}>
                                         <div className='navbar-leaderboard' style={centerDiv(user.preferences.style)}>
                                             <ol className="tab-list" style={{ display: 'grid' }}>
@@ -73,14 +81,7 @@ export default function Leaderboard({ user, isLoading, setIsLoading }) {
                                         </div>
                                     </div>
 
-                                    {/* My rank */}
-                                    <div style={myRank(user.preferences.style)}>
-                                        <div class="small" >
-                                            <div style={{ margin: "0px 10px 0px 0px" }}>Your current rank</div>
-                                            {/* Rank in the leaderboard */}
-                                            <div style={boldText(user.preferences.style)}> #{rankOfCurrentUser} </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <div className="contacts">
 

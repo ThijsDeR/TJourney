@@ -11,6 +11,7 @@ import { GoalsCreateTutorial } from './tutorialscreens/GoalsCreateTutorial.js';
 import CommunityScreenTutorial from './tutorialscreens/CommunityScreenTutorial.js';
 import FinalScreenTutorial from './tutorialscreens/FinalScreenTutorial.js';
 
+
 function Tutorial({ user }) {
     const [tutorialPosition, setTutorialPosition] = useState(0);
     const [screenPart, setScreenPart] = useState(0);

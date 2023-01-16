@@ -13,7 +13,7 @@ import { getAllUsers } from '../../services/auth-service';
 export default function Leaderboard({ user }) {
     const [users, setUsers] = useState();
     const [isLoading, setIsLoading] = useState(true);
-    const [rankOfCurrentUser, setRankOfCurrentUser] = useState(true);
+    const [rankOfCurrentUser, setRankOfCurrentUser] = useState(undefined)
 
     useEffect(() => {
         getAllUsers().then((users) => {
@@ -40,7 +40,6 @@ export default function Leaderboard({ user }) {
         <>
             {isLoading ? <Loading /> :
                 <>
-
                     <div style={appContainer(user.preferences.style)}>
 
                         {/* Top three */}
@@ -92,7 +91,6 @@ export default function Leaderboard({ user }) {
                             })
                         }
                     </div>
-
                 </>
             }
         </>

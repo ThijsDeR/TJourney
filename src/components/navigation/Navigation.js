@@ -18,7 +18,6 @@ function Navigation({ user }) {
             community: ['/chatFriends', '/chatGroups', '/leaderboard', '/community', '/friendChat'],
         }
     
-        console.log(user, user.preferences, user.preferences.style)
         return pathObjectArray[name].includes(window.location.pathname) ? selectedStyling(user.preferences.style) : {};
     }
     return (

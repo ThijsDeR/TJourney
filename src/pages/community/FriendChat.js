@@ -82,7 +82,6 @@ export default function FriendChat({ user, setIsLoading, isLoading }) {
      * @param {*} msg the message
      */
     const handleSendMsg = async () => {
-        console.log(msg, user._id, friend._id)
         await createMessage(msg, user._id, friend._id)
     };
 

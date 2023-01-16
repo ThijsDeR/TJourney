@@ -49,14 +49,15 @@ export const title = (style) => {
         fontSize: '18px',
         fontWeight: 'bold',
         padding: '15px 0px 0px 0px',
+        color: style.textColor,
     }
 }
 
 export const goBackIndicator = (style) => {
     return {
-        color: style.primaryColor,
         margin: '10px 0px, 50px 0px',
         fontSize: '18px',
+        color: style.primaryColor,
     }
 }
 
@@ -93,6 +94,7 @@ export const bigTitle = (style) => {
     return {
         fontSize: '25px',
         fontWeight: 'bold',
+        color: style.textColor,
     }
 }
 export const buttonStyle = (style) => {
@@ -339,7 +341,8 @@ export const topThreePfTwoThree = (style) => {
         borderRadius: '50%',
         bottom: '0',
         display: 'inline-block',
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
+        alignItems: 'center',
     }
 }
 
@@ -395,6 +398,21 @@ export const rankingBubbleLeaderboard = (style) => {
     }
 }
 
+export const rankingBubbleLeaderboardOneTwoThree = (style) => {
+    return {
+        backgroundColor: style.primaryColor,
+        height: '30px',
+        width: '30px',
+        borderRadius: '50%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold',
+        display: 'flex',
+        marginLeft: '20px',
+        transform: 'translateY(-45%)',
+    }
+}
+
 export const leaderboardPFContainer = (style) => {
     return {
         transform: 'translateY(18%)',
@@ -412,5 +430,17 @@ export const searchBar = (style) => {
         color: style.textColor,
         border: '1px solid' + mediumEmphasis,
         fontSize: '18px'
+    }
+}
+
+export const tileGoalsCreate = (style) => {
+    return {
+        backgroundColor: style.primaryColor,
+        borderRadius: '5px',
+        padding: '3px 10px',
+        margin: '10px 0px',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
     }
 }

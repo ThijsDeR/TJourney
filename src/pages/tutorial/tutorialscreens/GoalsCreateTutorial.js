@@ -5,6 +5,8 @@ import { SelectPremadePlan } from "../../../components/goals/SelectPremadePlan.j
 import { SelectGoalOverzicht } from "../../../components/goals/SelectGoalOverzicht.js";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMap, faHome, faListCheck, faUserGear, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 export function GoalsCreateTutorial({ user, isLoading, screenPart, updateTutorialScreenPart, updateTutorialPosition }) {
     const [step, setStep] = useState(1);
@@ -82,11 +84,11 @@ export function GoalsCreateTutorial({ user, isLoading, screenPart, updateTutoria
                     <div className="nav-buttons is-flex" >
                         {user ?
                             <>
-                                <Link to="#">A</Link>
-                                <Link to="#">CH</Link>
-                                <Link to="#">H</Link>
-                                <Link to="#" onClick={screenPart >= 10 || screenPart >= 3 ? () => { updateTutorialPosition() } : () => {}}>J</Link>
-                                <Link>Co</Link>
+                                <Link to=""><FontAwesomeIcon icon={faUserGear} /></Link>
+                                <Link to="" className="selected"><FontAwesomeIcon icon={faListCheck} /></Link>
+                                <Link to=""><FontAwesomeIcon icon={faHome} /></Link>
+                                <Link to="" onClick={screenPart >= 10 || screenPart >= 3 ? () => { updateTutorialPosition() } : () => {}}><FontAwesomeIcon icon={faMap} /></Link>
+                                <Link to=""><FontAwesomeIcon icon={faUsers} /></Link>
                             </> :
                             <>
                                 <Link to="#">Login</Link>

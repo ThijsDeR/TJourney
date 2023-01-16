@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Navigate } from "react-router-dom";
 import { calculateLevel } from '../../../services/level-service.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faMap, faHome, faListCheck, faUserGear, faUsers } from '@fortawesome/free-solid-svg-icons';
+
 import { Link } from "react-router-dom";
 import { DefaultAvatars } from '../../../assets/DefaultAvatars/DefaultAvatarsCanvas';
 import { login, deleteAccount, editUsername, editPassword } from "../../../services/auth-service";
@@ -124,7 +125,7 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                         </div>
 
                         {/* Avatar canvas */}
-                        <div style={(screenPart === 3 || screenPart > 5) ? { zIndex: 300, position: 'relative' } : {}} className="has-background-black-ter box" onClick={screenPart > 5 ? () => updateTutorialPosition() : () => {}}>
+                        <div style={(screenPart === 3 || screenPart > 5) ? { zIndex: 300, position: 'relative' } : {}} className="has-background-black-ter box" onClick={screenPart > 5 ? () => updateTutorialPosition() : () => { }}>
                             {getAvatar()}
                         </div>
 
@@ -206,11 +207,11 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                     <div className="nav-buttons is-flex" >
                         {user ?
                             <>
-                                <Link to="#">A</Link>
-                                <Link to="#">CH</Link>
-                                <Link to="#">H</Link>
-                                <Link to="#">J</Link>
-                                <Link>Co</Link>
+                                <Link to="" className="selected"><FontAwesomeIcon icon={faUserGear} /></Link>
+                                <Link to=""><FontAwesomeIcon icon={faListCheck} /></Link>
+                                <Link to=""><FontAwesomeIcon icon={faHome} /></Link>
+                                <Link to=""><FontAwesomeIcon icon={faMap} /></Link>
+                                <Link to=""><FontAwesomeIcon icon={faUsers} /></Link>
                             </> :
                             <>
                                 <Link to="#">Login</Link>

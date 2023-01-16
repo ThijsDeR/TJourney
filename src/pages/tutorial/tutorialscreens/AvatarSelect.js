@@ -51,12 +51,11 @@ function AvatarSelect({ user, screenPart, updateTutorialScreenPart, updateTutori
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
-                            <Link to="#" style={{backgroundColor: 'rgb(198, 30, 156)', padding: "0 5% 0 5%"}}><FontAwesomeIcon icon={faUserGear} /></Link>
-                            <Link to="#" onClick={screenPart >= 8 ? () => updateTutorialPosition() : () => { }}><FontAwesomeIcon icon={faListCheck} /></Link>
-                            <Link to="#"><FontAwesomeIcon icon={faHome} /></Link>
-                            <Link to="#"><FontAwesomeIcon icon={faMap} /></Link>
-                            <Link to="#"><FontAwesomeIcon icon={faUsers} /></Link>
-
+                            <Link to="" className="selected"><FontAwesomeIcon icon={faUserGear} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faListCheck} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faHome} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faMap} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faUsers} /></Link>
                         </> :
                         <>
                             <Link to="#">Login</Link>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, Navigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCircle, faMap, faHome, faListCheck, faUserGear, faUsers } from '@fortawesome/free-solid-svg-icons'
 
 import 'bulma/css/bulma.min.css';
 import { checkChallenge, getAllChallenges, getAllGoals } from '../../../services/goal-service';
@@ -289,7 +289,7 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
                             </div>
                         </div>
                         <Link to="#">
-                            <div style={screenPart > 4 ? { zIndex: 30, position: "relative" } : {}} onClick={screenPart > 4 ? () => updateTutorialPosition() : () => {}}>
+                            <div style={screenPart > 4 ? { zIndex: 30, position: "relative" } : {}} onClick={screenPart > 4 ? () => updateTutorialPosition() : () => { }}>
                                 <div style={{ ...tileStyle, ...buttonStyle, ...{ backgroundColor: tertiaryColor } }}>
                                     Add new goal
                                 </div>
@@ -303,11 +303,11 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
-                            <Link to="#">A</Link>
-                            <Link to="#">CH</Link>
-                            <Link to="#">H</Link>
-                            <Link to="#">J</Link>
-                            <Link>Co</Link>
+                            <Link to=""><FontAwesomeIcon icon={faUserGear} /></Link>
+                            <Link to="" className="selected"><FontAwesomeIcon icon={faListCheck} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faHome} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faMap} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faUsers} /></Link>
                         </> :
                         <>
                             <Link to="#">Login</Link>

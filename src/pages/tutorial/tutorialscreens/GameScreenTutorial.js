@@ -1,7 +1,8 @@
 import '../../../App.css'
 import "../../../components/navigation/navigation.css";
 import { Link } from "react-router-dom";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMap, faHome, faListCheck, faUserGear, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 import React, { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
@@ -20,6 +21,7 @@ import Friend from '../../../scripts/friend';
 import Position from '../../../scripts/position';
 import Rotation from '../../../scripts/rotation';
 import { getFriends } from '../../../services/friends-service.js';
+
 
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
@@ -160,16 +162,15 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading, updat
                 </div>
             </div>
 
-
             <div className="nav-bottom" style={screenPart > 6 ? { zIndex: "30" } : {}}>
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
-                            <Link to="#">A</Link>
-                            <Link to="#">CH</Link>
-                            <Link to="#">H</Link>
-                            <Link to="#" >J</Link>
-                            <Link onClick={screenPart > 6 ? () => updateTutorialPosition() : () => {}}>Co</Link>
+                            <Link to=""><FontAwesomeIcon icon={faUserGear} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faListCheck} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faHome} /></Link>
+                            <Link to="" className="selected"><FontAwesomeIcon icon={faMap} /></Link>
+                            <Link to="" onClick={screenPart > 6 ? () => updateTutorialPosition() : () => { }}><FontAwesomeIcon icon={faUsers} /></Link>
                         </> :
                         <>
                             <Link to="#">Login</Link>

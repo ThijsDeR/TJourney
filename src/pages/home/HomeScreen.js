@@ -7,6 +7,10 @@ import { calculateLevel, updateLevel } from '../../services/level-service.js';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import RankingBar from '../../components/ranking/RankingBar.js';
+
+import { paddingPage, progressContainer, progress, rankingBarContainer, levelBubble, black } from '../../styling/StylingVariables.js';
+
 function Home({ user }) {
     const [userLevel, setUserLevel] = useState(undefined)
     const [level, setLevel] = useState(undefined)
@@ -33,17 +37,7 @@ function Home({ user }) {
                     <>
                         <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px" }}>
                             <section className="bg-image" style={{ height: "100%" }}>
-
-                                <div style={{ display: "flex", flex: "1 1 auto", justifyContent: "center", alignItems: "center", height: "50px" }}>
-                                    <Link to="/account" style={{ color: user.preferences.style.textColor, width: "2rem", height: "2rem", display: "flex", alignItems: "center", }}>
-                                        <FontAwesomeIcon icon={faUser} style={{ width: "100%", height: "100%" }} />
-                                    </Link>
-
-                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                        <h2 className="has-text-weight-bold" style={{ paddingLeft: "10px", color: "#121212", fontSize: "1.5rem" }}>{user ? user.username : ""} ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )</h2>
-                                    </div>
-                                </div>
-
+                                <RankingBar user={user} level={level} />
                             </section>
                         </div >
                         <Navigation style={user.preferences.style} />

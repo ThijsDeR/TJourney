@@ -1,6 +1,7 @@
 // color options
 const red = '#FF686B';
 export const white = '#F7F7F7'; // high emphasis
+export const black = '#121212';
 
 // when you change this color, you will change the primary color of the whole page
 export const primaryColor = red;
@@ -443,5 +444,54 @@ export const tileGoalsCreate = (style) => {
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
+    }
+}
+
+export const rankingBarContainer = (style) => {
+    return {
+        width: '100%',
+        display: 'flex',
+        padding: '0px 0px 0px 10px'
+    }
+
+}
+
+export const levelBubble = (style) => {
+    return {
+        backgroundColor: style.primaryColor,
+        height: '50px',
+        width: '50px',
+        borderRadius: '50%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold',
+        display: 'flex',
+        color: black,
+        zIndex: '1',
+        position: 'relative',
+    }
+
+}
+
+export const progressContainer = (style) => {
+    return {
+        backgroundColor: white,
+        borderRadius: '0px 15px 15px 0px',
+        margin: '10px 0px',
+        width: '90%',
+        display: 'flex',
+        alignItems: 'center',
+        transform: 'translateX(-5%)',
+
+    }
+
+}
+
+export const progress = (style, progressPercentage) => {
+    return {
+        height: '100%',
+        backgroundColor: style.primaryColor,
+        width: progressPercentage + '%',
+        opacity: '0.85',
     }
 }

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { DefaultAvatars } from '../../../assets/DefaultAvatars/DefaultAvatarsCanvas';
 import { login, deleteAccount, editUsername, editPassword } from "../../../services/auth-service";
 import { getActiveCharacter, getAllCharacters } from '../../../services/playerCharacter-service.js';
+import { buttonStyling, navButtonContainer, selectedStyling } from "../../../components/navigation/NavStylingVariables";
 
 
 function Account({ user, isLoading, screenPart, updateTutorialScreenPart, updateTutorialPosition }) {
@@ -215,18 +216,18 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                 </div >
 
                 <div className="nav-bottom">
-                    <div className="nav-buttons is-flex" >
+                    <div style={navButtonContainer(user.preferences.style)} >
                         {user ?
                             <>
-                                <Link to="" className="selected"><FontAwesomeIcon icon={faUserGear} /></Link>
-                                <Link to=""><FontAwesomeIcon icon={faListCheck} /></Link>
-                                <Link to=""><FontAwesomeIcon icon={faHome} /></Link>
-                                <Link to=""><FontAwesomeIcon icon={faMap} /></Link>
-                                <Link to=""><FontAwesomeIcon icon={faUsers} /></Link>
+                                <Link to="" style={{ ...buttonStyling(user.preferences.style), ...selectedStyling(user.preferences.style)}}><FontAwesomeIcon icon={faUserGear} /></Link>
+                                <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faListCheck} /></Link>
+                                <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faHome} /></Link>
+                                <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faMap} /></Link>
+                                <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faUsers} /></Link>
                             </> :
                             <>
-                                <Link to="#">Login</Link>
-                                <Link to="#">Sign Up</Link>
+                                <Link to="#" style={{ ...buttonStyling(user.preferences.style)}}>Login</Link>
+                                <Link to="#" style={{ ...buttonStyling(user.preferences.style)}}>Sign Up</Link>
                             </>
                         }
                     </div>

@@ -21,6 +21,7 @@ import Friend from '../../../scripts/friend';
 import Position from '../../../scripts/position';
 import Rotation from '../../../scripts/rotation';
 import { getFriends } from '../../../services/friends-service.js';
+import { buttonStyling, navButtonContainer, selectedStyling } from "../../../components/navigation/NavStylingVariables";
 
 
 const fantasyBook = new FantasyBook();
@@ -135,19 +136,19 @@ function GameScreen({ user, timeElapsed, updateTutorialScreenPart, screenPart, u
             </div>
 
             <div className="nav-bottom" style={screenPart > 6 ? { zIndex: "30" } : {}}>
-                <div className="nav-buttons is-flex" >
+                <div style={navButtonContainer(user.preferences.style)} >
                     {user ?
                         <>
-                            <Link to=""><FontAwesomeIcon icon={faUserGear} /></Link>
-                            <Link to=""><FontAwesomeIcon icon={faListCheck} /></Link>
-                            <Link to=""><FontAwesomeIcon icon={faHome} /></Link>
-                            <Link to="" className="selected"><FontAwesomeIcon icon={faMap} /></Link>
-                            <Link to="" onClick={screenPart > 6 ? () => updateTutorialPosition() : () => { }}><FontAwesomeIcon icon={faUsers} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faUserGear} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faListCheck} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faHome} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style), ...selectedStyling(user.preferences.style)}}><FontAwesomeIcon icon={faMap} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style)}} onClick={screenPart > 6 ? () => updateTutorialPosition() : () => { }}><FontAwesomeIcon icon={faUsers} /></Link>
 
                         </> :
                         <>
-                            <Link to="#">Login</Link>
-                            <Link to="#">Sign Up</Link>
+                            <Link to="#" style={{ ...buttonStyling(user.preferences.style)}}>Login</Link>
+                            <Link to="#" style={{ ...buttonStyling(user.preferences.style)}}>Sign Up</Link>
                         </>
                     }
                 </div>

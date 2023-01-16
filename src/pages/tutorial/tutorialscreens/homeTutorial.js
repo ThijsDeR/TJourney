@@ -2,6 +2,7 @@ import "../../../components/navigation/navigation.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap, faHome, faListCheck, faUserGear, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { buttonStyling, navButtonContainer, selectedStyling } from "../../../components/navigation/NavStylingVariables";
 
 
 const HomescreenTutorial = ({ user, updateTutorialPosition, screenPart, updateTutorialScreenPart }) => {
@@ -104,18 +105,18 @@ const HomescreenTutorial = ({ user, updateTutorialPosition, screenPart, updateTu
             </div>
 
             <div className="nav-bottom" style={screenPart >= 3 ? { zIndex: "30" } : {}}>
-                <div className="nav-buttons is-flex" >
+                <div style={navButtonContainer(user.preferences.style)} >
                     {user ?
                         <>
-                            <Link to="" onClick={screenPart >= 9 ? () => updateTutorialPosition() : () => { }}><FontAwesomeIcon icon={faUserGear} /></Link>
-                            <Link to=""><FontAwesomeIcon icon={faListCheck} /></Link>
-                            <Link to="" className="selected"><FontAwesomeIcon icon={faHome} /></Link>
-                            <Link to=""><FontAwesomeIcon icon={faMap} /></Link>
-                            <Link to=""><FontAwesomeIcon icon={faUsers} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style)}} onClick={screenPart >= 9 ? () => updateTutorialPosition() : () => { }}><FontAwesomeIcon icon={faUserGear} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faListCheck} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style), ...selectedStyling(user.preferences.style)}}><FontAwesomeIcon icon={faHome} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faMap} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faUsers} /></Link>
                         </> :
                         <>
-                            <Link to="#">Login</Link>
-                            <Link to="#">Sign Up</Link>
+                            <Link to="#" style={{ ...buttonStyling(user.preferences.style)}}>Login</Link>
+                            <Link to="#" style={{ ...buttonStyling(user.preferences.style)}}>Sign Up</Link>
                         </>
                     }
                 </div>

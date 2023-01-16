@@ -7,7 +7,7 @@ import { Environment, Stars, OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
 
 import luckyBlock from '../../assets/lg1emBK.png'
-import { getAllChallenges} from "../../services/goal-service.js";
+import { getAllChallenges } from "../../services/goal-service.js";
 import { calculateDiceEyesCount, getGameSession, setSteps } from "../../services/game-service.js";
 import Loading from '../../components/loading/Loading';
 import Navigation from '../../components/navigation/Navigation';
@@ -18,6 +18,8 @@ import { getFriends } from '../../services/friends-service';
 import Friend from '../../scripts/friend.js'
 import Position from '../../scripts/position.js'
 import Rotation from '../../scripts/rotation.js'
+
+import RankingBar from '../../components/ranking/RankingBar';
 
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
@@ -45,7 +47,7 @@ function GameScreen({ user, timeElapsed, reloadUserHandler }) {
                 }
 
             })
-            
+
         })
     }
 
@@ -84,9 +86,7 @@ function GameScreen({ user, timeElapsed, reloadUserHandler }) {
         isLoading ? <Loading /> :
             <>
                 <div style={{ position: "fixed", top: "0px", left: "0px", right: "0px", zIndex: 999 }}>
-                    <div className="is-flex is-justify-content-center">
-                        <h2 className="is-size-3 has-text-weight-bold">{user.username} ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )</h2>
-                    </div>
+                    <RankingBar user={user} level={level} />
                 </div >
                 <div className="canvasContainer">
                     <div className="App">
@@ -114,7 +114,7 @@ function GameScreen({ user, timeElapsed, reloadUserHandler }) {
                             if (game.canThrow(diceEyesCount) && game.player.dice.count === 0) game.throwDice(diceEyesCount)
                         }}
                     >
-                        <img src={luckyBlock} style={{ width: "50px", height: "50px" }} alt="lucky block"/>
+                        <img src={luckyBlock} style={{ width: "50px", height: "50px" }} alt="lucky block" />
                         <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{game.canThrow(diceEyesCount) ? diceEyesCount : "0"}</p>
                     </div>
                 </div>

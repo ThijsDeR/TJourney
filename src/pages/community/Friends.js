@@ -6,13 +6,17 @@ import 'bulma/css/bulma.min.css';
 import { title, containerLeftRight, friendsTile, friendItems, fakePF, chatContainer, lightText, chatDivider } from '../../styling/StylingVariables.js';
 import { getFriends } from '../../services/friends-service';
 import { calculateLevel } from '../../services/level-service';
+import { getAllUsers } from '../../services/auth-service.js';
 
 
 function Friends({ user }) {
     const [friends, setFriends] = useState(undefined);
 
     useEffect(() => {
-        setFriends(user.friends)
+        getFriends().then((friends) => {
+            console.log(friends)
+            setFriends(friends)
+        })
     }, [])
 
     return (
@@ -29,13 +33,13 @@ function Friends({ user }) {
             {
                 friends ? friends.map((friend) => (
                     <div className='userDiv' style={chatContainer(user.preferences.style)} onClick={() => {
-                        window.location.href = `/friendChat?id=${friend._id}`;
+                        window.location.href = `/friendChat?id=${friend.user._id}`;
                     }}>
                         <div className='friendTile' style={friendsTile(user.preferences.style)}>
                             <div className='friendItems' style={friendItems(user.preferences.style)}>
                                 <div className='friendIcon' style={fakePF(user.preferences.style)}></div>
                                 <div className='friendInfo'>
-                                    <div className='friendName' style={{ fontWeight: 'bold' }}> {friend.username} <em style={lightText(user.preferences.style)}>level {friend.level.level}</em> </div>
+                                    <div className='friendName' style={{ fontWeight: 'bold' }}> {friend.user.username} <em style={lightText(user.preferences.style)}>level {friend.user.level.level}</em> </div>
                                     {/* TODO: Get last message */}
                                     <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Last message </div>
                                 </div>

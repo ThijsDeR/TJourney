@@ -1,3 +1,10 @@
+// icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
+
+// styling
+import 'bulma/css/bulma.min.css';
+import { pageStyle, appContainer, goBackIndicator, title, tileGoalsCreate } from '../../styling/StylingVariables.js';
 import { Link } from "react-router-dom";
 
 export function SelectGoalOverzicht(props) {
@@ -10,39 +17,46 @@ export function SelectGoalOverzicht(props) {
     }
     return (
         <>
-            <div style={{ position: "fixed", top: "0", bottom: "100px", right: "0", left: "0", overflowY: "auto" }}>
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 20 }}>
-                    <a href className="is-small is-size-1" style={{ color: props.user.preferences.style.primaryColor }} onClick={stepBackHandler}>&lt;</a>
-                    <h1 className="is-size-1">Overview</h1>
-                </div>
-                <div className="container mx-3 " >
-                    <div className="box" style={{ color: props.user.preferences.style.secondaryColor }}>
-                        <article className="media">
-                            <div className="media-content">
-                                <div className="content">
-                                    <ul style={{listStyle: "none"}}>
-                                        <li>Name: {props.name}</li>
-                                        <li>Description: {props.description}</li>
-                                        <li>startValue: {props.startValue}</li>
-                                        <li>endValue: {props.endValue}</li>
-                                        <li>startDate: {props.startDate}</li>
-                                        <li>endDate: {props.endDate}</li>
-                                        <li>category: {props.category}</li>
-                                    </ul>
-                                    <div className="field is-grouped">
-                                        <div className="control">
-                                            <button className="button is-link" style={{ backgroundColor: props.user.preferences.style.primaryColor }} onClick={submitHandler}>Submit</button>
-                                        </div>
-                                        <div className="control">
-                                            <button onClick={stepBackHandler} className="button is-link is-light">Cancel</button>
+            <div style={pageStyle(props.user.preferences.style)}>
+                <div style={appContainer(props.user.preferences.style)}>
+
+                    <div style={goBackIndicator(props.user.preferences.style)}>
+                        <FontAwesomeIcon icon={faAngleLeft} size='lg' />
+                        <span style={{ paddingLeft: '10px', color: props.user.preferences.style.primaryColor }}>Go back</span>
+                    </div>
+
+                    <span style={{ ...title(props.user.preferences.style), ...{ paddingBottom: '20px' } }} >Overview of your new goal</span>
+
+                    <div>
+                        <div className="box" style={{ color: props.user.preferences.style.textColor, backgroundColor: props.user.preferences.style.secondaryColor }}>
+                            <article className="media">
+                                <div className="media-content">
+                                    <div className="content">
+                                        <ul style={{ listStyle: 'none', margin: 'unset', marginBottom: '20px', color: props.user.preferences.style.textColor }}>
+                                            <li><b>Name</b>: {props.name}</li>
+                                            <li><b>Description</b>: {props.description}</li>
+                                            <li><b>startValue </b>: {props.startValue}</li>
+                                            <li><b>endValue</b>: {props.endValue}</li>
+                                            <li><b>startDate </b>: {props.startDate}</li>
+                                            <li><b>endDate </b>: {props.endDate}</li>
+                                            <li><b>category </b>: {props.category}</li>
+                                        </ul>
+                                        <div className="field is-grouped">
+                                            <div className="control">
+                                                <button className="button is-link" style={{ backgroundColor: props.user.preferences.style.primaryColor }} onClick={submitHandler}>Submit</button>
+                                            </div>
+                                            <div className="control">
+                                                <button onClick={stepBackHandler} className="button is-link is-light">Cancel</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
+                            </article>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div >
+
         </>
     );
 }

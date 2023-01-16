@@ -7,25 +7,11 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let previousTimeStamp;
-let elapsed = 0;
-function Animate(timestamp) {
-  requestAnimationFrame(Animate)
-
-  if (!previousTimeStamp) {
-    previousTimeStamp = timestamp
-  } else {
-    previousTimeStamp = timestamp - elapsed
-  }
-
-  previousTimeStamp /= 1000
-
-  elapsed = timestamp
-
+function Animate() {
   root.render(
     <React.StrictMode>
       <Router>
-        <App timeElapsed={previousTimeStamp}/>
+        <App/>
       </Router>
     </React.StrictMode>
   );

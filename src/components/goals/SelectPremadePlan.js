@@ -1,6 +1,14 @@
 import { userInfo } from "os";
 import { useState } from "react";
 
+// icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
+
+// styling
+import 'bulma/css/bulma.min.css';
+import { pageStyle, appContainer, goBackIndicator, title, buttonStyle } from '../../styling/StylingVariables.js';
+
 
 export function SelectPremadePlan(props) {
     const [time, setTime] = useState(undefined);
@@ -86,70 +94,76 @@ export function SelectPremadePlan(props) {
 
     return (
         <>
-            <div style={{ position: "fixed", top: "0", bottom: "100px", right: "0", left: "0", overflowY: "auto" }}>
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 20 }}>
-                    <a href className="is-small is-size-1" style={{ color: props.user.preferences.style.primaryColor }} onClick={stepBackHandler}>&lt;</a>
-                    <h1 className="is-size-2">Premade Plans</h1>
+            <div style={pageStyle(props.user.preferences.style)}>
+                <div style={appContainer(props.user.preferences.style)}>
+
+                    <div style={goBackIndicator(props.user.preferences.style)}>
+                        <FontAwesomeIcon icon={faAngleLeft} size='lg' />
+                        <span style={{ paddingLeft: '10px', color: props.user.preferences.style.primaryColor }}>Go back</span>
+                    </div>
+
+                    <span style={{ ...title(props.user.preferences.style), ...{ paddingBottom: '20px' } }} >Select pre-made plan</span>
+
+                    {props.category === "excercise" ?
+                        goalsExercise.map((goal) => (
+                            <div className="box" style={{ backgroundColor: props.user.preferences.style.secondaryColor, color: props.user.preferences.style.textColor, margin: 'unset', marginBottom: '20px' }}>
+                                <div style={{ ...title(props.user.preferences.style), ...{ padding: 'unset', paddingBottom: '10px' } }}>{goal.Name}</div>
+                                <div>Description: {goal.Description}</div>
+                                <div>Start value: {goal.Startvalue}</div>
+                                <div>End value: {goal.Endvalue}</div>
+                                <div className="mt-2" style={{ paddingTop: '10px' }}>
+                                    <button className={"button"} onClick={() => selectTime(3)} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 3 ? props.user.preferences.style.primaryColor : props.user.preferences.style.tertiaryColor }}>3 days</button>
+                                    <button className={"button"} onClick={() => selectTime(7)} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 7 ? props.user.preferences.style.primaryColor : props.user.preferences.style.tertiaryColor }}>7 days</button>
+                                    <button className={"button"} onClick={() => selectTime(14)} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 14 ? props.user.preferences.style.primaryColor : props.user.preferences.style.tertiaryColor }}>14 days</button>
+                                    <button className={"button"} onClick={() => selectTime(30)} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 30 ? props.user.preferences.style.primaryColor : props.user.preferences.style.tertiaryColor }}>30 days</button>
+
+                                    <button className="button" style={{ marginTop: '10px' }} onClick={() => submitHandler(4, goal)}>Select</button>
+                                </div>
+                            </div>
+                        ))
+                        :
+                        ""}
+
+                    {props.category === "sleep" ?
+                        goalsSleep.map((goal) => (
+                            <div className="box" style={{ backgroundColor: props.user.preferences.style.secondaryColor, color: props.user.preferences.style.textColor, margin: 'unset', marginBottom: '20px' }}>
+                                <div style={{ ...title(props.user.preferences.style), ...{ padding: 'unset', paddingBottom: '10px' } }}>{goal.Name}</div>
+                                <div>Description: {goal.Description}</div>
+                                <div>Start value: {goal.Startvalue}</div>
+                                <div>End value: {goal.Endvalue}</div>
+                                <div className="mt-2" style={{ paddingTop: '10px' }}>
+                                    <button className={"button"} onClick={() => selectTime(3)} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 3 ? props.user.preferences.style.primaryColor : props.user.preferences.style.tertiaryColor }}>3 days</button>
+                                    <button className={"button"} onClick={() => selectTime(7)} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 7 ? props.user.preferences.style.primaryColor : props.user.preferences.style.tertiaryColor }}>7 days</button>
+                                    <button className={"button"} onClick={() => selectTime(14)} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 14 ? props.user.preferences.style.primaryColor : props.user.preferences.style.tertiaryColor }}>14 days</button>
+                                    <button className={"button"} onClick={() => selectTime(30)} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 30 ? props.user.preferences.style.primaryColor : props.user.preferences.style.tertiaryColor }}>30 days</button>
+
+                                    <button className="button" style={{ marginTop: '10px' }} onClick={() => submitHandler(4, goal)}>Select</button>
+                                </div>
+                            </div>
+                        ))
+                        :
+                        ""}
+
+                    {props.category === "food" ?
+                        goalsFood.map((goal) => (
+                            <div className="box" style={{ backgroundColor: props.user.preferences.style.secondaryColor, color: props.user.preferences.style.textColor, margin: 'unset', marginBottom: '20px' }}>
+                                <div style={{ ...title(props.user.preferences.style), ...{ padding: 'unset', paddingBottom: '10px' } }}>{goal.Name}</div>
+                                <div>Description: {goal.Description}</div>
+                                <div>Start value: {goal.Startvalue}</div>
+                                <div>End value: {goal.Endvalue}</div>
+                                <div className="mt-2" style={{ paddingTop: '10px' }}>
+                                    <button className={"button"} onClick={() => selectTime(3)} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 3 ? props.user.preferences.style.primaryColor : props.user.preferences.style.tertiaryColor }}>3 days</button>
+                                    <button className={"button"} onClick={() => selectTime(7)} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 7 ? props.user.preferences.style.primaryColor : props.user.preferences.style.tertiaryColor }}>7 days</button>
+                                    <button className={"button"} onClick={() => selectTime(14)} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 14 ? props.user.preferences.style.primaryColor : props.user.preferences.style.tertiaryColor }}>14 days</button>
+                                    <button className={"button"} onClick={() => selectTime(30)} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 30 ? props.user.preferences.style.primaryColor : props.user.preferences.style.tertiaryColor }}>30 days</button>
+
+                                    <button className="button" style={{ marginTop: '10px' }} onClick={() => submitHandler(4, goal)}>Select</button>
+                                </div>
+                            </div>
+                        ))
+                        :
+                        ""}
                 </div>
-
-                <div className="box mx-3 is-size-4 has-text-black" onClick={() => submitHandler(3)}>Make your own plan</div>
-
-                {props.category === "excercise" ?
-                    goalsExercise.map((goal, index) => (
-                        <div className="box mx-3 has-text-black">
-                            <div className="is-size-4">Goal: {goal.Name}</div>
-                            <div>Description: {goal.Description}</div>
-                            <div>Start value: {goal.Startvalue}</div>
-                            <div>End value: {goal.Endvalue}</div>
-                            <div className="mt-2">
-                                <button className={"button"} onClick={() => [selectTime(3), setIndexSelect(index)]} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 3 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>3 days</button>
-                                <button className={"button"} onClick={() => [selectTime(7), setIndexSelect(index)]} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 7 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>7 days</button>
-                                <button className={"button"} onClick={() => [selectTime(14), setIndexSelect(index)]} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 14 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>14 days</button>
-                                <button className={"button"} onClick={() => [selectTime(30), setIndexSelect(index)]} style={{ color: props.user.preferences.style.textColor, backgroundColor: time === 30 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>30 days</button>
-                            </div>
-                            <button className="button mt-3" onClick={() => submitHandler(4, goal)} style={{ color: props.user.preferences.style.textColor, backgroundColor: props.user.preferences.style.primaryColor }}>Select</button>
-                        </div>
-                    ))
-                    :
-                    ""}
-
-                {props.category === "sleep" ?
-                    goalsSleep.map((goal, index) => (
-                        <div className="box mx-3 has-text-black">
-                            <div className="is-size-4">Goal: {goal.Name}</div>
-                            <div>Description: {goal.Description}</div>
-                            <div>Start value: {goal.Startvalue}</div>
-                            <div>End value: {goal.Endvalue}</div>
-                            <div className="mt-2">
-                                <button className={"button"} onClick={() => [selectTime(3), setIndexSelect(index)]} style={{ backgroundColor: time === 3 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>3 days</button>
-                                <button className={"button"} onClick={() => [selectTime(7), setIndexSelect(index)]} style={{ backgroundColor: time === 7 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>7 days</button>
-                                <button className={"button"} onClick={() => [selectTime(14), setIndexSelect(index)]} style={{ backgroundColor: time === 14 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>14 days</button>
-                                <button className={"button"} onClick={() => [selectTime(30), setIndexSelect(index)]} style={{ backgroundColor: time === 30 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>30 days</button>
-                                <button className="button mt-3" onClick={() => submitHandler(4, goal)}>Select</button>
-                            </div>
-                        </div>
-                    ))
-                    :
-                    ""}
-
-                {props.category === "food" ?
-                    goalsFood.map((goal, index) => (
-                        <div className="box mx-3 has-text-black">
-                            <div className="is-size-4">Goal: {goal.Name}</div>
-                            <div>Description: {goal.Description}</div>
-                            <div>Start value: {goal.Startvalue}</div>
-                            <div>End value: {goal.Endvalue}</div>
-                            <div className="mt-2">
-                                <button className={"button"} onClick={() => [selectTime(3), setIndexSelect(index)]} style={{ backgroundColor: time === 3 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>3 days</button>
-                                <button className={"button"} onClick={() => [selectTime(7), setIndexSelect(index)]} style={{ backgroundColor: time === 7 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>7 days</button>
-                                <button className={"button"} onClick={() => [selectTime(14), setIndexSelect(index)]} style={{ backgroundColor: time === 14 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>14 days</button>
-                                <button className={"button"} onClick={() => [selectTime(30), setIndexSelect(index)]} style={{ backgroundColor: time === 30 && index === indexSelect ? props.user.preferences.style.primaryColor : props.user.preferences.style.secondaryColor }}>30 days</button>
-                                <button className="button mt-3" onClick={() => submitHandler(4, goal)}>Select</button>
-                            </div>
-                        </div>
-                    ))
-                    :
-                    ""}
             </div>
         </>
     );

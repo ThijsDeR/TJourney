@@ -11,19 +11,18 @@ import ChatInput from '../../components/chat/ChatInput.js';
 import Navigation from '../../components/navigation/Navigation.js';
 import "./chatStyle.css";
 
-let timer = 0;
-export default function FriendChat({ user, setIsLoading, isLoading }) {
+export default function FriendChat({ user }) {
     const [searchParams, setSearchParams] = useSearchParams()
     const [messages, setMessages] = useState(undefined);
     const [friend, setFriend] = useState(undefined);
     const [msg, setMsg] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
-    const getMessages = () => {
+    const getMessages = async () => {
         if (user && searchParams.get("id")) {
-            getAllMessages().then((messages) => {
-                const relevantMessages = messages.filter((message) => message.user.includes(user._id) && message.user.includes(searchParams.get("id")))
-                setMessages(relevantMessages);
-            });
+            const messages = await getAllMessages()
+            const relevantMessages = messages.filter((message) => message.user.includes(user._id) && message.user.includes(searchParams.get("id")))
+            setMessages(relevantMessages);
         }
     }
 
@@ -31,23 +30,18 @@ export default function FriendChat({ user, setIsLoading, isLoading }) {
     useEffect(() => {
         getUser(searchParams.get("id")).then((user) => {
             setFriend(user)
-            getMessages()
+            getMessages().then(() => {
+                setIsLoading(false)
+            })
         })
     }, [])
-
-    useEffect(() => {
-        if (friend) setIsLoading(false)
-    }, [friend])
 
     /**
      * update the messages
      */
-    function updateData() {
-        if (timer <= 0) {
-            getMessages()
-            timer = 500;
-        } else timer--;
-    }
+    setInterval(() => {
+        getMessages();
+    }, 1000)
 
     const sendChat = () => {
         if (msg.length > 0) {
@@ -55,26 +49,6 @@ export default function FriendChat({ user, setIsLoading, isLoading }) {
             setMsg('');
         }
     }
-
-
-    /**
-     * select the messages from the corresponding chat
-     * 
-     * @param {*} response List witg all the messages
-     * @returns selected messages from the correct chat
-     */
-    // function SelectChat(response) {
-    //     let ListWithCorrespondingChatMessages = [];
-    //     response.forEach(element => {
-    //         if (currentChat._id === element.user[1] || currentChat._id === element.user[0]) {
-    //             if (currentUser._id === element.user[1] || element.user[0] === currentUser._id) {
-    //                 ListWithCorrespondingChatMessages.push(element)
-    //             }
-    //         }
-    //     }
-    //     );
-    //     return ListWithCorrespondingChatMessages;
-    // }
 
     /**
      * send the messages to the database
@@ -85,15 +59,9 @@ export default function FriendChat({ user, setIsLoading, isLoading }) {
         await createMessage(msg, user._id, friend._id)
     };
 
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
-
     if (friend === undefined && !isLoading) {
         return <Navigate to="/community" replace />;
     }
-
-    updateData()
 
     return (
         <>
@@ -121,7 +89,7 @@ export default function FriendChat({ user, setIsLoading, isLoading }) {
                     <input type="text" value={msg} onChange={(e) => { setMsg(e.target.value) }} style={{ border: "none", height: "80%", width: "75%", borderRadius: "20px", padding: "0 10px", backgroundColor: user.preferences.style.secondaryColor, color: user.preferences.style.textColor }} />
                     <FontAwesomeIcon icon={faPaperPlane} style={{ color: user.preferences.style.secondaryColor }} onClick={sendChat} />
                 </div>
-                <Navigation user={user} />
+                <Navigation style={user.preferences.style} />
             </>}
         </>
     );

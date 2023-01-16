@@ -31,11 +31,6 @@ export function GoalsCreateTutorial({ user, isLoading, screenPart, updateTutoria
         }
     }, [done, name, description, startValue, endValue, startDate, endDate, category, updateTutorialScreenPart])
 
-
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
-
     const data = { user, name, setName, description, setDescription, startValue, setStartValue, endValue, setEndValue, startDate, setStartDate, endDate, setEndDate, category, setCategory, setStepHandler, done, setDone }
     return (
         <>

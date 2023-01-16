@@ -15,35 +15,27 @@ import Leaderboard from './Leaderboard.js';
 import Loading from '../../components/loading/Loading';
 import Groups from './Groups';
 
-function CommunityScreen({ user, isLoading, setIsLoading }) {
-    useEffect(() => {
-        if (user) setIsLoading(false)
-    }, [user, setIsLoading])
+
+function CommunityScreen({ user }) {
 
     return (
         <>
-            {
-                isLoading ? <Loading /> :
-                    <>
-                        <div style={pageStyle(user.preferences.style)}>
-                            <div style={appContainer(user.preferences.style)}>
-                                <Tabs style={user.preferences.style}>
-                                    <div label="Friends">
-                                        <Friends user={user} isLoading={isLoading} setIsLoading={setIsLoading} />
-                                    </div>
-                                    <div label="Groups">
-                                        <Groups user={user} isLoading={isLoading} setIsLoading={setIsLoading} />
-                                    </div>
-                                    <div label="Leaderboard">
-                                        <Leaderboard user={user} isLoading={isLoading} setIsLoading={setIsLoading} />
-                                    </div>
-                                </Tabs>
-                            </div>
+            <div style={pageStyle(user.preferences.style)}>
+                <div style={appContainer(user.preferences.style)}>
+                    <Tabs style={user.preferences.style}>
+                        <div label="Friends">
+                            <Friends user={user}/>
                         </div>
-                        <Navigation user={user} />
-                    </>
-            }
-
+                        <div label="Groups">
+                            <Groups user={user} />
+                        </div>
+                        <div label="Leaderboard">
+                            <Leaderboard user={user}/>
+                        </div>
+                    </Tabs>
+                </div>
+            </div>
+            <Navigation style={user.preferences.style} />
         </>
     )
 }

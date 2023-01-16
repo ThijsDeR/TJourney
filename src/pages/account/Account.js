@@ -10,9 +10,10 @@ import { DefaultAvatars } from '../../assets/DefaultAvatars/DefaultAvatarsCanvas
 import { login, deleteAccount, editUsername, editPassword } from "../../services/auth-service";
 import { getActiveCharacter, getAllCharacters } from '../../services/playerCharacter-service.js';
 
-function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
+function Account({ user, reloadUserHandler }) {
     const [userLevel, setUserLevel] = useState(undefined);
     const [level, setLevel] = useState(undefined);
+    const [isLoading, setIsLoading] = useState(true);
 
     const [inputDeleteAccount, showInputDeleteAccount] = useState(false);
     const [inputPassword, showInputPassword] = useState(false);
@@ -89,10 +90,6 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
     useEffect(() => {
         reloadUserHandler()
     }, [])
-
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
 
     return (
         <>
@@ -221,7 +218,7 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
 
                             </div >
                         </div>
-                        <Navigation user={user} />
+                        <Navigation style={user.preferences.style} />
                     </>
             }
         </>

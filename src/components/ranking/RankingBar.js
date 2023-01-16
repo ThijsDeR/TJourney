@@ -1,9 +1,7 @@
 import React from "react";
 import { paddingPage, rankingBarContainer, levelBubble, progressContainer, progress, black } from "../../styling/StylingVariables.js"
 
-function RankingBar(props) {
-
-    const { user, level } = props
+function RankingBar({user, level}) {
 
     function rankingBarProgressPercentage() {
         return level.xp / level.neededXP * 100

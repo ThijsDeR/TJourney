@@ -13,6 +13,7 @@ import { getAllUsers } from '../../services/auth-service';
 export default function Leaderboard({ user }) {
     const [users, setUsers] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [rankOfCurrentUser, setRankOfCurrentUser] = useState(undefined)
 
     useEffect(() => {
         getAllUsers().then((users) => {
@@ -90,7 +91,6 @@ export default function Leaderboard({ user }) {
                                     </div>
                                 })
                             }
-                            <Navigation style={user.preferences.style} />
                         </div>
                     </div>
                 </>

@@ -70,10 +70,6 @@ export function Challenges({ user }) {
         setCurrentDay(day)
     }
 
-    if (user === undefined) {
-        return <Navigate to="/login" replace />;
-    }
-
     const paddingPage = "10px 20px"
     const marginFinishedChallenges = "3px 0px 3px 30px"
 

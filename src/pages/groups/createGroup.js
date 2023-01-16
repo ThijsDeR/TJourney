@@ -19,10 +19,6 @@ export function GroupCreate({ user }) {
         if (step >= 1 && step <= 4) setStep(step)
     }
 
-    if (user === undefined) {
-        return <Navigate to="/login" replace />;
-    }
-
     if (done) {
         return <Navigate to="/goals/index" replace />;
     }

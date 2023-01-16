@@ -51,10 +51,6 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
         setCurrentDay(day)
     }
 
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
-
     const green = "#61C688";
 
     // when you change this color, you will change the primary color of the whole page

@@ -91,10 +91,6 @@ function Account({ user, reloadUserHandler }) {
         reloadUserHandler()
     }, [])
 
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
-
     return (
         <>
             {

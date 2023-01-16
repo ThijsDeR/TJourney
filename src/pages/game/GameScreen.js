@@ -25,16 +25,12 @@ import { loadCharacter } from '../../services/playerCharacter-service';
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
 
-function GameScreen({ user, reloadUserHandler, timeElapsed }) {
-    const [challenges, setChallenges] = useState(undefined);
+function GameScreen({ user, timeElapsed }) {
     const [diceEyesCount, setDiceEyesCount] = useState(undefined);
-    const [userLevel, setUserLevel] = useState(undefined)
     const [level, setLevel] = useState(undefined)
-    const [gameSession, setGameSesion] = useState(undefined)
     const [isLoading, setIsLoading] = useState(true);
 
     const reloadData = () => {
-        setUserLevel(user.level.amount)
         setLevel(calculateLevel(user.level.amount))
     }
 
@@ -56,18 +52,15 @@ function GameScreen({ user, reloadUserHandler, timeElapsed }) {
     }
 
     useEffect(() => {
-        setUserLevel(user.level.amount)
         setLevel(calculateLevel(user.level.amount))
         game.setPlayerCharacter(user.avatar)
 
         getAllChallenges(Date.now()).then((challenges) => {
-            setChallenges(challenges)
             calculateDiceEyesCount(challenges).then((data) => {
                 setDiceEyesCount(data)
             })
         })
         getGameSession().then((data) => {
-            setGameSesion(data)
             game.player.setPosition(data.steps, game.world.circles)
         })
         setIsLoading(false)
@@ -76,13 +69,6 @@ function GameScreen({ user, reloadUserHandler, timeElapsed }) {
     useEffect(() => {
         reloadData()
     }, [user])
-
-
-    
-
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
 
     game.update(timeElapsed)
 

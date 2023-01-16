@@ -29,12 +29,7 @@ function Tutorial({ user }) {
     function updateTutorialScreenPart(amount = 1) {
         setScreenPart(screenPart + amount);
     }
-
-    if (user === undefined) {
-        return <Navigate to="/login" replace />;
-    }
-
-
+    
     if (tutorialDone) {
         editTutorial(true).then(
             // Tried using Navigate (outside the then), could not get it to work so I gave up and used href. 

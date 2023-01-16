@@ -20,10 +20,6 @@ function Home({ user }) {
         }
     }, [level, userLevel])
 
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
-
     if (!isLoading) {
         if (user.tutorialFinished === undefined || user.tutorialFinished === false) {
             return <Navigate to="/tutorial" replace />;

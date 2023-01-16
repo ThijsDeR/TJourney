@@ -58,10 +58,6 @@ export function Challenges({ user }) {
         });
     }
 
-    if (user === undefined) {
-        return <Navigate to="/login" replace />;
-    }
-
     return (
         <>
             {

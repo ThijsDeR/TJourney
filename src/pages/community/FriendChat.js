@@ -59,11 +59,7 @@ export default function FriendChat({ user }) {
         await createMessage(msg, user._id, friend._id)
     };
 
-    if (user === undefined) {
-        return <Navigate to="/login" replace />;
-    }
-
-    if (friend === undefined) {
+    if (friend === undefined && !isLoading) {
         return <Navigate to="/community" replace />;
     }
 

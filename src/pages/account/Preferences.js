@@ -14,10 +14,6 @@ export function Preferences({ user }) {
         window.location.href = "/account";
     }
 
-    if (user === undefined) {
-        return <Navigate to="/login" replace />;
-    }
-
     const styles = [
         {
             name: "Red",

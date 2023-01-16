@@ -15,10 +15,6 @@ export function GoalsIndex({ user }) {
         })
     }, [])
 
-    if (user === undefined) {
-        return <Navigate to="/login" replace />;
-    }
-
     return (
         <>
             {

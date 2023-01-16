@@ -30,10 +30,6 @@ export function GoalsCreate({ user }) {
         }
     }, [done])
 
-    if (user === undefined) {
-        return <Navigate to="/login" replace />;
-    }
-
     if (done) {
         return <Navigate to="/goals/index" replace />;
     }

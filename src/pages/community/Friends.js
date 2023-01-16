@@ -14,7 +14,6 @@ function Friends({ user }) {
 
     useEffect(() => {
         getFriends().then((friends) => {
-            console.log(friends)
             setFriends(friends)
         })
     }, [])

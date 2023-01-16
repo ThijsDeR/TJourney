@@ -1,7 +1,7 @@
 import React from "react";
 import { paddingPage, rankingBarContainer, levelBubble, progressContainer, progress, black } from "../../styling/StylingVariables.js"
 
-function RankingBar({user, level}) {
+function RankingBar({ user, level }) {
 
     function rankingBarProgressPercentage() {
         return level.xp / level.neededXP * 100
@@ -16,9 +16,9 @@ function RankingBar({user, level}) {
             <div style={rankingBarContainer(user.preferences.style)}>
                 <div style={levelBubble(user.preferences.style)}>{level ? `${level.level}` : ""}</div>
                 <div style={progressContainer(user.preferences.style)}>
-                    <div style={progress(user.preferences.style, rankingBarProgressPercentage())}>
-                        <div style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
-                            <div style={{ margin: 'auto', color: black }}>{level.xp}/{level.neededXP}</div></div>
+                    <div style={{...progress(user.preferences.style, rankingBarProgressPercentage()), ...{position: "absolute"}}}></div>
+                    <div style={{ width: '100%', height: "100%", display: 'flex', alignItems: 'center', position: "absolute" }}>
+                        <div style={{ margin: 'auto', color: black }}>{level.xp}/{level.neededXP}</div>
                     </div>
                 </div>
             </div>

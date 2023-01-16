@@ -10,14 +10,10 @@ import ContactsGroups from '../../components/chat/ContactsGroups.js';
 import Navigation from "../../components/navigation/Navigation";
 
 
-export function GroupChats({ user, isLoading, setIsLoading }) {
+export function GroupChats({ user }) {
   const [contacts, setContacts] = useState([]);
   const currentUser = user;
   const [currentChat, setCurrentChat] = useState(undefined);
-
-  useEffect(() => {
-    if (user) setIsLoading(false)
-  }, [user, setIsLoading])
 
   /**
    * set the users
@@ -62,7 +58,6 @@ export function GroupChats({ user, isLoading, setIsLoading }) {
 
   return (
     <>
-      {isLoading ? <Loading /> :
         <div className="Chats">
 
           <div className="containerChat">
@@ -74,8 +69,7 @@ export function GroupChats({ user, isLoading, setIsLoading }) {
             }
           </div>
         </div>
-      }
-      <Navigation user={user} />
+      <Navigation style={user.preferences.style} />
     </>
   )
 }

@@ -4,17 +4,18 @@ import { useEffect, useState } from "react";
 import { getAllGoals } from "../../../services/goal-service";
 import { Navigate, useRouteError } from "react-router-dom";
 
-export function GoalsIndex({ user, isLoading, setIsLoading }) {
+export function GoalsIndex({ user }) {
     const [goals, setGoals] = useState(undefined)
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getAllGoals().then((data) => {
             setGoals(data)
             setIsLoading(false)
         })
-    }, [setIsLoading])
+    }, [])
 
-    if (!user && !isLoading) {
+    if (user === undefined) {
         return <Navigate to="/login" replace />;
     }
 
@@ -61,7 +62,7 @@ export function GoalsIndex({ user, isLoading, setIsLoading }) {
                                     </> : ""
                             }
                         </div>
-                        <Navigation user={user} />
+                        <Navigation style={user.preferences.style} />
                     </>
             }
         </>

@@ -8,7 +8,7 @@ import { getFriends } from '../../services/friends-service';
 import { calculateLevel } from '../../services/level-service';
 
 
-function Friends({ user, setIsLoading, isLoading }) {
+function Friends({ user }) {
     const [friends, setFriends] = useState(undefined);
 
     useEffect(() => {

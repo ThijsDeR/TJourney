@@ -14,9 +14,10 @@ import { addFriend, getNonFriends } from '../../services/friends-service';
 import { calculateLevel } from '../../services/level-service';
 import Loading from '../../components/loading/Loading';
 
-function AddFriends({ user, isLoading, setIsLoading }) {
+function AddFriends({ user }) {
     const [searchInput, setSearchInput] = useState("");
     const [nonFriends, setNonFriends] = useState(undefined)
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getNonFriends().then((nonFriends) => {
@@ -24,13 +25,9 @@ function AddFriends({ user, isLoading, setIsLoading }) {
                 nonFriend.level = calculateLevel(nonFriend.level.amount)
             })
             setNonFriends(nonFriends)
+            setIsLoading(false)
         })
     }, [])
-
-    useEffect(() => {
-        if (user && nonFriends) setIsLoading(false)
-        
-    }, [user, nonFriends, setIsLoading])
 
     const handleSearchInput = (e) => {
         //  prevent page refresh
@@ -95,7 +92,7 @@ function AddFriends({ user, isLoading, setIsLoading }) {
                                 </div>
                             </div >
                         </div >
-                        <Navigation user={user} />
+                        <Navigation style={user.preferences.style} />
                     </>
             }
         </>

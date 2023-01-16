@@ -8,7 +8,7 @@ import { SelectGoalOverzicht } from "../../../components/goals/SelectGoalOverzic
 import { createGoal } from "../../../services/goal-service.js";
 import { Navigate } from "react-router-dom";
 
-export function GoalsCreate({ user, isLoading, setIsLoading }) {
+export function GoalsCreate({ user }) {
     const [step, setStep] = useState(1);
     const [category, setCategory] = useState(undefined)
     const [name, setName] = useState(undefined)
@@ -28,14 +28,9 @@ export function GoalsCreate({ user, isLoading, setIsLoading }) {
             setDone(false)
             createGoal(name, description, startValue, endValue, startDate, endDate, category)
         }
-    }, [done, name, description, startValue, endValue, startDate, endDate, category])
+    }, [done])
 
-    useEffect(() => {
-        if (user) setIsLoading(false)
-    }, [user, setIsLoading])
-
-
-    if (user === undefined && !isLoading) {
+    if (user === undefined) {
         return <Navigate to="/login" replace />;
     }
 
@@ -44,20 +39,16 @@ export function GoalsCreate({ user, isLoading, setIsLoading }) {
     }
 
     const data = { user, name, setName, description, setDescription, startValue, setStartValue, endValue, setEndValue, startDate, setStartDate, endDate, setEndDate, category, setCategory, setStepHandler, done, setDone }
+
     return (
         <>
-            {
-                isLoading ? <Loading /> :
-                    <>
-                        <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: user?.preferences?.style?.backgroundColor ? user.preferences.style.backgroundColor : "121212" , color:  user?.preferences?.style?.textColor ? user.preferences.style.textColor : "#F7F7F7" }}>
-                            {step === 1 ? <SelectGoalCategory {...data} /> : ""}
-                            {step === 2 ? <SelectPremadePlan {...data} /> : ""}
-                            {step === 3 ? <SelectGoalPlan {...data} /> : ""}
-                            {step === 4 ? <SelectGoalOverzicht {...data} /> : ""}
-                        </div>
-                        <Navigation user={user} />
-                    </>
-            }
+            <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: user?.preferences?.style?.backgroundColor ? user.preferences.style.backgroundColor : "121212", color: user?.preferences?.style?.textColor ? user.preferences.style.textColor : "#F7F7F7" }}>
+                {step === 1 ? <SelectGoalCategory {...data} /> : ""}
+                {step === 2 ? <SelectPremadePlan {...data} /> : ""}
+                {step === 3 ? <SelectGoalPlan {...data} /> : ""}
+                {step === 4 ? <SelectGoalOverzicht {...data} /> : ""}
+            </div>
+            <Navigation style={user.preferences.style} />
         </>
     );
 }

@@ -20,7 +20,7 @@ export function SelectGoalOverzicht(props) {
                         <article className="media">
                             <div className="media-content">
                                 <div className="content">
-                                    <ul style={{listStyle: "none"}}>
+                                    <ul style={{listStyle: "none", color: props.user.preferences.style.textColor }}>
                                         <li>Name: {props.name}</li>
                                         <li>Description: {props.description}</li>
                                         <li>startValue: {props.startValue}</li>

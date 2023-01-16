@@ -41,14 +41,9 @@ const FinalScreenTutorial = ({ user, updateTutorialPosition, screenPart, updateT
                 <div className="nav-buttons is-flex" >
                     {user ?
                         <>
-                            <Link to="#">A</Link>
-                            <Link to="#">CH</Link>
-                            <Link to="#">H</Link>
-                            <Link to="#">J</Link>
-                            <Link>Co</Link>
-                            <Link to="" className="selected"><FontAwesomeIcon icon={faUserGear} /></Link>
+                            <Link to=""><FontAwesomeIcon icon={faUserGear} /></Link>
                             <Link to=""><FontAwesomeIcon icon={faListCheck} /></Link>
-                            <Link to=""><FontAwesomeIcon icon={faHome} /></Link>
+                            <Link to="" className="selected"><FontAwesomeIcon icon={faHome} /></Link>
                             <Link to=""><FontAwesomeIcon icon={faMap} /></Link>
                             <Link to=""><FontAwesomeIcon icon={faUsers} /></Link>
                         </> :

@@ -52,7 +52,7 @@ export function CreateGroupForm(props) {
                             <Link to="/community" style={unsetLinkStyle(props.user.preferences.style)}>
                                 <div style={{ ...smallButton(props.user.preferences.style), ...{ width: '70px' } }}>Cancel</div>
                             </Link>
-                            <div style={{ ...{ width: '80%' } }}>   
+                            <div style={{ ...{ width: '80%' } }}>
 
                                 <div style={{ display: "flex", justifyContent: "center" }}>
                                     <h1 className="is-size-1 has-text-white">New Group Chat</h1>

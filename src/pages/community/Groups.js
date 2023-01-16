@@ -4,43 +4,50 @@ import { Link } from "react-router-dom";
 // styling
 import 'bulma/css/bulma.min.css';
 import { title, containerLeftRight, friendsTile, friendItems, fakePF, chatContainer, lightText, chatDivider } from '../../styling/StylingVariables.js';
-import { getFriends } from '../../services/friends-service';
+
 import { calculateLevel } from '../../services/level-service';
+import { getAllGroups } from '../../services/groups-service.js';
 
 
-function Friends({ user }) {
-    const [friends, setFriends] = useState(undefined);
+function Groups({ user, setIsLoading, isLoading }) {
+    const [groups, setGroups] = useState(undefined);
 
     useEffect(() => {
-        getFriends().then((friends) => {
-            friends.forEach((friend) => {
-                friend.user.level = calculateLevel(friend.user.level.amount)
-            })
-            setFriends(friends)
+        let userActiveGroups = [];
+        getAllGroups().then((groups) => {
+            groups.forEach(group => {
+                user.groups.forEach(userGroup => {
+                    if (userGroup === group._id) {
+                        userActiveGroups.push(group)
+                    }
+                })
+            });
+            setGroups(userActiveGroups)
         });
     }, [])
+
 
     return (
         <>
             {/* your friends */}
             <div style={containerLeftRight(user.preferences.style)}>
                 <div style={{ verticalAlign: 'middle' }}>
-                    <h1 style={{ ...title(user.preferences.style), ...{ padding: 'unset' } }}>Friends</h1>
+                    <h1 style={{ ...title(user.preferences.style), ...{ padding: 'unset' } }}>Groups</h1>
                 </div>
-                <Link to={'/add-friend'} style={{ height: '24px', border: 'unset' }}><div style={{ color: user.preferences.style.primaryColor }} >Add friend</div></Link>
+                <Link to={'/add-group'} style={{ height: '24px', border: 'unset' }}><div style={{ color: user.preferences.style.primaryColor }} >Add group</div></Link>
             </div>
 
             {/* Friend block */}
             {
-                friends ? friends.map((friend) => (
+                groups ? groups.map((group) => (
                     <div className='userDiv' style={chatContainer(user.preferences.style)} onClick={() => {
-                        window.location.href = `/friendChat?id=${friend.user._id}`;
+                        window.location.href = `/groupChat?id=${group._id}`;
                     }}>
                         <div className='friendTile' style={friendsTile(user.preferences.style)}>
                             <div className='friendItems' style={friendItems(user.preferences.style)}>
                                 <div className='friendIcon' style={fakePF(user.preferences.style)}></div>
                                 <div className='friendInfo'>
-                                    <div className='friendName' style={{ fontWeight: 'bold' }}> {friend.user.username} <em style={lightText(user.preferences.style)}>level {friend.user.level.level}</em> </div>
+                                    <div className='friendName' style={{ fontWeight: 'bold' }}> {group.name} </div>
                                     {/* TODO: Get last message */}
                                     <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Last message </div>
                                 </div>
@@ -52,9 +59,9 @@ function Friends({ user }) {
             }
 
             {
-                friends && friends.length === 0 ? "No friends" : ""
+                groups && groups.length === 0 ? "No groups" : ""
             }
         </>
     )
 }
-export default Friends;
+export default Groups;

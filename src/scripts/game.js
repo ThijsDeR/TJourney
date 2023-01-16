@@ -7,13 +7,15 @@ export default class Game {
     friends;
     lastPlaceOnBoard;
     shouldUpdate;
+    hasThrown;
 
-    constructor(world, user) {
+    constructor(world) {
         this.world = world;
         this.player = new Player(this.world.circles[0].position, new Rotation(0, 0, 0), 1.5, 0)
         this.lastPlaceOnBoard = 0;
         this.shouldUpdate = false;
         this.friends = [];
+        this.hasThrown = false;
         
     }
 
@@ -40,7 +42,13 @@ export default class Game {
     }
 
     throwDice(count) {
+        if (this.hasThrown) return
+        this.hasThrown = true
         this.player.spawnDiceAnimation(count)
+    }
+
+    canThrow(count) {
+        return !this.hasThrown && count > 0
     }
 
     setPlayerCharacter(character) {

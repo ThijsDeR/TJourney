@@ -43,10 +43,6 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
         if (userLevel) setLevel(calculateLevel(userLevel))
     }, [userLevel])
 
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
-
     return (
         <>
             <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px", backgroundColor: "black", color: "white" }}>

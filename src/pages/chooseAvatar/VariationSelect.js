@@ -8,7 +8,6 @@ function VariationSelect() {
 
     return (
         <>
-            {/* <Navigation /> */}
             <div className="pt-5 mt-5 mx-3">
                 <div className="title text-center has-text-centered">
                     Avatar customization

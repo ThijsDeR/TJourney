@@ -6,15 +6,12 @@ import { faCircle, faMap, faHome, faListCheck, faUserGear, faUsers } from '@fort
 
 import 'bulma/css/bulma.min.css';
 import { checkChallenge, getAllChallenges, getAllGoals } from '../../../services/goal-service';
-import { getGameSession } from '../../../services/game-service';
+import { calculateDiceEyesCount, getGameSession } from '../../../services/game-service';
 
 import '../../challenges/challenges.css';
 
 function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenPart, updateTutorialPosition }) {
-    const [unfinishedChallenges, setUnfinishedChallenges] = useState(undefined);
     const [finishedChallenges, setFinishedChallenges] = useState(undefined)
-    const [diceEyesCount, setdiceEyesCount] = useState(undefined);
-    const [goals, setGoals] = useState(undefined);
     const [days, setDays] = useState(undefined);
     const [currentDay, setCurrentDay] = useState(undefined)
 
@@ -28,14 +25,9 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
         })
 
         setFinishedChallenges(finished);
-        setUnfinishedChallenges(unfinished);
     }
     useEffect(() => {
         setChallenges(Date.now())
-
-        getAllGoals().then((data) => {
-            setGoals(data)
-        })
 
         const daysAround = 7
         const days = [];
@@ -52,61 +44,11 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
     }, [])
 
     useEffect(() => {
-        if (finishedChallenges) {
-            calculatediceEyesCountCount(finishedChallenges).then((data) => {
-                setdiceEyesCount(data)
-            })
-        }
-    }, [finishedChallenges])
-
-    useEffect(() => {
         if (currentDay !== undefined && days !== undefined && days[currentDay]) setChallenges(days[currentDay].getTime());
     }, [currentDay])
 
-    const calculatediceEyesCountCount = async (challenges) => {
-        const gameSession = await getGameSession()
-        const total = challenges.length
-        let finished = 0
-        const msInDay = 1000 * 60 * 60 * 24
-        challenges.forEach((challenge) => {
-            const entry = gameSession.entries.find((entry) => {
-                return Date.parse(entry.date)
-                    >= (
-                        Math.floor(
-                            Date.parse(challenge.date) / msInDay
-                        ) * msInDay
-                    )
-                    &&
-                    Date.parse(entry.date)
-                    <= (
-                        Math.ceil(
-                            Date.parse(challenge.date) / msInDay
-                        ) * msInDay
-                    )
-            })
-            if (!entry) {
-                finished++
-            }
-        })
-
-        const diceEyesCountConfigs = [
-            [0, 20],
-            [0, 12, 20],
-            [0, 10, 16, 20],
-            [0, 8, 14, 18, 20],
-            [0, 6, 12, 16, 18, 20],
-            [0, 6, 10, 14, 16, 18, 20],
-        ]
-
-        return diceEyesCountConfigs[Math.max(0, total - 1)][finished]
-    }
-
     const setDayHandler = async (day) => {
         setCurrentDay(day)
-    }
-
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
     }
 
     const green = "#61C688";

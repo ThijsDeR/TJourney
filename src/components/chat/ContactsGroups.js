@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Logo from "../../assets/teaScreech.png";
 import "./css/Contacts.css"
-import { friendsTile, friendItems, notifacationBubble, fakePF, chatContainer, lightText, tabListItem, centerDiv, tabListItemContainer, tabList, communityTileStyle, tabContent } from '../../styling/StylingVariables.js';
+import { friendsTile, friendItems, notifacationBubble, fakePF, containerLeftRight, title, chatContainer, lightText, tabListItem, centerDiv, tabListItemContainer, tabList, communityTileStyle, tabContent } from '../../styling/StylingVariables.js';
 import { Link } from 'react-router-dom';
 
 
@@ -46,6 +46,15 @@ export default function ContactsGroups({ contacts, currentUser, changeChat, styl
               </div>
             </div>
             <div className="contacts">
+
+              {/* your friends */}
+              <div style={containerLeftRight(style)}>
+                <div style={{ verticalAlign: 'middle' }}>
+                  <h1 style={{ ...title(style), ...{ padding: 'unset' } }}>Groups</h1>
+                </div>
+                {/* TODO: link to add friend page? */}
+                <Link to={'/add-group'} style={{ height: '24px', border: 'unset' }}><div style={{ color: style.primaryColor, border: '1px solid', padding: '1px 5px 1px 5px' }} >Add group</div></Link>
+              </div>
 
               {
 

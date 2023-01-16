@@ -8,37 +8,28 @@ import { Physics } from "@react-three/cannon";
 
 import luckyBlock from '../../assets/lg1emBK.png'
 import { getAllChallenges} from "../../services/goal-service.js";
-import { getGameSession, setSteps } from "../../services/game-service.js";
-import { Navigate } from 'react-router-dom';
+import { calculateDiceEyesCount, getGameSession, setSteps } from "../../services/game-service.js";
 import Loading from '../../components/loading/Loading';
 import Navigation from '../../components/navigation/Navigation';
 import Game from '../../scripts/game.js';
 import FantasyBook from '../../scripts/fantasyBook';
 import { calculateLevel } from '../../services/level-service';
-import { getCurrentUser } from '../../services/auth-service';
 import { getFriends } from '../../services/friends-service';
 import Friend from '../../scripts/friend.js'
 import Position from '../../scripts/position.js'
 import Rotation from '../../scripts/rotation.js'
-import { loadCharacter } from '../../services/playerCharacter-service';
 
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
 
-function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
-    const [challenges, setChallenges] = useState(undefined);
+function GameScreen({ user, timeElapsed, reloadUserHandler }) {
     const [diceEyesCount, setDiceEyesCount] = useState(undefined);
-    const [userLevel, setUserLevel] = useState(undefined)
+    const [throwAmount, setThrowAmount] = useState(undefined);
     const [level, setLevel] = useState(undefined)
-    const [gameSession, setGameSesion] = useState(undefined)
+    const [isLoading, setIsLoading] = useState(true);
 
     const reloadData = () => {
-        getCurrentUser().then((user) => {
-            setUser(user)
-            setUserLevel(user.level.amount)
-            setLevel(calculateLevel(user.level.amount))
-            
-        })
+        setLevel(calculateLevel(user.level.amount))
     }
 
     const getFriendsData = () => {
@@ -59,92 +50,34 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
     }
 
     useEffect(() => {
-        if (user && !userLevel) {
-            setUserLevel(user.level.amount)
-            setLevel(calculateLevel(user.level.amount))
-            game.setPlayerCharacter(user.avatar)
-        }
-    }, [user, userLevel])
+        setLevel(calculateLevel(user.level.amount))
+        game.setPlayerCharacter(user.avatar)
 
-
-    useEffect(() => {
-        if (userLevel) setLevel(calculateLevel(userLevel))    
-    }, [userLevel])
-
-    useEffect(() => {
-        getAllChallenges(Date.now()).then((data) => {
-            setChallenges(data)
-        })
-        getGameSession().then((data) => {
-            setGameSesion(data)
-            game.player.setPosition(data.steps, game.world.circles)
-        })
-    }, [])
-
-    useEffect(() => {
-        if (challenges) {
+        getAllChallenges(Date.now()).then((challenges) => {
             calculateDiceEyesCount(challenges).then((data) => {
                 setDiceEyesCount(data)
             })
-        }
-    }, [challenges])
+        })
+        getGameSession().then((data) => {
+            game.player.setPosition(data.steps, game.world.circles)
+        })
+        setIsLoading(false)
+    }, [])
 
     useEffect(() => {
-        if (challenges && diceEyesCount !== undefined && userLevel !== undefined && gameSession !== undefined) setIsLoading(false)
-    }, [challenges, diceEyesCount, gameSession, setIsLoading, userLevel])
-
-
-    const calculateDiceEyesCount = async (challenges) => {
-        const gameSession = await getGameSession()
-        const total = challenges.length
-        let finished = 0
-        const msInDay = 1000 * 60 * 60 * 24
-        challenges.forEach((challenge) => {
-            if (challenge.finished) {
-                const entry = gameSession.entries.find((entry) => {
-
-                    return Date.parse(entry.date)
-                        >= (
-                            Math.floor(
-                                Date.parse(challenge.date) / msInDay
-                            ) * msInDay
-                        )
-                        &&
-                        Date.parse(entry.date)
-                        <= (
-                            Math.ceil(
-                                Date.parse(challenge.date) / msInDay
-                            ) * msInDay
-                        )
-                })
-                if (!entry) {
-                    finished++
-                }
-            }
-        })
-
-        const diceEyesCountConfigs = [
-            [0, 20],
-            [0, 12, 20],
-            [0, 10, 16, 20],
-            [0, 8, 14, 18, 20],
-            [0, 6, 12, 16, 18, 20],
-            [0, 6, 10, 14, 16, 18, 20],
-        ]
-
-        return diceEyesCountConfigs[Math.max(0, total - 1)][finished]
-    }
-
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
+        reloadData()
+    }, [user])
 
     game.update(timeElapsed)
 
     if (game.shouldUpdate) {
         game.shouldUpdate = false
-        setSteps(game.player.placeOnTheBoard)
-        reloadData()
+        if (game.hasThrown) {
+            setSteps(game.player.placeOnTheBoard)
+        }
+        reloadUserHandler().then(() => {
+            reloadData()
+        })
     }
 
     return (
@@ -176,16 +109,16 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading }) {
                             {/* </PresentationControls> */}
                         </Canvas>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (diceEyesCount !== 0 ? "rgba(0, 0, 0, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px", height: "100px" }}
+                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (game.canThrow(diceEyesCount) ? "rgba(0, 0, 0, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px", height: "100px" }}
                         onClick={() => {
-                            if (diceEyesCount !== 0 && game.player.dice.count === 0) game.throwDice(diceEyesCount)
+                            if (game.canThrow(diceEyesCount) && game.player.dice.count === 0) game.throwDice(diceEyesCount)
                         }}
                     >
                         <img src={luckyBlock} style={{ width: "50px", height: "50px" }} alt="lucky block"/>
-                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? diceEyesCount : "0"}</p>
+                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{game.canThrow(diceEyesCount) ? diceEyesCount : "0"}</p>
                     </div>
                 </div>
-                <Navigation user={user} />
+                <Navigation style={user.preferences.style} />
 
             </>
     )

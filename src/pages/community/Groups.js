@@ -15,8 +15,6 @@ function Groups({ user, setIsLoading, isLoading }) {
     useEffect(() => {
         let userActiveGroups = [];
         getAllGroups().then((groups) => {
-            console.log(groups)
-            console.log(user)
             groups.forEach(group => {
                 user.groups.forEach(userGroup => {
                     if (userGroup === group._id) {

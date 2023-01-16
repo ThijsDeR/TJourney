@@ -35,10 +35,10 @@ export default function ChatInput({ handleSendMsg }) {
         {//Makes the chatInput and the emoji button
         }
             <div className="button-container">
-                <div className="emoji" >
+                {/* <div className="emoji" >
                     <BsEmojiSmileFill onClick={handleEmojiPickerHideShow} />
                     {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
-                </div>
+                </div> */}
             </div>
             <form className='input-container' onSubmit={(e) => sendChat(e)}>
                 <input type="text" placeholder='Type your message here!' value={msg} onChange={(e) => { setMsg(e.target.value) }} />

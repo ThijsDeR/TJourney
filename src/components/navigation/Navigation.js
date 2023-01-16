@@ -13,7 +13,7 @@ function setAccountClass(name) {
         challenges: ['/challenges', '/goals/create', '/goals/index'],
         home: ['/home'],
         game: ['/game'],
-        community: ['/chatFriends', '/chatGroups', '/leaderboard', '/add-group'],
+        community: ['/chatFriends', '/chatGroups', '/leaderboard', '/community', '/friendChat', '/add-group'],
     }
 
     return pathObjectArray[name].includes(window.location.pathname) ? 'selected' : '';
@@ -31,7 +31,7 @@ function Navigation({ user }) {
                                 <Link to="/challenges" className={setAccountClass("challenges")}><FontAwesomeIcon icon={faListCheck} /></Link>
                                 <Link to="/home" className={setAccountClass("home")}><FontAwesomeIcon icon={faHome} /></Link>
                                 <Link to="/game" className={setAccountClass("game")}><FontAwesomeIcon icon={faMap} /></Link>
-                                <Link to="/chatFriends" className={setAccountClass("community")}><FontAwesomeIcon icon={faUsers} /></Link>
+                                <Link to="/community" className={setAccountClass("community")}><FontAwesomeIcon icon={faUsers} /></Link>
                             </> :
                             <>
                                 <Link to="/login">Login</Link>

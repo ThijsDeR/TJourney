@@ -63,6 +63,19 @@ export const getAllUsers = async () => {
     return null
 };
 
+export const getUser = async (id) => {
+    const localUser = JSON.parse(localStorage.getItem("user"))
+
+    if (localUser && localUser.accessToken) {
+        const data = await axios.get("/v1/users/" + id, {
+            headers: { Authorization: `Bearer ${localUser.accessToken}` }
+        })
+        return data.data.data;
+    }
+
+    return null
+}
+
 export const deleteAccount = async () => {
     const localUser = JSON.parse(localStorage.getItem("user"));
 

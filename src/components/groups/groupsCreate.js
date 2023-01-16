@@ -33,7 +33,6 @@ export function CreateGroupForm({ user, isLoading, setIsLoading, props }) {
     useEffect(() => {
         getCurrentUser().then((data) => {
             setUser(data)
-            console.log(data.preferences.style)
         })
     }, [])
 
@@ -63,7 +62,7 @@ export function CreateGroupForm({ user, isLoading, setIsLoading, props }) {
                             <Link to="/chatGroups" style={unsetLinkStyle(user.preferences.style)}>
                                 <div style={{ ...smallButton(user.preferences.style), ...{ width: '70px' } }}>Cancel</div>
                             </Link>
-                            <div style={{ ...{ width: '200px' } }}>
+                            <div style={{ ...{ width: '80%' } }}>   
 
                                 <div style={{ display: "flex", justifyContent: "center" }}>
                                     <h1 className="is-size-1 has-text-white">New Group Chat</h1>

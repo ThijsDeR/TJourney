@@ -3,6 +3,7 @@ import { SelectGoalCategory } from "../../components/goals/SelectGoalCategory.js
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { CreateGroupForm } from "../../components/groups/groupsCreate.js";
+import Navigation from "../../components/navigation/Navigation.js";
 
 export function GroupCreate({ user }) {
     const [step, setStep] = useState(1);

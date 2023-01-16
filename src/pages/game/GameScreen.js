@@ -21,12 +21,13 @@ import Friend from '../../scripts/friend.js'
 import Position from '../../scripts/position.js'
 import Rotation from '../../scripts/rotation.js'
 import { loadCharacter } from '../../services/playerCharacter-service';
+import { calculateDiceEyesCount, calculateThrowCount, getdiceAmount, removeOneThrow } from '../../services/dice-service';
 
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
 
 function GameScreen({ user, timeElapsed }) {
-    const [diceEyesCount, setDiceEyesCount] = useState(undefined);
+    const [throwAmount, setThrowAmount] = useState(undefined);
     const [level, setLevel] = useState(undefined)
     const [isLoading, setIsLoading] = useState(true);
 
@@ -57,7 +58,10 @@ function GameScreen({ user, timeElapsed }) {
 
         getAllChallenges(Date.now()).then((challenges) => {
             calculateDiceEyesCount(challenges).then((data) => {
-                setDiceEyesCount(data)
+                setThrowAmount(data)
+            })
+            calculateThrowCount(challenges).then((data) => {
+                setThrowAmount(data)
             })
         })
         getGameSession().then((data) => {
@@ -107,13 +111,13 @@ function GameScreen({ user, timeElapsed }) {
                             {/* </PresentationControls> */}
                         </Canvas>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (diceEyesCount !== 0 ? "rgba(0, 0, 0, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px", height: "100px" }}
+                    <div style={{ display: "flex", flexDirection: "column", position: "fixed", left: "10px", bottom: "100px", zIndex: 999, backgroundColor: (getdiceAmount() !== 0 ? "rgba(0, 0, 0, 0.5)" : "rgba(200, 0, 0, 0.5)"), borderRadius: "25px", padding: "10px", height: "100px" }}
                         onClick={() => {
-                            if (diceEyesCount !== 0 && game.player.dice.count === 0) game.throwDice(diceEyesCount)
+                            if (getdiceAmount() !== 0 && game.player.dice.count === 0) {game.throwDice(diceEyesCount); removeOneThrow()}
                         }}
                     >
                         <img src={luckyBlock} style={{ width: "50px", height: "50px" }} alt="lucky block"/>
-                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{diceEyesCount ? diceEyesCount : "0"}</p>
+                        <p className="is-size-4" style={{ color: "white", textAlign: "center" }}>{getdiceAmount() ? getdiceAmount() : "0"}</p>
                     </div>
                 </div>
                 <Navigation style={user.preferences.style} />

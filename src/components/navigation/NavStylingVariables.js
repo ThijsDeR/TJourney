@@ -27,7 +27,7 @@ export const buttonStyling = (style) => {
     }
 }
 
-export const navButtonContainer = (style) => {
+export const navButtonContainer = () => {
     return {
         display: "flex",
         width: "95%",

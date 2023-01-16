@@ -25,7 +25,6 @@ export function Chats({ user }) {
     }, [user, currentUser]);
 
 
-
     /**
      * Removes your own username from the contact list
      * 

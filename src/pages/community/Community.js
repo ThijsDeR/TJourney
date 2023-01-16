@@ -12,6 +12,9 @@ import Tabs from '../../components/tabs/Tabs';
 // tab content
 import Friends from './Friends.js';
 import Leaderboard from './Leaderboard.js';
+import Loading from '../../components/loading/Loading';
+import Groups from './Groups';
+
 
 function CommunityScreen({ user }) {
 
@@ -22,6 +25,9 @@ function CommunityScreen({ user }) {
                     <Tabs style={user.preferences.style}>
                         <div label="Friends">
                             <Friends user={user}/>
+                        </div>
+                        <div label="Groups">
+                            <Groups user={user} />
                         </div>
                         <div label="Leaderboard">
                             <Leaderboard user={user}/>

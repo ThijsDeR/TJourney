@@ -35,6 +35,8 @@ import Friends from "./pages/community/Friends.js";
 import Loading from "./components/loading/Loading.js";
 import CommunityScreen from "./pages/community/Community.js";
 import FriendChat from "./pages/community/FriendChat.js";
+import GroupChat from "./pages/community/GroupsChat.js";
+
 import GameWrapper from "./pages/game/GameWrapper.js";
 import ProtectedRoute from "./components/ProtectedRoute.js";
 
@@ -62,6 +64,7 @@ function App() {
 
     return (
         <>
+
             {isLoading ? <Loading /> :
                 <div style={{ position: "absolute", top: "0", left: "0", right: "0", bottom: "0", backgroundColor: user?.preferences?.style?.backgroundColor ? user.preferences.style.backgroundColor : "#121212" }}>
                     <Routes>

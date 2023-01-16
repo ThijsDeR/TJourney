@@ -44,7 +44,7 @@ function AddFriends({ user }) {
                         <div style={pageStyle(user.preferences.style)}>
                             <div style={appContainer(user.preferences.style)}>
 
-                                <Link to='/friends' style={{ textDecoration: 'none' }}>
+                                <Link to='/community' style={{ textDecoration: 'none' }}>
                                     <div style={goBackIndicator(user.preferences.style)}>
                                         <FontAwesomeIcon icon={faAngleLeft} size='lg' />
                                         <span style={{ paddingLeft: '10px' }}>Friends</span>
@@ -77,8 +77,9 @@ function AddFriends({ user }) {
                                                         alignItems: 'center',
                                                     }}>
                                                         <a href style={unsetLinkStyle(user.preferences.style)} onClick={(e) => {
-                                                            addFriend(nonFriend._id)
+                                                            addFriend(nonFriend)
                                                             e.target.closest(".userDiv").remove()
+                                                            window.location.reload()
                                                         }}>
                                                             <div style={{ ...smallButton(user.preferences.style), ...{ width: '70px' } }}>Add</div>
                                                         </a>

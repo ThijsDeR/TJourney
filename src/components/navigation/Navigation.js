@@ -7,6 +7,18 @@ import {
 } from "react-router-dom";
 import { navButtonContainer, selectedStyling, buttonStyling } from "./NavStylingVariables";
 
+function setAccountClass(name, user) {
+    const pathObjectArray = {
+        account: ['/account', '/avatarselect', '/preferences'],
+        challenges: ['/challenges', '/goals/create', '/goals/index'],
+        home: ['/home'],
+        game: ['/game'],
+        community: ['/chatFriends', '/chatGroups', '/leaderboard', '/community', '/friendChat', '/add-group'],
+    }
+
+    return pathObjectArray[name].includes(window.location.pathname) ? selectedStyling(user.preferences.style) : {};
+}
+
 
 function Navigation({ style, loggedIn = true }) {
     function setAccountClass(name) {

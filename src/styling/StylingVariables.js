@@ -126,6 +126,7 @@ export const tileStyle = (style) => {
 // content to the left and right side of the page
 export const containerLeftRight = (style) => {
     return {
+        width: '90%',
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'nowrap',

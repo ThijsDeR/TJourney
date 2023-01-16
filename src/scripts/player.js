@@ -42,6 +42,11 @@ export default class Player extends Walkable {
 
     spawnDiceAnimation(count) {
         this.dice.visible = true
-        this.placeOnTheBoard += randomCount(count)
+        this.placeOnTheBoard += this.getRandomDiceCount(count)
+    }
+
+    getRandomDiceCount(count) {
+        const min = Math.round(count / 2);
+        return Math.round(Math.random() * (count - min) + min)
     }
 }

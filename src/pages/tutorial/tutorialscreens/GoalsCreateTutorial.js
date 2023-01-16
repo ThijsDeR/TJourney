@@ -7,6 +7,7 @@ import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap, faHome, faListCheck, faUserGear, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { buttonStyling, navButtonContainer, selectedStyling } from "../../../components/navigation/NavStylingVariables";
 
 export function GoalsCreateTutorial({ user, isLoading, screenPart, updateTutorialScreenPart, updateTutorialPosition }) {
     const [step, setStep] = useState(1);
@@ -76,18 +77,18 @@ export function GoalsCreateTutorial({ user, isLoading, screenPart, updateTutoria
                 {step === 4 ? <SelectGoalOverzicht {...data} /> : ""}
 
                 <div className="nav-bottom" style={screenPart >= 10 || screenPart === 3 ? { zIndex: 30 } : {}}>
-                    <div className="nav-buttons is-flex" >
+                    <div style={navButtonContainer(user.preferences.style)} >
                         {user ?
                             <>
-                                <Link to=""><FontAwesomeIcon icon={faUserGear} /></Link>
-                                <Link to="" className="selected"><FontAwesomeIcon icon={faListCheck} /></Link>
-                                <Link to=""><FontAwesomeIcon icon={faHome} /></Link>
-                                <Link to="" onClick={screenPart >= 10 || screenPart >= 3 ? () => { updateTutorialPosition() } : () => {}}><FontAwesomeIcon icon={faMap} /></Link>
-                                <Link to=""><FontAwesomeIcon icon={faUsers} /></Link>
+                                <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faUserGear} /></Link>
+                                <Link to="" style={{ ...buttonStyling(user.preferences.style), ...selectedStyling(user.preferences.style)}}><FontAwesomeIcon icon={faListCheck} /></Link>
+                                <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faHome} /></Link>
+                                <Link to="" style={{ ...buttonStyling(user.preferences.style)}} onClick={screenPart >= 10 || screenPart >= 3 ? () => { updateTutorialPosition() } : () => {}}><FontAwesomeIcon icon={faMap} /></Link>
+                                <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faUsers} /></Link>
                             </> :
                             <>
-                                <Link to="#">Login</Link>
-                                <Link to="#">Sign Up</Link>
+                                <Link to="#" style={{ ...buttonStyling(user.preferences.style)}}>Login</Link>
+                                <Link to="#" style={{ ...buttonStyling(user.preferences.style)}}>Sign Up</Link>
                             </>
                         }
                     </div>

@@ -7,6 +7,7 @@ import { faCircle, faMap, faHome, faListCheck, faUserGear, faUsers } from '@fort
 import 'bulma/css/bulma.min.css';
 import { checkChallenge, getAllChallenges, getAllGoals } from '../../../services/goal-service';
 import { calculateDiceEyesCount, getGameSession } from '../../../services/game-service';
+import { buttonStyling, navButtonContainer, selectedStyling } from "../../../components/navigation/NavStylingVariables";
 
 import '../../challenges/challenges.css';
 
@@ -242,18 +243,18 @@ function ChallengesTutorial({ user, isLoading, screenPart, updateTutorialScreenP
                 </div>
             </div >
             <div className="nav-bottom">
-                <div className="nav-buttons is-flex" >
+                <div style={navButtonContainer(user.preferences.style)} >
                     {user ?
                         <>
-                            <Link to=""><FontAwesomeIcon icon={faUserGear} /></Link>
-                            <Link to="" className="selected"><FontAwesomeIcon icon={faListCheck} /></Link>
-                            <Link to=""><FontAwesomeIcon icon={faHome} /></Link>
-                            <Link to=""><FontAwesomeIcon icon={faMap} /></Link>
-                            <Link to=""><FontAwesomeIcon icon={faUsers} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faUserGear} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style), ...selectedStyling(user.preferences.style)}}><FontAwesomeIcon icon={faListCheck} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faHome} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faMap} /></Link>
+                            <Link to="" style={{ ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faUsers} /></Link>
                         </> :
                         <>
-                            <Link to="#">Login</Link>
-                            <Link to="#">Sign Up</Link>
+                            <Link to="#" style={{ ...buttonStyling(user.preferences.style)}}>Login</Link>
+                            <Link to="#" style={{ ...buttonStyling(user.preferences.style)}}>Sign Up</Link>
                         </>
                     }
                 </div>

@@ -32,7 +32,6 @@ function AvatarSelect({ user, isLoading, setIsLoading }) {
 
     const avatarChangeHandler = (avatar) => {
         editAvatar(avatar).then((data) => {
-            console.log(data)
             setPickedNew(true)
         })
     }

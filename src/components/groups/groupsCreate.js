@@ -26,9 +26,7 @@ export function CreateGroupForm(props) {
     }
 
     useEffect(() => {
-        getAllUsers().then((data) => {
-            setUsers(data)
-        })
+        setUsers(props.user.friends)
         getCurrentUser().then((data) => {
             friendsInGroup.push(data)
         })

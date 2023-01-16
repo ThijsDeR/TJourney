@@ -12,12 +12,7 @@ function Friends({ user }) {
     const [friends, setFriends] = useState(undefined);
 
     useEffect(() => {
-        getFriends().then((friends) => {
-            friends.forEach((friend) => {
-                friend.user.level = calculateLevel(friend.user.level.amount)
-            })
-            setFriends(friends)
-        });
+        setFriends(user.friends)
     }, [])
 
     return (
@@ -40,7 +35,7 @@ function Friends({ user }) {
                             <div className='friendItems' style={friendItems(user.preferences.style)}>
                                 <div className='friendIcon' style={fakePF(user.preferences.style)}></div>
                                 <div className='friendInfo'>
-                                    <div className='friendName' style={{ fontWeight: 'bold' }}> {friend.user.username} <em style={lightText(user.preferences.style)}>level {friend.user.level.level}</em> </div>
+                                    <div className='friendName' style={{ fontWeight: 'bold' }}> {friend.username} <em style={lightText(user.preferences.style)}>level {friend.level.level}</em> </div>
                                     {/* TODO: Get last message */}
                                     <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Last message </div>
                                 </div>

@@ -29,10 +29,10 @@ function Navigation({ user }) {
                         user ?
                             <>
                                 <Link to="/account" style={{...buttonStyling(user.preferences.style), ...setAccountClass("account")}}><FontAwesomeIcon icon={faUserGear} /></Link>
-                                <Link to="/challenges" style={{...setAccountClass("challenges"), ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faListCheck} /></Link>
-                                <Link to="/home" style={{...setAccountClass("home"), ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faHome} /></Link>
-                                <Link to="/game" style={{...setAccountClass("game"), ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faMap} /></Link>
-                                <Link to="/community" style={{...setAccountClass("community"), ...buttonStyling(user.preferences.style)}}><FontAwesomeIcon icon={faUsers} /></Link>
+                                <Link to="/challenges" style={{...buttonStyling(user.preferences.style), ...setAccountClass("challenges")}}><FontAwesomeIcon icon={faListCheck} /></Link>
+                                <Link to="/home" style={{...buttonStyling(user.preferences.style), ...setAccountClass("home")}}><FontAwesomeIcon icon={faHome} /></Link>
+                                <Link to="/game" style={{...buttonStyling(user.preferences.style), ...setAccountClass("game")}}><FontAwesomeIcon icon={faMap} /></Link>
+                                <Link to="/community" style={{...buttonStyling(user.preferences.style), ...setAccountClass("community")}}><FontAwesomeIcon icon={faUsers} /></Link>
                             </> :
                             <>
                                 <Link to="/login">Login</Link>

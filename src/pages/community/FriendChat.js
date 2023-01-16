@@ -57,7 +57,7 @@ export default function FriendChat({ user }) {
      * @param {*} msg the message
      */
     const handleSendMsg = async () => {
-        await createMessage(msg, user._id, friend._id)
+        await createMessage(msg, friend._id, user._id)
     };
 
     if (friend === undefined && !isLoading) {
@@ -74,8 +74,8 @@ export default function FriendChat({ user }) {
                 <div className='chatContainer' style={{ position: "fixed", top: "50px", left: "0", right: "0", bottom: "135px", display: "flex", flexFlow: "column-reverse", overflowY: "auto" }}>
                     {
                         messages ? messages.map((message) => (
-                            <div key={messages._id} style={{ display: "flex", justifyContent: "end" }}>
-                                <div style={{ margin: "5px 25px", padding: "5px 20px", borderRadius: "25px", backgroundColor: user.preferences.style.primaryColor, color: user.preferences.style.textColor }}>
+                            <div key={messages._id} style={{ display: "flex", justifyContent: message.sender === user._id ? "end" : "start" }}>
+                                <div style={{ margin: "5px 25px", padding: "5px 20px", borderRadius: "25px", backgroundColor: message.sender !== user._id ? user.preferences.style.primaryColor : user.preferences.style.tertiaryColor, color: user.preferences.style.textColor, wordBreak: "break-all", whiteSpace: "normal" }}>
                                     <div >
                                         <p>{message.message}</p>
                                     </div>

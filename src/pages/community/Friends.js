@@ -7,14 +7,23 @@ import { title, containerLeftRight, friendsTile, friendItems, fakePF, chatContai
 import { getFriends } from '../../services/friends-service';
 import { calculateLevel } from '../../services/level-service';
 import { getAllUsers } from '../../services/auth-service.js';
+import { getAllMessages } from '../../services/chat-service.js';
 
 
 function Friends({ user }) {
     const [friends, setFriends] = useState(undefined);
 
     useEffect(() => {
-        getFriends().then((friends) => {
-            setFriends(friends)
+        getAllMessages().then((messages) => {
+            getFriends().then((friends) => {
+                friends.forEach((friend) => {
+                    friend.user.level = calculateLevel(friend.user.level.amount)
+                    const relevantMessages = messages.filter((message) => message.user.includes(friend.user._id) && message.user.includes(user._id))
+                    const message = relevantMessages.reverse()[0].message
+                    friend.user.lastMessage = message.length > 20 ? message.substring(0, 20) + "..." : message;
+                })
+                setFriends(friends)
+            })
         })
     }, [])
 
@@ -40,7 +49,7 @@ function Friends({ user }) {
                                 <div className='friendInfo'>
                                     <div className='friendName' style={{ fontWeight: 'bold' }}> {friend.user.username} <em style={lightText(user.preferences.style)}>level {friend.user.level.level}</em> </div>
                                     {/* TODO: Get last message */}
-                                    <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Last message </div>
+                                    <div className='friendLevel' style={{ fontWeight: 'lighter'}}> {friend.user.lastMessage} </div>
                                 </div>
                             </div>
                         </div>

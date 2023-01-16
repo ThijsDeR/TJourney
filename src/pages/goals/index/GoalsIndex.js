@@ -12,19 +12,16 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import 'bulma/css/bulma.min.css';
 import { pageStyle, appContainer, goBackIndicator, title, tileGoalsCreate } from '../../../styling/StylingVariables.js';
 
-export function GoalsIndex({ user, isLoading, setIsLoading }) {
+export function GoalsIndex({ user }) {
     const [goals, setGoals] = useState(undefined)
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getAllGoals().then((data) => {
             setGoals(data)
             setIsLoading(false)
         })
-    }, [setIsLoading])
-
-    if (!user && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
+    }, [])
 
     return (
         <>
@@ -72,7 +69,7 @@ export function GoalsIndex({ user, isLoading, setIsLoading }) {
                                         </> : ""
                                 }
                             </div>
-                            <Navigation user={user} />
+                             <Navigation style={user.preferences.style} />
                         </div>
                     </>
             }

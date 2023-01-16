@@ -7,29 +7,18 @@ import { calculateLevel, updateLevel } from '../../services/level-service.js';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
+function Home({ user }) {
     const [userLevel, setUserLevel] = useState(undefined)
     const [level, setLevel] = useState(undefined)
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if (user && !userLevel) {
+        if (level === undefined || userLevel === undefined) {
             setUserLevel(user.level.amount)
             setLevel(calculateLevel(user.level.amount))
+            setIsLoading(false)
         }
-    }, [user, userLevel])
-
-
-    useEffect(() => {
-        if (userLevel) setLevel(calculateLevel(userLevel))
-    }, [userLevel])
-
-    useEffect(() => {
-        if (user && userLevel !== undefined) setIsLoading(false)
-    }, [user, userLevel, setIsLoading])
-
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
+    }, [level, userLevel])
 
     if (!isLoading) {
         if (user.tutorialFinished === undefined || user.tutorialFinished === false) {
@@ -57,7 +46,7 @@ function Home({ user, setCurrentUser, isLoading, setIsLoading }) {
 
                             </section>
                         </div >
-                        <Navigation user={user} />
+                        <Navigation style={user.preferences.style} />
                     </>
             }
         </>

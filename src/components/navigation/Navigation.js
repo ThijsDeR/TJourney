@@ -1,43 +1,46 @@
 import "./navigation.css";
-import {loadCharacter} from "../../services/playerCharacter-service"
+import { loadCharacter } from "../../services/playerCharacter-service"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap, faHome, faListCheck, faUserGear, faUsers } from '@fortawesome/free-solid-svg-icons';
-
 import {
     Link
 } from "react-router-dom";
+import { navButtonContainer, selectedStyling, buttonStyling } from "./NavStylingVariables";
 
-function setAccountClass(name) {
-    const pathObjectArray = {
-        account: ['/account', '/avatarselect', '/preferences'],
-        challenges: ['/challenges'],
-        home: ['/home'],
-        game: ['/game'],
-        community: ['/chatFriends', '/chatGroups', '/leaderboard'],
+
+function Navigation({ style, loggedIn = true }) {
+    function setAccountClass(name) {
+        const pathObjectArray = {
+            account: ['/account', '/avatarselect', '/preferences'],
+            challenges: ['/challenges'],
+            home: ['/home'],
+            game: ['/game'],
+            community: ['/chatFriends', '/chatGroups', '/leaderboard', '/community', '/friendChat'],
+            login: ['/login'],
+            register: ['/register']
+        }
+
+        return pathObjectArray[name].includes(window.location.pathname) ? selectedStyling(style) : {};
     }
-
-    return pathObjectArray[name].includes(window.location.pathname) ? 'selected' : '';
-}
-
-function Navigation({ user }) {
     return (
         <>
             <div className="nav-bottom">
-                <div className="nav-buttons is-flex">
+                <div style={navButtonContainer(style)}>
                     {
-                        user ?
+                        loggedIn ?
                             <>
-                                <Link to="/account" className={setAccountClass("account")}><FontAwesomeIcon icon={faUserGear} /></Link>
-                                <Link to="/challenges" className={setAccountClass("challenges")}><FontAwesomeIcon icon={faListCheck} /></Link>
-                                <Link to="/home" className={setAccountClass("home")}><FontAwesomeIcon icon={faHome} /></Link>
-                                <Link to="/game" className={setAccountClass("game")}><FontAwesomeIcon icon={faMap} /></Link>
-                                <Link to="/chatFriends" className={setAccountClass("community")}><FontAwesomeIcon icon={faUsers} /></Link>
+                                <Link to="/account" style={{ ...buttonStyling(style), ...setAccountClass("account") }}><FontAwesomeIcon icon={faUserGear} /></Link>
+                                <Link to="/challenges" style={{ ...buttonStyling(style), ...setAccountClass("challenges") }}><FontAwesomeIcon icon={faListCheck} /></Link>
+                                <Link to="/home" style={{ ...buttonStyling(style), ...setAccountClass("home") }}><FontAwesomeIcon icon={faHome} /></Link>
+                                <Link to="/game" style={{ ...buttonStyling(style), ...setAccountClass("game") }}><FontAwesomeIcon icon={faMap} /></Link>
+                                <Link to="/community" style={{ ...buttonStyling(style), ...setAccountClass("community") }}><FontAwesomeIcon icon={faUsers} /></Link>
                             </> :
                             <>
-                                <Link to="/login">Login</Link>
-                                <Link to="/register">Sign Up</Link>
+                                <Link to="/login" style={{ ...buttonStyling(style), ...setAccountClass("login") }}>Login</Link>
+                                <Link to="/register" style={{ ...buttonStyling(style), ...setAccountClass("register") }}>Sign Up</Link>
                             </>
                     }
+
                 </div>
             </div>
         </>

@@ -9,11 +9,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import luckyBlock from '../../assets/lg1emBK.png'
 
 
-export function Challenges({ user, isLoading, setIsLoading }) {
+export function Challenges({ user }) {
     const [challenges, setChallenges] = useState(undefined);
     const [diceEyesCount, setdiceEyesCount] = useState(undefined);
     const [goals, setGoals] = useState(undefined);
     const [isSelected, setIsSelected] = useState(undefined);
+    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
         getAllChallenges(Date.now()).then((data) => {
@@ -46,46 +48,6 @@ export function Challenges({ user, isLoading, setIsLoading }) {
         }
     }
 
-    const calculatediceEyesCountCount = async (challenges) => {
-        const gameSession = await getGameSession()
-        const total = challenges.length
-        let finished = 0
-        const msInDay = 1000 * 60 * 60 * 24
-        challenges.forEach((challenge) => {
-            if (challenge.finished) {
-                const entry = gameSession.entries.find((entry) => {
-                    return Date.parse(entry.date)
-                        >= (
-                            Math.floor(
-                                Date.parse(challenge.date) / msInDay
-                            ) * msInDay
-                        )
-                        &&
-                        Date.parse(entry.date)
-                        <= (
-                            Math.ceil(
-                                Date.parse(challenge.date) / msInDay
-                            ) * msInDay
-                        )
-                })
-                if (!entry) {
-                    finished++
-                }
-            }
-        })
-
-        const diceEyesCountConfigs = [
-            [0, 20],
-            [0, 12, 20],
-            [0, 10, 16, 20],
-            [0, 8, 14, 18, 20],
-            [0, 6, 12, 16, 18, 20],
-            [0, 6, 10, 14, 16, 18, 20],
-        ]
-
-        return diceEyesCountConfigs[Math.max(0, total - 1)][finished]
-    }
-
     const checkChallengeHandler = async (goalId, challengeId, finished) => {
         await checkChallenge(goalId, challengeId, !finished)
         getAllChallenges(Date.now()).then((data) => {
@@ -94,10 +56,6 @@ export function Challenges({ user, isLoading, setIsLoading }) {
         getAllGoals().then((data) => {
             setGoals(data)
         });
-    }
-
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
     }
 
     return (
@@ -164,7 +122,7 @@ export function Challenges({ user, isLoading, setIsLoading }) {
                                 </>
                             ) : ""}
                         </div>
-                        <Navigation user={user} />
+                        <Navigation style={user.preferences.style} />
                     </>
             }
         </>

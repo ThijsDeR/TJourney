@@ -24,17 +24,12 @@ import { getFriends } from '../../../services/friends-service.js';
 const fantasyBook = new FantasyBook();
 const game = new Game(fantasyBook);
 
-function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading, updateTutorialScreenPart, screenPart, updateTutorialPosition }) {
-    const [challenges, setChallenges] = useState(undefined);
-    const [diceEyesCount, setDiceEyesCount] = useState(undefined);
-    const [userLevel, setUserLevel] = useState(undefined)
+function GameScreen({ user, timeElapsed, updateTutorialScreenPart, screenPart, updateTutorialPosition }) {
     const [level, setLevel] = useState(undefined)
-    const [gameSession, setGameSesion] = useState(undefined)
-    const [friends, setFriends] = useState(undefined)
+    const [diceEyesCount, setDiceEyesCount] = useState(0)
 
     const getFriendsData = () => {
         getFriends().then((friends) => {
-            setFriends(friends)
             friends.forEach((friend) => {
                 const gameFriend = game.friends.find((gameFriend) => gameFriend.userName === friend.user.username)
                 if (gameFriend) gameFriend.placeOnTheBoard = friend.gameSession.steps;
@@ -47,36 +42,13 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading, updat
     }
 
     useEffect(() => {
-        if (user && !userLevel) {
-            setUserLevel(user.level.amount)
-            setLevel(calculateLevel(user.level.amount))
-        }
-    }, [user, userLevel])
-
-    useEffect(() => {
-        if (user) {
-            getFriendsData()
-        }
-    }, [user])
-
-    useEffect(() => {
-        if (userLevel) setLevel(calculateLevel(userLevel))
-    }, [userLevel])
-
-    useEffect(() => {
-        getAllChallenges(Date.now()).then((data) => {
-            setChallenges(data)
-        })
+        setLevel(calculateLevel(user.level.amount))
+        getFriendsData()
         getGameSession().then((data) => {
-            setGameSesion(data)
             game.lastPlaceOnBoard = data.steps
             game.player.setPosition(data.steps, game.world.circles)
         })
     }, [])
-
-    useEffect(() => {
-        if (challenges && diceEyesCount !== undefined && userLevel !== undefined && gameSession !== undefined) setIsLoading(false)
-    }, [challenges, diceEyesCount, gameSession, setIsLoading, userLevel])
 
     return (
         <>
@@ -169,7 +141,7 @@ function GameScreen({ user, setUser, timeElapsed, isLoading, setIsLoading, updat
                             <Link to="#">CH</Link>
                             <Link to="#">H</Link>
                             <Link to="#" >J</Link>
-                            <Link onClick={screenPart > 6 ? () => updateTutorialPosition() : () => {}}>Co</Link>
+                            <Link onClick={screenPart > 6 ? () => updateTutorialPosition() : () => { }}>Co</Link>
                         </> :
                         <>
                             <Link to="#">Login</Link>

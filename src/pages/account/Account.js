@@ -10,9 +10,10 @@ import { DefaultAvatars } from '../../assets/DefaultAvatars/DefaultAvatarsCanvas
 import { login, deleteAccount, editUsername, editPassword } from "../../services/auth-service";
 import { getActiveCharacter, getAllCharacters } from '../../services/playerCharacter-service.js';
 
-function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
+function Account({ user, reloadUserHandler }) {
     const [userLevel, setUserLevel] = useState(undefined);
     const [level, setLevel] = useState(undefined);
+    const [isLoading, setIsLoading] = useState(true);
 
     const [inputDeleteAccount, showInputDeleteAccount] = useState(false);
     const [inputPassword, showInputPassword] = useState(false);
@@ -90,16 +91,12 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
         reloadUserHandler()
     }, [])
 
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
-
     return (
         <>
             {
                 isLoading ? <Loading /> :
                     <>
-                        <div style={{ position: "fixed", top: "0px", bottom: "0px", left: "0px", right: "0px", backgroundColor: user.preferences.style.backgroundColor, color: user.preferences.style.textColor }}>
+                        <div style={{ position: "fixed", top: "0px", bottom: "75px", left: "0px", right: "0px", backgroundColor: user.preferences.style.backgroundColor, color: user.preferences.style.textColor }}>
                             <div className="mx-5">
                                 <div className="is-size-3" style={{ position: "absolute", left: "5vw" }}>
                                     <Link to="/preferences" style={{ color: user.preferences.style.primaryColor }}><FontAwesomeIcon icon={faSliders} /></Link>
@@ -151,7 +148,7 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
                                     </Link>
 
                                     {/* Edit password */}
-                                    <div style={{ position: "absolute", bottom: "10vh", right: "5vw" }}>
+                                    <div style={{ position: "absolute", bottom: "0", right: "5vw" }}>
                                         <button className="button has-text-white" style={{ backgroundColor: user.preferences.style.primaryColor }} onClick={() => [showInputPassword(!inputPassword), showInputDeleteAccount(false)]}>
                                             Edit password
                                         </button>
@@ -198,7 +195,7 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
                                 </div>
 
                                 {/* Delete account */}
-                                <div style={{ position: "absolute", bottom: "10vh" }}>
+                                <div style={{ position: "absolute", bottom: "0" }}>
                                     <button className="button is-danger mt-5 is-relative" onClick={() => [showInputDeleteAccount(!inputDeleteAccount), showInputPassword(false)]}>Delete account</button>
                                 </div>
                                 {inputDeleteAccount ?
@@ -221,7 +218,7 @@ function Account({ user, isLoading, setIsLoading, reloadUserHandler }) {
 
                             </div >
                         </div>
-                        <Navigation user={user} />
+                        <Navigation style={user.preferences.style} />
                     </>
             }
         </>

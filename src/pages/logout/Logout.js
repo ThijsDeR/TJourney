@@ -1,10 +1,10 @@
 import { logout } from "../../services/auth-service.js"
 
-function Logout({setCurrentUser}) {
+function Logout({reloadUserHandler}) {
 
     const logoutHandler = async () => {
         await logout()
-        setCurrentUser(undefined)
+        reloadUserHandler()
         window.location.href="/login"
     }
 

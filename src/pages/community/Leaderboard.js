@@ -10,40 +10,30 @@ import { title, myRank, lightText, containerLeftRight, topThreeContainer, topThr
 import Loading from '../../components/loading/Loading';
 import { getAllUsers } from '../../services/auth-service';
 
-export default function Leaderboard({ user, isLoading, setIsLoading }) {
+export default function Leaderboard({ user }) {
     const [users, setUsers] = useState();
-    const [rankOfCurrentUser, setRankOfCurrentUser] = useState();
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if (user) {
-            getAllUsers().then((users) => {
-                users.forEach((otherUser) => {
-                    otherUser.level.level = calculateLevel(otherUser.level.amount)
-                })
-                users && users.sort((a, b) => {
-                    return b.level.amount - a.level.amount
-                })
-
-                let rankOfCurrentUser = 0;
-                users && users.forEach((otherUser, index) => {
-                    if (otherUser._id === user._id) {
-                        rankOfCurrentUser = index + 1;
-                    }
-                })
-                setRankOfCurrentUser(rankOfCurrentUser)
-                setUsers(users)
-                setIsLoading(false)
+        getAllUsers().then((users) => {
+            users.forEach((otherUser) => {
+                otherUser.level.level = calculateLevel(otherUser.level.amount)
             })
-        }
-    }, [user, setIsLoading])
+            users && users.sort((a, b) => {
+                return b.level.amount - a.level.amount
+            })
 
-    // check if friend if undefined if not - sort by level
-
-    // find index of current user in user array
-
-    if (user === undefined && !isLoading) {
-        return <Navigate to="/login" replace />;
-    }
+            let rankOfCurrentUser = 0;
+            users && users.forEach((otherUser, index) => {
+                if (otherUser._id === user._id) {
+                    rankOfCurrentUser = index + 1;
+                }
+            })
+            setRankOfCurrentUser(rankOfCurrentUser)
+            setUsers(users)
+            setIsLoading(false)
+        })
+    }, [])
 
     return (
         <>
@@ -100,7 +90,7 @@ export default function Leaderboard({ user, isLoading, setIsLoading }) {
                                     </div>
                                 })
                             }
-                            <Navigation user={user} />
+                            <Navigation style={user.preferences.style} />
                         </div>
                     </div>
                 </>

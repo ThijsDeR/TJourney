@@ -31,21 +31,22 @@ import { getPreferencesColor } from "./services/user-service.js";
 
 import Tutorial from "./pages/tutorial/Tutorial.js";
 import { setActiveCharacter } from "./services/playerCharacter-service.js";
+import Friends from "./pages/community/Friends.js";
+import Loading from "./components/loading/Loading.js";
+import CommunityScreen from "./pages/community/Community.js";
+import FriendChat from "./pages/community/FriendChat.js";
+import GameWrapper from "./pages/game/GameWrapper.js";
+import ProtectedRoute from "./components/ProtectedRoute.js";
 
-function App({ timeElapsed }) {
-    const [currentUser, setCurrentUser] = useState(null);
+function App() {
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
 
     const reloadUserHandler = () => {
         getCurrentUser().then((data) => {
-            const style = getPreferencesColor(data.preferences.style)
-            data.preferences.style = style ? style : {
-                backgroundColor: "#121212",
-                primaryColor: "#FF686B",
-                secondaryColor: "#323232",
-                tertiaryColor: "#505050",
-                textColor: "#F7F7F7"
+            if (data) {
+                const style = getPreferencesColor(data.preferences?.style ? data.preferences.style : "default")
+                data.preferences.style = style;
             }
             setUser(data)
         });
@@ -53,34 +54,117 @@ function App({ timeElapsed }) {
 
     useEffect(() => {
         reloadUserHandler()
-    }, [currentUser]);
+    }, []);
+
+    useEffect(() => {
+        if (user || user === null) setIsLoading(false);
+    }, [user])
+
     return (
         <>
-            <div style={{ position: "absolute", top: "0", left: "0", right: "0", bottom: "0", backgroundColor: user?.preferences?.style?.backgroundColor ? user.preferences.style.backgroundColor : "#121212" }}>
-                <Routes>
-                    <Route path="/" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/login" element={<Login user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/logout" element={<Logout setCurrentUser={setCurrentUser} setIsLoading={setIsLoading} />} />
-                    <Route path="/register" element={<Register user={currentUser} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/home" element={<Home user={user} setCurrentUser={setCurrentUser} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/game" element={<GameScreen user={user} setUser={setUser} isLoading={isLoading} timeElapsed={timeElapsed} setIsLoading={setIsLoading} />} />
-                    <Route path="/challenges" element={<Challenges user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/goals/index" element={<GoalsIndex user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/goals/create" element={<GoalsCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/tutorial" element={<Tutorial user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/chat" element={<Chats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/account" element={<Account user={user} isLoading={isLoading} setIsLoading={setIsLoading} reloadUserHandler={reloadUserHandler} />} />
-                    <Route path="/preferences" element={<Preferences user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/chatFriends" element={<Chats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/chatGroups" element={<GroupChats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    {/* <Route path="/community" element={<CommunityScreen user={user} isLoading={isLoading} setIsLoading={setIsLoading}/>} /> */}
-                    <Route path="/add-group" element={<GroupCreate user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/groupChat" element={<GroupChats user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/leaderboard" element={<Leaderboard user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/avatarselect" element={<AvatarSelect user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                    <Route path="/add-friend" element={<AddFriends user={user} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-                </Routes>
-            </div>
+            {isLoading ? <Loading /> :
+                <div style={{ position: "absolute", top: "0", left: "0", right: "0", bottom: "0", backgroundColor: user?.preferences?.style?.backgroundColor ? user.preferences.style.backgroundColor : "#121212" }}>
+                    <Routes>
+                        <Route path="/" element={
+                            <Login user={user} reloadUserHandler={reloadUserHandler} />
+                        } />
+                        <Route path="/login" element={
+                            <Login user={user} reloadUserHandler={reloadUserHandler} />
+                        } />
+                        <Route path="/logout" element={
+                            <Logout reloadUserHandler={reloadUserHandler} />
+                        } />
+                        <Route path="/register" element={
+                            <Register user={user} reloadUserHandler={reloadUserHandler} />
+                        } />
+                        <Route path="/home" element={
+                            <ProtectedRoute user={user}>
+                                <Home user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/game" element={
+                            <ProtectedRoute user={user}>
+                                <GameWrapper user={user} reloadUserHandler={reloadUserHandler} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/challenges" element={
+                            <ProtectedRoute user={user}>
+                                <Challenges user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/goals/index" element={
+                            <ProtectedRoute user={user}>
+                                <GoalsIndex user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/goals/create" element={
+                            <ProtectedRoute user={user}>
+                                <GoalsCreate user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/tutorial" element={
+                            <ProtectedRoute user={user}>
+                                <Tutorial user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/chat" element={
+                            <ProtectedRoute user={user}>
+                                <Chats user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/account" element={
+                            <ProtectedRoute user={user}>
+                                <Account user={user} reloadUserHandler={reloadUserHandler} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/preferences" element={
+                            <ProtectedRoute user={user}>
+                                <Preferences user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/chatFriends" element={
+                            <ProtectedRoute user={user}>
+                                <Chats user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/chatGroups" element={
+                            <ProtectedRoute user={user}>
+                                <GroupChats user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/add-group" element={
+                            <ProtectedRoute user={user}>
+                                <GroupCreate user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/groupChat" element={
+                            <ProtectedRoute user={user}>
+                                <GroupChats user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/avatarselect" element={
+                            <ProtectedRoute user={user}>
+                                <AvatarSelect user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/add-friend" element={
+                            <ProtectedRoute user={user}>
+                                <AddFriends user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/community" element={
+                            <ProtectedRoute user={user}>
+                                <CommunityScreen user={user} />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/friendChat" element={
+                            <ProtectedRoute user={user}>
+                                <FriendChat user={user} />
+                            </ProtectedRoute>
+                        } />
+                    </Routes>
+                </div>
+            }
         </>
     )
 }

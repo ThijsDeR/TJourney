@@ -32,7 +32,7 @@ export function SelectGoalOverzicht(props) {
                             <article className="media">
                                 <div className="media-content">
                                     <div className="content">
-                                        <ul style={{ listStyle: 'none', margin: 'unset', marginBottom: '20px' }}>
+                                        <ul style={{ listStyle: 'none', margin: 'unset', marginBottom: '20px', color: props.user.preferences.style.textColor }}>
                                             <li><b>Name</b>: {props.name}</li>
                                             <li><b>Description</b>: {props.description}</li>
                                             <li><b>startValue </b>: {props.startValue}</li>
@@ -46,7 +46,7 @@ export function SelectGoalOverzicht(props) {
                                                 <button className="button is-link" style={{ backgroundColor: props.user.preferences.style.primaryColor }} onClick={submitHandler}>Submit</button>
                                             </div>
                                             <div className="control">
-                                                <button className="button is-link is-light">Cancel</button>
+                                                <button onClick={stepBackHandler} className="button is-link is-light">Cancel</button>
                                             </div>
                                         </div>
                                     </div>

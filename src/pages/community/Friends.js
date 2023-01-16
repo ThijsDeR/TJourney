@@ -29,7 +29,7 @@ function Friends({ user }) {
             {
                 friends ? friends.map((friend) => (
                     <div className='userDiv' style={chatContainer(user.preferences.style)} onClick={() => {
-                        window.location.href = `/friendChat?id=${friend.user._id}`;
+                        window.location.href = `/friendChat?id=${friend._id}`;
                     }}>
                         <div className='friendTile' style={friendsTile(user.preferences.style)}>
                             <div className='friendItems' style={friendItems(user.preferences.style)}>

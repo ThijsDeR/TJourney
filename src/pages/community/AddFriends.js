@@ -77,9 +77,8 @@ function AddFriends({ user }) {
                                                         alignItems: 'center',
                                                     }}>
                                                         <a href style={unsetLinkStyle(user.preferences.style)} onClick={(e) => {
-                                                            addFriend(nonFriend)
+                                                            addFriend(nonFriend._id)
                                                             e.target.closest(".userDiv").remove()
-                                                            window.location.reload()
                                                         }}>
                                                             <div style={{ ...smallButton(user.preferences.style), ...{ width: '70px' } }}>Add</div>
                                                         </a>

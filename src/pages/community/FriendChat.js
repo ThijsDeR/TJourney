@@ -21,7 +21,7 @@ export default function FriendChat({ user }) {
     const getMessages = async () => {
         if (user && searchParams.get("id")) {
             const messages = await getAllMessages()
-            const relevantMessages = messages.filter((message) => message.user.includes(user._id) && message.user.includes(searchParams.get("id")))
+            const relevantMessages = messages.filter((message) => message.user.includes(user._id) && message.user.includes(searchParams.get("id"))).reverse()
             setMessages(relevantMessages);
         }
     }
@@ -34,14 +34,15 @@ export default function FriendChat({ user }) {
                 setIsLoading(false)
             })
         })
+        /**
+        * update the messages
+        */
+        setInterval(() => {
+            getMessages();
+        }, 1000)
     }, [])
 
-    /**
-     * update the messages
-     */
-    setInterval(() => {
-        getMessages();
-    }, 1000)
+
 
     const sendChat = () => {
         if (msg.length > 0) {
@@ -70,7 +71,7 @@ export default function FriendChat({ user }) {
                     <Link to="/community" style={{ color: user.preferences.style.secondaryColor, margin: "0 25px" }}><FontAwesomeIcon icon={faChevronLeft} /></Link>
                     <h3 style={{ margin: "0 25px" }}>{friend.username}</h3>
                 </div>
-                <div className='chatContainer' style={{ position: "fixed", top: "50px", left: "0", right: "0", bottom: "135px", display: "flex", flexDirection: "column", overflowY: "auto" }}>
+                <div className='chatContainer' style={{ position: "fixed", top: "50px", left: "0", right: "0", bottom: "135px", display: "flex", flexFlow: "column-reverse", overflowY: "auto" }}>
                     {
                         messages ? messages.map((message) => (
                             <div key={messages._id} style={{ display: "flex", justifyContent: "end" }}>

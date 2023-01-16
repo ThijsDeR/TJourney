@@ -9,7 +9,7 @@ import { calculateLevel } from '../../services/level-service';
 import { getAllGroups } from '../../services/groups-service.js';
 
 
-function Groups({ user, setIsLoading, isLoading }) {
+function Groups({ user }) {
     const [groups, setGroups] = useState(undefined);
 
     useEffect(() => {

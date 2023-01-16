@@ -10,11 +10,12 @@ import { getAllUsers, getCurrentUser } from '../../services/auth-service.js';
 import Loading from '../loading/Loading.js';
 
 let friendsInGroup = [];
-export function CreateGroupForm({ user, props }) {
+export function CreateGroupForm(props) {
     const localUser = JSON.parse(localStorage.getItem("user"))
     const [users, setUsers] = useState(undefined)
     const [CurrentUser, setUser] = useState(undefined)
     const [groups, setGroups] = useState(undefined)
+    const [isLoading, setIsLoading] = useState(true)
 
     const [searchInput, setSearchInput] = useState("");
 
@@ -28,26 +29,14 @@ export function CreateGroupForm({ user, props }) {
         getAllUsers().then((data) => {
             setUsers(data)
         })
-    }, [])
-
-    useEffect(() => {
         getCurrentUser().then((data) => {
-            setUser(data)
             friendsInGroup.push(data)
         })
-    }, [])
-
-    useEffect(() => {
         getAllGroups().then((data) => {
             setGroups(data)
         })
+        setIsLoading(false)
     }, [])
-
-    useEffect(() => {
-        if (user) setIsLoading(false)
-
-    }, [user, setIsLoading])
-
 
     return (
         <>
@@ -59,9 +48,9 @@ export function CreateGroupForm({ user, props }) {
                         display: 'flex',
                         alignItems: 'center',
                     }}>
-                        <div style={containerLeftRight(user.preferences.style)}>
-                            <Link to="/community" style={unsetLinkStyle(user.preferences.style)}>
-                                <div style={{ ...smallButton(user.preferences.style), ...{ width: '70px' } }}>Cancel</div>
+                        <div style={containerLeftRight(props.user.preferences.style)}>
+                            <Link to="/community" style={unsetLinkStyle(props.user.preferences.style)}>
+                                <div style={{ ...smallButton(props.user.preferences.style), ...{ width: '70px' } }}>Cancel</div>
                             </Link>
                             <div style={{ ...{ width: '80%' } }}>   
 
@@ -70,8 +59,8 @@ export function CreateGroupForm({ user, props }) {
                                 </div>
 
                             </div>
-                            <Link to="/community" style={unsetLinkStyle(user.preferences.style)}>
-                                <div style={{ ...smallButton(user.preferences.style), ...{ width: '70px' } }} onClick={() => createGroups(props.name, props.description, friendsInGroup, localUser.id, "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg")}>Create Group</div>
+                            <Link to="/community" style={unsetLinkStyle(props.user.preferences.style)}>
+                                <div style={{ ...smallButton(props.user.preferences.style), ...{ width: '70px' } }} onClick={() => createGroups(props.name, props.description, friendsInGroup, localUser.id, "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg")}>Create Group</div>
                             </Link>
                         </div>
                     </div>
@@ -91,17 +80,17 @@ export function CreateGroupForm({ user, props }) {
                         </div>
 
                         <input
-                            style={searchBar(user.preferences.style)}
+                            style={searchBar(props.user.preferences.style)}
                             type="text"
                             placeholder="Search"
                             onChange={handleSearchInput}
                             value={searchInput} />
                         {users ? users.map(person => (
                             <div className='userDiv' key={person._id}>
-                                <div style={chatContainer(user.preferences.style)}>
-                                    <div className='friendTile' style={{ ...friendsTile(user.preferences.style), ...{ margin: 'unset' } }}>
-                                        <div className='friendItems' style={friendItems(user.preferences.style)}>
-                                            <div className='friendIcon' style={fakePF(user.preferences.style)}></div>
+                                <div style={chatContainer(props.user.preferences.style)}>
+                                    <div className='friendTile' style={{ ...friendsTile(props.user.preferences.style), ...{ margin: 'unset' } }}>
+                                        <div className='friendItems' style={friendItems(props.user.preferences.style)}>
+                                            <div className='friendIcon' style={fakePF(props.user.preferences.style)}></div>
                                             <div className='friendInfo'>
                                                 <div className='friendName' style={{ fontWeight: 'bold' }}> {person.username} </div>
                                                 <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Level {person.level.level} </div>
@@ -117,7 +106,7 @@ export function CreateGroupForm({ user, props }) {
                                             e.target.closest(".userDiv").remove()
                                             // TODO: remove user after button is clicked
                                         }}>
-                                            <div style={{ ...smallButton(user.preferences.style), ...{ width: '70px' } }}>Add</div>
+                                            <div style={{ ...smallButton(props.user.preferences.style), ...{ width: '70px' } }}>Add</div>
                                         </div>
 
                                     </div>

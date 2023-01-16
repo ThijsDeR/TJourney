@@ -28,7 +28,7 @@ export function GroupCreate({ user }) {
     return (
         <>
             <div style={{ position: "fixed", top: "0", bottom: "0", left: "0px", right: "0px", backgroundColor: "black", overflow: "auto" }}>
-                {<CreateGroupForm {...data} />}
+                {<CreateGroupForm {...{...data, user}}  />}
             </div>
         </>
     );

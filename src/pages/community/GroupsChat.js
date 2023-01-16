@@ -13,11 +13,12 @@ import "./chatStyle.css";
 import { getAllGroups } from '../../services/groups-service.js';
 
 let timer = 0;
-export default function GroupChat({ user, setIsLoading, isLoading }) {
+export default function GroupChat({ user }) {
     const [searchParams, setSearchParams] = useSearchParams()
     const [messages, setMessages] = useState(undefined);
     const [group, setGroup] = useState(undefined);
     const [msg, setMsg] = useState("");
+    const [isLoading, setIsLoading] = useState(true)
 
     const getMessages = () => {
         if (user && searchParams.get("id")) {

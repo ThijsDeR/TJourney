@@ -15,7 +15,7 @@ import { myRank, topThreeContainer, topThreePfOne, topThreePfTwoThree, leaderboa
 import { useEffect, useState } from "react";
 import { buttonStyling, navButtonContainer, selectedStyling } from "../../../components/navigation/NavStylingVariables";
 
-function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, updateTutorialPosition, isLoading, setIsLoading }) {
+function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, updateTutorialPosition}) {
 
     return (
         <>
@@ -94,7 +94,7 @@ function CommunityScreenTutorial({ user, screenPart, updateTutorialScreenPart, u
                         </div>
 
                         <div label="Leaderboard">
-                            <Leaderboard user={user} isLoading={isLoading} setIsLoading={setIsLoading} />
+                            <Leaderboard user={user}/>
                         </div>
                     </Tabs>
                 </div>

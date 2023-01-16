@@ -103,7 +103,7 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
 
                     {/* Username section */}
                     <div className="is-size-4 mt-3">
-                        <div className="mb-5" style={screenPart === 1 ? { zIndex: 300, position: 'relative' } : {}}>
+                        <div className="mb-5" style={screenPart === 1 ? { zIndex: 30, position: 'relative' } : {}}>
                             {inputUserName
                                 ?
                                 <div style={{ height: "3vh" }} >
@@ -122,14 +122,14 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
                         </div>
 
                         {/* Level */}
-                        <div style={screenPart === 2 ? { zIndex: 300, position: 'relative' } : {}}>
+                        <div style={screenPart === 2 ? { zIndex: 30, position: 'relative' } : {}}>
                             Level: ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )
                         </div>
 
 
                         {/* Avatar canvas */}
-                        <Link to="" style={(screenPart === 3 || screenPart > 5) ? { zIndex: 300, position: 'relative' } : {}} onClick={screenPart > 5 ? () => updateTutorialPosition() : () => { }}>
-                            <div className="box" style={{ backgroundColor: user.preferences.style.tertiaryColor, position: "relative" }} onClick={() => { window.location.href = "/avatarselect" }}>
+                        <Link to="" style={(screenPart === 3 || screenPart > 5) ? { zIndex: 30, position: 'relative' } : {}} onClick={screenPart > 5 ? () => updateTutorialPosition() : () => { }}>
+                            <div className="box" style={{ backgroundColor: user.preferences.style.tertiaryColor, position: "relative" }}>
                                 {/*change avatar*/}
                                 <div className="is-size-3" style={{ position: "absolute", right: "10px", top: "-3px" }}>
                                     <FontAwesomeIcon icon={faPencil} style={{ color: user.preferences.style.primaryColor }} />
@@ -140,7 +140,7 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
 
                         {/* Edit password */}
                         <div style={screenPart === 5 ?
-                            { zIndex: 300, position: 'absolute', bottom: "10vh", right: "5vw" }
+                            { zIndex: 30, position: 'absolute', bottom: "10vh", right: "5vw" }
                             :
                             { position: "absolute", bottom: "10vh", right: "5vw" }}>
                             <button className="button has-text-white" style={{ backgroundColor: user.preferences.style.primaryColor }} onClick={() => [showInputPassword(!inputPassword), showInputDeleteAccount(false)]}>
@@ -190,7 +190,7 @@ function Account({ user, isLoading, screenPart, updateTutorialScreenPart, update
 
                     {/* Delete account */}
                     <div style={screenPart === 4 ?
-                        { zIndex: 300, position: 'absolute', bottom: "10vh" }
+                        { zIndex: 30, position: 'absolute', bottom: "10vh" }
                         :
                         { position: "absolute", bottom: "10vh" }}>
                         <button className="button is-danger mt-5 is-relative" onClick={() => [showInputDeleteAccount(!inputDeleteAccount), showInputPassword(false)]}>Delete account</button>

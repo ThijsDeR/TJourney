@@ -42,54 +42,56 @@ export function SelectPremadePlan(props) {
         props.setStepHandler(step)
     }
 
-    const goalsExercise = [{
-        Name: "exercise",
-        Description: "Exercise loads",
-        Startvalue: 100,
-        Endvalue: 500
-    },
-    {
-        Name: "exercise mooooooore",
-        Description: "Exercise loadsssssssss",
-        Startvalue: 10000,
-        Endvalue: 50000
-    }
+    const goalsExercise = [
+        {
+            Name: "Walk 5000 Meters",
+            Description: "Want to walk more, but want to start slow? Then this is the goal for you!",
+            Startvalue: 1000,
+            Endvalue: 5000
+        },
+        {
+            Name: "Walk 10000 Meters",
+            Description: "Want to walk more, and are you already quite into it? Then this is the goal for you!",
+            Startvalue: 3000,
+            Endvalue: 10000
+        },
+        {
+            Name: "Walk 20000 Meters",
+            Description: "Want to walk more, and you have already gone quite the way? Then this is the goal for you!",
+            Startvalue: 8000,
+            Endvalue: 20000
+        }
     ]
 
-    const goalsSleep = [{
-        Name: "Sleep",
-        Description: "I want to sleep enough",
-        Startvalue: 6,
-        Endvalue: 8
-    },
-    {
-        Name: "Sleep",
-        Description: "I want to sleep more",
-        Startvalue: 5,
-        Endvalue: 7,
+    const goalsSleep = [
+        {
+            Name: "Really Bad Sleep",
+            Description: "Are you not sleeping at all? Choose this goal!",
+            Startvalue: 2,
+            Endvalue: 6
+        },
+        {
+            Name: "Get Regular Sleep",
+            Description: "Do you want to sleep just a bit more? Then this goal is for you!",
+            Startvalue: 4,
+            Endvalue: 8,
 
-    },
-    {
-        Name: "Sleepinh",
-        Description: "I want to sleep ",
-        Startvalue: 4,
-        Endvalue: 8,
-    }
-
+        },
     ]
 
-    const goalsFood = [{
-        Name: "Eat less than 1500 calories",
-        Description: "I want to lose weight",
-        Startvalue: 2500,
-        Endvalue: 1500
-    },
-    {
-        Name: "Eat more than a 1000 calories",
-        Description: "I want to lose weight",
-        Startvalue: 500,
-        Endvalue: 1500,
-    }
+    const goalsFood = [
+        {
+            Name: "Eat less than 2500 calories",
+            Description: "Want to lose a little weight? Choose this goal!",
+            Startvalue: 2500,
+            Endvalue: 1500
+        },
+        {
+            Name: "Eat more than a 1500 calories",
+            Description: "Do you feel that you eat a little too little? Pick this goal!",
+            Startvalue: 500,
+            Endvalue: 1500,
+        }
     ]
 
     return (

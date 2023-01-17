@@ -166,7 +166,7 @@ export function Challenges({ user }) {
                                     {unfinishedChallenges ? unfinishedChallenges.map((challenge, challengeIndex) => (
                                         <>
                                             <div style={{ ...tileStyle(user.preferences.style), ...containerLeftRight(user.preferences.style) }}>
-                                                <div>{challenge.description}</div>
+                                                <div>{challenge.targetAmount} units of {challenge.name}</div>
                                                 <div>
                                                     <input type="checkbox" className="is-pulled-right" style={{ width: "25px", height: "25px" }} checked={challenge.finished} onClick={() => checkChallengeHandler(challenge.goal_id, challenge.id, challenge.finished)} />
                                                 </div>
@@ -182,7 +182,7 @@ export function Challenges({ user }) {
                                             <>
                                                 {
                                                     challenge.finished ? <div style={containerLeftRight(user.preferences.style)}>
-                                                        <div style={{ margin: marginFinishedChallenges }}> {challenge.description} </div>
+                                                        <div style={{ margin: marginFinishedChallenges }}> {challenge.targetAmount} units of {challenge.name} </div>
                                                         <div style={{ paddingTop: '5px' }}>
                                                             <input type="checkbox" className="is-pulled-right" style={{ width: "25px", height: "25px" }} checked={challenge.finished} onClick={() => checkChallengeHandler(challenge.goal_id, challenge.id, challenge.finished)} />
                                                         </div>

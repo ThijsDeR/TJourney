@@ -50,7 +50,6 @@ export const setSteps = async (steps) => {
 export const calculateDiceEyesCount = async (challenges) => {
     const gameSession = await getGameSession()
     const total = challenges.length
-    console.log(gameSession)
     let finished = 0
     const msInDay = 1000 * 60 * 60 * 24
     const gameEntriesOnToday = gameSession.entries.filter(

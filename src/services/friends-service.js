@@ -41,8 +41,6 @@ export const getNonFriends = async () => {
             headers: { Authorization: `Bearer ${localUser.accessToken}` }
         })
 
-        console.log(usersResponse.data.data)
-        console.log(result.friends)
         const users = usersResponse.data.data.filter((user) => !result.friends.includes(user._id) && result._id !== user._id)
 
         return users;

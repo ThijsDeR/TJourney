@@ -235,7 +235,7 @@ export const friendsTile = (style) => {
         height: '70px',
         width: '100%',
         display: 'inline-grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: '1.5fr 0.5fr',
         justifyContent: 'start',
         alignItems: 'center',
     }

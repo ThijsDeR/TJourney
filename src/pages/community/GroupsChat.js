@@ -123,7 +123,7 @@ export default function GroupChat({ user }) {
                     <input type="text" value={msg} onChange={(e) => { setMsg(e.target.value) }} style={{ border: "none", height: "80%", width: "75%", borderRadius: "20px", padding: "0 10px", backgroundColor: user.preferences.style.secondaryColor, color: user.preferences.style.textColor }} />
                     <FontAwesomeIcon icon={faPaperPlane} style={{ color: user.preferences.style.secondaryColor }} onClick={sendChat} />
                 </div>
-                <Navigation user={user} />
+                {/* <Navigation user={user} /> */}
             </>}
         </>
     );

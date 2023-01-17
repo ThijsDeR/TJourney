@@ -8,6 +8,7 @@ import 'bulma/css/bulma.min.css';
 import { smallButton, friendsTile, friendItems, fakePF, chatContainer, searchBar, unsetLinkStyle, containerLeftRight } from '../../styling/StylingVariables.js';
 import { getAllUsers, getCurrentUser } from '../../services/auth-service.js';
 import Loading from '../loading/Loading.js';
+import { getFriends } from '../../services/friends-service.js';
 
 let friendsInGroup = [];
 export function CreateGroupForm(props) {
@@ -26,7 +27,14 @@ export function CreateGroupForm(props) {
     }
 
     useEffect(() => {
-        setUsers(props.user.friends)
+        getFriends().then((data) => {
+            let friends = [];
+            data.forEach((element, index) => {
+                friends.push(element.user)
+            })
+            setUsers(friends)
+        })
+        // setUsers(props.user.friends)
         getCurrentUser().then((data) => {
             friendsInGroup.push(data)
         })
@@ -91,7 +99,7 @@ export function CreateGroupForm(props) {
                                             <div className='friendIcon' style={fakePF(props.user.preferences.style)}></div>
                                             <div className='friendInfo'>
                                                 <div className='friendName' style={{ fontWeight: 'bold' }}> {person.username} </div>
-                                                <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Level {person.level} </div>
+                                                <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Level {person.level.amount} </div>
                                             </div>
                                         </div>
 

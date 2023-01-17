@@ -132,7 +132,7 @@ function Account({ user, reloadUserHandler }) {
 
                                     {/* Level */}
                                     <div>
-                                        Level: ({level ? `${level.level} (${level.xp} / ${level.neededXP})` : ""} )
+                                        Level: {level ? `${level.level}` : ""}
                                     </div>
 
 

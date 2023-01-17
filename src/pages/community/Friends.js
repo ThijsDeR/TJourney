@@ -18,8 +18,8 @@ function Friends({ user }) {
             getFriends().then((friends) => {
                 friends.forEach((friend) => {
                     friend.user.level = calculateLevel(friend.user.level.amount)
-                    const relevantMessages = messages.filter((message) => message.user.includes(friend.user._id) && message.user.includes(user._id))
-                    const message = relevantMessages.reverse()[0].message
+                    const relevantMessages = messages.filter((message) => message.user.includes(friend.user._id) && message.user.includes(user._id)).reverse()
+                    const message = relevantMessages.length > 0 ? relevantMessages[0].message : "No messages"
                     friend.user.lastMessage = message.length > 20 ? message.substring(0, 20) + "..." : message;
                 })
                 setFriends(friends)

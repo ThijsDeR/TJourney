@@ -2,7 +2,7 @@ import Navigation from "../../../components/navigation/Navigation";
 import Loading from "../../../components/loading/Loading";
 import { useEffect, useState } from "react";
 import { getAllGoals } from "../../../services/goal-service";
-import { Navigate, useRouteError } from "react-router-dom";
+import { Link, Navigate, useRouteError } from "react-router-dom";
 
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -35,7 +35,7 @@ export function GoalsIndex({ user }) {
                                         ? <>
                                             <div style={goBackIndicator(user.preferences.style)}>
                                                 <FontAwesomeIcon icon={faAngleLeft} size='lg' />
-                                                <span style={{ paddingLeft: '10px', color: user.preferences.style.primaryColor }}>Go back</span>
+                                                <Link to="/challenges" style={{ paddingLeft: '10px', color: user.preferences.style.primaryColor }}>Go back</Link>
                                             </div>
 
                                             <span style={{ ...title(user.preferences.style), ...{ paddingBottom: '20px' } }} >Choose a category</span>
@@ -55,11 +55,11 @@ export function GoalsIndex({ user }) {
                                                                         <li><b>endDate</b>: {goal.endDate}</li>
                                                                         <li><b>category</b>: {goal.category}</li>
                                                                     </ul>
-                                                                    {/* <div className="field is-grouped">
+                                                                    <div className="field is-grouped">
                                                                         <div className="control">
-                                                                            <button className="button" style={{ backgroundColor: user.preferences.style.primaryColor }}>Edit</button>
+                                                                            <Link to="/challenges" className="button" style={{ backgroundColor: user.preferences.style.primaryColor }}>Back to Overview</Link>
                                                                         </div>
-                                                                    </div> */}
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </article>

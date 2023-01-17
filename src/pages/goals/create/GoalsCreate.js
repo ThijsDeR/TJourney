@@ -31,7 +31,7 @@ export function GoalsCreate({ user }) {
     }, [done])
 
     if (done) {
-        return <Navigate to="/goals/index" replace />;
+        return <Navigate to="/challenges" replace />;
     }
 
     const data = { user, name, setName, description, setDescription, startValue, setStartValue, endValue, setEndValue, startDate, setStartDate, endDate, setEndDate, category, setCategory, setStepHandler, done, setDone }

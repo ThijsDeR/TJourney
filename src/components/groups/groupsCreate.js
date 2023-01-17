@@ -91,7 +91,7 @@ export function CreateGroupForm(props) {
                                             <div className='friendIcon' style={fakePF(props.user.preferences.style)}></div>
                                             <div className='friendInfo'>
                                                 <div className='friendName' style={{ fontWeight: 'bold' }}> {person.username} </div>
-                                                <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Level {person.level.level} </div>
+                                                <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Level {person.level} </div>
                                             </div>
                                         </div>
 

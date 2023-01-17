@@ -64,8 +64,8 @@ function AddFriends({ user }) {
                                                 <div className='friendTile' style={{ ...friendsTile(user.preferences.style), ...{ margin: 'unset' } }}>
                                                     <div className='friendItems' style={friendItems(user.preferences.style)}>
                                                         <div className='friendIcon' style={fakePF(user.preferences.style)}></div>
-                                                        <div className='friendInfo'>
-                                                            <div className='friendName' style={{ fontWeight: 'bold' }}> {nonFriend.username} </div>
+                                                        <div className='friendInfo' style={{width: "100%"}}>
+                                                            <div className='friendName' style={{ fontWeight: 'bold', fontSize: "15px" }}> {nonFriend.username.length > 18 ? nonFriend.username.substring(0, 18) + ".." : nonFriend.username} </div>
                                                             <div className='friendLevel' style={{ fontWeight: 'lighter' }}> Level {nonFriend.level.level} </div>
                                                         </div>
                                                     </div>

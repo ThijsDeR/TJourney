@@ -118,7 +118,7 @@ function Account({ user, reloadUserHandler }) {
                                             <div style={{ height: "3vh" }} >
                                                 <form onSubmit={(e) => handleEditUserName(e)}>
                                                     <input className="input has-text-centered" style={{ width: "35vw", backgroundColor: user.preferences.style.backgroundColor, color: user.preferences.style.textColor }} type="text" placeholder="username" defaultValue={user.username} onChange={(e) => setNewUsername(e.target.value)} />
-                                                    <button className="is-pulled-right button ml-3" style={{ backgroundColor: user.preferences.style.secondaryColor }} onClick={() => showInputUserName(!inputUserName)}>Cancel</button>
+                                                    <button className="is-pulled-right button ml-3" style={{ backgroundColor: user.preferences.style.secondaryColor, color: user.preferences.style.textColor }} onClick={() => showInputUserName(!inputUserName)}>Cancel</button>
                                                     <button className="is-pulled-right button" style={{ backgroundColor: user.preferences.style.primaryColor }}>Submit</button>
                                                 </form>
                                             </div>
